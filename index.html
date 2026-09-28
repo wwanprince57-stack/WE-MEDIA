@@ -16,15 +16,16 @@
 body{
   background:#000;
   color:#fff;
+  padding-bottom:75px;
 }
 
 header{
   height:60px;
+  background:#111;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
-  background:#111;
+  padding:0 16px;
   position:sticky;
   top:0;
   z-index:10;
@@ -39,61 +40,73 @@ header{
   color:#00d9ff;
 }
 
-button{
-  border:0;
-  border-radius:8px;
-  padding:10px 15px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
 .login{
   background:#00d9ff;
-  color:#000;
+  border:0;
+  padding:9px 15px;
+  border-radius:8px;
+  font-weight:bold;
 }
 
 main{
-  max-width:600px;
+  max-width:650px;
   margin:auto;
 }
 
 .video-card{
-  min-height:500px;
-  margin:15px 10px;
   background:#151515;
-  border-radius:14px;
-  padding:15px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
+  margin:12px 8px;
+  border-radius:12px;
+  overflow:hidden;
 }
 
-.video-box{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:60px;
-  color:#555;
+.video-container{
+  width:100%;
+  background:#000;
+}
+
+video{
+  width:100%;
+  max-height:70vh;
+  display:block;
+  object-fit:contain;
+}
+
+.info{
+  padding:14px;
 }
 
 .username{
   font-weight:bold;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .caption{
-  margin-bottom:15px;
+  margin-bottom:12px;
+  color:#ddd;
 }
 
 .actions{
   display:flex;
-  gap:10px;
+  gap:8px;
 }
 
 .actions button{
-  background:#252525;
+  background:#292929;
   color:white;
+  border:0;
+  border-radius:8px;
+  padding:9px 12px;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 20px;
+  color:#aaa;
+}
+
+#fileInput{
+  display:none;
 }
 
 nav{
@@ -106,21 +119,24 @@ nav{
   display:flex;
   justify-content:space-around;
   align-items:center;
+  z-index:20;
 }
 
 nav button{
-  background:transparent;
+  background:none;
   color:white;
+  border:0;
   font-size:13px;
 }
 
 .upload{
-  background:#00d9ff;
-  color:#000;
-  border-radius:50%;
   width:50px;
   height:50px;
-  font-size:25px;
+  border-radius:50%;
+  background:#00d9ff;
+  color:#000;
+  font-size:28px;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -132,63 +148,163 @@ nav button{
   <button class="login" onclick="login()">LOGIN</button>
 </header>
 
-<main>
+<main id="feed">
 
-<div class="video-card">
-  <div class="video-box">▶</div>
-
-  <div class="username">@wemedia_user</div>
-
-  <div class="caption">
-    Welcome to We Media 🎥🔥
+  <div class="empty" id="emptyMessage">
+    🎥<br><br>
+    No videos yet.<br>
+    Tap <b>+</b> to add your first video.
   </div>
-
-  <div class="actions">
-    <button onclick="likeVideo(this)">❤️ Like</button>
-    <button onclick="comment()">💬 Comment</button>
-    <button onclick="shareVideo()">↗ Share</button>
-  </div>
-</div>
 
 </main>
+
+<input
+  type="file"
+  id="fileInput"
+  accept="video/*"
+  onchange="addVideo(event)"
+>
 
 <nav>
   <button onclick="home()">🏠<br>Home</button>
 
-  <button class="upload" onclick="uploadVideo()">+</button>
+  <button class="upload" onclick="chooseVideo()">+</button>
 
   <button onclick="profile()">👤<br>Profile</button>
 </nav>
 
 <script>
 
-function login(){
-  alert("Login page coming soon!");
+function chooseVideo(){
+  document.getElementById("fileInput").click();
+}
+
+function addVideo(event){
+
+  const file = event.target.files[0];
+
+  if(!file){
+    return;
+  }
+
+  if(!file.type.startsWith("video/")){
+    alert("Please choose a video.");
+    return;
+  }
+
+  const videoURL = URL.createObjectURL(file);
+
+  const feed = document.getElementById("feed");
+
+  const empty = document.getElementById("emptyMessage");
+
+  if(empty){
+    empty.remove();
+  }
+
+  const card = document.createElement("div");
+
+  card.className = "video-card";
+
+  card.innerHTML = `
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="${videoURL}" type="${file.type}">
+        Your browser does not support video.
+      </video>
+    </div>
+
+    <div class="info">
+
+      <div class="username">@wemedia_user</div>
+
+      <div class="caption">
+        My first video on We Media 🎥🔥
+      </div>
+
+      <div class="actions">
+
+        <button onclick="likeVideo(this)">
+          ❤️ Like
+        </button>
+
+        <button onclick="commentVideo()">
+          💬 Comment
+        </button>
+
+        <button onclick="shareVideo()">
+          ↗ Share
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  feed.prepend(card);
+
+  event.target.value = "";
 }
 
 function likeVideo(button){
-  button.innerText = "❤️ Liked";
+
+  if(button.innerText.includes("Liked")){
+    button.innerText = "❤️ Like";
+  }else{
+    button.innerText = "❤️ Liked";
+  }
+
 }
 
-function comment(){
-  alert("Comments coming soon!");
+function commentVideo(){
+
+  const comment = prompt("Write your comment:");
+
+  if(comment){
+    alert("Comment added: " + comment);
+  }
+
 }
 
 function shareVideo(){
-  navigator.clipboard.writeText(window.location.href);
-  alert("We Media link copied!");
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"We Media",
+      text:"Check out this video on We Media!",
+      url:window.location.href
+    });
+
+  }else{
+
+    navigator.clipboard.writeText(window.location.href);
+
+    alert("We Media link copied!");
+
+  }
+
 }
 
-function uploadVideo(){
-  alert("Video upload coming soon!");
-}
+function login(){
 
-function home(){
-  window.scrollTo(0,0);
+  alert("Login system coming next.");
+
 }
 
 function profile(){
-  alert("Profile coming soon!");
+
+  alert("Profile system coming next.");
+
+}
+
+function home(){
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
 
 </script>
