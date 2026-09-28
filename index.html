@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>We Media</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{
   box-sizing:border-box;
@@ -60,16 +62,11 @@ main{
   overflow:hidden;
 }
 
-.video-container{
-  width:100%;
-  background:#000;
-}
-
 video{
   width:100%;
   max-height:70vh;
   display:block;
-  object-fit:contain;
+  background:#000;
 }
 
 .info{
@@ -138,6 +135,12 @@ nav button{
   font-size:28px;
   font-weight:bold;
 }
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+}
 </style>
 </head>
 
@@ -149,20 +152,14 @@ nav button{
 </header>
 
 <main id="feed">
-
-  <div class="empty" id="emptyMessage">
-    🎥<br><br>
-    No videos yet.<br>
-    Tap <b>+</b> to add your first video.
-  </div>
-
+  <div class="loading">Loading videos...</div>
 </main>
 
 <input
   type="file"
   id="fileInput"
   accept="video/*"
-  onchange="addVideo(event)"
+  onchange="uploadVideo(event)"
 >
 
 <nav>
@@ -175,11 +172,117 @@ nav button{
 
 <script>
 
-function chooseVideo(){
-  document.getElementById("fileInput").click();
+/* =========================
+   SUPABASE CONNECTION
+   ========================= */
+
+const SUPABASE_URL = "https://jhxbfkpcinetbuwsnxcz.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================
+   LOAD VIDEOS
+   ========================= */
+
+async function loadVideos(){
+
+  const feed = document.getElementById("feed");
+
+  const { data, error } = await supabaseClient
+    .from("videos")
+    .select("*")
+    .order("created_at", { ascending:false });
+
+  if(error){
+
+    feed.innerHTML =
+      '<div class="empty">Could not load videos.</div>';
+
+    console.error(error);
+
+    return;
+  }
+
+  if(!data || data.length === 0){
+
+    feed.innerHTML =
+      '<div class="empty">🎥<br><br>No videos yet.<br>Tap + to upload your first video.</div>';
+
+    return;
+  }
+
+  feed.innerHTML = "";
+
+  data.forEach(video => {
+
+    const card = document.createElement("div");
+
+    card.className = "video-card";
+
+    card.innerHTML = `
+      <video controls playsinline>
+        <source src="${video.video_url}">
+      </video>
+
+      <div class="info">
+
+        <div class="username">
+          @wemedia_user
+        </div>
+
+        <div class="caption">
+          ${escapeHTML(video.title || "My video 🎥🔥")}
+        </div>
+
+        <div class="actions">
+
+          <button onclick="likeVideo(this)">
+            ❤️ Like
+          </button>
+
+          <button onclick="commentVideo()">
+            💬 Comment
+          </button>
+
+          <button onclick="shareVideo('${video.video_url}')">
+            ↗ Share
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    feed.appendChild(card);
+
+  });
+
 }
 
-function addVideo(event){
+
+/* =========================
+   CHOOSE VIDEO
+   ========================= */
+
+function chooseVideo(){
+
+  document.getElementById("fileInput").click();
+
+}
+
+
+/* =========================
+   UPLOAD VIDEO
+   ========================= */
+
+async function uploadVideo(event){
 
   const file = event.target.files[0];
 
@@ -188,103 +291,180 @@ function addVideo(event){
   }
 
   if(!file.type.startsWith("video/")){
+
     alert("Please choose a video.");
+
     return;
   }
 
-  const videoURL = URL.createObjectURL(file);
-
   const feed = document.getElementById("feed");
 
-  const empty = document.getElementById("emptyMessage");
+  feed.innerHTML =
+    '<div class="loading">Uploading video... ⏳</div>';
 
-  if(empty){
-    empty.remove();
+
+  const fileName =
+    Date.now() + "_" +
+    file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+
+  const filePath =
+    "uploads/" + fileName;
+
+
+  /* Upload file to Supabase Storage */
+
+  const { error: uploadError } =
+    await supabaseClient.storage
+      .from("videos")
+      .upload(filePath, file);
+
+
+  if(uploadError){
+
+    console.error(uploadError);
+
+    alert(
+      "Upload failed: " +
+      uploadError.message
+    );
+
+    loadVideos();
+
+    return;
   }
 
-  const card = document.createElement("div");
 
-  card.className = "video-card";
+  /* Get public video URL */
 
-  card.innerHTML = `
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="${videoURL}" type="${file.type}">
-        Your browser does not support video.
-      </video>
-    </div>
+  const { data: publicData } =
+    supabaseClient.storage
+      .from("videos")
+      .getPublicUrl(filePath);
 
-    <div class="info">
 
-      <div class="username">@wemedia_user</div>
+  const videoURL =
+    publicData.publicUrl;
 
-      <div class="caption">
-        My first video on We Media 🎥🔥
-      </div>
 
-      <div class="actions">
+  /* Save video information in database */
 
-        <button onclick="likeVideo(this)">
-          ❤️ Like
-        </button>
+  const { error: databaseError } =
+    await supabaseClient
+      .from("videos")
+      .insert({
 
-        <button onclick="commentVideo()">
-          💬 Comment
-        </button>
+        title: file.name,
 
-        <button onclick="shareVideo()">
-          ↗ Share
-        </button>
+        video_url: videoURL
 
-      </div>
+      });
 
-    </div>
-  `;
 
-  feed.prepend(card);
+  if(databaseError){
+
+    console.error(databaseError);
+
+    alert(
+      "Video uploaded but database save failed."
+    );
+
+    loadVideos();
+
+    return;
+  }
+
+
+  alert("Video uploaded successfully! 🎉");
 
   event.target.value = "";
+
+  loadVideos();
+
 }
+
+
+/* =========================
+   LIKE
+   ========================= */
 
 function likeVideo(button){
 
   if(button.innerText.includes("Liked")){
+
     button.innerText = "❤️ Like";
+
   }else{
+
     button.innerText = "❤️ Liked";
+
   }
 
 }
+
+
+/* =========================
+   COMMENT
+   ========================= */
 
 function commentVideo(){
 
-  const comment = prompt("Write your comment:");
+  const comment =
+    prompt("Write your comment:");
 
   if(comment){
+
     alert("Comment added: " + comment);
+
   }
 
 }
 
-function shareVideo(){
+
+/* =========================
+   SHARE
+   ========================= */
+
+async function shareVideo(url){
 
   if(navigator.share){
 
-    navigator.share({
-      title:"We Media",
-      text:"Check out this video on We Media!",
-      url:window.location.href
-    });
+    try{
+
+      await navigator.share({
+
+        title:"We Media",
+
+        text:"Check out this video on We Media!",
+
+        url:url
+
+      });
+
+    }catch(e){}
 
   }else{
 
-    navigator.clipboard.writeText(window.location.href);
+    try{
 
-    alert("We Media link copied!");
+      await navigator.clipboard.writeText(url);
+
+      alert("Video link copied!");
+
+    }catch(e){
+
+      alert("Copy failed.");
+
+    }
 
   }
 
 }
+
+
+/* =========================
+   OTHER BUTTONS
+   ========================= */
 
 function login(){
 
@@ -301,11 +481,37 @@ function profile(){
 function home(){
 
   window.scrollTo({
+
     top:0,
+
     behavior:"smooth"
+
   });
 
 }
+
+
+/* =========================
+   SECURITY
+   ========================= */
+
+function escapeHTML(text){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   START APP
+   ========================= */
+
+loadVideos();
 
 </script>
 
