@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,90 +14,76 @@
 }
 
 body{
-  background:#0b0b0f;
-  color:white;
-  padding-bottom:75px;
+  background:#000;
+  color:#fff;
 }
 
 header{
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:#111;
   position:sticky;
   top:0;
   z-index:10;
-  background:#111118;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #292933;
 }
 
 .logo{
-  font-size:24px;
+  font-size:22px;
   font-weight:bold;
 }
 
 .logo span{
-  color:#7c4dff;
+  color:#00d9ff;
 }
 
 button{
   border:0;
+  border-radius:8px;
+  padding:10px 15px;
+  font-weight:bold;
   cursor:pointer;
 }
 
-.login-btn{
-  background:#7c4dff;
-  color:white;
-  padding:9px 15px;
-  border-radius:20px;
+.login{
+  background:#00d9ff;
+  color:#000;
 }
 
-.search{
-  padding:15px;
-}
-
-.search input{
-  width:100%;
-  padding:13px;
-  border-radius:25px;
-  border:1px solid #333;
-  background:#19191f;
-  color:white;
-  outline:none;
-}
-
-.container{
-  max-width:650px;
+main{
+  max-width:600px;
   margin:auto;
 }
 
 .video-card{
-  background:#15151c;
-  margin-bottom:15px;
-  border-bottom:1px solid #292933;
+  min-height:500px;
+  margin:15px 10px;
+  background:#151515;
+  border-radius:14px;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
 }
 
 .video-box{
-  height:330px;
-  background:#050505;
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:55px;
+  font-size:60px;
+  color:#555;
 }
 
-.video-info{
-  padding:14px;
-}
-
-.user{
+.username{
   font-weight:bold;
-  margin-bottom:7px;
+  margin-bottom:8px;
 }
 
 .caption{
-  color:#ddd;
-  margin-bottom:12px;
+  margin-bottom:15px;
 }
 
 .actions{
@@ -106,140 +92,35 @@ button{
 }
 
 .actions button{
-  background:#25252e;
+  background:#252525;
   color:white;
-  padding:9px 14px;
-  border-radius:20px;
 }
 
-.bottom{
+nav{
   position:fixed;
   bottom:0;
   left:0;
   right:0;
   height:65px;
-  background:#111118;
-  border-top:1px solid #292933;
+  background:#111;
   display:flex;
   justify-content:space-around;
   align-items:center;
-  z-index:20;
 }
 
-.bottom button{
-  background:none;
-  color:#aaa;
+nav button{
+  background:transparent;
+  color:white;
   font-size:13px;
 }
 
-.bottom button.active{
-  color:#7c4dff;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.profile{
-  text-align:center;
-  padding:35px 15px;
-}
-
-.avatar{
-  width:90px;
-  height:90px;
+.upload{
+  background:#00d9ff;
+  color:#000;
   border-radius:50%;
-  background:#7c4dff;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-}
-
-.profile h2{
-  margin-top:15px;
-}
-
-.upload-box{
-  margin:20px 15px;
-  background:#15151c;
-  padding:20px;
-  border-radius:15px;
-}
-
-.upload-box input,
-.upload-box textarea{
-  width:100%;
-  margin-bottom:12px;
-  padding:12px;
-  background:#22222a;
-  border:1px solid #333;
-  color:white;
-  border-radius:10px;
-}
-
-.upload-btn{
-  width:100%;
-  padding:13px;
-  background:#7c4dff;
-  color:white;
-  border-radius:10px;
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  z-index:50;
-  align-items:center;
-  justify-content:center;
-}
-
-.modal-box{
-  background:#181820;
-  width:90%;
-  max-width:400px;
-  padding:25px;
-  border-radius:18px;
-}
-
-.modal-box h2{
-  margin-bottom:20px;
-}
-
-.modal-box input{
-  width:100%;
-  padding:13px;
-  margin-bottom:12px;
-  background:#22222a;
-  color:white;
-  border:1px solid #333;
-  border-radius:10px;
-}
-
-.modal-box button{
-  width:100%;
-  padding:13px;
-  margin-top:5px;
-  border-radius:10px;
-  background:#7c4dff;
-  color:white;
-}
-
-.close{
-  background:#333 !important;
-}
-
-.empty{
-  text-align:center;
-  padding:50px 20px;
-  color:#888;
+  width:50px;
+  height:50px;
+  font-size:25px;
 }
 </style>
 </head>
@@ -248,436 +129,69 @@ button{
 
 <header>
   <div class="logo">We <span>Media</span></div>
-  <button class="login-btn" onclick="openLogin()">Login</button>
+  <button class="login" onclick="login()">LOGIN</button>
 </header>
 
-<div class="container">
+<main>
 
-<!-- HOME -->
-<section id="home" class="page active">
+<div class="video-card">
+  <div class="video-box">▶</div>
 
-  <div class="search">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search videos..."
-      oninput="searchVideos()">
+  <div class="username">@wemedia_user</div>
+
+  <div class="caption">
+    Welcome to We Media 🎥🔥
   </div>
 
-  <div id="videos">
-
-    <div class="video-card" data-title="Welcome to We Media">
-      <div class="video-box">▶️</div>
-
-      <div class="video-info">
-        <div class="user">@wemedia</div>
-
-        <div class="caption">
-          Welcome to We Media 🎬🔥
-        </div>
-
-        <div class="actions">
-          <button onclick="like(this)">❤️ 0</button>
-          <button onclick="comment()">💬 Comment</button>
-          <button onclick="share()">↗ Share</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-card" data-title="African Vibes">
-      <div class="video-box">🎬</div>
-
-      <div class="video-info">
-        <div class="user">@creator</div>
-
-        <div class="caption">
-          African vibes on We Media 🌍🔥
-        </div>
-
-        <div class="actions">
-          <button onclick="like(this)">❤️ 0</button>
-          <button onclick="comment()">💬 Comment</button>
-          <button onclick="share()">↗ Share</button>
-        </div>
-      </div>
-    </div>
-
+  <div class="actions">
+    <button onclick="likeVideo(this)">❤️ Like</button>
+    <button onclick="comment()">💬 Comment</button>
+    <button onclick="shareVideo()">↗ Share</button>
   </div>
-</section>
-
-
-<!-- UPLOAD -->
-<section id="upload" class="page">
-
-  <div class="upload-box">
-
-    <h2>Upload Video 🎬</h2>
-
-    <br>
-
-    <input
-      type="text"
-      id="videoTitle"
-      placeholder="Video title">
-
-    <textarea
-      id="videoCaption"
-      rows="4"
-      placeholder="Write something about your video..."></textarea>
-
-    <input
-      type="file"
-      id="videoFile"
-      accept="video/*">
-
-    <button class="upload-btn" onclick="uploadVideo()">
-      Upload Video
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- PROFILE -->
-<section id="profile" class="page">
-
-  <div class="profile">
-
-    <div class="avatar">👤</div>
-
-    <h2 id="profileName">Guest</h2>
-
-    <p>We Media Creator</p>
-
-    <br>
-
-    <button
-      class="login-btn"
-      onclick="openLogin()">
-      Login / Create Account
-    </button>
-
-  </div>
-
-</section>
-
 </div>
 
+</main>
 
-<!-- BOTTOM NAV -->
-<nav class="bottom">
+<nav>
+  <button onclick="home()">🏠<br>Home</button>
 
-  <button
-    class="active"
-    onclick="showPage('home',this)">
-    🏠<br>Home
-  </button>
+  <button class="upload" onclick="uploadVideo()">+</button>
 
-  <button onclick="showPage('upload',this)">
-    ➕<br>Upload
-  </button>
-
-  <button onclick="showPage('profile',this)">
-    👤<br>Profile
-  </button>
-
+  <button onclick="profile()">👤<br>Profile</button>
 </nav>
-
-
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal">
-
-  <div class="modal-box">
-
-    <h2>We Media Login</h2>
-
-    <input
-      type="text"
-      id="username"
-      placeholder="Username">
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Password">
-
-    <button onclick="login()">
-      Login
-    </button>
-
-    <button onclick="createAccount()">
-      Create Account
-    </button>
-
-    <button
-      class="close"
-      onclick="closeLogin()">
-      Close
-    </button>
-
-  </div>
-
-</div>
-
 
 <script>
 
-function showPage(page,button){
-
-  document.querySelectorAll(".page")
-    .forEach(p => p.classList.remove("active"));
-
-  document.getElementById(page)
-    .classList.add("active");
-
-  document.querySelectorAll(".bottom button")
-    .forEach(b => b.classList.remove("active"));
-
-  button.classList.add("active");
-}
-
-
-function openLogin(){
-
-  document.getElementById("loginModal")
-    .style.display="flex";
-
-}
-
-
-function closeLogin(){
-
-  document.getElementById("loginModal")
-    .style.display="none";
-
-}
-
-
-function createAccount(){
-
-  const username =
-    document.getElementById("username").value.trim();
-
-  const password =
-    document.getElementById("password").value.trim();
-
-  if(!username || !password){
-
-    alert("Enter username and password");
-
-    return;
-  }
-
-  localStorage.setItem(
-    "wemedia_user",
-    username
-  );
-
-  localStorage.setItem(
-    "wemedia_password",
-    password
-  );
-
-  document.getElementById("profileName")
-    .innerText="@"+username;
-
-  alert("Account created successfully!");
-
-  closeLogin();
-
-}
-
-
 function login(){
-
-  const username =
-    document.getElementById("username").value.trim();
-
-  const password =
-    document.getElementById("password").value.trim();
-
-  const savedUser =
-    localStorage.getItem("wemedia_user");
-
-  const savedPassword =
-    localStorage.getItem("wemedia_password");
-
-  if(
-    username === savedUser &&
-    password === savedPassword
-  ){
-
-    document.getElementById("profileName")
-      .innerText="@"+username;
-
-    alert("Welcome back "+username+"!");
-
-    closeLogin();
-
-  }else{
-
-    alert("Wrong username or password");
-
-  }
-
+  alert("Login page coming soon!");
 }
 
-
-function like(button){
-
-  let number =
-    parseInt(
-      button.innerText.match(/\d+/)[0]
-    );
-
-  number++;
-
-  button.innerText="❤️ "+number;
-
+function likeVideo(button){
+  button.innerText = "❤️ Liked";
 }
-
 
 function comment(){
-
-  const text =
-    prompt("Write your comment:");
-
-  if(text){
-
-    alert("Comment added: "+text);
-
-  }
-
+  alert("Comments coming soon!");
 }
 
-
-function share(){
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"We Media",
-      text:"Check this video on We Media"
-    });
-
-  }else{
-
-    alert("Share feature ready!");
-
-  }
-
+function shareVideo(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("We Media link copied!");
 }
-
-
-function searchVideos(){
-
-  const search =
-    document.getElementById("searchInput")
-      .value.toLowerCase();
-
-  document.querySelectorAll(".video-card")
-    .forEach(card => {
-
-      const title =
-        card.dataset.title.toLowerCase();
-
-      card.style.display =
-        title.includes(search)
-        ? "block"
-        : "none";
-
-    });
-
-}
-
 
 function uploadVideo(){
+  alert("Video upload coming soon!");
+}
 
-  const title =
-    document.getElementById("videoTitle").value.trim();
+function home(){
+  window.scrollTo(0,0);
+}
 
-  const caption =
-    document.getElementById("videoCaption").value.trim();
-
-  const file =
-    document.getElementById("videoFile").files[0];
-
-  if(!title || !file){
-
-    alert("Add a title and choose a video.");
-
-    return;
-  }
-
-  const videoURL =
-    URL.createObjectURL(file);
-
-  const card =
-    document.createElement("div");
-
-  card.className="video-card";
-
-  card.dataset.title=title;
-
-  card.innerHTML=`
-
-    <video
-      controls
-      style="width:100%;max-height:400px;background:#000">
-
-      <source src="${videoURL}">
-
-    </video>
-
-    <div class="video-info">
-
-      <div class="user">
-        @${localStorage.getItem("wemedia_user") || "creator"}
-      </div>
-
-      <div class="caption">
-        ${caption || title}
-      </div>
-
-      <div class="actions">
-
-        <button onclick="like(this)">
-          ❤️ 0
-        </button>
-
-        <button onclick="comment()">
-          💬 Comment
-        </button>
-
-        <button onclick="share()">
-          ↗ Share
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-  document
-    .getElementById("videos")
-    .prepend(card);
-
-  document.getElementById("videoTitle").value="";
-  document.getElementById("videoCaption").value="";
-  document.getElementById("videoFile").value="";
-
-  alert("Video added to We Media!");
-
-  showPage(
-    "home",
-    document.querySelector(".bottom button")
-  );
-
+function profile(){
+  alert("Profile coming soon!");
 }
 
 </script>
 
 </body>
-      </html>
+</html>
