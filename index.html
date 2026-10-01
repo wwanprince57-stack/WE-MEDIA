@@ -1000,10 +1000,9 @@ escapeHTML(v.title||"")+
 
 card.appendChild(info);
 
+ /* ACTIONS */
 
-/* ACTIONS */
-
-  const actions=
+const actions=
 document.createElement("div");
 
 actions.className="video-actions";
@@ -1012,8 +1011,14 @@ actions.innerHTML=`
 
 <button class="action"
 type="button"
+onclick="openProfile('${v.user_id||""}')">
+<span class="action-icon">👤</span>
+</button>
+
+<button class="action"
+type="button"
 onclick="likePost('${v.id}',this)">
- <span class="action-icon">🤍</span>
+<span class="action-icon">🤍</span>
 </button>
 
 <button class="action"
@@ -1038,7 +1043,19 @@ onclick="whatsappShare('${encodeURIComponent(url)}')">
 
 card.appendChild(actions);
 
+const sound=
+document.createElement("div");
+
+sound.className="sound-used";
+
+sound.textContent=
+"🎵 Original sound · @"+username;
+
+card.appendChild(sound);
+
 box.appendChild(card);
+
+}
 
 }
 
