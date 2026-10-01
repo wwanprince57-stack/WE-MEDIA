@@ -240,6 +240,165 @@ let chatUser=null;
   page("inbox");
   loadInbox();
   }
+  async function loadInbox(){
+
+ if(!user)return;
+
+ let box=$("inboxList");
+ box.innerHTML="Loading...";
+
+ let {data,error}=await sb
+ .from("messages")
+ .select("*")
+ .or(
+  "sender_id.eq."+String(user.id)+
+  ",receiver_id.eq."+String(user.id)
+ )
+ .order("created_at",{ascending:false});
+
+ if(error){
+  box.innerHTML="❌ "+error.message;
+  return;
+ }
+
+ if(!data||data.length===0){
+  box.innerHTML="💬 No messages yet";
+  return;
+ }
+
+ let users={};
+
+ data.forEach(m=>{
+
+  let other=
+   String(m.sender_id)===String(user.id)
+   ?String(m.receiver_id)
+   :String(m.sender_id);
+
+  if(!users[other]){
+   users[other]=m;
+  }
+
+ });
+
+ box.innerHTML="";
+
+ for(let id in users){
+
+  let m=users[id];
+
+  let {data:p}=await sb
+   .from("profiles")
+   .select("username")
+   .eq("id",id)
+   .maybeSingle();
+
+  let name=p?.username||"User";
+
+  let d=document.createElement("div");
+
+  d.className="result";
+
+  d.innerHTML=`
+   <div>
+    👤 <b>${esc(name)}</b>
+    <br>
+    <span class="small">${esc(m.message||"")}</span>
+   </div>
+
+   <button onclick="openChat('${id}','${esc(name)}')">
+    Message
+   </button>
+  `;
+
+  box.appendChild(d);
+ }
+}
+
+
+async function openChat(id,name){
+
+ chatUser=String(id);
+
+ $("chatName").textContent="💬 "+name;
+
+ page("chat");
+
+ await loadChat();
+}
+
+
+async function sendMessage(){
+
+ let x=$("chatText").value.trim();
+
+ if(!x||!chatUser)return;
+
+ let {error}=await sb
+  .from("messages")
+  .insert({
+   sender_id:String(user.id),
+   receiver_id:String(chatUser),
+   message:x
+  });
+
+ if(error){
+  alert("❌ "+error.message);
+  return;
+ }
+
+ $("chatText").value="";
+
+ await loadChat();
+}
+
+
+async function loadChat(){
+
+ if(!user||!chatUser)return;
+
+ let me=String(user.id);
+ let to=String(chatUser);
+
+ let {data,error}=await sb
+  .from("messages")
+  .select("*")
+  .or(
+   "and(sender_id.eq."+me+",receiver_id.eq."+to+"),"+
+   "and(sender_id.eq."+to+",receiver_id.eq."+me+")"
+  )
+  .order("created_at",{ascending:true});
+
+ if(error){
+  $("chatbox").textContent="❌ "+error.message;
+  return;
+ }
+
+ let box=$("chatbox");
+
+ box.innerHTML="";
+
+ (data||[]).forEach(m=>{
+
+  let d=document.createElement("div");
+
+  d.textContent=m.message;
+
+  d.style.cssText=
+   "padding:10px;margin:7px 0;"+
+   "border-radius:15px;max-width:80%;"+
+   "word-break:break-word;"+
+   "background:"+
+   (String(m.sender_id)===me?"#08f":"#222")+";"+
+   (String(m.sender_id)===me?
+   "margin-left:auto;":"margin-right:auto;");
+
+  box.appendChild(d);
+
+ });
+
+ box.scrollTop=box.scrollHeight;
+}
 
 function startChat(){
 chatUser=publicUser;
