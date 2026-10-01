@@ -1261,7 +1261,7 @@ loadVideos();
 /* =========================
    LIKE POST
 ========================= */
-async function likePost(videoId,button){
+ async function likePost(videoId,button){
 
 if(!user){
 
@@ -1285,6 +1285,9 @@ await sb
 
 if(checkError)throw checkError;
 
+const icon=
+button.querySelector(".action-icon");
+
 if(existing){
 
 const {error}=
@@ -1296,8 +1299,7 @@ await sb
 
 if(error)throw error;
 
-button.querySelector(".action-icon")
-.textContent="🤍";
+icon.textContent="🤍";
 
 }else{
 
@@ -1305,28 +1307,30 @@ const {error}=
 await sb
 .from("likes")
 .insert({
+
 video_id:videoId,
 user_id:user.id
+
 });
 
 if(error)throw error;
 
-button.querySelector(".action-icon")
-.textContent="❤️";
+icon.textContent="❤️";
 
 }
 
 }catch(error){
 
 console.log(error);
-alert("❌ Like failed: "+error.message);
+
+alert(
+"❌ Like failed: "+
+error.message
+);
 
 }
 
 button.disabled=false;
-
-   }
-  
 
  }
 
