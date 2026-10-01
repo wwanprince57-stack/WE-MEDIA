@@ -1036,8 +1036,69 @@ username:username,
 phone:phone
 }
 }
+ async function register(){
+
+let first=$("firstName").value.trim();
+let middle=$("middleName").value.trim();
+let last=$("lastName").value.trim();
+let username=$("username").value.trim();
+let email=$("re").value.trim();
+let phone=$("phone").value.trim();
+let password=$("rp").value;
+let confirm=$("rc").value;
+
+if(!first||!last||!username){
+$("rm").textContent=
+"❌ First name, last name and username are required";
+return;
+}
+
+if(!email){
+$("rm").textContent=
+"❌ Enter your email address";
+return;
+}
+
+if(password.length<6){
+$("rm").textContent=
+"❌ Password must be at least 6 characters";
+return;
+}
+
+if(password!==confirm){
+$("rm").textContent=
+"❌ Passwords do not match";
+return;
+}
+
+$("rm").textContent="Creating account...";
+
+let fullName=
+[first,middle,last]
+.filter(Boolean)
+.join(" ");
+
+
+/* CREATE SUPABASE ACCOUNT */
+
+let {data,error}=await sb.auth.signUp({
+
+email:email,
+password:password,
+
+options:{
+data:{
+first_name:first,
+middle_name:middle,
+last_name:last,
+full_name:fullName,
+username:username,
+phone:phone
+}
+}
 
 });
+
 
 if(error){
 
@@ -1045,46 +1106,143 @@ $("rm").textContent=
 "❌ "+error.message;
 
 return;
+
 }
 
-if(data?.user){
+
+if(!data?.user){
+
+$("rm").textContent=
+"❌ Account was not created";
+
+return;
+
+}
+
 
 user=data.user;
 
-let {error:profileError}=
-await sb
+
+/*
+ONLY USE COLUMNS THAT ARE ALREADY
+KNOWN TO EXIST IN profiles.
+*/
+
+let {error:profileError}=await sb
 .from("profiles")
 .upsert({
-id:user.id,
+
+id:String(user.id),
 username:username,
-email:email,
-first_name:first,
-middle_name:middle,
-last_name:last,
-phone:phone
+email:email
+
+},{
+onConflict:"id"
 });
+
 
 if(profileError){
 
-console.log("Profile save:",profileError.message);
+console.log(
+"Profile save error:",
+profileError.message
+);
 
 }
 
-}
 
-if(data?.session){
+/* LOGIN DIRECTLY IF SESSION EXISTS */
+
+if(data.session){
 
 $("rm").textContent=
 "✅ Account created successfully";
 
 open();
 
-}else{
+return;
+
+}
+
+
+/*
+If Supabase email confirmation is enabled,
+the user must confirm the email first.
+*/
 
 $("rm").textContent=
 "✅ Account created. Check your email, then login.";
 
 }
+
+
+/* LOGIN */
+
+async function login(){
+
+let identity=$("le").value.trim();
+let password=$("lp").value;
+
+if(!identity||!password){
+
+$("lm").textContent=
+"❌ Enter your email and password";
+
+return;
+
+}
+
+
+/*
+Current Supabase setup uses
+EMAIL + PASSWORD authentication.
+*/
+
+if(!identity.includes("@")){
+
+$("lm").textContent=
+"📱 Phone login needs Supabase Phone Auth + OTP enabled.";
+
+return;
+
+}
+
+$("lm").textContent="Logging in...";
+
+
+let {data,error}=await sb.auth.signInWithPassword({
+
+email:identity,
+password:password
+
+});
+
+
+if(error){
+
+$("lm").textContent=
+"❌ "+error.message;
+
+return;
+
+}
+
+
+if(!data?.user){
+
+$("lm").textContent=
+"❌ Login failed";
+
+return;
+
+}
+
+user=data.user;
+
+$("lm").textContent=
+"✅ Login successful";
+
+open();
 
 }
 
