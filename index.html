@@ -1471,6 +1471,137 @@ $("homeLogo")?.addEventListener(
 );
 
 </script>
+<script>
 
+/* =========================
+   FIX: VIDEOS
+========================= */
+
+async function loadVideos(){
+
+const box=$("videoFeed");
+
+if(!box)return;
+
+box.innerHTML="Loading videos...";
+
+const {data,error}=await sb
+.from("videos")
+.select("id,user_id,title,video_url,created_at")
+.order("created_at",{ascending:false});
+
+if(error){
+
+box.innerHTML="❌ "+error.message;
+return;
+
+}
+
+box.innerHTML="";
+
+if(!data||data.length===0){
+
+box.innerHTML="No videos yet 🎥";
+return;
+
+}
+
+data.forEach(v=>{
+
+createVideo(v,box);
+
+});
+
+}
+
+
+/* =========================
+   FIX: PROFILE
+========================= */
+
+async function loadProfile(){
+
+const box=$("profileContent");
+
+if(!box)return;
+
+if(!user){
+
+box.innerHTML="Please login first";
+return;
+
+}
+
+box.innerHTML="Loading profile...";
+
+const {data,error}=await sb
+.from("profiles")
+.select("id,username,email,avatar_url")
+.eq("id",user.id)
+.maybeSingle();
+
+if(error){
+
+box.innerHTML=
+"❌ Profile error: "+error.message;
+
+return;
+
+}
+
+let followers=0;
+let following=0;
+
+const f1=await sb
+.from("follows")
+.select("id",{count:"exact",head:true})
+.eq("following_id",user.id);
+
+const f2=await sb
+.from("follows")
+.select("id",{count:"exact",head:true})
+.eq("follower_id",user.id);
+
+followers=f1.count||0;
+following=f2.count||0;
+
+box.innerHTML=`
+
+<div class="profile-head">
+
+<div class="avatar">
+👤
+</div>
+
+<h2>@${data?.username||"User"}</h2>
+
+<p>${data?.email||user.email||""}</p>
+
+</div>
+
+<div class="stats">
+
+<div>
+<b>${followers}</b>
+<span>Followers</span>
+</div>
+
+<div>
+<b>${following}</b>
+<span>Following</span>
+</div>
+
+</div>
+
+<button class="blue-btn"
+onclick="logout()">
+LOGOUT
+</button>
+
+`;
+
+}
+
+</script>
 </body>
 </html>
