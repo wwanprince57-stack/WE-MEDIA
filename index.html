@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-content="width=device-width,initial-scale=1,maximum-scale=1">
+content="width=device-width,initial-scale=1">
+
 <title>We Media</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -12,147 +15,240 @@ content="width=device-width,initial-scale=1,maximum-scale=1">
 
 *{
 box-sizing:border-box;
+font-family:Arial,sans-serif;
 margin:0;
 padding:0;
-font-family:Arial,sans-serif
-}
-
-:root{
---blue:#1877f2;
---dark:#050505;
---card:#101010;
---line:#242424;
---text:#fff;
---muted:#999
 }
 
 body{
-background:var(--dark);
-color:var(--text);
-font-size:12px;
-padding-bottom:65px
+background:#000;
+color:#fff;
+padding-bottom:70px;
+}
+
+button,
+input{
+font-family:Arial,sans-serif;
 }
 
 button{
 border:0;
-cursor:pointer
+cursor:pointer;
 }
-
-input,textarea{
-outline:none
-}
-
-/* TOP BAR */
 
 .top{
+height:55px;
 position:fixed;
 top:0;
 left:0;
 right:0;
-height:54px;
-z-index:1000;
+z-index:100;
+background:#000;
+border-bottom:1px solid #222;
 display:flex;
 align-items:center;
-padding:0 10px;
-background:#070707;
-border-bottom:1px solid var(--line)
+justify-content:space-between;
+padding:0 12px;
 }
 
 .logo{
-font-size:19px;
+font-size:21px;
 font-weight:bold;
-color:#2187ff;
-margin-right:auto
+color:#fff;
+cursor:pointer;
 }
 
 .top-actions{
 display:flex;
-gap:7px
+align-items:center;
+gap:8px;
 }
 
 .top-btn{
-width:34px;
-height:34px;
-border-radius:50%;
-background:#171717;
-color:white;
-font-size:15px
-}
-
-/* MAIN */
-
-main{
-padding-top:54px;
-min-height:100vh
+background:transparent;
+color:#fff;
+font-size:22px;
+padding:5px;
 }
 
 .page{
-display:none
+display:none;
+padding:68px 10px 80px;
+min-height:100vh;
 }
 
 .page.active{
-display:block
+display:block;
 }
 
-/* HOME */
-
-.feed{
-max-width:700px;
-margin:auto
+.card{
+background:#111;
+border:1px solid #242424;
+border-radius:12px;
+padding:14px;
+margin-bottom:10px;
 }
+
+.box{
+background:#111;
+border-radius:12px;
+padding:18px;
+margin-top:10px;
+}
+
+.muted{
+color:#888;
+font-size:12px;
+}
+
+.field{
+width:100%;
+height:44px;
+background:#181818;
+border:1px solid #333;
+border-radius:9px;
+color:#fff;
+padding:0 12px;
+outline:none;
+margin-bottom:10px;
+}
+
+.field:focus{
+border-color:#1877f2;
+}
+
+.primary{
+width:100%;
+height:42px;
+background:#1877f2;
+color:#fff;
+border-radius:9px;
+font-weight:bold;
+}
+
+.secondary{
+width:100%;
+height:42px;
+background:#222;
+color:#fff;
+border-radius:9px;
+}
+
+.title{
+font-size:20px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.auth-box{
+max-width:430px;
+margin:30px auto;
+}
+
+.auth-box h2{
+text-align:center;
+margin-bottom:18px;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:62px;
+background:#050505;
+border-top:1px solid #242424;
+z-index:100;
+display:flex;
+align-items:center;
+justify-content:space-around;
+}
+
+.nav{
+background:transparent;
+color:#777;
+font-size:11px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:3px;
+}
+
+.nav-icon{
+font-size:22px;
+}
+
+.nav.active{
+color:#fff;
+}
+
+.post-button{
+width:52px;
+height:42px;
+border-radius:12px;
+background:#fff;
+color:#000;
+font-size:24px;
+font-weight:bold;
+}
+
+/* VIDEO */
 
 .video-card{
 position:relative;
 width:100%;
-height:calc(100vh - 119px);
-min-height:480px;
-background:#000;
+height:calc(100vh - 135px);
+min-height:500px;
+background:#050505;
+border-radius:12px;
 overflow:hidden;
-border-bottom:1px solid #222
+margin-bottom:12px;
 }
 
 .media{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block
+display:block;
+background:#000;
 }
 
 .video-info{
 position:absolute;
-left:10px;
-right:78px;
-bottom:15px;
-z-index:5;
-text-shadow:0 2px 6px #000
+left:12px;
+bottom:18px;
+z-index:10;
+max-width:72%;
+text-shadow:0 2px 6px #000;
 }
 
 .video-user{
-font-size:13px;
+font-size:15px;
 font-weight:bold;
-margin-bottom:5px
+margin-bottom:6px;
 }
 
 .video-title{
-font-size:11px;
-line-height:1.4
+font-size:13px;
+line-height:1.3;
 }
 
 /* RIGHT ACTIONS */
 
-video-actions{
+.video-actions{
 position:absolute;
 right:7px;
-bottom:75px;
-z-index:10;
+bottom:72px;
+z-index:20;
 display:flex;
 flex-direction:column;
-gap:9px
+gap:12px;
+align-items:center;
 }
 
 .action{
-width:45px;
-height:45px;
+width:46px;
+height:46px;
 padding:0;
 margin:0;
 border:0;
@@ -164,7 +260,11 @@ color:#fff;
 display:flex;
 align-items:center;
 justify-content:center;
-text-shadow:0 2px 6px #000;
+text-shadow:0 2px 7px #000;
+}
+
+.action:active{
+transform:scale(.88);
 }
 
 .action-icon{
@@ -172,130 +272,204 @@ display:block;
 font-size:28px;
 line-height:1;
 }
-}
 
-.action-icon{
-display:block;
-font-size:25px
-}
-
-.action-text{
-font-size:8px
-}
-
-/* BOTTOM BAR */
-
-.bottom{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-height:65px;
-z-index:2000;
-display:flex;
-background:#080808;
-border-top:1px solid #242424
-}
-
-.nav{
-flex:1;
-background:transparent;
-color:#888;
-font-size:8px
-}
-
-.nav span{
-display:block;
-font-size:18px;
-margin-bottom:2px
-}
-
-.nav.active{
-color:#2187ff
-}
-
-.post-button{
-width:48px;
-height:48px;
-margin-top:7px;
-border-radius:14px;
-background:#1877f2;
-color:white;
-font-size:25px;
-box-shadow:0 0 12px rgba(24,119,242,.4)
-}
-
-/* BOXES */
-
-.box{
-padding:15px
-}
-
-.card{
-max-width:430px;
-margin:15px auto;
-padding:16px;
-background:var(--card);
-border:1px solid var(--line);
-border-radius:15px
-}
-
-.field{
-width:100%;
-height:40px;
-margin:6px 0 10px;
-padding:0 11px;
-border-radius:9px;
-border:1px solid #333;
-background:#181818;
-color:white;
-font-size:11px
-}
-
-.primary{
-width:100%;
-height:40px;
-border-radius:9px;
-background:var(--blue);
-color:white;
+.sound-used{
+position:absolute;
+left:12px;
+bottom:78px;
+z-index:10;
 font-size:11px;
-font-weight:bold
+color:#fff;
+text-shadow:0 2px 6px #000;
+max-width:70%;
 }
 
-.muted{
-color:var(--muted);
-font-size:10px
+/* PROFILE */
+
+.profile-avatar{
+width:78px;
+height:78px;
+border-radius:50%;
+background:#1877f2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+margin:0 auto 10px;
+overflow:hidden;
 }
 
-.hidden{
-display:none!important
+.profile-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.stats{
+display:flex;
+justify-content:space-around;
+margin-top:18px;
+padding-top:15px;
+border-top:1px solid #242424;
+text-align:center;
+}
+
+.stats b{
+font-size:16px;
+}
+
+.stats span{
+font-size:10px;
+color:#888;
+}
+
+/* EFFECTS */
+
+.effect-row{
+display:flex;
+gap:6px;
+overflow-x:auto;
+padding-bottom:4px;
+}
+
+.effect-btn{
+min-width:70px;
+height:32px;
+border-radius:8px;
+background:#333;
+color:#fff;
+font-size:10px;
+}
+
+.effect-btn.active{
+background:#1877f2;
+}
+
+#effectPreview{
+margin-top:10px;
+display:none;
+width:100%;
+height:220px;
+overflow:hidden;
+border-radius:12px;
+background:#000;
+}
+
+#effectPreview img,
+#effectPreview video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* CHAT */
+
+.chat-box{
+height:350px;
+overflow-y:auto;
+padding:5px;
+background:#080808;
+border-radius:10px;
+}
+
+.message-row{
+margin:7px 0;
+}
+
+.message-bubble{
+display:inline-block;
+max-width:80%;
+padding:9px 11px;
+border-radius:12px;
+font-size:11px;
+word-break:break-word;
+}
+
+.message-mine{
+background:#1877f2;
+}
+
+.message-other{
+background:#222;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.78);
+z-index:300;
+display:none;
+align-items:flex-end;
+justify-content:center;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modal-box{
+width:100%;
+max-width:600px;
+max-height:75vh;
+background:#111;
+border-radius:18px 18px 0 0;
+padding:15px;
+overflow-y:auto;
+}
+
+.modal-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.close-btn{
+background:transparent;
+color:#fff;
+font-size:24px;
+}
+
+.comment-item{
+padding:10px 0;
+border-bottom:1px solid #242424;
+font-size:12px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- TOP -->
+
 <header class="top">
 
-<div class="logo"
+<div
+class="logo"
 onclick="showPage('home')">
 We Media
 </div>
 
 <div class="top-actions">
 
-<button class="top-btn"
+<button
+class="top-btn"
 onclick="showPage('notifications')">
 🔔
 </button>
 
-<button class="top-btn"
+<button
+class="top-btn"
 onclick="showPage('messages')">
 💬
 </button>
 
-<button class="top-btn"
+<button
+class="top-btn"
 onclick="showPage('search')">
 🔍
 </button>
@@ -304,15 +478,15 @@ onclick="showPage('search')">
 
 </header>
 
-<main>
 
 <!-- HOME -->
 
-<section id="homePage"
+<section
+id="homePage"
 class="page active">
 
-<div id="feed"
-class="feed">
+<div
+id="feed">
 
 <div class="box muted">
 Loading videos...
@@ -322,91 +496,128 @@ Loading videos...
 
 </section>
 
+
 <!-- NOTIFICATIONS -->
 
-<section id="notificationsPage"
+<section
+id="notificationsPage"
 class="page">
 
-<div class="box">
+<div class="title">
+🔔 Notifications
+</div>
 
-<h3>🔔 Notifications</h3>
+<div id="notificationsList">
 
-<div id="notificationsList"></div>
+<div class="muted">
+Loading...
+</div>
 
 </div>
 
 </section>
+
 
 <!-- MESSAGES -->
 
-<section id="messagesPage"
+<section
+id="messagesPage"
 class="page">
 
-<div class="box">
+<div class="title">
+💬 Messages
+</div>
 
-<h3>💬 Messages</h3>
+<div id="messagesList">
 
-<div id="messagesList"></div>
+<div class="muted">
+Loading...
+</div>
 
 </div>
 
 </section>
 
+
 <!-- SEARCH -->
 
-<section id="searchPage"
+<section
+id="searchPage"
 class="page">
 
-<div class="box">
+<div class="title">
+🔍 Search
+</div>
 
 <input
 id="searchInput"
 class="field"
-placeholder="🔍 Search people...">
+placeholder="Search people...">
 
-<div id="searchResults"></div>
+<div id="searchResults">
+
+<div class="muted">
+Search for people...
+</div>
 
 </div>
 
 </section>
+
 
 <!-- PROFILE -->
 
-<section id="profilePage"
+<section
+id="profilePage"
 class="page">
 
-<div id="profileBox"
-class="box">
+<div class="title">
+👤 Profile
+</div>
 
+<div id="profileBox">
+
+<div class="muted">
 Loading profile...
+</div>
 
 </div>
 
 </section>
+
 
 <!-- SUGGESTIONS -->
 
-<section id="suggestionsPage"
+<section
+id="suggestionsPage"
 class="page">
 
-<div class="box">
+<div class="title">
+👥 Suggested Followers
+</div>
 
-<h3>👥 Suggested followers</h3>
+<div id="suggestions">
 
-<div id="suggestions"></div>
+<div class="muted">
+Loading suggestions...
+</div>
 
 </div>
 
 </section>
 
-<!-- POST -->
 
-<section id="uploadPage"
+<!-- UPLOAD -->
+
+<section
+id="uploadPage"
 class="page">
 
-<div class="card">
+<div class="title">
+➕ Create Post
+</div>
 
-<h3>➕ Create Post</h3>
+<div class="card">
 
 <input
 id="postTitle"
@@ -415,33 +626,60 @@ placeholder="Write a caption...">
 
 <input
 id="postFile"
-class="field"
 type="file"
-accept="image/*,video/*">
+accept="image/*,video/*"
+style="display:none">
 
-<div id="uploadMsg"
-class="muted">
+<button
+class="secondary"
+onclick="openCamera()"
+style="margin-bottom:8px">
+📷 Camera
+</button>
+
+<button
+class="secondary"
+onclick="openGallery()"
+style="margin-bottom:8px">
+🖼️ Gallery
+</button>
+
+<div
+id="uploadMsg"
+class="muted"
+style="margin:8px 0">
 Choose a photo or video
+</div>
+
+<div
+id="effectsArea">
 </div>
 
 <button
 class="primary"
-onclick="uploadPost()">
-POST NOW
+onclick="uploadPost()"
+style="margin-top:12px">
+POST
 </button>
 
 </div>
 
 </section>
 
+
 <!-- LOGIN -->
 
-<section id="loginPage"
+<section
+id="loginPage"
 class="page">
+
+<div class="auth-box">
 
 <div class="card">
 
-<h3>🔐 Login</h3>
+<h2>
+Login
+</h2>
 
 <input
 id="loginId"
@@ -459,41 +697,45 @@ class="primary"
 onclick="login()">
 LOGIN
 </button>
+
 <br><br>
 
 <button
-style="
-width:100%;
-height:40px;
-border-radius:9px;
-background:#222;
-color:#fff;
-font-size:11px
-"
+class="secondary"
 onclick="showPage('register')">
 CREATE ACCOUNT
 </button>
+
+</div>
+
 </div>
 
 </section>
 
-<!-- CREATE ACCOUNT -->
 
-<section id="registerPage"
+<!-- REGISTER -->
+
+<section
+id="registerPage"
 class="page">
+
+<div class="auth-box">
 
 <div class="card">
 
-<h3>📝 Create Account</h3>
+<h2>
+Create Account
+</h2>
 
 <input
 id="regName"
 class="field"
-placeholder="Full name / username">
+placeholder="Full name / Username">
 
 <input
 id="regEmail"
 class="field"
+type="email"
 placeholder="Email">
 
 <input
@@ -505,7 +747,7 @@ placeholder="Phone number">
 id="regPass"
 class="field"
 type="password"
-placeholder="Password - 6+ characters">
+placeholder="Password">
 
 <button
 class="primary"
@@ -513,23 +755,32 @@ onclick="register()">
 CREATE ACCOUNT
 </button>
 
+<br><br>
+
+<button
+class="secondary"
+onclick="showPage('login')">
+BACK TO LOGIN
+</button>
+
+</div>
+
 </div>
 
 </section>
 
-</main>
 
 <!-- BOTTOM NAV -->
 
-<nav class="bottom">
+<nav class="bottom-nav">
 
 <button
 id="homeNav"
 class="nav active"
 onclick="showPage('home')">
 
-<span>🏠</span>
-Home
+<span class="nav-icon">🏠</span>
+<span>Home</span>
 
 </button>
 
@@ -538,17 +789,15 @@ id="suggestionsNav"
 class="nav"
 onclick="showPage('suggestions')">
 
-<span>👥</span>
-People
+<span class="nav-icon">👥</span>
+<span>Suggestions</span>
 
 </button>
 
 <button
-class="nav"
+class="post-button"
 onclick="showPage('upload')">
-
-<span class="post-button">＋</span>
-
+＋
 </button>
 
 <button
@@ -556,8 +805,8 @@ id="messagesNav"
 class="nav"
 onclick="showPage('messages')">
 
-<span>💬</span>
-Messages
+<span class="nav-icon">💬</span>
+<span>Messages</span>
 
 </button>
 
@@ -566,114 +815,211 @@ id="profileNav"
 class="nav"
 onclick="showPage('profile')">
 
-<span>👤</span>
-Profile
+<span class="nav-icon">👤</span>
+<span>Profile</span>
 
 </button>
 
 </nav>
 
-<script>
 
-/* SUPABASE */
+<!-- COMMENTS MODAL -->
 
-const SUPABASE_URL=
+<div
+id="commentModal"
+class="modal"
+onclick="closeCommentModal(event)">
+
+<div
+class="modal-box"
+onclick="event.stopPropagation()">
+
+<div class="modal-head">
+
+<b>💬 Comments</b>
+
+<button
+class="close-btn"
+onclick="closeComments()">
+×
+</button>
+
+</div>
+
+<div id="commentsList">
+</div>
+
+<div style="
+display:flex;
+gap:6px;
+margin-top:12px">
+
+<input
+id="commentInput"
+class="field"
+style="margin:0;flex:1"
+placeholder="Write a comment...">
+
+<button
+class="primary"
+style="width:65px"
+onclick="sendComment()">
+➤
+</button>
+
+</div>
+
+</div>
+
+   </div><script>
+
+const SUPABASE_URL =
 "https://jhxbfkpcinetbuwsnxcz.supabase.co";
 
-const SUPABASE_KEY=
+const SUPABASE_KEY =
 "sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
 
-const sb=
+const sb =
 supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
-let user=null;
-let selectedChat=null;
-let currentEffect="none";
+let user = null;
+let selectedChat = null;
+let currentCommentVideo = null;
+let postEffect = "none";
 
 
-/* SHORT ID */
+/* =========================
+   SHORT SELECTOR
+========================= */
 
 function $(id){
-
 return document.getElementById(id);
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-/* PAGE SYSTEM */
+/* =========================
+   PAGE SYSTEM
+========================= */
 
 function showPage(name){
 
 document
 .querySelectorAll(".page")
-.forEach(x=>
-x.classList.remove("active")
-);
+.forEach(page=>{
+page.classList.remove("active");
+});
 
-const page=
+const page =
 $(name+"Page");
 
-if(page)
+if(page){
 page.classList.add("active");
-
+}
 
 document
 .querySelectorAll(".nav")
-.forEach(x=>
-x.classList.remove("active")
-);
+.forEach(nav=>{
+nav.classList.remove("active");
+});
 
-const nav=
+const nav =
 $(name+"Nav");
 
-if(nav)
+if(nav){
 nav.classList.add("active");
+}
+
+window.scrollTo(0,0);
+
+if(name==="home"){
+loadVideos();
+}
+
+if(name==="profile"){
+loadProfile();
+}
+
+if(name==="suggestions"){
+loadSuggestions();
+}
+
+if(name==="notifications"){
+loadNotifications();
+}
+
+if(name==="messages"){
+loadChatUsers();
+}
 
 }
 
-</script><script>
 
 /* =========================
-   CREATE ACCOUNT
+   REGISTER
 ========================= */
 
 async function register(){
 
-const name=$("regName").value.trim();
-const email=$("regEmail").value.trim();
-const phone=$("regPhone").value.trim();
-const pass=$("regPass").value;
+const name =
+$("regName").value.trim();
+
+const email =
+$("regEmail").value.trim();
+
+const phone =
+$("regPhone").value.trim();
+
+const pass =
+$("regPass").value;
 
 if(!name){
+
 alert("Enter your name");
+
 return;
 }
 
 if(!email && !phone){
+
 alert("Enter email or phone number");
+
 return;
 }
 
-if(pass.length<6){
-alert("Password must be at least 6 characters");
-return;
-}
-
-/* Supabase email signup */
-
-if(!email){
+if(pass.length < 6){
 
 alert(
-"Phone signup needs Phone Auth enabled in Supabase."
+"Password must be at least 6 characters"
 );
 
 return;
 }
 
-const {data,error}=
+
+/* EMAIL SIGNUP */
+
+if(email){
+
+const {data,error} =
 await sb.auth.signUp({
 
 email:email,
@@ -684,7 +1030,7 @@ options:{
 data:{
 username:name,
 full_name:name,
-phone:phone
+phone:phone || ""
 }
 }
 
@@ -693,20 +1039,23 @@ phone:phone
 if(error){
 
 alert("❌ "+error.message);
-return;
 
+return;
 }
 
-if(data.user){
+if(data?.user){
 
 await sb
 .from("profiles")
 .upsert({
 
 id:data.user.id,
+
 username:name,
+
 email:email,
-phone:phone||null
+
+phone:phone || null
 
 });
 
@@ -719,8 +1068,7 @@ showPage("home");
 }else{
 
 alert(
-"✅ Account created. " +
-"Check your email if confirmation is required."
+"✅ Account created. Check your email if confirmation is required."
 );
 
 showPage("login");
@@ -728,6 +1076,17 @@ showPage("login");
 }
 
 }
+
+return;
+
+}
+
+
+/* PHONE */
+
+alert(
+"Phone signup needs Phone Auth enabled in Supabase."
+);
 
 }
 
@@ -738,44 +1097,50 @@ showPage("login");
 
 async function login(){
 
-const identity=
+const identity =
 $("loginId").value.trim();
 
-const pass=
+const pass =
 $("loginPass").value;
 
 if(!identity){
 
-alert("Enter email or phone number");
-return;
+alert(
+"Enter email or phone number"
+);
 
+return;
 }
 
-if(pass.length<6){
+if(pass.length < 6){
 
-alert("Password must be 6+ characters");
+alert(
+"Password must be 6+ characters"
+);
+
 return;
-
 }
 
 let result;
 
 if(identity.includes("@")){
 
-result=
+result =
 await sb.auth.signInWithPassword({
 
 email:identity,
+
 password:pass
 
 });
 
 }else{
 
-result=
+result =
 await sb.auth.signInWithPassword({
 
 phone:identity,
+
 password:pass
 
 });
@@ -789,10 +1154,10 @@ alert(
 );
 
 return;
-
 }
 
-user=result.data.user;
+user =
+result.data?.user || null;
 
 showPage("home");
 
@@ -805,14 +1170,16 @@ showPage("home");
 
 async function logout(){
 
-const {error}=
+const {error} =
 await sb.auth.signOut();
 
 if(error){
 
-alert("❌ "+error.message);
-return;
+alert(
+"❌ "+error.message
+);
 
+return;
 }
 
 user=null;
@@ -823,12 +1190,12 @@ showPage("login");
 
 
 /* =========================
-   CHECK LOGIN
+   CHECK USER
 ========================= */
 
 async function checkUser(){
 
-const {data,error}=
+const {data,error} =
 await sb.auth.getSession();
 
 if(error){
@@ -837,8 +1204,8 @@ console.log(error.message);
 
 }
 
-user=
-data?.session?.user||null;
+user =
+data?.session?.user || null;
 
 if(user){
 
@@ -854,65 +1221,117 @@ showPage("login");
 
 
 /* =========================
-   AUTH CHANGES
+   AUTH STATE
 ========================= */
 
 sb.auth.onAuthStateChange(
 (event,session)=>{
 
-user=
-session?.user||null;
+user =
+session?.user || null;
 
 }
 );
 
-</script><script>
 
 /* =========================
-   VIDEO / PHOTO FEED
+   LOAD VIDEOS
 ========================= */
 
- async function loadVideos(){
+async function loadVideos(){
 
-const box=$("feed");
+const box =
+$("feed");
 
 if(!box)return;
 
-box.innerHTML=
+box.innerHTML =
 '<div class="box muted">Loading videos...</div>';
 
 try{
 
-const {data,error}=
+const {data,error} =
 await sb
 .from("videos")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{ascending:false}
+);
 
 if(error)throw error;
 
 if(!data || data.length===0){
 
-box.innerHTML=
+box.innerHTML =
 '<div class="box muted">No posts yet. Be the first to post.</div>';
 
 return;
 
 }
 
+
+/* LOAD PROFILES ONCE */
+
+let profileMap = {};
+
+const ids =
+[
+...new Set(
+data
+.map(v=>v.user_id)
+.filter(Boolean)
+)
+];
+
+if(ids.length){
+
+try{
+
+const {data:profiles} =
+await sb
+.from("profiles")
+.select("id,username,avatar_url")
+.in("id",ids);
+
+(profiles || [])
+.forEach(profile=>{
+
+profileMap[profile.id]=profile;
+
+});
+
+}catch(e){
+
+console.log(
+"Profile loading skipped:",
+e
+);
+
+}
+
+}
+
 box.innerHTML="";
 
-for(const v of data){
+for(const video of data){
 
-createPostCard(v,box);
+createPostCard(
+video,
+box,
+profileMap[video.user_id] || null
+);
 
 }
 
 }catch(error){
 
-console.log("VIDEOS ERROR:",error);
+console.log(
+"VIDEOS ERROR:",
+error
+);
 
-box.innerHTML=
+box.innerHTML =
 '<div class="box">❌ Failed to load videos</div>';
 
 }
@@ -921,25 +1340,32 @@ box.innerHTML=
 
 
 /* =========================
-   CREATE POST CARD
+   VIDEO CARD
 ========================= */
 
-function createPostCard(v,box){
+function createPostCard(
+v,
+box,
+profile
+){
 
-const card=
+const card =
 document.createElement("div");
 
-card.className="video-card";
+card.className =
+"video-card";
 
-const url=
-v.video_url||v.url||"";
+const url =
+v.video_url ||
+v.url ||
+"";
 
 if(!url)return;
 
 
 /* MEDIA */
 
-const isImage=
+const isImage =
 /\.(jpg|jpeg|png|gif|webp|avif)(\?|$)/i
 .test(url);
 
@@ -947,23 +1373,28 @@ let media;
 
 if(isImage){
 
-media=
+media =
 document.createElement("img");
 
 media.src=url;
+
 media.className="media";
 
 }else{
 
-media=
+media =
 document.createElement("video");
 
 media.src=url;
+
 media.className="media";
 
 media.controls=true;
+
 media.loop=true;
+
 media.playsInline=true;
+
 media.preload="metadata";
 
 }
@@ -973,49 +1404,51 @@ card.appendChild(media);
 
 /* USER */
 
-const username=
+const username =
+profile?.username ||
 v.username ||
-v.full_name ||
 "User";
 
 
 /* INFO */
 
-const info=
+const info =
 document.createElement("div");
 
-info.className="video-info";
+info.className =
+"video-info";
 
-info.innerHTML=
+info.innerHTML =
 
 "<div class='video-user'>@"+
 escapeHTML(username)+
 "</div>"+
 
 "<div class='video-title'>"+
-escapeHTML(v.title||"")+
+escapeHTML(v.title || "")+
 "</div>";
 
 card.appendChild(info);
 
 
-/* =========================
-   TIKTOK ACTIONS
-========================= */
+/* ACTIONS */
 
-const actions=
+const actions =
 document.createElement("div");
 
-actions.className="video-actions";
+actions.className =
+"video-actions";
 
-actions.innerHTML=`
+actions.innerHTML = `
 
 <button
 class="action"
 type="button"
-onclick="openProfile('${v.user_id||""}')">
+onclick="openProfile('${v.user_id || ""}')">
 
-<span class="action-icon">👤</span>
+<span class="action-icon">
+👤
+</span>
 
 </button>
 
@@ -1025,7 +1458,9 @@ class="action"
 type="button"
 onclick="likePost('${v.id}',this)">
 
-<span class="action-icon">🤍</span>
+<span class="action-icon">
+🤍
+</span>
 
 </button>
 
@@ -1035,7 +1470,9 @@ class="action"
 type="button"
 onclick="commentPost('${v.id}')">
 
-<span class="action-icon">💬</span>
+<span class="action-icon">
+💬
+</span>
 
 </button>
 
@@ -1045,7 +1482,9 @@ class="action"
 type="button"
 onclick="sharePost('${v.id}')">
 
-<span class="action-icon">↗️</span>
+<span class="action-icon">
+📤
+</span>
 
 </button>
 
@@ -1055,7 +1494,9 @@ class="action"
 type="button"
 onclick="whatsappShare('${encodeURIComponent(url)}')">
 
-<span class="action-icon">🟢</span>
+<span class="action-icon">
+🟢
+</span>
 
 </button>
 
@@ -1066,371 +1507,53 @@ card.appendChild(actions);
 
 /* SOUND */
 
-const sound=
+const sound =
 document.createElement("div");
 
-sound.className="sound-used";
+sound.className =
+"sound-used";
 
-sound.textContent=
+sound.textContent =
 "🎵 Original sound · @"+
 username;
 
 card.appendChild(sound);
 
-
-/* ADD VIDEO */
-
 box.appendChild(card);
 
 }
 
-
-/* USER */
-
-let username="User";
-
-if(v.user_id){
-
-const {data:p}=await sb
-.from("profiles")
-.select("username")
-.eq("id",v.user_id)
-.maybeSingle();
-
-if(p?.username){
-
-username=p.username;
-
-}
-
-}
-
-
-/* INFO */
-
-const info=
-document.createElement("div");
-
-info.className="video-info";
-
-info.innerHTML=
-"<div class='video-user'>@"+
-escapeHTML(username)+
-"</div>"+
-"<div class='video-title'>"+
-escapeHTML(v.title||"")+
-"</div>";
-
-card.appendChild(info);
-
- /* ACTIONS */
-
-const actions=
-document.createElement("div");
-
-actions.className="video-actions";
-
-actions.innerHTML=`
-
-<button class="action"
-type="button"
-onclick="openProfile('${v.user_id||""}')">
-<span class="action-icon">👤</span>
-</button>
-
-<button class="action"
-type="button"
-onclick="likePost('${v.id}',this)">
-<span class="action-icon">🤍</span>
-</button>
-
-<button class="action"
-type="button"
-onclick="commentPost('${v.id}')">
-<span class="action-icon">💬</span>
-</button>
-
-<button class="action"
-type="button"
-onclick="sharePost('${v.id}')">
-<span class="action-icon">↗️</span>
-</button>
-
-<button class="action"
-type="button"
-onclick="whatsappShare('${encodeURIComponent(url)}')">
-<span class="action-icon">🟢</span>
-</button>
-
-`;
-
-card.appendChild(actions);
-
-const sound=
-document.createElement("div");
-
-sound.className="sound-used";
-
-sound.textContent=
-"🎵 Original sound · @"+username;
-
-card.appendChild(sound);
-
-box.appendChild(card);
-
-}
-
-}
-
-
-/* =========================
-   SAFE TEXT
-========================= */
-
-function escapeHTML(value){
-
-return String(value||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   UPLOAD POST
-========================= */
-
-async function uploadPost(){
-
-if(!user){
-
-alert("Please login first");
-
-showPage("login");
-
-return;
-
-}
-
-const title=
-$("postTitle").value.trim();
-
-const file=
-$("postFile").files[0];
-
-if(!file){
-
-alert("Choose a photo or video");
-
-return;
-
-}
-
-if(file.size>50*1024*1024){
-
-alert("❌ File is bigger than 50 MB");
-
-return;
-
-}
-
-$("uploadMsg").textContent=
-"Uploading...";
-
-
-try{
-
-const ext=
-file.name.split(".").pop()
-.toLowerCase();
-
-const path=
-user.id+
-"/"+
-Date.now()+
-"."+ext;
-
-
-/* STORAGE */
-
-const {error:uploadError}=
-await sb.storage
-.from("Videos")
-.upload(
-path,
-file,
-{
-cacheControl:"3600",
-upsert:false,
-contentType:file.type
-}
-);
-
-if(uploadError){
-
-throw uploadError;
-
-}
-
-
-/* PUBLIC URL */
-
-const {data:urlData}=
-sb.storage
-.from("Videos")
-.getPublicUrl(path);
-
-const publicUrl=
-urlData.publicUrl;
-
-
-/* DATABASE */
-
-const {error:dbError}=
-await sb
-.from("videos")
-.insert({
-
-user_id:user.id,
-title:title||"New post",
-video_url:publicUrl
-
-});
-
-if(dbError){
-
-throw dbError;
-
-}
-
-$("postTitle").value="";
-$("postFile").value="";
-$("uploadMsg").textContent=
-"✅ Posted successfully!";
-
-showPage("home");
-
-await loadVideos();
-
-}catch(error){
-
-console.error(error);
-
-$("uploadMsg").textContent=
-"❌ "+error.message;
-
-}
-
-}
-
-
-/* =========================
-   CAMERA BUTTON
-========================= */
-
-function openCamera(){
-
-const input=
-document.createElement("input");
-
-input.type="file";
-
-input.accept=
-"image/*,video/*";
-
-input.capture=
-"environment";
-
-input.onchange=()=>{
-
-if(input.files.length){
-
-const transfer=
-new DataTransfer();
-
-transfer.items.add(input.files[0]);
-
-$("postFile").files=
-transfer.files;
-
-$("uploadMsg").textContent=
-"📷 Camera file selected";
-
-}
-
-};
-
-input.click();
-
-}
-
-
-/* =========================
-   GALLERY BUTTON
-========================= */
-
-function openGallery(){
-
-$("postFile").click();
-
-}
-
-
-/* =========================
-   PREVIEW
-========================= */
-
-$("postFile").addEventListener(
-"change",
-function(){
-
-const file=this.files[0];
-
-if(!file)return;
-
-$("uploadMsg").textContent=
-"✅ Selected: "+file.name;
-
-}
-);
-
-
-/* =========================
-   START FEED
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-loadVideos();
-
-}
-);
-
-</script><script>
 
 /* =========================
    LIKE POST
 ========================= */
-  async function likePost(videoId,button){
+
+async function likePost(
+videoId,
+button
+){
 
 if(!user){
+
 alert("Login first");
+
 showPage("login");
+
 return;
+
 }
 
-const icon=button.querySelector(".action-icon");
+const icon =
+button.querySelector(
+".action-icon"
+);
 
 if(!icon)return;
 
 try{
 
-const {data:existing,error:checkError}=await sb
+const {data:existing,error:checkError} =
+await sb
 .from("likes")
 .select("video_id")
 .eq("video_id",videoId)
@@ -1438,14 +1561,24 @@ const {data:existing,error:checkError}=await sb
 .maybeSingle();
 
 if(checkError){
+
 console.log(checkError);
-alert("❌ "+checkError.message);
+
+alert(
+"❌ "+checkError.message
+);
+
 return;
+
 }
+
+
+/* UNLIKE */
 
 if(existing){
 
-const {error}=await sb
+const {error} =
+await sb
 .from("likes")
 .delete()
 .eq("video_id",videoId)
@@ -1455,29 +1588,141 @@ if(error)throw error;
 
 icon.textContent="🤍";
 
-}else{
+return;
 
-const {error}=await sb
+}
+
+
+/* LIKE */
+
+const {error} =
+await sb
 .from("likes")
 .insert({
+
 video_id:videoId,
+
 user_id:user.id
+
 });
 
 if(error)throw error;
 
 icon.textContent="❤️";
 
+}catch(error){
+
+console.log(error);
+
+alert(
+"❌ Like failed: "+
+error.message
+);
+
+}
+
+}
+
+
+/* =========================
+   LIKE COUNT
+========================= */
+
+async function getLikeCount(videoId){
+
+const {count,error} =
+await sb
+.from("likes")
+.select(
+"*",
+{
+count:"exact",
+head:true
+}
+)
+.eq(
+"video_id",
+videoId
+);
+
+if(error)return 0;
+
+return count || 0;
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function sharePost(videoId){
+
+const url =
+window.location.origin+
+window.location.pathname+
+"?video="+
+encodeURIComponent(videoId);
+
+try{
+
+if(
+navigator.share
+){
+
+await navigator.share({
+
+title:"We Media",
+
+text:
+"Check this post on We Media",
+
+url:url
+
+});
+
+}else{
+
+await navigator.clipboard.writeText(url);
+
+alert(
+"✅ Post link copied"
+);
+
 }
 
 }catch(error){
 
 console.log(error);
-alert("❌ Like failed: "+error.message);
 
 }
 
-  }
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function whatsappShare(
+videoUrl
+){
+
+const url =
+decodeURIComponent(
+videoUrl
+);
+
+const text =
+"Check this post on We Media 👇\n"+
+url;
+
+const wa =
+"https://wa.me/?text="+
+encodeURIComponent(text);
+
+window.location.href=wa;
+
 }
 
 
@@ -1487,134 +1732,28 @@ alert("❌ Like failed: "+error.message);
 
 async function commentPost(videoId){
 
-const {data:sessionData}=
-await sb.auth.getSession();
+if(!user){
 
-const currentUser=
-sessionData?.session?.user;
+alert("Login first");
 
-if(!currentUser){
-
-alert("Please login first");
 showPage("login");
-return;
-
-}
-
-const comment=
-prompt("Write your comment:");
-
-if(!comment || !comment.trim())
-return;
-
-const {error}=
-await sb
-.from("comments")
-.insert({
-
-video_id:videoId,
-user_id:currentUser.id,
-comment:comment.trim()
-
-});
-
-if(error){
-
-console.log(error);
-
-alert("❌ "+error.message);
 
 return;
 
 }
 
-alert("✅ Comment posted");
+currentCommentVideo =
+videoId;
 
+$("commentModal")
+.classList.add("show");
 
-}
+$("commentsList").innerHTML =
+"<div class='muted'>Loading comments...</div>";
 
+$("commentInput").value="";
 
-/* =========================
-   SHARE POST
-========================= */
-
-async function sharePost(videoId){
-
-const url=
-window.location.origin+
-window.location.pathname+
-"?video="+
-encodeURIComponent(videoId);
-
-try{
-
-if(navigator.share){
-
-await navigator.share({
-
-title:"We Media",
-text:"Check this post on We Media",
-url:url
-
-});
-
-}else{
-
-await navigator.clipboard.writeText(url);
-
-alert("✅ Post link copied");
-
-}
-
-}catch(error){
-
-console.log(error);
-
-}
-
-}
-
-
-/* =========================
-   WHATSAPP SHARE
-========================= */
-
-function whatsappShare(videoUrl){
-
-const url=
-decodeURIComponent(videoUrl);
-
-const text=
-"Check this post on We Media 👇\n"+
-url;
-
-const wa=
-"https://wa.me/?text="+
-encodeURIComponent(text);
-
-window.open(
-wa,
-"_blank"
-);
-
-}
-
-
-/* =========================
-   LOAD LIKE COUNT
-========================= */
-
-async function getLikeCount(videoId){
-
-const {count,error}=
-await sb
-.from("likes")
-.select("*",{count:"exact",head:true})
-.eq("video_id",videoId);
-
-if(error)return 0;
-
-return count||0;
+await loadComments(videoId);
 
 }
 
@@ -1623,43 +1762,343 @@ return count||0;
    LOAD COMMENTS
 ========================= */
 
-async function getComments(videoId){
+async function loadComments(videoId){
 
-const {data,error}=
+const box =
+$("commentsList");
+
+if(!box)return;
+
+const {data,error} =
 await sb
 .from("comments")
 .select("*")
-.eq("video_id",videoId)
-.order("created_at",{ascending:true});
+.eq(
+"video_id",
+videoId
+);
 
 if(error){
 
 console.log(error);
-return [];
 
-}
+box.innerHTML =
+"<div class='muted'>❌ Could not load comments.</div>";
 
-return data||[];
-
-}
-
- </script><script>
-
-/* =========================
-   FOLLOW / UNFOLLOW
-========================= */
-
-async function followUser(targetId,button){
-
-if(!user){
-
-alert("Login first");
-showPage("login");
 return;
 
 }
 
-if(targetId===user.id)return;
+if(!data?.length){
+
+box.innerHTML =
+"<div class='muted'>No comments yet. Be the first 👋</div>";
+
+return;
+
+}
+
+box.innerHTML="";
+
+for(const item of data){
+
+const row =
+document.createElement("div");
+
+row.className =
+"comment-item";
+
+row.textContent =
+item.comment || "";
+
+box.appendChild(row);
+
+}
+
+}
+
+
+/* =========================
+   SEND COMMENT
+========================= */
+
+async function sendComment(){
+
+if(!user){
+
+alert("Login first");
+
+return;
+
+}
+
+if(!currentCommentVideo){
+
+return;
+
+}
+
+const input =
+$("commentInput");
+
+const comment =
+input.value.trim();
+
+if(!comment)return;
+
+input.disabled=true;
+
+const {error} =
+await sb
+.from("comments")
+.insert({
+
+video_id:
+currentCommentVideo,
+
+comment:comment
+
+});
+
+input.disabled=false;
+
+if(error){
+
+console.log(error);
+
+alert(
+"❌ "+error.message
+);
+
+return;
+
+}
+
+input.value="";
+
+await loadComments(
+currentCommentVideo
+);
+
+}
+
+
+/* =========================
+   CLOSE COMMENTS
+========================= */
+
+function closeComments(){
+
+$("commentModal")
+.classList.remove("show");
+
+currentCommentVideo=null;
+
+}
+
+function closeCommentModal(event){
+
+if(
+event.target ===
+$("commentModal")
+){
+
+closeComments();
+
+}
+
+}
+
+
+/* =========================
+   OPEN POSTER PROFILE
+========================= */
+
+function openProfile(id){
+
+if(!id){
+
+alert("Profile not available");
+
+return;
+
+}
+
+showPage("profile");
+
+loadOtherProfile(id);
+
+}<script>
+
+/* =========================
+   OTHER USER PROFILE
+========================= */
+
+async function loadOtherProfile(id){
+
+const box=$("profileBox");
+
+if(!box)return;
+
+box.innerHTML=
+"<div class='muted'>Loading profile...</div>";
+
+const {data:profile,error}=
+await sb
+.from("profiles")
+.select("*")
+.eq("id",id)
+.maybeSingle();
+
+if(error || !profile){
+
+box.innerHTML=
+"<div class='card'>❌ Profile not found.</div>";
+
+return;
+
+}
+
+const followers=
+await getFollowersCount(id);
+
+const following=
+await getFollowingCount(id);
+
+const {data:videos}=
+await sb
+.from("videos")
+.select("id")
+.eq("user_id",id);
+
+const videoCount=
+videos?.length||0;
+
+let totalLikes=0;
+
+if(videos?.length){
+
+const ids=
+videos.map(v=>v.id);
+
+const {count}=
+await sb
+.from("likes")
+.select("*",{
+count:"exact",
+head:true
+})
+.in("video_id",ids);
+
+totalLikes=count||0;
+
+}
+
+const followingMe=
+await isFollowing(id);
+
+let avatar="👤";
+
+if(profile.avatar_url){
+
+avatar=
+`<img
+src="${escapeHTML(profile.avatar_url)}"
+alt="profile">`;
+
+}
+
+box.innerHTML=`
+
+<div class="card"
+style="text-align:center">
+
+<div class="profile-avatar">
+${avatar}
+</div>
+
+<h2>
+@${escapeHTML(
+profile.username||"User"
+)}
+</h2>
+
+<p class="muted">
+${escapeHTML(
+profile.email||""
+)}
+</p>
+
+<div class="stats">
+
+<div>
+<b>${videoCount}</b>
+<br>
+<span>Videos</span>
+</div>
+
+<div>
+<b>${followers}</b>
+<br>
+<span>Followers</span>
+</div>
+
+<div>
+<b>${following}</b>
+<br>
+<span>Following</span>
+</div>
+
+<div>
+<b>${totalLikes}</b>
+<br>
+<span>Likes</span>
+</div>
+
+</div>
+
+<br>
+
+<button
+class="primary"
+id="otherFollowBtn"
+onclick="followUser('${id}',this)">
+
+${followingMe?"Following":"Follow"}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   FOLLOW
+========================= */
+
+async function followUser(
+targetId,
+button
+){
+
+if(!user){
+
+alert("Login first");
+
+showPage("login");
+
+return;
+
+}
+
+if(targetId===user.id){
+
+return;
+
+}
 
 button.disabled=true;
 
@@ -1669,8 +2108,14 @@ const {data:existing}=
 await sb
 .from("follows")
 .select("follower_id")
-.eq("follower_id",user.id)
-.eq("following_id",targetId)
+.eq(
+"follower_id",
+user.id
+)
+.eq(
+"following_id",
+targetId
+)
 .maybeSingle();
 
 if(existing){
@@ -1679,8 +2124,14 @@ const {error}=
 await sb
 .from("follows")
 .delete()
-.eq("follower_id",user.id)
-.eq("following_id",targetId);
+.eq(
+"follower_id",
+user.id
+)
+.eq(
+"following_id",
+targetId
+);
 
 if(error)throw error;
 
@@ -1694,6 +2145,7 @@ await sb
 .insert({
 
 follower_id:user.id,
+
 following_id:targetId
 
 });
@@ -1704,12 +2156,14 @@ button.textContent="Following";
 
 }
 
-await loadSuggestions();
-
 }catch(error){
 
 console.log(error);
-alert("❌ Follow failed");
+
+alert(
+"❌ Follow failed: "+
+error.message
+);
 
 }
 
@@ -1719,10 +2173,12 @@ button.disabled=false;
 
 
 /* =========================
-   FOLLOW STATUS
+   CHECK FOLLOW
 ========================= */
 
-async function isFollowing(targetId){
+async function isFollowing(
+targetId
+){
 
 if(!user)return false;
 
@@ -1730,8 +2186,14 @@ const {data}=
 await sb
 .from("follows")
 .select("follower_id")
-.eq("follower_id",user.id)
-.eq("following_id",targetId)
+.eq(
+"follower_id",
+user.id
+)
+.eq(
+"following_id",
+targetId
+)
 .maybeSingle();
 
 return !!data;
@@ -1740,7 +2202,59 @@ return !!data;
 
 
 /* =========================
-   SUGGESTED FOLLOWERS
+   FOLLOWERS COUNT
+========================= */
+
+async function getFollowersCount(id){
+
+const {count}=
+await sb
+.from("follows")
+.select(
+"*",
+{
+count:"exact",
+head:true
+}
+)
+.eq(
+"following_id",
+id
+);
+
+return count||0;
+
+}
+
+
+/* =========================
+   FOLLOWING COUNT
+========================= */
+
+async function getFollowingCount(id){
+
+const {count}=
+await sb
+.from("follows")
+.select(
+"*",
+{
+count:"exact",
+head:true
+}
+)
+.eq(
+"follower_id",
+id
+);
+
+return count||0;
+
+}
+
+
+/* =========================
+   SUGGESTIONS
 ========================= */
 
 async function loadSuggestions(){
@@ -1764,21 +2278,27 @@ box.innerHTML=
 const {data,error}=
 await sb
 .from("profiles")
-.select("id,username")
-.neq("id",user.id)
+.select(
+"id,username"
+)
+.neq(
+"id",
+user.id
+)
 .limit(30);
 
 if(error){
 
+console.log(error);
+
 box.innerHTML=
 "<div class='muted'>Unable to load suggestions.</div>";
 
-console.log(error);
 return;
 
 }
 
-if(!data || data.length===0){
+if(!data?.length){
 
 box.innerHTML=
 "<div class='muted'>No suggestions yet.</div>";
@@ -1792,78 +2312,69 @@ box.innerHTML="";
 for(const person of data){
 
 const following=
-await isFollowing(person.id);
+await isFollowing(
+person.id
+);
 
 const row=
 document.createElement("div");
 
 row.className="card";
 
-row.style.display="flex";
-row.style.alignItems="center";
-row.style.gap="10px";
-
 row.innerHTML=`
+
+<div style="
+display:flex;
+align-items:center;
+gap:10px">
+
+<div style="
+width:42px;
+height:42px;
+border-radius:50%;
+background:#1877f2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px">
+
+👤
+
+</div>
 
 <div style="flex:1">
 
-<b>@${escapeHTML(
+<b>
+@${escapeHTML(
 person.username||"User"
-)}</b>
+)}
+</b>
 
 </div>
 
 <button
 class="primary"
-style="width:90px;height:34px"
+style="
+width:90px;
+height:34px"
 onclick="followUser(
 '${person.id}',
 this
 )">
 
-${following?"Following":"Follow"}
+${following?
+"Following":
+"Follow"}
 
 </button>
+
+</div>
 
 `;
 
 box.appendChild(row);
 
 }
-
-}
-
-
-/* =========================
-   FOLLOWERS COUNT
-========================= */
-
-async function getFollowersCount(id){
-
-const {count}=
-await sb
-.from("follows")
-.select("*",{count:"exact",head:true})
-.eq("following_id",id);
-
-return count||0;
-
-}
-
-
-/* =========================
-   FOLLOWING COUNT
-========================= */
-
-async function getFollowingCount(id){
-
-const {count}=
-await sb
-.from("follows")
-.select("*",{count:"exact",head:true})
-.eq("follower_id",id);
-
-return count||0;
 
 }
 
@@ -1881,8 +2392,25 @@ if(!box)return;
 
 if(!user){
 
-box.innerHTML=
-"<div class='muted'>Login to see notifications.</div>";
+box.innerHTML=`
+
+<div class="card">
+
+<p class="muted">
+Login to see notifications.
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="showPage('login')">
+LOGIN
+</button>
+
+</div>
+
+`;
 
 return;
 
@@ -1894,22 +2422,31 @@ box.innerHTML=
 const {data,error}=
 await sb
 .from("follows")
-.select("follower_id,created_at")
-.eq("following_id",user.id)
-.order("created_at",{ascending:false})
+.select(
+"follower_id,created_at"
+)
+.eq(
+"following_id",
+user.id
+)
+.order(
+"created_at",
+{ascending:false}
+)
 .limit(30);
 
 if(error){
 
+console.log(error);
+
 box.innerHTML=
 "<div class='muted'>No notifications available.</div>";
 
-console.log(error);
 return;
 
 }
 
-if(!data || data.length===0){
+if(!data?.length){
 
 box.innerHTML=
 "<div class='muted'>No new notifications.</div>";
@@ -1928,11 +2465,17 @@ const {data:p}=
 await sb
 .from("profiles")
 .select("username")
-.eq("id",item.follower_id)
+.eq(
+"id",
+item.follower_id
+)
 .maybeSingle();
 
-if(p?.username)
+if(p?.username){
+
 name=p.username;
+
+}
 
 const row=
 document.createElement("div");
@@ -1952,37 +2495,25 @@ box.appendChild(row);
 
 
 /* =========================
-   PAGE LOAD HELPERS
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-loadSuggestions();
-loadNotifications();
-
-}
-);
-
- </script><script>
-
-/* =========================
-   LOAD PROFILE
+   MY PROFILE
 ========================= */
 
 async function loadProfile(){
 
-const box=$("profileBox");
+const box=
+$("profileBox");
 
 if(!box)return;
 
 if(!user){
 
 box.innerHTML=`
+
 <div class="card">
 
-<h3>👤 Profile</h3>
+<h3>
+👤 Profile
+</h3>
 
 <p class="muted">
 Login to view your profile.
@@ -1997,6 +2528,7 @@ LOGIN
 </button>
 
 </div>
+
 `;
 
 return;
@@ -2006,10 +2538,8 @@ return;
 box.innerHTML=
 "<div class='muted'>Loading profile...</div>";
 
-
-/* GET PROFILE */
-
-const {data:profile,error}=await sb
+const {data:profile,error}=
+await sb
 .from("profiles")
 .select("*")
 .eq("id",user.id)
@@ -2026,39 +2556,37 @@ return;
 
 }
 
-
 const name=
 profile?.username||
 profile?.full_name||
 user.user_metadata?.username||
 "User";
 
-
-/* COUNTS */
-
 const followers=
-await getFollowersCount(user.id);
+await getFollowersCount(
+user.id
+);
 
 const following=
-await getFollowingCount(user.id);
+await getFollowingCount(
+user.id
+);
 
-
-/* VIDEOS */
-
-const {data:videos}=await sb
+const {data:videos}=
+await sb
 .from("videos")
 .select("id")
-.eq("user_id",user.id);
+.eq(
+"user_id",
+user.id
+);
 
 const videoCount=
 videos?.length||0;
 
-
-/* TOTAL LIKES */
-
 let totalLikes=0;
 
-if(videos && videos.length){
+if(videos?.length){
 
 const ids=
 videos.map(v=>v.id);
@@ -2066,50 +2594,46 @@ videos.map(v=>v.id);
 const {count,error:likeError}=
 await sb
 .from("likes")
-.select("*",{count:"exact",head:true})
-.in("video_id",ids);
+.select(
+"*",
+{
+count:"exact",
+head:true
+}
+)
+.in(
+"video_id",
+ids
+);
 
 if(!likeError){
 
-totalLikes=count||0;
+totalLikes=
+count||0;
 
 }
 
 }
-
-
-/* AVATAR */
 
 let avatar="👤";
 
 if(profile?.avatar_url){
 
-avatar=`
-<img
-src="${escapeHTML(profile.avatar_url)}"
-style="
-width:75px;
-height:75px;
-border-radius:50%;
-object-fit:cover;
-border:2px solid #1877f2
-">
-`;
+avatar=
+`<img
+src="${escapeHTML(
+profile.avatar_url
+)}"
+alt="profile">`;
 
 }
-
-
-/* PROFILE UI */
 
 box.innerHTML=`
 
 <div class="card"
 style="text-align:center">
 
-<div style="
-font-size:45px;
-margin-bottom:8px
-">
+<div class="profile-avatar">
 
 ${avatar}
 
@@ -2127,36 +2651,30 @@ user.email||
 )}
 </p>
 
-<div style="
-display:flex;
-justify-content:space-around;
-margin-top:20px;
-padding-top:15px;
-border-top:1px solid #242424
-">
+<div class="stats">
 
 <div>
 <b>${videoCount}</b>
 <br>
-<span class="muted">Videos</span>
+<span>Videos</span>
 </div>
 
 <div>
 <b>${followers}</b>
 <br>
-<span class="muted">Followers</span>
+<span>Followers</span>
 </div>
 
 <div>
 <b>${following}</b>
 <br>
-<span class="muted">Following</span>
+<span>Following</span>
 </div>
 
 <div>
 <b>${totalLikes}</b>
 <br>
-<span class="muted">Likes</span>
+<span>Likes</span>
 </div>
 
 </div>
@@ -2177,8 +2695,7 @@ onclick="showPage('upload')">
 <br><br>
 
 <button
-class="primary"
-style="background:#222"
+class="secondary"
 onclick="logout()">
 
 🚪 LOGOUT
@@ -2193,86 +2710,36 @@ onclick="logout()">
 
 
 /* =========================
-   REFRESH PROFILE
-========================= */
-
-async function refreshProfile(){
-
-if(user){
-
-await loadProfile();
-
-}
-
-}
-
-
-/* =========================
-   PROFILE AUTO REFRESH
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-loadProfile();
-
-}
-);
-
-
-/* =========================
-   LOGIN / LOGOUT REFRESH
-========================= */
-
-sb.auth.onAuthStateChange(
-async(event,session)=>{
-
-user=
-session?.user||null;
-
-if(user){
-
-setTimeout(()=>{
-loadProfile();
-loadSuggestions();
-loadNotifications();
-},300);
-
-}else{
-
-setTimeout(()=>{
-loadProfile();
-},100);
-
-}
-
-}
-);
-
- </script><script>
-
-/* =========================
-   LOAD USERS FOR CHAT
+   MESSAGES USERS
 ========================= */
 
 async function loadChatUsers(){
 
-const box=$("messagesList");
+const box=
+$("messagesList");
 
 if(!box)return;
 
 if(!user){
 
 box.innerHTML=`
+
 <div class="card">
-<p class="muted">Login to use messages.</p>
+
+<p class="muted">
+Login to use messages.
+</p>
+
 <br>
-<button class="primary"
+
+<button
+class="primary"
 onclick="showPage('login')">
 LOGIN
 </button>
+
 </div>
+
 `;
 
 return;
@@ -2285,8 +2752,13 @@ box.innerHTML=
 const {data,error}=
 await sb
 .from("profiles")
-.select("id,username")
-.neq("id",user.id)
+.select(
+"id,username"
+)
+.neq(
+"id",
+user.id
+)
 .limit(30);
 
 if(error){
@@ -2310,12 +2782,19 @@ return;
 }
 
 box.innerHTML=`
+
 <div class="card">
-<h3>💬 Start a conversation</h3>
+
+<h3>
+💬 Start a conversation
+</h3>
+
 <p class="muted">
 Choose someone to message
 </p>
+
 </div>
+
 `;
 
 for(const person of data){
@@ -2330,8 +2809,7 @@ row.innerHTML=`
 <div style="
 display:flex;
 align-items:center;
-gap:10px
-">
+gap:10px">
 
 <div style="
 width:40px;
@@ -2341,9 +2819,10 @@ background:#1877f2;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px
-">
+font-size:20px">
+
 👤
+
 </div>
 
 <div style="flex:1">
@@ -2358,14 +2837,18 @@ person.username||"User"
 
 <button
 class="primary"
-style="width:80px;height:34px"
+style="
+width:75px;
+height:34px"
 onclick="openChat(
 '${person.id}',
 '${escapeHTML(
 person.username||"User"
 )}'
 )">
+
 CHAT
+
 </button>
 
 </div>
@@ -2383,16 +2866,23 @@ box.appendChild(row);
    OPEN CHAT
 ========================= */
 
-async function openChat(targetId,targetName){
+async function openChat(
+targetId,
+targetName
+){
 
 if(!user)return;
 
 selectedChat={
+
 id:targetId,
+
 name:targetName
+
 };
 
-const box=$("messagesList");
+const box=
+$("messagesList");
 
 box.innerHTML=`
 
@@ -2403,31 +2893,30 @@ onclick="loadChatUsers()"
 style="
 background:none;
 color:#1877f2;
-font-size:11px;
-margin-bottom:12px
-">
+font-size:12px;
+margin-bottom:12px">
+
 ← Back
+
 </button>
 
 <h3>
 💬 @${escapeHTML(targetName)}
 </h3>
 
-<div id="chatMessages"
-style="
-height:350px;
-overflow-y:auto;
-margin-top:12px;
-padding:5px
-">
+<div
+id="chatMessages"
+class="chat-box"
+style="margin-top:12px">
+
 Loading messages...
+
 </div>
 
 <div style="
 display:flex;
 gap:6px;
-margin-top:10px
-">
+margin-top:10px">
 
 <input
 id="chatInput"
@@ -2437,17 +2926,17 @@ placeholder="Write a message...">
 
 <button
 class="primary"
-style="
-width:65px;
-height:40px
-"
+style="width:65px"
 onclick="sendMessage()">
+
 ➤
+
 </button>
 
 </div>
 
 </div>
+
 `;
 
 await loadChat();
@@ -2463,7 +2952,8 @@ async function loadChat(){
 
 if(!user || !selectedChat)return;
 
-const box=$("chatMessages");
+const box=
+$("chatMessages");
 
 if(!box)return;
 
@@ -2472,12 +2962,20 @@ await sb
 .from("messages")
 .select("*")
 .or(
-"and(sender_id.eq."+user.id+
-",receiver_id.eq."+selectedChat.id+
-"),and(sender_id.eq."+selectedChat.id+
-",receiver_id.eq."+user.id+")"
+"and(sender_id.eq."+
+user.id+
+",receiver_id.eq."+
+selectedChat.id+
+"),and(sender_id.eq."+
+selectedChat.id+
+",receiver_id.eq."+
+user.id+
+")"
 )
-.order("created_at",{ascending:true});
+.order(
+"created_at",
+{ascending:true}
+);
 
 if(error){
 
@@ -2506,37 +3004,40 @@ for(const m of data){
 const mine=
 m.sender_id===user.id;
 
-const msg=
+const row=
 document.createElement("div");
 
-msg.style.textAlign=
-mine?"right":"left";
+row.className=
+"message-row";
 
-msg.style.margin=
-"7px 0";
+row.style.textAlign=
+mine?
+"right":
+"left";
 
-msg.innerHTML=`
+row.innerHTML=`
 
-<span style="
-display:inline-block;
-max-width:80%;
-padding:9px 11px;
-border-radius:12px;
-background:${mine?"#1877f2":"#222"};
-font-size:11px;
+<span class="
+message-bubble
+${mine?
+"message-mine":
+"message-other"}
 ">
 
-${escapeHTML(m.message)}
+${escapeHTML(
+m.message||""
+)}
 
 </span>
 
 `;
 
-box.appendChild(msg);
+box.appendChild(row);
 
 }
 
-box.scrollTop=box.scrollHeight;
+box.scrollTop=
+box.scrollHeight;
 
 }
 
@@ -2547,9 +3048,11 @@ box.scrollTop=box.scrollHeight;
 
 async function sendMessage(){
 
-if(!user || !selectedChat)return;
+if(!user || !selectedChat)
+return;
 
-const input=$("chatInput");
+const input=
+$("chatInput");
 
 const message=
 input?.value.trim();
@@ -2565,419 +3068,32 @@ await sb
 
 sender_id:user.id,
 
-receiver_id:selectedChat.id,
+receiver_id:
+selectedChat.id,
 
 message:message
 
 });
 
+input.disabled=false;
+
 if(error){
 
-alert("❌ "+error.message);
-
-input.disabled=false;
+alert(
+"❌ "+error.message
+);
 
 return;
 
 }
 
 input.value="";
-input.disabled=false;
 
 await loadChat();
 
 }
 
-
-/* =========================
-   MESSAGES PAGE
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-loadChatUsers();
-
-}
-);
-
- </script><script>
-
-/* =========================
-   POST OPTIONS
-========================= */
-
-function preparePost(){
-
-if(!user){
-
-showPage("login");
-
-return;
-
-}
-
-showPage("upload");
-
-}
-
-
-/* =========================
-   ADD CAMERA / GALLERY
-========================= */
-
-const uploadCard=
-document.querySelector("#uploadPage .card");
-
-if(uploadCard){
-
-const options=
-document.createElement("div");
-
-options.style=
-"display:flex;gap:8px;margin:10px 0";
-
-options.innerHTML=`
-
-<button
-class="primary"
-style="flex:1"
-onclick="openGallery()">
-🖼️ Gallery
-</button>
-
-<button
-class="primary"
-style="flex:1;background:#222"
-onclick="openCamera()">
-📷 Camera
-</button>
-
-`;
-
-const file=
-$("postFile");
-
-file.parentNode.insertBefore(
-options,
-file
-);
-
-}
-
-
-/* =========================
-   EFFECTS
-========================= */
-
-let postEffect="none";
-
-function addEffects(){
-
-const card=
-document.querySelector("#uploadPage .card");
-
-if(!card)return;
-
-const title=
-document.createElement("div");
-
-title.innerHTML=`
-
-<div style="
-margin-top:14px;
-margin-bottom:7px;
-font-weight:bold">
-🎨 Effects
-</div>
-
-<div style="
-display:flex;
-gap:6px;
-overflow-x:auto">
-
-<button
-class="primary"
-style="min-width:70px;height:32px"
-onclick="setEffect('none')">
-Normal
-</button>
-
-<button
-class="primary"
-style="min-width:70px;height:32px;background:#333"
-onclick="setEffect('grayscale(1)')">
-B&W
-</button>
-
-<button
-class="primary"
-style="min-width:70px;height:32px;background:#333"
-onclick="setEffect('sepia(1)')">
-Sepia
-</button>
-
-<button
-class="primary"
-style="min-width:70px;height:32px;background:#333"
-onclick="setEffect('brightness(1.2)')">
-Bright
-</button>
-
-<button
-class="primary"
-style="min-width:70px;height:32px;background:#333"
-onclick="setEffect('contrast(1.25) saturate(1.3)')">
-Vivid
-</button>
-
-</div>
-
-<div
-id="effectPreview"
-style="
-margin-top:10px;
-display:none;
-width:100%;
-height:220px;
-overflow:hidden;
-border-radius:12px;
-background:#000">
-</div>
-
-`;
-
-const postButton=
-card.querySelector(".primary:last-of-type");
-
-card.insertBefore(
-title,
-postButton
-);
-
-}
-
-
-/* =========================
-   SET EFFECT
-========================= */
-
-function setEffect(effect){
-
-postEffect=effect;
-
-const preview=
-$("effectPreview");
-
-if(preview){
-
-preview.style.filter=
-effect;
-
-}
-
-const file=
-$("postFile").files[0];
-
-if(!file)return;
-
-showPreview(file);
-
-}
-
-
-/* =========================
-   FILE PREVIEW
-========================= */
-
-function showPreview(file){
-
-const preview=
-$("effectPreview");
-
-if(!preview)return;
-
-preview.innerHTML="";
-
-preview.style.display="block";
-
-const url=
-URL.createObjectURL(file);
-
-let media;
-
-if(file.type.startsWith("image/")){
-
-media=
-document.createElement("img");
-
-}else if(file.type.startsWith("video/")){
-
-media=
-document.createElement("video");
-
-media.controls=true;
-media.autoplay=true;
-media.loop=true;
-media.muted=true;
-media.playsInline=true;
-
-}else{
-
-return;
-
-}
-
-media.src=url;
-
-media.style=
-"width:100%;height:100%;object-fit:cover";
-
-media.style.filter=
-postEffect;
-
-preview.appendChild(media);
-
-}
-
-
-/* =========================
-   UPDATE PREVIEW
-========================= */
-
-$("postFile").addEventListener(
-"change",
-function(){
-
-const file=this.files[0];
-
-if(file){
-
-showPreview(file);
-
-}
-
-});
-
-
-/* =========================
-   POST BUTTON
-========================= */
-
-document
-.querySelector(".post-button")
-?.addEventListener(
-"click",
-preparePost
-);
-
-
-/* =========================
-   PAGE START
-========================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-async()=>{
-
-await checkUser();
-
-await loadVideos();
-
-if(user){
-
-await loadProfile();
-await loadSuggestions();
-await loadNotifications();
-await loadChatUsers();
-
-}
-
-addEffects();
-
-}
-);
-
-
-/* =========================
-   PAGE CHANGE REFRESH
-========================= */
-
-const oldShowPage=
-showPage;
-
-showPage=function(name){
-
-oldShowPage(name);
-
-if(name==="home"){
-
-loadVideos();
-
-}
-
-if(name==="profile"){
-
-loadProfile();
-
-}
-
-if(name==="suggestions"){
-
-loadSuggestions();
-
-}
-
-if(name==="notifications"){
-
-loadNotifications();
-
-}
-
-if(name==="messages"){
-
-loadChatUsers();
-
-}
-
-};
-
-
-/* =========================
-   CLEAN VIDEO PLAYBACK
-========================= */
-
-document.addEventListener(
-"visibilitychange",
-()=>{
-
-if(document.hidden){
-
-document
-.querySelectorAll("video")
-.forEach(v=>{
-
-if(!v.paused)
-v.pause();
-
-});
-
-}
-
-});
-
-
-/* =========================
-   FINAL READY
-========================= */
-
-console.log(
-"✅ We Media is ready"
-);
-
-</script>
-<script>
+</script><script>
 
 /* =========================
    SEARCH USERS
@@ -3007,7 +3123,10 @@ const {data,error}=
 await sb
 .from("profiles")
 .select("id,username,email")
-.ilike("username","%"+text+"%")
+.ilike(
+"username",
+"%"+text+"%"
+)
 .limit(20);
 
 if(error){
@@ -3021,7 +3140,7 @@ return;
 
 }
 
-if(!data || data.length===0){
+if(!data?.length){
 
 box.innerHTML=
 "<div class='muted'>No users found.</div>";
@@ -3034,11 +3153,15 @@ box.innerHTML="";
 
 for(const person of data){
 
-if(user && person.id===user.id)
-continue;
+if(
+user &&
+person.id===user.id
+)continue;
 
 const following=
-await isFollowing(person.id);
+await isFollowing(
+person.id
+);
 
 const row=
 document.createElement("div");
@@ -3061,38 +3184,49 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:20px">
+
 👤
+
 </div>
 
 <div style="flex:1">
 
 <b>
-@${escapeHTML(person.username||"User")}
+@${escapeHTML(
+person.username||"User"
+)}
 </b>
 
 <br>
 
 <span class="muted">
-${escapeHTML(person.email||"")}
+
+${escapeHTML(
+person.email||""
+)}
+
 </span>
 
 </div>
 
 <button
+class="primary"
 style="
-width:80px;
-height:34px;
-border-radius:8px;
-background:#1877f2;
-color:white;
-font-size:10px"
-onclick="followUser('${person.id}',this)">
+width:85px;
+height:34px"
+onclick="followUser(
+'${person.id}',
+this
+)">
 
-${following?"Following":"Follow"}
+${following?
+"Following":
+"Follow"}
 
 </button>
 
 </div>
+
 `;
 
 box.appendChild(row);
@@ -3102,16 +3236,586 @@ box.appendChild(row);
 }
 
 
-/* LIVE SEARCH */
+/* =========================
+   CAMERA
+========================= */
 
-$("searchInput")?.addEventListener(
-"input",
-function(){
+function openCamera(){
 
-searchUsers(this.value);
+const input=
+document.createElement("input");
+
+input.type="file";
+
+input.accept=
+"image/*,video/*";
+
+input.capture=
+"environment";
+
+input.onchange=()=>{
+
+if(input.files.length){
+
+const transfer=
+new DataTransfer();
+
+transfer.items.add(
+input.files[0]
+);
+
+$("postFile").files=
+transfer.files;
+
+$("uploadMsg").textContent=
+"📷 Camera file selected";
+
+showPreview(
+input.files[0]
+);
+
+}
+
+};
+
+input.click();
+
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+function openGallery(){
+
+$("postFile").click();
+
+}
+
+
+/* =========================
+   FILE PREVIEW
+========================= */
+
+function showPreview(file){
+
+const preview=
+$("effectPreview");
+
+if(!preview)return;
+
+preview.innerHTML="";
+
+preview.style.display=
+"block";
+
+const url=
+URL.createObjectURL(file);
+
+let media;
+
+if(
+file.type.startsWith("image/")
+){
+
+media=
+document.createElement("img");
+
+}else if(
+file.type.startsWith("video/")
+){
+
+media=
+document.createElement("video");
+
+media.controls=true;
+media.autoplay=true;
+media.loop=true;
+media.muted=true;
+media.playsInline=true;
+
+}else{
+
+preview.style.display=
+"none";
+
+return;
+
+}
+
+media.src=url;
+
+media.style.width="100%";
+media.style.height="100%";
+media.style.objectFit="cover";
+media.style.filter=
+postEffect;
+
+preview.appendChild(media);
+
+}
+
+
+/* =========================
+   SET EFFECT
+========================= */
+
+function setEffect(effect){
+
+postEffect=
+effect;
+
+showPreviewIfFile();
+
+}
+
+
+/* =========================
+   PREVIEW CURRENT FILE
+========================= */
+
+function showPreviewIfFile(){
+
+const file=
+$("postFile")
+?.files?.[0];
+
+if(file){
+
+showPreview(file);
+
+}
+
+}
+
+
+/* =========================
+   ADD EFFECTS
+========================= */
+
+function addEffects(){
+
+const area=
+$("effectsArea");
+
+if(!area)return;
+
+area.innerHTML=`
+
+<div style="
+margin-top:14px;
+margin-bottom:7px;
+font-weight:bold">
+
+🎨 Effects
+
+</div>
+
+<div class="effect-row">
+
+<button
+class="effect-btn active"
+onclick="setEffect('none');setActiveEffect(this)">
+
+Normal
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('grayscale(1)');setActiveEffect(this)">
+
+B&W
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('sepia(1)');setActiveEffect(this)">
+
+Sepia
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('brightness(1.2)');setActiveEffect(this)">
+
+Bright
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('contrast(1.25) saturate(1.3)');setActiveEffect(this)">
+
+Vivid
+
+</button>
+
+</div>
+
+<div
+id="effectPreview">
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   ACTIVE EFFECT
+========================= */
+
+function setActiveEffect(button){
+
+document
+.querySelectorAll(".effect-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =========================
+   UPLOAD POST
+========================= */
+
+async function uploadPost(){
+
+if(!user){
+
+alert(
+"Please login first"
+);
+
+showPage("login");
+
+return;
+
+}
+
+const title=
+$("postTitle")
+.value
+.trim();
+
+const file=
+$("postFile")
+.files[0];
+
+if(!file){
+
+alert(
+"Choose a photo or video"
+);
+
+return;
+
+}
+
+if(
+file.size >
+50*1024*1024
+){
+
+alert(
+"❌ File is bigger than 50 MB"
+);
+
+return;
+
+}
+
+$("uploadMsg").textContent=
+"Uploading...";
+
+try{
+
+const ext=
+file.name
+.split(".")
+.pop()
+.toLowerCase();
+
+const path=
+user.id+
+"/"+
+Date.now()+
+"."+ext;
+
+const {
+error:uploadError
+}=
+await sb.storage
+.from("Videos")
+.upload(
+path,
+file,
+{
+cacheControl:"3600",
+upsert:false,
+contentType:file.type
+}
+);
+
+if(uploadError){
+
+throw uploadError;
+
+}
+
+const {
+data:urlData
+}=
+sb.storage
+.from("Videos")
+.getPublicUrl(
+path
+);
+
+const publicUrl=
+urlData.publicUrl;
+
+const {
+error:dbError
+}=
+await sb
+.from("videos")
+.insert({
+
+user_id:user.id,
+
+title:
+title||
+"New post",
+
+video_url:
+publicUrl
 
 });
 
+if(dbError){
+
+throw dbError;
+
+}
+
+$("postTitle").value="";
+
+$("postFile").value="";
+
+$("uploadMsg").textContent=
+"✅ Posted successfully!";
+
+postEffect="none";
+
+const preview=
+$("effectPreview");
+
+if(preview){
+
+preview.innerHTML="";
+
+preview.style.display=
+"none";
+
+}
+
+showPage("home");
+
+await loadVideos();
+
+}catch(error){
+
+console.error(error);
+
+$("uploadMsg").textContent=
+"❌ "+error.message;
+
+}
+
+}
+
+
+/* =========================
+   SEARCH LIVE
+========================= */
+
+function setupSearch(){
+
+const input=
+$("searchInput");
+
+if(!input)return;
+
+input.addEventListener(
+"input",
+function(){
+
+searchUsers(
+this.value
+);
+
+});
+
+}
+
+
+/* =========================
+   FILE SELECT
+========================= */
+
+function setupFileInput(){
+
+const input=
+$("postFile");
+
+if(!input)return;
+
+input.addEventListener(
+"change",
+function(){
+
+const file=
+this.files[0];
+
+if(!file)return;
+
+$("uploadMsg").textContent=
+"✅ Selected: "+
+file.name;
+
+showPreview(file);
+
+});
+
+}
+
+
+/* =========================
+   PAGE START
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+async function(){
+
+setupSearch();
+
+setupFileInput();
+
+addEffects();
+
+await checkUser();
+
+await loadVideos();
+
+if(user){
+
+await loadProfile();
+
+await loadSuggestions();
+
+await loadNotifications();
+
+await loadChatUsers();
+
+}
+
+console.log(
+"✅ We Media is ready"
+);
+
+});
+
+
+/* =========================
+   AUTH REFRESH
+========================= */
+
+sb.auth.onAuthStateChange(
+function(event,session){
+
+user=
+session?.user||null;
+
+});
+
+
+/* =========================
+   PAUSE VIDEOS WHEN HIDDEN
+========================= */
+
+document.addEventListener(
+"visibilitychange",
+function(){
+
+if(document.hidden){
+
+document
+.querySelectorAll("video")
+.forEach(video=>{
+
+if(!video.paused){
+
+video.pause();
+
+}
+
+});
+
+}
+
+});
+
+
+/* =========================
+   VIDEO LINK OPEN
+========================= */
+
+async function openVideoFromLink(){
+
+const params=
+new URLSearchParams(
+window.location.search
+);
+
+const videoId=
+params.get("video");
+
+if(!videoId)return;
+
+await loadVideos();
+
+const cards=
+document.querySelectorAll(
+".video-card"
+);
+
+cards.forEach(card=>{
+
+if(
+card.innerHTML
+.includes(videoId)
+){
+
+card.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+});
+
+}
+
 </script>
+
 </body>
 </html>
