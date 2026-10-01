@@ -144,10 +144,25 @@ else $("rm").textContent="✅ Account created. Check email then login.";
 
 async function login(){
 let e=$("le").value.trim(),p=$("lp").value;
+if(!e||!p){
+$("lm").textContent="❌ Enter email and password";
+return;
+}
 $("lm").textContent="Logging in...";
-let {data,error}=await sb.auth.signInWithPassword({email:e,password:p});
-if(error){$("lm").textContent="❌ "+error.message;return}
-user=data.user;open();
+
+let {data,error}=await sb.auth.signInWithPassword({
+email:e,password:p
+});
+
+if(error){
+$("lm").textContent="❌ Wrong credentials";
+console.log(error);
+return;
+}
+
+user=data.user;
+$("lm").textContent="✅ Login successful";
+open();
 }
 
 function open(){
