@@ -2809,6 +2809,141 @@ console.log(
 );
 
 </script>
+<script>
 
+/* =========================
+   SEARCH USERS
+========================= */
+
+async function searchUsers(text){
+
+const box=$("searchResults");
+
+if(!box)return;
+
+text=text.trim();
+
+if(!text){
+
+box.innerHTML=
+"<div class='muted'>Search for people...</div>";
+
+return;
+
+}
+
+box.innerHTML=
+"<div class='muted'>🔍 Searching...</div>";
+
+const {data,error}=
+await sb
+.from("profiles")
+.select("id,username,email")
+.ilike("username","%"+text+"%")
+.limit(20);
+
+if(error){
+
+console.log(error);
+
+box.innerHTML=
+"<div class='muted'>❌ Search failed</div>";
+
+return;
+
+}
+
+if(!data || data.length===0){
+
+box.innerHTML=
+"<div class='muted'>No users found.</div>";
+
+return;
+
+}
+
+box.innerHTML="";
+
+for(const person of data){
+
+if(user && person.id===user.id)
+continue;
+
+const following=
+await isFollowing(person.id);
+
+const row=
+document.createElement("div");
+
+row.className="card";
+
+row.innerHTML=`
+
+<div style="
+display:flex;
+align-items:center;
+gap:10px">
+
+<div style="
+width:42px;
+height:42px;
+border-radius:50%;
+background:#1877f2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px">
+👤
+</div>
+
+<div style="flex:1">
+
+<b>
+@${escapeHTML(person.username||"User")}
+</b>
+
+<br>
+
+<span class="muted">
+${escapeHTML(person.email||"")}
+</span>
+
+</div>
+
+<button
+style="
+width:80px;
+height:34px;
+border-radius:8px;
+background:#1877f2;
+color:white;
+font-size:10px"
+onclick="followUser('${person.id}',this)">
+
+${following?"Following":"Follow"}
+
+</button>
+
+</div>
+`;
+
+box.appendChild(row);
+
+}
+
+}
+
+
+/* LIVE SEARCH */
+
+$("searchInput")?.addEventListener(
+"input",
+function(){
+
+searchUsers(this.value);
+
+});
+
+</script>
 </body>
 </html>
