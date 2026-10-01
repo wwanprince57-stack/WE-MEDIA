@@ -1,242 +1,353 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>We Media</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+ font-family:Arial,sans-serif;
 }
 
 body{
-  background:#000;
-  color:#fff;
-  padding-bottom:75px;
+ background:#000;
+ color:#fff;
+ padding-bottom:75px;
 }
 
 header{
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 18px;
-  background:#000;
-  border-bottom:1px solid #222;
-  position:sticky;
-  top:0;
-  z-index:10;
+ height:60px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 16px;
+ background:#000;
+ border-bottom:1px solid #222;
+ position:sticky;
+ top:0;
+ z-index:50;
 }
 
 .logo{
-  font-size:24px;
-  font-weight:bold;
+ font-size:23px;
+ font-weight:bold;
 }
 
 .logo span{
-  color:#00e5ff;
-}
-
-button{
-  border:0;
-  cursor:pointer;
+ color:#00e5ff;
 }
 
 .headerBtn{
-  background:#00e5ff;
-  color:#000;
-  padding:9px 14px;
-  border-radius:20px;
-  font-weight:bold;
+ background:#00e5ff;
+ color:#000;
+ padding:9px 15px;
+ border:0;
+ border-radius:22px;
+ font-weight:bold;
 }
 
 .page{
-  display:none;
+ display:none;
 }
 
 .page.active{
-  display:block;
+ display:block;
 }
 
 .videoCard{
-  width:100%;
-  background:#050505;
-  margin-bottom:18px;
+ background:#050505;
+ border-bottom:1px solid #222;
+ padding-bottom:12px;
 }
 
 .video{
-  width:100%;
-  height:430px;
-  object-fit:cover;
-  background:#111;
-  display:block;
+ width:100%;
+ height:430px;
+ object-fit:cover;
+ background:#111;
+ display:block;
 }
 
 .videoInfo{
-  padding:12px 15px;
+ padding:12px 15px 5px;
 }
 
 .username{
-  font-weight:bold;
-  margin-bottom:7px;
+ font-weight:bold;
+ margin-bottom:7px;
 }
 
 .caption{
-  color:#ddd;
-  font-size:14px;
+ color:#ddd;
+ font-size:14px;
+ line-height:20px;
+}
+
+.stats{
+ color:#999;
+ font-size:12px;
+ margin-top:7px;
 }
 
 .actions{
-  display:flex;
-  gap:18px;
-  padding:10px 15px 14px;
+ display:flex;
+ align-items:center;
+ gap:20px;
+ padding:10px 15px 5px;
 }
 
 .action{
-  background:none;
-  color:#fff;
-  font-size:15px;
+ background:none;
+ color:#fff;
+ border:0;
+ font-size:15px;
 }
 
 .action.liked{
-  color:#ff3158;
+ color:#ff3158;
+}
+
+.commentBox{
+ display:none;
+ padding:8px 15px 12px;
+}
+
+.commentBox input{
+ width:78%;
+ padding:11px;
+ border-radius:20px;
+ border:1px solid #333;
+ background:#111;
+ color:#fff;
+ outline:none;
+}
+
+.commentBox button{
+ padding:10px 13px;
+ margin-left:4px;
+ border-radius:20px;
+ border:0;
+ background:#00e5ff;
+ color:#000;
+ font-weight:bold;
+}
+
+.comments{
+ padding:0 15px 10px;
+}
+
+.comment{
+ padding:7px 0;
+ border-bottom:1px solid #151515;
+ font-size:13px;
+}
+
+.comment b{
+ color:#00e5ff;
+ margin-right:5px;
 }
 
 .empty{
-  text-align:center;
-  padding:80px 20px;
-  color:#aaa;
+ text-align:center;
+ padding:80px 20px;
+ color:#888;
+}
+
+.loading{
+ text-align:center;
+ padding:45px;
+ color:#00e5ff;
 }
 
 .uploadBox{
-  margin:25px 15px;
-  padding:30px 20px;
-  border:1px dashed #555;
-  border-radius:15px;
-  text-align:center;
+ margin:25px 15px;
+ padding:25px 18px;
+ border:1px dashed #555;
+ border-radius:15px;
+ text-align:center;
 }
 
 .uploadBox input{
-  margin:20px 0;
-  width:100%;
+ margin:20px 0;
+ width:100%;
+ color:#fff;
 }
 
 .uploadBtn{
-  background:#00e5ff;
-  padding:12px 25px;
-  border-radius:25px;
-  font-weight:bold;
+ background:#00e5ff;
+ padding:12px 25px;
+ border:0;
+ border-radius:25px;
+ font-weight:bold;
 }
 
-.profile{
-  padding:30px 20px;
-  text-align:center;
-}
-
-.avatar{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  background:#00e5ff;
-  color:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:35px;
-  font-weight:bold;
-  margin:10px auto 15px;
-}
-
-.nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:70px;
-  background:#080808;
-  border-top:1px solid #222;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:20;
-}
-
-.nav button{
-  background:none;
-  color:#aaa;
-  font-size:12px;
-}
-
-.nav button.active{
-  color:#00e5ff;
-}
-
-.navIcon{
-  display:block;
-  font-size:23px;
-  margin-bottom:3px;
+.uploadBtn:disabled{
+ opacity:.5;
 }
 
 #fileName{
-  margin-top:10px;
-  color:#aaa;
-  font-size:13px;
+ margin-top:10px;
+ color:#aaa;
+ font-size:13px;
 }
+
+#uploadStatus{
+ margin-top:15px;
+ font-size:14px;
+}
+
+.preview video{
+ width:100%;
+ margin-top:18px;
+ border-radius:12px;
+}
+
+.profile{
+ padding:30px 20px;
+ text-align:center;
+}
+
+.avatar{
+ width:90px;
+ height:90px;
+ border-radius:50%;
+ background:#00e5ff;
+ color:#000;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:35px;
+ font-weight:bold;
+ margin:10px auto 15px;
+}
+
+.profileStats{
+ display:flex;
+ justify-content:space-around;
+ margin-top:35px;
+ padding:20px 0;
+ border-top:1px solid #222;
+ border-bottom:1px solid #222;
+}
+
+.profileStats b{
+ font-size:20px;
+}
+
+.profileStats small{
+ color:#aaa;
+}
+
+.nav{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:70px;
+ background:#080808;
+ border-top:1px solid #222;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ z-index:100;
+}
+
+.nav button{
+ background:none;
+ border:0;
+ color:#aaa;
+ font-size:12px;
+}
+
+.nav button.active{
+ color:#00e5ff;
+}
+
+.navIcon{
+ display:block;
+ font-size:23px;
+ margin-bottom:3px;
+}
+
+.topMessage{
+ padding:10px 15px;
+ background:#071b1e;
+ color:#00e5ff;
+ font-size:13px;
+ text-align:center;
+ display:none;
+}
+
+.refresh{
+ background:none;
+ color:#fff;
+ border:1px solid #333;
+ padding:7px 12px;
+ border-radius:18px;
+ margin:10px 15px;
+}
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.75);
+ z-index:200;
+ align-items:flex-end;
+}
+
+.modalBox{
+ width:100%;
+ max-height:70vh;
+ background:#111;
+ border-radius:20px 20px 0 0;
+ padding:20px;
+ overflow:auto;
+}
+
+.modalBox h3{
+ margin-bottom:15px;
+}
+
+.modalClose{
+ float:right;
+ background:none;
+ color:#fff;
+ border:0;
+ font-size:22px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">We <span>Media</span></div>
-  <button class="headerBtn" onclick="showPage('upload')">Upload</button>
+ <div class="logo">We <span>Media</span></div>
+
+ <button class="headerBtn" onclick="showPage('upload')">
+  Upload
+ </button>
 </header>
+
+<div id="message" class="topMessage"></div>
 
 <!-- HOME -->
 <section id="home" class="page active">
 
-  <div class="videoCard">
+ <button class="refresh" onclick="loadVideos()">
+   🔄 Refresh videos
+ </button>
 
-    <video class="video" controls loop playsinline
-      src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
-    </video>
-
-    <div class="videoInfo">
-      <div class="username">@wemedia</div>
-      <div class="caption">Welcome to We Media 🎬</div>
-    </div>
-
-    <div class="actions">
-      <button class="action" onclick="like(this)">❤️ Like</button>
-      <button class="action" onclick="comment()">💬 Comment</button>
-      <button class="action" onclick="shareVideo()">↗ Share</button>
-    </div>
-
-  </div>
-
-
-  <div class="videoCard">
-
-    <video class="video" controls loop playsinline
-      src="https://www.w3schools.com/html/mov_bbb.mp4">
-    </video>
-
-    <div class="videoInfo">
-      <div class="username">@wemedia</div>
-      <div class="caption">Watch and share videos on We Media 🔥</div>
-    </div>
-
-    <div class="actions">
-      <button class="action" onclick="like(this)">❤️ Like</button>
-      <button class="action" onclick="comment()">💬 Comment</button>
-      <button class="action" onclick="shareVideo()">↗ Share</button>
-    </div>
-
-  </div>
+ <div id="feed">
+   <div class="loading">Loading We Media 🎬...</div>
+ </div>
 
 </section>
 
@@ -244,32 +355,38 @@ button{
 <!-- UPLOAD -->
 <section id="upload" class="page">
 
-  <div class="uploadBox">
+ <div class="uploadBox">
 
-    <h2>Upload Video 🎬</h2>
+  <h2>Upload Video 🎬</h2>
 
-    <p style="margin-top:10px;color:#aaa;">
-      Choose a video from your phone
-    </p>
+  <p style="margin-top:10px;color:#aaa;">
+   Share your video on We Media
+  </p>
 
-    <input
-      type="file"
-      id="videoFile"
-      accept="video/*"
-      onchange="selectVideo()"
-    >
+  <input
+   type="file"
+   id="videoFile"
+   accept="video/*"
+   onchange="selectVideo()"
+  >
 
-    <div id="fileName"></div>
+  <div id="fileName"></div>
 
-    <br>
+  <div id="preview" class="preview"></div>
 
-    <button class="uploadBtn" onclick="previewVideo()">
-      Preview Video
-    </button>
+  <br>
 
-    <div id="preview" style="margin-top:20px;"></div>
+  <button
+   id="uploadBtn"
+   class="uploadBtn"
+   onclick="uploadVideo()"
+  >
+   📤 Upload Video
+  </button>
 
-  </div>
+  <div id="uploadStatus"></div>
+
+ </div>
 
 </section>
 
@@ -277,167 +394,1148 @@ button{
 <!-- PROFILE -->
 <section id="profile" class="page">
 
-  <div class="profile">
+ <div class="profile">
 
-    <div class="avatar">W</div>
+  <div class="avatar">W</div>
 
-    <h2>We Media User</h2>
+  <h2>We Media User</h2>
 
-    <p style="color:#aaa;margin-top:8px;">
-      Welcome to your profile
-    </p>
+  <p style="color:#aaa;margin-top:8px;">
+   Welcome to We Media
+  </p>
 
-    <div style="
-      display:flex;
-      justify-content:space-around;
-      margin-top:35px;
-      padding:20px 0;
-      border-top:1px solid #222;
-      border-bottom:1px solid #222;
-    ">
+  <div class="profileStats">
 
-      <div>
-        <b>0</b><br>
-        <small>Videos</small>
-      </div>
+   <div>
+    <b id="profileVideos">0</b><br>
+    <small>Videos</small>
+   </div>
 
-      <div>
-        <b>0</b><br>
-        <small>Followers</small>
-      </div>
+   <div>
+    <b id="profileLikes">0</b><br>
+    <small>Likes</small>
+   </div>
 
-      <div>
-        <b>0</b><br>
-        <small>Following</small>
-      </div>
-
-    </div>
+   <div>
+    <b id="profileViews">0</b><br>
+    <small>Views</small>
+   </div>
 
   </div>
+
+ </div>
 
 </section>
 
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav class="nav">
 
-  <button class="active" onclick="showPage('home',this)">
-    <span class="navIcon">🏠</span>
-    Home
-  </button>
+ <button class="active" onclick="showPage('home',this)">
+  <span class="navIcon">🏠</span>
+  Home
+ </button>
 
-  <button onclick="showPage('upload',this)">
-    <span class="navIcon">➕</span>
-    Upload
-  </button>
+ <button onclick="showPage('upload',this)">
+  <span class="navIcon">➕</span>
+  Upload
+ </button>
 
-  <button onclick="showPage('profile',this)">
-    <span class="navIcon">👤</span>
-    Profile
-  </button>
+ <button onclick="showPage('profile',this)">
+  <span class="navIcon">👤</span>
+  Profile
+ </button>
 
 </nav>
 
 
 <script>
 
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://jhxbfkpcinetbuwsnxcz.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
+
+const supabaseClient =
+window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
+
+
+/* =========================
+   USER ID
+========================= */
+
+let deviceId = localStorage.getItem("wemedia_device");
+
+if(!deviceId){
+
+ deviceId =
+ "user_" +
+ Date.now() +
+ "_" +
+ Math.random().toString(36).substring(2);
+
+ localStorage.setItem(
+   "wemedia_device",
+   deviceId
+ );
+
+}
+
+
+/* =========================
+   EXISTING DEMO VIDEOS
+========================= */
+
+const demoVideos = [
+
+ {
+  path:"demo_flower",
+  url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  username:"@wemedia",
+  caption:"Welcome to We Media 🎬"
+ },
+
+ {
+  path:"demo_bunny",
+  url:"https://www.w3schools.com/html/mov_bbb.mp4",
+  username:"@wemedia",
+  caption:"Watch and share videos on We Media 🔥"
+ }
+
+];
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
 function showPage(page,button){
 
-  document.querySelectorAll('.page').forEach(function(p){
-    p.classList.remove('active');
+ document.querySelectorAll(".page")
+ .forEach(function(p){
+  p.classList.remove("active");
+ });
+
+ document.getElementById(page)
+ .classList.add("active");
+
+ document.querySelectorAll(".nav button")
+ .forEach(function(b){
+  b.classList.remove("active");
+ });
+
+ if(button){
+  button.classList.add("active");
+ }
+
+ if(page==="home"){
+  loadVideos();
+ }
+
+ if(page==="profile"){
+  loadProfile();
+ }
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function message(text){
+
+ const box =
+ document.getElementById("message");
+
+ box.innerText=text;
+ box.style.display="block";
+
+ setTimeout(function(){
+  box.style.display="none";
+ },3000);
+
+}
+
+
+/* =========================
+   LOAD VIDEOS
+========================= */
+
+async function loadVideos(){
+
+ const feed =
+ document.getElementById("feed");
+
+ feed.innerHTML =
+ '<div class="loading">Loading videos 🎬...</div>';
+
+ let videos=[];
+
+ try{
+
+  const result =
+  await supabaseClient
+  .storage
+  .from("Videos")
+  .list("",{
+   limit:100,
+   sort:{
+    column:"created_at",
+    order:"desc"
+   }
   });
 
-  document.getElementById(page).classList.add('active');
+  if(result.error){
+   console.log(result.error);
+  }else{
 
-  document.querySelectorAll('.nav button').forEach(function(b){
-    b.classList.remove('active');
+   const files =
+   result.data || [];
+
+   files.forEach(function(file){
+
+    if(
+     file.name &&
+     /\.(mp4|webm|mov|m4v|avi)$/i
+     .test(file.name)
+    ){
+
+     const publicData =
+     supabaseClient
+     .storage
+     .from("Videos")
+     .getPublicUrl(file.name);
+
+     videos.push({
+
+      path:file.name,
+
+      url:publicData.data.publicUrl,
+
+      username:"@wemedia",
+
+      caption:"New video on We Media 🎬"
+
+     });
+
+    }
+
+   });
+
+  }
+
+ }catch(error){
+
+  console.log(error);
+
+ }
+
+
+ /* Put demo videos first if storage is empty */
+
+ if(videos.length===0){
+
+  videos=demoVideos;
+
+ }else{
+
+  videos=[
+   ...videos,
+   ...demoVideos
+  ];
+
+ }
+
+
+ if(videos.length===0){
+
+  feed.innerHTML=
+  '<div class="empty">No videos yet 🎬<br><br>Upload the first video.</div>';
+
+  return;
+
+ }
+
+
+ feed.innerHTML="";
+
+ videos.forEach(function(video,index){
+
+  createVideoCard(video,index);
+
+ });
+
+}
+
+
+/* =========================
+   VIDEO CARD
+========================= */
+
+function createVideoCard(video,index){
+
+ const feed =
+ document.getElementById("feed");
+
+ const card =
+ document.createElement("div");
+
+ card.className="videoCard";
+
+ const videoEl =
+ document.createElement("video");
+
+ videoEl.className="video";
+
+ videoEl.controls=true;
+ videoEl.loop=true;
+ videoEl.playsInline=true;
+ videoEl.src=video.url;
+
+ videoEl.addEventListener(
+  "play",
+  function(){
+
+   if(!video.path.startsWith("demo_")){
+
+    addView(video.path);
+
+   }
+
+  },
+  {once:true}
+ );
+
+
+ const info =
+ document.createElement("div");
+
+ info.className="videoInfo";
+
+ info.innerHTML=`
+
+  <div class="username">
+   ${escapeHTML(video.username)}
+  </div>
+
+  <div class="caption">
+   ${escapeHTML(video.caption)}
+  </div>
+
+  <div class="stats">
+
+   <span id="views-${index}">
+    👁️ 0 views
+   </span>
+
+   &nbsp; • &nbsp;
+
+   <span id="likes-${index}">
+    ❤️ 0 likes
+   </span>
+
+   &nbsp; • &nbsp;
+
+   <span id="comments-${index}">
+    💬 0 comments
+   </span>
+
+  </div>
+
+ `;
+
+
+ const actions =
+ document.createElement("div");
+
+ actions.className="actions";
+
+ actions.innerHTML=`
+
+  <button
+   class="action"
+   id="likeBtn-${index}"
+  >
+   ❤️ Like
+  </button>
+
+  <button
+   class="action"
+   id="commentBtn-${index}"
+  >
+   💬 Comment
+  </button>
+
+  <button
+   class="action"
+   id="shareBtn-${index}"
+  >
+   ↗ Share
+  </button>
+
+ `;
+
+
+ const commentBox =
+ document.createElement("div");
+
+ commentBox.className="commentBox";
+
+ commentBox.id=
+ "commentBox-"+index;
+
+ commentBox.innerHTML=`
+
+  <input
+   id="commentInput-${index}"
+   placeholder="Write a comment..."
+  >
+
+  <button>
+   Send
+  </button>
+
+ `;
+
+
+ const comments =
+ document.createElement("div");
+
+ comments.className="comments";
+
+ comments.id=
+ "comments-"+index;
+
+
+ card.appendChild(videoEl);
+ card.appendChild(info);
+ card.appendChild(actions);
+ card.appendChild(commentBox);
+ card.appendChild(comments);
+
+ feed.appendChild(card);
+
+
+ document.getElementById(
+  "likeBtn-"+index
+ ).onclick=function(){
+
+  toggleLike(
+   video.path,
+   index,
+   this
+  );
+
+ };
+
+
+ document.getElementById(
+  "commentBtn-"+index
+ ).onclick=function(){
+
+  toggleComments(
+   index,
+   video.path
+  );
+
+ };
+
+
+ document.getElementById(
+  "shareBtn-"+index
+ ).onclick=function(){
+
+  shareVideo(video.url);
+
+ };
+
+
+ commentBox.querySelector("button")
+ .onclick=function(){
+
+  addComment(
+   video.path,
+   index
+  );
+
+ };
+
+
+ loadStats(
+  video.path,
+  index
+ );
+
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+async function toggleLike(
+ videoPath,
+ index,
+ button
+){
+
+ if(videoPath.startsWith("demo_")){
+
+  button.classList.toggle("liked");
+
+  button.innerText =
+   button.classList.contains("liked")
+   ? "❤️ Liked"
+   : "❤️ Like";
+
+  return;
+
+ }
+
+
+ const {data,error} =
+ await supabaseClient
+ .from("video_likes")
+ .select("id")
+ .eq("video_path",videoPath)
+ .eq("user_id",deviceId)
+ .maybeSingle();
+
+
+ if(error){
+
+  console.log(error);
+  return;
+
+ }
+
+
+ if(data){
+
+  await supabaseClient
+  .from("video_likes")
+  .delete()
+  .eq("id",data.id);
+
+  button.classList.remove("liked");
+  button.innerText="❤️ Like";
+
+ }else{
+
+  await supabaseClient
+  .from("video_likes")
+  .insert({
+
+   video_path:videoPath,
+   user_id:deviceId
+
   });
 
-  if(button){
-    button.classList.add('active');
-  }
+  button.classList.add("liked");
+  button.innerText="❤️ Liked";
+
+ }
+
+
+ loadStats(
+  videoPath,
+  index
+ );
+
 }
 
-function like(button){
 
-  button.classList.toggle('liked');
+/* =========================
+   COMMENTS
+========================= */
 
-  if(button.classList.contains('liked')){
-    button.innerHTML="❤️ Liked";
-  }else{
-    button.innerHTML="❤️ Like";
-  }
+function toggleComments(index,path){
+
+ const box =
+ document.getElementById(
+  "commentBox-"+index
+ );
+
+ if(box.style.display==="block"){
+
+  box.style.display="none";
+
+ }else{
+
+  box.style.display="block";
+
+  loadComments(
+   path,
+   index
+  );
+
+ }
+
 }
 
-function comment(){
 
-  let message=prompt("Write your comment:");
+async function addComment(path,index){
 
-  if(message){
-    alert("Comment added: "+message);
-  }
+ if(path.startsWith("demo_")){
+
+  alert("Comments are available for uploaded videos.");
+  return;
+
+ }
+
+ const input =
+ document.getElementById(
+  "commentInput-"+index
+ );
+
+ const text =
+ input.value.trim();
+
+ if(!text){
+
+  alert("Write a comment first.");
+  return;
+
+ }
+
+
+ const {error} =
+ await supabaseClient
+ .from("video_comments")
+ .insert({
+
+  video_path:path,
+
+  username:"We Media User",
+
+  comment:text
+
+ });
+
+
+ if(error){
+
+  alert("Comment failed.");
+  console.log(error);
+  return;
+
+ }
+
+
+ input.value="";
+
+ loadComments(
+  path,
+  index
+ );
+
+ loadStats(
+  path,
+  index
+ );
+
 }
 
-function shareVideo(){
 
-  if(navigator.share){
+async function loadComments(path,index){
 
-    navigator.share({
-      title:"We Media",
-      text:"Watch this video on We Media"
-    });
+ const box =
+ document.getElementById(
+  "comments-"+index
+ );
 
-  }else{
+ if(path.startsWith("demo_")){
 
-    alert("Share is not available on this browser.");
+  box.innerHTML="";
+
+  return;
+
+ }
+
+
+ const {data,error} =
+ await supabaseClient
+ .from("video_comments")
+ .select("*")
+ .eq("video_path",path)
+ .order("created_at",{ascending:false})
+ .limit(20);
+
+
+ if(error){
+
+  console.log(error);
+  return;
+
+ }
+
+
+ box.innerHTML="";
+
+ (data||[]).forEach(function(c){
+
+  const div =
+  document.createElement("div");
+
+  div.className="comment";
+
+  div.innerHTML=
+   "<b>"+escapeHTML(c.username)+"</b>"+
+   escapeHTML(c.comment);
+
+  box.appendChild(div);
+
+ });
+
+}
+
+
+/* =========================
+   VIEWS
+========================= */
+
+async function addView(path){
+
+ if(path.startsWith("demo_")){
+  return;
+ }
+
+
+ const {data} =
+ await supabaseClient
+ .from("video_views")
+ .select("id")
+ .eq("video_path",path)
+ .eq("viewer_id",deviceId)
+ .maybeSingle();
+
+
+ if(!data){
+
+  await supabaseClient
+  .from("video_views")
+  .insert({
+
+   video_path:path,
+   viewer_id:deviceId
+
+  });
+
+ }
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+async function loadStats(path,index){
+
+ if(path.startsWith("demo_")){
+
+  return;
+
+ }
+
+
+ const likes =
+ await supabaseClient
+ .from("video_likes")
+ .select("id",{count:"exact",head:true})
+ .eq("video_path",path);
+
+
+ const comments =
+ await supabaseClient
+ .from("video_comments")
+ .select("id",{count:"exact",head:true})
+ .eq("video_path",path);
+
+
+ const views =
+ await supabaseClient
+ .from("video_views")
+ .select("id",{count:"exact",head:true})
+ .eq("video_path",path);
+
+
+ const likeCount =
+ likes.count || 0;
+
+ const commentCount =
+ comments.count || 0;
+
+ const viewCount =
+ views.count || 0;
+
+
+ const likeEl =
+ document.getElementById(
+  "likes-"+index
+ );
+
+ const commentEl =
+ document.getElementById(
+  "comments-"+index
+ );
+
+ const viewEl =
+ document.getElementById(
+  "views-"+index
+ );
+
+
+ if(likeEl)
+  likeEl.innerText=
+   "❤️ "+likeCount+" likes";
+
+ if(commentEl)
+  commentEl.innerText=
+   "💬 "+commentCount+" comments";
+
+ if(viewEl)
+  viewEl.innerText=
+   "👁️ "+viewCount+" views";
+
+
+ const myLike =
+ await supabaseClient
+ .from("video_likes")
+ .select("id")
+ .eq("video_path",path)
+ .eq("user_id",deviceId)
+ .maybeSingle();
+
+
+ const likeBtn =
+ document.getElementById(
+  "likeBtn-"+index
+ );
+
+
+ if(likeBtn && myLike.data){
+
+  likeBtn.classList.add("liked");
+  likeBtn.innerText="❤️ Liked";
+
+ }
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function shareVideo(url){
+
+ if(navigator.share){
+
+  try{
+
+   await navigator.share({
+
+    title:"We Media",
+
+    text:"Watch this video on We Media 🎬",
+
+    url:url
+
+   });
+
+  }catch(e){}
+
+ }else{
+
+  try{
+
+   await navigator.clipboard.writeText(url);
+
+   alert("Video link copied!");
+
+  }catch(e){
+
+   alert(url);
 
   }
+
+ }
+
 }
+
+
+/* =========================
+   SELECT VIDEO
+========================= */
 
 function selectVideo(){
 
-  let file=document.getElementById("videoFile").files[0];
+ const file =
+ document.getElementById(
+  "videoFile"
+ ).files[0];
 
-  if(file){
+ if(!file){
+  return;
+ }
 
-    document.getElementById("fileName").innerText=
-      "Selected: "+file.name;
+
+ document.getElementById(
+  "fileName"
+ ).innerText=
+ "Selected: "+file.name;
+
+
+ const url =
+ URL.createObjectURL(file);
+
+
+ document.getElementById(
+  "preview"
+ ).innerHTML=`
+
+  <video
+   controls
+   autoplay
+   loop
+   playsinline
+   src="${url}">
+  </video>
+
+ `;
+
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+async function uploadVideo(){
+
+ const file =
+ document.getElementById(
+  "videoFile"
+ ).files[0];
+
+ const status =
+ document.getElementById(
+  "uploadStatus"
+ );
+
+ const btn =
+ document.getElementById(
+  "uploadBtn"
+ );
+
+
+ if(!file){
+
+  alert("Choose a video first.");
+  return;
+
+ }
+
+
+ if(file.size > 50 * 1024 * 1024){
+
+  alert(
+   "Video is bigger than 50MB. Choose a smaller video."
+  );
+
+  return;
+
+ }
+
+
+ btn.disabled=true;
+
+ status.style.color="#00e5ff";
+
+ status.innerText=
+ "Uploading video... please wait ⏳";
+
+
+ const safeName =
+ file.name
+ .replace(/[^a-zA-Z0-9._-]/g,"_");
+
+
+ const filePath =
+ Date.now()+"_"+safeName;
+
+
+ try{
+
+  const {error} =
+  await supabaseClient
+  .storage
+  .from("Videos")
+  .upload(
+   filePath,
+   file,
+   {
+    cacheControl:"3600",
+    upsert:false,
+    contentType:file.type
+   }
+  );
+
+
+  if(error){
+
+   console.log(error);
+
+   status.style.color="#ff3158";
+
+   status.innerText=
+    "Upload failed: "+error.message;
+
+   btn.disabled=false;
+
+   return;
 
   }
 
+
+  status.style.color="#00ff88";
+
+  status.innerText=
+   "✅ Upload successful!";
+
+
+  document.getElementById(
+   "videoFile"
+  ).value="";
+
+  document.getElementById(
+   "fileName"
+  ).innerText="";
+
+
+  document.getElementById(
+   "preview"
+  ).innerHTML="";
+
+
+  setTimeout(function(){
+
+   showPage("home");
+
+   loadVideos();
+
+  },1000);
+
+
+ }catch(error){
+
+  console.log(error);
+
+  status.style.color="#ff3158";
+
+  status.innerText=
+   "Upload failed.";
+
+ }
+
+
+ btn.disabled=false;
+
 }
 
-function previewVideo(){
 
-  let file=document.getElementById("videoFile").files[0];
+/* =========================
+   PROFILE
+========================= */
 
-  if(!file){
+async function loadProfile(){
 
-    alert("Choose a video first.");
-    return;
+ const files =
+ await supabaseClient
+ .storage
+ .from("Videos")
+ .list("",{
+  limit:100
+ });
 
-  }
 
-  let url=URL.createObjectURL(file);
+ let count=0;
 
-  document.getElementById("preview").innerHTML=`
+ if(files.data){
 
-    <video
-      controls
-      autoplay
-      loop
-      playsinline
-      style="width:100%;border-radius:12px;"
-      src="${url}">
-    </video>
+  count =
+   files.data.filter(function(f){
 
-    <p style="color:#00e5ff;margin-top:10px;">
-      Video preview ready 🎬
-    </p>
+    return /\.(mp4|webm|mov|m4v|avi)$/i
+    .test(f.name);
 
-  `;
+   }).length;
+
+ }
+
+
+ document.getElementById(
+  "profileVideos"
+ ).innerText=count;
+
+
+ const likes =
+ await supabaseClient
+ .from("video_likes")
+ .select("id",{count:"exact",head:true});
+
+
+ const views =
+ await supabaseClient
+ .from("video_views")
+ .select("id",{count:"exact",head:true});
+
+
+ document.getElementById(
+  "profileLikes"
+ ).innerText=
+  likes.count || 0;
+
+
+ document.getElementById(
+  "profileViews"
+ ).innerText=
+  views.count || 0;
 
 }
+
+
+/* =========================
+   SECURITY / TEXT
+========================= */
+
+function escapeHTML(text){
+
+ return String(text)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadVideos();
 
 </script>
 
