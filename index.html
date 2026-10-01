@@ -1327,11 +1327,19 @@ button.disabled=false;
    COMMENTS
 ========================= */
 
+ <script>
+
 async function commentPost(videoId){
 
-if(!user){
+const {data:sessionData}=
+await sb.auth.getSession();
 
-alert("Login first");
+const currentUser=
+sessionData?.session?.user;
+
+if(!currentUser){
+
+alert("Please login first");
 showPage("login");
 return;
 
@@ -1349,20 +1357,26 @@ await sb
 .insert({
 
 video_id:videoId,
-user_id:user.id,
+user_id:currentUser.id,
 comment:comment.trim()
 
 });
 
 if(error){
 
+console.log(error);
+
 alert("❌ "+error.message);
+
 return;
 
 }
 
 alert("✅ Comment posted");
 
+}
+
+</script>
 }
 
 
