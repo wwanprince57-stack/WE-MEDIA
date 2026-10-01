@@ -1192,6 +1192,30 @@ await sb.from("notifications")
 .eq("is_read",false);
 
 $("nc").textContent="0";
+  let notificationChannel;
+
+function startNotificationRealtime(){
+  if(!user)return;
+
+  if(notificationChannel)
+    sb.removeChannel(notificationChannel);
+
+  notificationChannel=sb
+    .channel("notifications-"+user.id)
+    .on(
+      "postgres_changes",
+      {
+        event:"INSERT",
+        schema:"public",
+        table:"notifications",
+        filter:"user_id=eq."+String(user.id)
+      },
+      ()=>{
+        notifications();
+      }
+    )
+    .subscribe();
+}
 
 }
 
