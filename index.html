@@ -9,313 +9,313 @@
 
 <style>
 *{
- box-sizing:border-box;
- font-family:Arial,sans-serif;
- margin:0;
- padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+margin:0;
+padding:0;
 }
 
 body{
- background:#000;
- color:#fff;
- padding-bottom:70px;
+background:#000;
+color:#fff;
+padding-bottom:70px;
 }
 
 header{
- height:55px;
- position:fixed;
- top:0;
- left:0;
- right:0;
- background:#000;
- border-bottom:1px solid #222;
- padding:15px;
- z-index:10;
- display:flex;
- justify-content:space-between;
- align-items:center;
+height:55px;
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:#000;
+border-bottom:1px solid #222;
+padding:15px;
+z-index:10;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
- font-size:21px;
- font-weight:bold;
+font-size:21px;
+font-weight:bold;
 }
 
 .logo span{
- color:#09f;
+color:#09f;
 }
 
 header button{
- background:#111;
- color:#fff;
- border:1px solid #333;
- border-radius:20px;
- padding:6px 12px;
- margin-left:5px;
+background:#111;
+color:#fff;
+border:1px solid #333;
+border-radius:20px;
+padding:6px 12px;
+margin-left:5px;
 }
 
 main{
- padding-top:55px;
+padding-top:55px;
 }
 
 .page{
- display:none;
+display:none;
 }
 
 .page.active{
- display:block;
+display:block;
 }
 
 .auth{
- min-height:90vh;
- display:grid;
- place-items:center;
- padding:20px;
+min-height:90vh;
+display:grid;
+place-items:center;
+padding:20px;
 }
 
 .box{
- width:100%;
- max-width:400px;
- text-align:center;
+width:100%;
+max-width:400px;
+text-align:center;
 }
 
 p{
- color:#888;
- margin:10px 0 20px;
+color:#888;
+margin:10px 0 20px;
 }
 
 .input,
 textarea{
- width:100%;
- background:#111;
- color:#fff;
- border:1px solid #333;
- border-radius:10px;
- padding:13px;
- margin:6px 0;
+width:100%;
+background:#111;
+color:#fff;
+border:1px solid #333;
+border-radius:10px;
+padding:13px;
+margin:6px 0;
 }
 
 .primary{
- width:100%;
- background:#08f;
- color:#fff;
- border:0;
- border-radius:25px;
- padding:13px;
- margin:8px 0;
- font-weight:bold;
+width:100%;
+background:#08f;
+color:#fff;
+border:0;
+border-radius:25px;
+padding:13px;
+margin:8px 0;
+font-weight:bold;
 }
 
 .switch{
- color:#888;
- margin-top:15px;
+color:#888;
+margin-top:15px;
 }
 
 .switch button{
- background:none;
- border:0;
- color:#09f;
+background:none;
+border:0;
+color:#09f;
 }
 
 .msg{
- text-align:center;
- padding:10px;
- color:#09f;
+text-align:center;
+padding:10px;
+color:#09f;
 }
 
 .search{
- padding:12px 15px;
- position:sticky;
- top:55px;
- background:#000;
- z-index:2;
+padding:12px 15px;
+position:sticky;
+top:55px;
+background:#000;
+z-index:2;
 }
 
 .search input{
- width:100%;
- background:#111;
- color:#fff;
- border:1px solid #333;
- border-radius:25px;
- padding:13px;
+width:100%;
+background:#111;
+color:#fff;
+border:1px solid #333;
+border-radius:25px;
+padding:13px;
 }
 
 .results{
- padding:0 15px;
+padding:0 15px;
 }
 
 .result{
- padding:14px;
- border-bottom:1px solid #222;
- display:flex;
- justify-content:space-between;
- align-items:center;
+padding:14px;
+border-bottom:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .result button{
- background:#08f;
- color:#fff;
- border:0;
- border-radius:20px;
- padding:8px 13px;
+background:#08f;
+color:#fff;
+border:0;
+border-radius:20px;
+padding:8px 13px;
 }
 
 .video-card{
- border-bottom:1px solid #222;
- padding-bottom:15px;
- margin-bottom:20px;
+border-bottom:1px solid #222;
+padding-bottom:15px;
+margin-bottom:20px;
 }
 
 video{
- width:100%;
- max-height:650px;
- background:#000;
+width:100%;
+max-height:650px;
+background:#000;
 }
 
 .info{
- padding:10px;
+padding:10px;
 }
 
 .user,
 .date{
- color:#888;
- font-size:12px;
- margin:5px 0;
+color:#888;
+font-size:12px;
+margin:5px 0;
 }
 
 .user.clickable{
- color:#09f;
- cursor:pointer;
+color:#09f;
+cursor:pointer;
 }
 
 .actions{
- display:flex;
- gap:7px;
- flex-wrap:wrap;
- margin-top:10px;
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:10px;
 }
 
 .actions button{
- background:#151515;
- color:#fff;
- border:1px solid #333;
- border-radius:20px;
- padding:8px 12px;
+background:#151515;
+color:#fff;
+border:1px solid #333;
+border-radius:20px;
+padding:8px 12px;
 }
 
 .liked{
- color:#ff3970!important;
+color:#ff3970!important;
 }
 
 .follow{
- color:#09f!important;
+color:#09f!important;
 }
 
 .comments{
- display:none;
- margin-top:10px;
+display:none;
+margin-top:10px;
 }
 
 .comment{
- padding:8px 0;
- border-bottom:1px solid #222;
+padding:8px 0;
+border-bottom:1px solid #222;
 }
 
 .upload,
 .profile,
 .notice,
 .public-profile{
- padding:25px 20px;
- max-width:550px;
- margin:auto;
+padding:25px 20px;
+max-width:550px;
+margin:auto;
 }
 
 .avatar{
- text-align:center;
- font-size:55px;
- margin:20px;
+text-align:center;
+font-size:55px;
+margin:20px;
 }
 
 .stats{
- text-align:center;
- margin:25px;
- display:flex;
- justify-content:space-around;
+text-align:center;
+margin:25px;
+display:flex;
+justify-content:space-around;
 }
 
 .stats b{
- display:block;
- font-size:21px;
+display:block;
+font-size:21px;
 }
 
 .stats small{
- color:#888;
+color:#888;
 }
 
 .profile-btn{
- background:#08f;
- color:#fff;
- border:0;
- border-radius:25px;
- padding:11px 25px;
- font-weight:bold;
+background:#08f;
+color:#fff;
+border:0;
+border-radius:25px;
+padding:11px 25px;
+font-weight:bold;
 }
 
 .back{
- background:#151515;
- color:#fff;
- border:1px solid #333;
- border-radius:20px;
- padding:8px 15px;
- margin-bottom:15px;
+background:#151515;
+color:#fff;
+border:1px solid #333;
+border-radius:20px;
+padding:8px 15px;
+margin-bottom:15px;
 }
 
 nav{
- display:none;
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- height:65px;
- background:#080808;
- border-top:1px solid #222;
- justify-content:space-around;
- align-items:center;
- z-index:10;
+display:none;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:65px;
+background:#080808;
+border-top:1px solid #222;
+justify-content:space-around;
+align-items:center;
+z-index:10;
 }
 
 nav button{
- background:none;
- border:0;
- color:#aaa;
- font-size:13px;
+background:none;
+border:0;
+color:#aaa;
+font-size:13px;
 }
 
 .add{
- background:#08f!important;
- color:#fff!important;
- border-radius:50%;
- font-size:28px!important;
- width:48px;
- height:48px;
+background:#08f!important;
+color:#fff!important;
+border-radius:50%;
+font-size:28px!important;
+width:48px;
+height:48px;
 }
 
 .n{
- padding:14px 0;
- border-bottom:1px solid #222;
+padding:14px 0;
+border-bottom:1px solid #222;
 }
 
 .unread{
- background:#111;
+background:#111;
 }
 
 .badge{
- color:#f33;
- font-weight:bold;
+color:#f33;
+font-weight:bold;
 }
 
 .hidden{
- display:none!important;
+display:none!important;
 }
 </style>
 </head>
@@ -348,8 +348,6 @@ Logout
 
 </header>
 
-<!-- INBOX -->
-
 <section id="inbox" class="page">
 
 <div class="notice">
@@ -363,9 +361,6 @@ Loading...
 </div>
 
 </section>
-
-
-<!-- CHAT -->
 
 <section id="chat" class="page">
 
@@ -420,10 +415,7 @@ SEND
 
 </section>
 
-
 <main>
-
-<!-- LOGIN -->
 
 <section id="login" class="page active">
 
@@ -468,9 +460,6 @@ Create Account
 </div>
 
 </section>
-
-
-<!-- REGISTER -->
 
 <section id="register" class="page">
 
@@ -527,9 +516,6 @@ Login
 
 </section>
 
-
-<!-- HOME -->
-
 <section id="home" class="page">
 
 <div class="search">
@@ -548,9 +534,6 @@ oninput="searchUsers()">
 </div>
 
 </section>
-
-
-<!-- UPLOAD -->
 
 <section id="upload" class="page">
 
@@ -581,9 +564,6 @@ onclick="upload()">
 </div>
 
 </section>
-
-
-<!-- MY PROFILE -->
 
 <section id="profile" class="page">
 
@@ -635,9 +615,6 @@ LOGOUT
 </div>
 
 </section>
-
-
-<!-- OTHER USER PROFILE -->
 
 <section id="publicProfile" class="page">
 
@@ -704,9 +681,6 @@ style="margin-top:25px">
 
 </section>
 
-
-<!-- NOTIFICATIONS -->
-
 <section id="notifications" class="page">
 
 <div class="notice">
@@ -722,9 +696,6 @@ Loading...
 </section>
 
 </main>
-
-
-<!-- BOTTOM NAV -->
 
 <nav id="nav">
 
@@ -744,7 +715,6 @@ onclick="page('upload')">
 
 </nav>
 
-
 <script>
 
 const U =
@@ -756,15 +726,15 @@ const K =
 const sb =
 supabase.createClient(U,K);
 
-let user = null;
-let publicUser = null;
-let chatUser = null;
-let chatChannel = null;
+let user=null;
+let publicUser=null;
+let chatUser=null;
+let chatChannel=null;
 
-const $ = x => document.getElementById(x);
+const $=x=>document.getElementById(x);
 
 
-/* AUTH SCREEN */
+/* AUTH */
 
 function auth(x){
 
@@ -775,9 +745,7 @@ document
 $(x).classList.add("active");
 
 $("nav").style.display="none";
-
 $("bell").classList.add("hidden");
-
 $("logout").classList.add("hidden");
 
 }
@@ -792,21 +760,17 @@ let e=$("re").value.trim();
 let p=$("rp").value;
 let c=$("rc").value;
 
-if(!n || !e || p.length<6 || p!==c){
+if(!n||!e||p.length<6||p!==c){
 
-$("rm").textContent=
-"❌ Check your details";
-
+$("rm").textContent="❌ Check your details";
 return;
 }
 
-$("rm").textContent=
-"Creating...";
+$("rm").textContent="Creating...";
 
 let {data,error}=await sb.auth.signUp({
 
 email:e,
-
 password:p,
 
 options:{
@@ -819,9 +783,7 @@ username:n
 
 if(error){
 
-$("rm").textContent=
-"❌ "+error.message;
-
+$("rm").textContent="❌ "+error.message;
 return;
 }
 
@@ -832,9 +794,7 @@ user=data.user;
 await sb.from("profiles").upsert({
 
 id:user.id,
-
 username:n,
-
 email:e
 
 });
@@ -858,7 +818,7 @@ async function login(){
 let e=$("le").value.trim();
 let p=$("lp").value;
 
-if(!e || !p){
+if(!e||!p){
 
 $("lm").textContent=
 "❌ Enter email and password";
@@ -866,14 +826,12 @@ $("lm").textContent=
 return;
 }
 
-$("lm").textContent=
-"Logging in...";
+$("lm").textContent="Logging in...";
 
 let {data,error}=
 await sb.auth.signInWithPassword({
 
 email:e,
-
 password:p
 
 });
@@ -896,22 +854,18 @@ open();
 }
 
 
-/* OPEN APP */
+/* OPEN */
 
 function open(){
 
 $("nav").style.display="flex";
-
 $("bell").classList.remove("hidden");
-
 $("logout").classList.remove("hidden");
 
 page("home");
 
 load();
-
 loadProfile();
-
 notifyCount();
 
 }
@@ -924,7 +878,6 @@ function page(x){
 if(!user){
 
 auth("login");
-
 return;
 }
 
@@ -936,11 +889,9 @@ $(x).classList.add("active");
 
 scrollTo(0,0);
 
-if(x==="home") load();
-
-if(x==="profile") loadProfile();
-
-if(x==="notifications") notifications();
+if(x==="home")load();
+if(x==="profile")loadProfile();
+if(x==="notifications")notifications();
 
 }
 
@@ -952,7 +903,6 @@ async function logout(){
 if(chatChannel){
 
 await sb.removeChannel(chatChannel);
-
 chatChannel=null;
 
 }
@@ -960,13 +910,10 @@ chatChannel=null;
 await sb.auth.signOut();
 
 user=null;
-
 chatUser=null;
 
 $("nav").style.display="none";
-
 $("bell").classList.add("hidden");
-
 $("logout").classList.add("hidden");
 
 auth("login");
@@ -974,19 +921,18 @@ auth("login");
 }
 
 
-/* SEARCH USERS */
+/* SEARCH */
 
 async function searchUsers(){
 
 let q=$("searchBox").value.trim();
-
 let box=$("results");
 
 if(!q){
 
 box.innerHTML="";
-
 return;
+
 }
 
 let {data,error}=await sb
@@ -998,9 +944,7 @@ let {data,error}=await sb
 if(error){
 
 box.innerHTML=
-'<div class="msg">❌ '+
-esc(error.message)+
-'</div>';
+'<div class="msg">❌ '+esc(error.message)+'</div>';
 
 return;
 }
@@ -1048,8 +992,8 @@ async function openPublicProfile(id){
 if(String(id)===String(user.id)){
 
 page("profile");
-
 return;
+
 }
 
 publicUser=String(id);
@@ -1057,7 +1001,6 @@ publicUser=String(id);
 page("publicProfile");
 
 $("publicName").textContent="Loading...";
-
 $("publicEmail").textContent="";
 
 $("publicVideosBox").innerHTML=
@@ -1069,19 +1012,15 @@ let {data:p,error}=await sb
 .eq("id",id)
 .maybeSingle();
 
-if(error || !p){
+if(error||!p){
 
-$("publicName").textContent=
-"User not found";
-
+$("publicName").textContent="User not found";
 return;
+
 }
 
-$("publicName").textContent=
-p.username||"User";
-
-$("publicEmail").textContent=
-p.email||"";
+$("publicName").textContent=p.username||"User";
+$("publicEmail").textContent=p.email||"";
 
 let {count:vc}=await sb
 .from("videos")
@@ -1091,29 +1030,24 @@ let {count:vc}=await sb
 let {count:followers}=await sb
 .from("follows")
 .select("*",{count:"exact",head:true})
-.eq("following_id",String(id));
+.eq("following_id",id);
 
 let {count:following}=await sb
 .from("follows")
 .select("*",{count:"exact",head:true})
-.eq("follower_id",String(id));
+.eq("follower_id",id);
 
 $("publicVideos").textContent=vc||0;
-
-$("publicFollowers").textContent=
-followers||0;
-
-$("publicFollowing").textContent=
-following||0;
+$("publicFollowers").textContent=followers||0;
+$("publicFollowing").textContent=following||0;
 
 await publicFollowState(id);
-
 await loadPublicVideos(id);
 
 }
 
 
-/* PUBLIC FOLLOW STATE */
+/* FOLLOW STATE */
 
 async function publicFollowState(id){
 
@@ -1128,13 +1062,11 @@ let {data}=await sb
 if(data?.length){
 
 b.textContent="Following";
-
 b.classList.add("follow");
 
 }else{
 
 b.textContent="Follow";
-
 b.classList.remove("follow");
 
 }
@@ -1149,7 +1081,6 @@ async function togglePublicFollow(){
 if(!publicUser)return;
 
 let me=String(user.id);
-
 let to=String(publicUser);
 
 let {data}=await sb
@@ -1162,12 +1093,12 @@ let b=$("publicFollow");
 
 if(data?.length){
 
-await sb.from("follows")
+await sb
+.from("follows")
 .delete()
 .eq("id",data[0].id);
 
 b.textContent="Follow";
-
 b.classList.remove("follow");
 
 }else{
@@ -1177,7 +1108,6 @@ let {error}=await sb
 .insert({
 
 follower_id:me,
-
 following_id:to
 
 });
@@ -1185,23 +1115,18 @@ following_id:to
 if(error){
 
 alert("❌ "+error.message);
-
 return;
+
 }
 
 b.textContent="Following";
-
 b.classList.add("follow");
 
-await notice(
-to,
-"👤 started following you"
-);
+await notice(to,"👤 started following you");
 
 }
 
 notifyCount();
-
 loadProfile();
 
 }
@@ -1221,10 +1146,9 @@ let {data,error}=await sb
 
 if(error){
 
-box.innerHTML=
-"❌ "+error.message;
-
+box.innerHTML="❌ "+error.message;
 return;
+
 }
 
 if(!data?.length){
@@ -1233,6 +1157,7 @@ box.innerHTML=
 '<div class="msg">🎬 No videos yet</div>';
 
 return;
+
 }
 
 box.innerHTML="";
@@ -1246,7 +1171,7 @@ await card(v,box);
 }
 
 
-/* HOME VIDEOS */
+/* HOME */
 
 async function load(){
 
@@ -1264,10 +1189,9 @@ let {data,error}=await sb
 
 if(error){
 
-box.innerHTML=
-"❌ "+error.message;
-
+box.innerHTML="❌ "+error.message;
 return;
+
 }
 
 if(!data?.length){
@@ -1276,6 +1200,7 @@ box.innerHTML=
 '<div class="msg">🎬 No videos yet</div>';
 
 return;
+
 }
 
 box.innerHTML="";
@@ -1287,7 +1212,7 @@ await card(v,box);
 }
 
 }
-  /* VIDEO CARD */
+ /* VIDEO CARD */
 
 async function card(v,box){
 
@@ -1295,9 +1220,8 @@ let d=document.createElement("div");
 
 d.className="video-card";
 
-let videoUrl=v.video_url||v.url||v.path||"";
-
-let username=v.username||"User";
+let videoUrl=v.video_url||v.url||"";
+let username="User";
 
 let {data:p}=await sb
 .from("profiles")
@@ -1305,7 +1229,7 @@ let {data:p}=await sb
 .eq("id",v.user_id)
 .maybeSingle();
 
-if(p?.username) username=p.username;
+if(p?.username)username=p.username;
 
 let {count:likes}=await sb
 .from("likes")
@@ -1329,7 +1253,8 @@ let {data:followed}=await sb
 .eq("follower_id",user.id)
 .eq("following_id",v.user_id);
 
-let isMine=String(v.user_id)===String(user.id);
+let mine=
+String(v.user_id)===String(user.id);
 
 d.innerHTML=`
 
@@ -1351,13 +1276,14 @@ onclick="openPublicProfile('${v.user_id}')">
 <h3>${esc(v.title||"Untitled video")}</h3>
 
 <div class="date">
-${v.created_at ? new Date(v.created_at).toLocaleString() : ""}
+${v.created_at?
+new Date(v.created_at).toLocaleString():""}
 </div>
 
 <div class="actions">
 
 <button
-class="${liked?.length ? "liked":""}"
+class="${liked?.length?"liked":""}"
 onclick="toggleLike('${v.id}',this)">
 ❤️ <span>${likes||0}</span>
 </button>
@@ -1367,15 +1293,16 @@ onclick="toggleComments('${v.id}')">
 💬 <span>${comments||0}</span>
 </button>
 
-${!isMine ? `
+${!mine?`
 
 <button
-class="${followed?.length ? "follow":""}"
+class="${followed?.length?"follow":""}"
 onclick="toggleFollow('${v.user_id}',this)">
-${followed?.length ? "Following":"Follow"}
+${followed?.length?
+"Following":"Follow"}
 </button>
 
-` : ""}
+`:""}
 
 <button
 onclick="shareVideo('${v.id}')">
@@ -1388,9 +1315,7 @@ onclick="shareVideo('${v.id}')">
 id="comments-${v.id}"
 class="comments">
 
-<div
-id="commentList-${v.id}">
-Loading...
+<div id="commentList-${v.id}">
 </div>
 
 <div style="
@@ -1454,8 +1379,8 @@ user_id:user.id
 if(error){
 
 alert("❌ "+error.message);
-
 return;
+
 }
 
 btn.classList.add("liked");
@@ -1469,7 +1394,7 @@ let {count}=await sb
 
 let span=btn.querySelector("span");
 
-if(span) span.textContent=count||0;
+if(span)span.textContent=count||0;
 
 }
 
@@ -1485,8 +1410,8 @@ if(!box)return;
 if(box.style.display==="block"){
 
 box.style.display="none";
-
 return;
+
 }
 
 box.style.display="block";
@@ -1519,14 +1444,17 @@ box.innerHTML=
 "❌ "+esc(error.message);
 
 return;
+
 }
 
-if(!data?.length){
+if(!
+   data?.length){
 
 box.innerHTML=
 '<div class="msg">No comments yet</div>';
 
 return;
+
 }
 
 box.innerHTML="";
@@ -1541,7 +1469,8 @@ let {data:p}=await sb
 .eq("id",c.user_id)
 .maybeSingle();
 
-if(p?.username) username=p.username;
+if(p?.username)
+username=p.username;
 
 let x=document.createElement("div");
 
@@ -1550,7 +1479,7 @@ x.className="comment";
 x.innerHTML=`
 <b>${esc(username)}</b>
 <br>
-${esc(c.text||"")}
+${esc(c.comment||c.text||"")}
 `;
 
 box.appendChild(x);
@@ -1575,18 +1504,28 @@ if(!text)return;
 let {error}=await sb
 .from("comments")
 .insert({
-
 video_id:videoId,
 user_id:user.id,
-text:text
-
+comment:text
 });
 
 if(error){
 
-alert("❌ "+error.message);
+let retry=await sb
+.from("comments")
+.insert({
+video_id:videoId,
+user_id:user.id,
+text:text
+});
 
+if(retry.error){
+
+alert("❌ "+error.message);
 return;
+
+}
+
 }
 
 input.value="";
@@ -1596,13 +1535,11 @@ await loadComments(videoId);
 }
 
 
-/* FOLLOW FROM VIDEO */
+/* FOLLOW */
 
 async function toggleFollow(id,btn){
 
 let target=String(id);
-
-if(target===String(user.id))return;
 
 let {data}=await sb
 .from("follows")
@@ -1618,7 +1555,6 @@ await sb
 .eq("id",data[0].id);
 
 btn.textContent="Follow";
-
 btn.classList.remove("follow");
 
 }else{
@@ -1626,21 +1562,18 @@ btn.classList.remove("follow");
 let {error}=await sb
 .from("follows")
 .insert({
-
 follower_id:String(user.id),
 following_id:target
-
 });
 
 if(error){
 
 alert("❌ "+error.message);
-
 return;
+
 }
 
 btn.textContent="Following";
-
 btn.classList.add("follow");
 
 await notice(
@@ -1651,7 +1584,6 @@ target,
 }
 
 notifyCount();
-
 loadProfile();
 
 }
@@ -1664,18 +1596,17 @@ async function shareVideo(id){
 let url=
 location.origin+
 location.pathname+
-"?video="+encodeURIComponent(id);
+"?video="+
+encodeURIComponent(id);
 
 if(navigator.share){
 
 try{
 
 await navigator.share({
-
 title:"We Media",
 text:"Watch this video on We Media",
 url:url
-
 });
 
 }catch(e){}
@@ -1690,10 +1621,7 @@ alert("✅ Video link copied");
 
 }catch(e){
 
-prompt(
-"Copy this video link:",
-url
-);
+prompt("Copy this video link:",url);
 
 }
 
@@ -1702,12 +1630,11 @@ url
 }
 
 
-/* UPLOAD VIDEO */
+/* UPLOAD */
 
 async function upload(){
 
 let title=$("title").value.trim();
-
 let file=$("file").files[0];
 
 if(!file){
@@ -1716,6 +1643,7 @@ $("um").textContent=
 "❌ Select a video first";
 
 return;
+
 }
 
 if(!title){
@@ -1724,10 +1652,10 @@ $("um").textContent=
 "❌ Enter video title";
 
 return;
+
 }
 
-$("um").textContent=
-"Uploading...";
+$("um").textContent="Uploading...";
 
 let ext=
 file.name.split(".").pop();
@@ -1739,7 +1667,7 @@ Date.now()+
 "."+
 ext;
 
-let {error:upError}=await sb
+let {error}=await sb
 .storage
 .from("Videos")
 .upload(path,file,{
@@ -1747,30 +1675,26 @@ contentType:file.type,
 upsert:false
 });
 
-if(upError){
+if(error){
 
 $("um").textContent=
-"❌ "+upError.message;
+"❌ "+error.message;
 
 return;
+
 }
 
-let {data:publicData}=sb
+let {data:pub}=sb
 .storage
 .from("Videos")
 .getPublicUrl(path);
 
-let videoUrl=
-publicData.publicUrl;
-
 let {error:dbError}=await sb
 .from("videos")
 .insert({
-
 user_id:user.id,
 title:title,
-video_url:videoUrl
-
+video_url:pub.publicUrl
 });
 
 if(dbError){
@@ -1779,19 +1703,17 @@ $("um").textContent=
 "❌ "+dbError.message;
 
 return;
+
 }
 
 $("um").textContent=
 "✅ Video uploaded successfully";
 
 $("title").value="";
-
 $("file").value="";
 
 setTimeout(()=>{
-
 page("home");
-
 },1000);
 
 }
@@ -1835,29 +1757,23 @@ let {count:following}=await sb
 .eq("follower_id",user.id);
 
 $("vc").textContent=vc||0;
-
-$("followers").textContent=
-followers||0;
-
-$("following").textContent=
-following||0;
+$("followers").textContent=followers||0;
+$("following").textContent=following||0;
 
 }
 
 
-/* NOTIFICATIONS */
+/* NOTIFICATION */
 
 async function notice(to,text){
 
 await sb
 .from("notifications")
 .insert({
-
 user_id:String(to),
 actor_id:String(user.id),
 text:text,
 read:false
-
 });
 
 }
@@ -1880,7 +1796,7 @@ $("nc").textContent=count||0;
 }
 
 
-/* NOTIFICATIONS PAGE */
+/* NOTIFICATIONS */
 
 async function notifications(){
 
@@ -1902,6 +1818,7 @@ box.innerHTML=
 "❌ "+esc(error.message);
 
 return;
+
 }
 
 if(!data?.length){
@@ -1910,6 +1827,7 @@ box.innerHTML=
 '<div class="msg">No notifications</div>';
 
 return;
+
 }
 
 box.innerHTML="";
@@ -1919,7 +1837,7 @@ data.forEach(n=>{
 let d=document.createElement("div");
 
 d.className=
-"n "+(!n.read ? "unread":"");
+"n "+(!n.read?"unread":"");
 
 d.innerHTML=`
 
@@ -1928,9 +1846,8 @@ ${esc(n.text||"Notification")}
 </div>
 
 <div class="user">
-${n.created_at ?
-new Date(n.created_at).toLocaleString():
-""}
+${n.created_at?
+new Date(n.created_at).toLocaleString():""}
 </div>
 
 `;
@@ -1985,6 +1902,7 @@ box.innerHTML=
 "❌ "+esc(error.message);
 
 return;
+
 }
 
 if(!data?.length){
@@ -1993,6 +1911,7 @@ box.innerHTML=
 '<div class="msg">No messages yet</div>';
 
 return;
+
 }
 
 let people={};
@@ -2004,19 +1923,14 @@ String(m.sender_id)===String(user.id)
 ?m.receiver_id
 :m.sender_id;
 
-if(!people[other]){
-
+if(!people[other])
 people[other]=m;
-
-}
 
 }
 
 box.innerHTML="";
 
 for(const id in people){
-
-let m=people[id];
 
 let {data:p}=await sb
 .from("profiles")
@@ -2025,8 +1939,7 @@ let {data:p}=await sb
 .maybeSingle();
 
 let name=
-p?.username||
-"User";
+p?.username||"User";
 
 let d=document.createElement("div");
 
@@ -2072,7 +1985,9 @@ await sb.removeChannel(chatChannel);
 }
 
 chatChannel=
-sb.channel("chat-"+user.id+"-"+chatUser)
+sb.channel(
+"chat-"+user.id+"-"+chatUser
+)
 .on(
 "postgres_changes",
 {
@@ -2085,7 +2000,7 @@ payload=>{
 let m=payload.new;
 
 if(
-String(m.sender_id)===String(chatUser) &&
+String(m.sender_id)===String(chatUser)&&
 String(m.receiver_id)===String(user.id)
 ){
 
@@ -2126,6 +2041,7 @@ box.innerHTML=
 "❌ "+esc(error.message);
 
 return;
+
 }
 
 box.innerHTML="";
@@ -2136,6 +2052,7 @@ box.innerHTML=
 '<div class="msg">Start the conversation</div>';
 
 return;
+
 }
 
 for(const m of data){
@@ -2146,10 +2063,9 @@ String(m.sender_id)===String(user.id);
 let d=document.createElement("div");
 
 d.style.textAlign=
-mine ? "right":"left";
+mine?"right":"left";
 
-d.style.margin=
-"8px 0";
+d.style.margin="8px 0";
 
 d.innerHTML=`
 
@@ -2157,11 +2073,11 @@ d.innerHTML=`
 display:inline-block;
 padding:9px 12px;
 border-radius:15px;
-background:${mine ? "#08f":"#222"};
+background:${mine?"#08f":"#222"};
 max-width:80%;
 ">
 
-${esc(m.text||"")}
+${esc(m.message||"")}
 
 </div>
 
@@ -2194,20 +2110,21 @@ let {error}=await sb
 
 sender_id:String(user.id),
 receiver_id:String(chatUser),
-text:text
+message:text
 
 });
 
 if(error){
 
 alert("❌ "+error.message);
-
 return;
+
 }
 
 input.value="";
 
 await loadChat();
+await loadInbox();
 
 }
 
@@ -2232,7 +2149,7 @@ p?.username||"User"
 }
 
 
-/* ESCAPE HTML */
+/* ESCAPE */
 
 function esc(x){
 
