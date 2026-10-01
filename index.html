@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,332 +8,157 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
- font-family:Arial,sans-serif;
-}
-
-body{
- background:#000;
- color:#fff;
- padding-bottom:75px;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#000;color:#fff;padding-bottom:75px}
+button{cursor:pointer}
 header{
- height:60px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 16px;
- background:#000;
- border-bottom:1px solid #222;
- position:sticky;
- top:0;
- z-index:50;
+height:60px;background:#000;border-bottom:1px solid #222;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 15px;position:sticky;top:0;z-index:50
 }
-
-.logo{
- font-size:23px;
- font-weight:bold;
-}
-
-.logo span{
- color:#00e5ff;
-}
-
+.logo{font-size:23px;font-weight:bold}
+.logo span{color:#00e5ff}
 .headerBtn{
- background:#00e5ff;
- color:#000;
- padding:9px 15px;
- border:0;
- border-radius:22px;
- font-weight:bold;
+background:#00e5ff;color:#000;border:0;border-radius:22px;
+padding:9px 15px;font-weight:bold
 }
-
-.page{
- display:none;
+.page{display:none}
+.page.active{display:block}
+.topMessage{
+display:none;padding:10px;text-align:center;background:#071b1e;
+color:#00e5ff;font-size:13px
 }
-
-.page.active{
- display:block;
-}
+.loading{text-align:center;padding:50px;color:#00e5ff}
+.empty{text-align:center;padding:70px 20px;color:#888}
 
 .videoCard{
- background:#050505;
- border-bottom:1px solid #222;
- padding-bottom:12px;
+background:#050505;border-bottom:1px solid #222;padding-bottom:12px
 }
-
 .video{
- width:100%;
- height:430px;
- object-fit:cover;
- background:#111;
- display:block;
+width:100%;height:430px;object-fit:cover;background:#111;display:block
 }
-
-.videoInfo{
- padding:12px 15px 5px;
-}
-
-.username{
- font-weight:bold;
- margin-bottom:7px;
-}
-
-.caption{
- color:#ddd;
- font-size:14px;
- line-height:20px;
-}
-
-.stats{
- color:#999;
- font-size:12px;
- margin-top:7px;
-}
-
+.videoInfo{padding:12px 15px 5px}
+.username{font-weight:bold;margin-bottom:7px;color:#00e5ff}
+.caption{color:#ddd;font-size:14px;line-height:20px}
+.stats{color:#888;font-size:12px;margin-top:7px}
 .actions{
- display:flex;
- align-items:center;
- gap:20px;
- padding:10px 15px 5px;
+display:flex;align-items:center;gap:17px;padding:10px 15px 5px;
+flex-wrap:wrap
 }
+.action{background:none;color:#fff;border:0;font-size:14px}
+.action.liked{color:#ff3158}
 
-.action{
- background:none;
- color:#fff;
- border:0;
- font-size:15px;
-}
-
-.action.liked{
- color:#ff3158;
-}
-
-.commentBox{
- display:none;
- padding:8px 15px 12px;
-}
-
+.commentBox{display:none;padding:8px 15px 12px}
 .commentBox input{
- width:78%;
- padding:11px;
- border-radius:20px;
- border:1px solid #333;
- background:#111;
- color:#fff;
- outline:none;
+width:78%;padding:11px;border-radius:20px;border:1px solid #333;
+background:#111;color:#fff;outline:none
 }
-
 .commentBox button{
- padding:10px 13px;
- margin-left:4px;
- border-radius:20px;
- border:0;
- background:#00e5ff;
- color:#000;
- font-weight:bold;
+padding:10px 13px;margin-left:4px;border-radius:20px;border:0;
+background:#00e5ff;color:#000;font-weight:bold
 }
-
-.comments{
- padding:0 15px 10px;
-}
-
-.comment{
- padding:7px 0;
- border-bottom:1px solid #151515;
- font-size:13px;
-}
-
-.comment b{
- color:#00e5ff;
- margin-right:5px;
-}
-
-.empty{
- text-align:center;
- padding:80px 20px;
- color:#888;
-}
-
-.loading{
- text-align:center;
- padding:45px;
- color:#00e5ff;
-}
-
-.uploadBox{
- margin:25px 15px;
- padding:25px 18px;
- border:1px dashed #555;
- border-radius:15px;
- text-align:center;
-}
-
-.uploadBox input{
- margin:20px 0;
- width:100%;
- color:#fff;
-}
-
-.uploadBtn{
- background:#00e5ff;
- padding:12px 25px;
- border:0;
- border-radius:25px;
- font-weight:bold;
-}
-
-.uploadBtn:disabled{
- opacity:.5;
-}
-
-#fileName{
- margin-top:10px;
- color:#aaa;
- font-size:13px;
-}
-
-#uploadStatus{
- margin-top:15px;
- font-size:14px;
-}
-
-.preview video{
- width:100%;
- margin-top:18px;
- border-radius:12px;
-}
-
-.profile{
- padding:30px 20px;
- text-align:center;
-}
-
-.avatar{
- width:90px;
- height:90px;
- border-radius:50%;
- background:#00e5ff;
- color:#000;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:35px;
- font-weight:bold;
- margin:10px auto 15px;
-}
-
-.profileStats{
- display:flex;
- justify-content:space-around;
- margin-top:35px;
- padding:20px 0;
- border-top:1px solid #222;
- border-bottom:1px solid #222;
-}
-
-.profileStats b{
- font-size:20px;
-}
-
-.profileStats small{
- color:#aaa;
-}
-
-.nav{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- height:70px;
- background:#080808;
- border-top:1px solid #222;
- display:flex;
- justify-content:space-around;
- align-items:center;
- z-index:100;
-}
-
-.nav button{
- background:none;
- border:0;
- color:#aaa;
- font-size:12px;
-}
-
-.nav button.active{
- color:#00e5ff;
-}
-
-.navIcon{
- display:block;
- font-size:23px;
- margin-bottom:3px;
-}
-
-.topMessage{
- padding:10px 15px;
- background:#071b1e;
- color:#00e5ff;
- font-size:13px;
- text-align:center;
- display:none;
-}
+.comments{padding:0 15px 10px}
+.comment{padding:7px 0;border-bottom:1px solid #151515;font-size:13px}
+.comment b{color:#00e5ff;margin-right:5px}
 
 .refresh{
- background:none;
- color:#fff;
- border:1px solid #333;
- padding:7px 12px;
- border-radius:18px;
- margin:10px 15px;
+background:none;color:#fff;border:1px solid #333;padding:7px 12px;
+border-radius:18px;margin:10px 15px
 }
+
+.uploadBox,.authBox{
+margin:25px 15px;padding:25px 18px;border:1px solid #292929;
+border-radius:15px;text-align:center;background:#080808
+}
+.uploadBox input[type=file]{margin:20px 0;width:100%;color:#fff}
+.uploadBtn,.mainBtn{
+background:#00e5ff;color:#000;padding:12px 25px;border:0;
+border-radius:25px;font-weight:bold
+}
+.uploadBtn:disabled{opacity:.5}
+#fileName{margin-top:10px;color:#aaa;font-size:13px}
+#uploadStatus{margin-top:15px;font-size:14px}
+.preview video{width:100%;margin-top:18px;border-radius:12px}
+
+.authBox h2{margin-bottom:10px}
+.authBox p{color:#888;font-size:13px;margin-bottom:20px}
+.authBox input,.searchInput{
+width:100%;padding:13px;margin:7px 0;border:1px solid #333;
+border-radius:10px;background:#111;color:#fff;outline:none
+}
+.authBox .mainBtn{width:100%;margin-top:12px}
+.switch{
+background:none;border:0;color:#00e5ff;margin-top:18px
+}
+.passwordWrap{position:relative}
+.passwordWrap input{padding-right:55px}
+.showPass{
+position:absolute;right:12px;top:16px;background:none;border:0;color:#aaa
+}
+
+.profile{padding:30px 20px;text-align:center}
+.avatar{
+width:90px;height:90px;border-radius:50%;background:#00e5ff;color:#000;
+display:flex;align-items:center;justify-content:center;font-size:35px;
+font-weight:bold;margin:10px auto 15px
+}
+.profileStats{
+display:flex;justify-content:space-around;margin-top:30px;
+padding:20px 0;border-top:1px solid #222;border-bottom:1px solid #222
+}
+.profileStats b{font-size:20px}
+.profileStats small{color:#aaa}
+
+.profileBtn{
+margin-top:20px;padding:11px 25px;border-radius:22px;
+border:1px solid #333;background:#111;color:#fff
+}
+.logoutBtn{background:#ff3158;color:#fff;border:0}
+
+.searchBox{padding:15px}
+.userResult{
+padding:13px;background:#0b0b0b;border-bottom:1px solid #222;
+display:flex;justify-content:space-between;align-items:center
+}
+.followBtn{
+background:#00e5ff;color:#000;border:0;border-radius:20px;
+padding:8px 15px;font-weight:bold
+}
+.followBtn.following{background:#333;color:#fff}
+
+.nav{
+position:fixed;bottom:0;left:0;right:0;height:70px;background:#080808;
+border-top:1px solid #222;display:flex;justify-content:space-around;
+align-items:center;z-index:100
+}
+.nav button{background:none;border:0;color:#aaa;font-size:12px}
+.nav button.active{color:#00e5ff}
+.navIcon{display:block;font-size:23px;margin-bottom:3px}
 
 .modal{
- display:none;
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.75);
- z-index:200;
- align-items:flex-end;
+display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);
+z-index:200;align-items:flex-end
 }
-
 .modalBox{
- width:100%;
- max-height:70vh;
- background:#111;
- border-radius:20px 20px 0 0;
- padding:20px;
- overflow:auto;
+width:100%;max-height:80vh;background:#111;border-radius:20px 20px 0 0;
+padding:20px;overflow:auto
+}
+.closeBtn{
+float:right;background:none;border:0;color:#fff;font-size:22px
 }
 
-.modalBox h3{
- margin-bottom:15px;
-}
-
-.modalClose{
- float:right;
- background:none;
- color:#fff;
- border:0;
- font-size:22px;
-}
-
+.hidden{display:none!important}
+.small{font-size:12px;color:#777}
 </style>
 </head>
 
 <body>
 
 <header>
- <div class="logo">We <span>Media</span></div>
+<div class="logo">We <span>Media</span></div>
 
- <button class="headerBtn" onclick="showPage('upload')">
-  Upload
- </button>
+<button id="headerAuthBtn" class="headerBtn"
+onclick="openAuth()">Login</button>
 </header>
 
 <div id="message" class="topMessage"></div>
@@ -341,13 +166,29 @@ header{
 <!-- HOME -->
 <section id="home" class="page active">
 
- <button class="refresh" onclick="loadVideos()">
-   🔄 Refresh videos
- </button>
+<button class="refresh" onclick="loadVideos()">🔄 Refresh videos</button>
 
- <div id="feed">
-   <div class="loading">Loading We Media 🎬...</div>
- </div>
+<div id="feed">
+<div class="loading">Loading We Media 🎬...</div>
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+<section id="search" class="page">
+
+<div class="searchBox">
+<h2 style="margin-bottom:10px">Search People 🔎</h2>
+
+<input id="searchInput" class="searchInput"
+placeholder="Search username..."
+oninput="searchUsers()">
+
+<div id="searchResults">
+<div class="empty">Search for people on We Media</div>
+</div>
+</div>
 
 </section>
 
@@ -355,38 +196,35 @@ header{
 <!-- UPLOAD -->
 <section id="upload" class="page">
 
- <div class="uploadBox">
+<div class="uploadBox">
 
-  <h2>Upload Video 🎬</h2>
+<h2>Upload Video 🎬</h2>
 
-  <p style="margin-top:10px;color:#aaa;">
-   Share your video on We Media
-  </p>
+<p style="margin:10px 0;color:#aaa">
+Share your video on We Media
+</p>
 
-  <input
-   type="file"
-   id="videoFile"
-   accept="video/*"
-   onchange="selectVideo()"
-  >
+<input
+type="file"
+id="videoFile"
+accept="video/*"
+onchange="selectVideo()">
 
-  <div id="fileName"></div>
+<div id="fileName"></div>
 
-  <div id="preview" class="preview"></div>
+<div id="preview" class="preview"></div>
 
-  <br>
+<br>
 
-  <button
-   id="uploadBtn"
-   class="uploadBtn"
-   onclick="uploadVideo()"
-  >
-   📤 Upload Video
-  </button>
+<button id="uploadBtn"
+class="uploadBtn"
+onclick="uploadVideo()">
+📤 Upload Video
+</button>
 
-  <div id="uploadStatus"></div>
+<div id="uploadStatus"></div>
 
- </div>
+</div>
 
 </section>
 
@@ -394,36 +232,128 @@ header{
 <!-- PROFILE -->
 <section id="profile" class="page">
 
- <div class="profile">
+<div class="profile">
 
-  <div class="avatar">W</div>
+<div id="avatar" class="avatar">W</div>
 
-  <h2>We Media User</h2>
+<h2 id="profileName">We Media User</h2>
 
-  <p style="color:#aaa;margin-top:8px;">
-   Welcome to We Media
-  </p>
+<p id="profileEmail" style="color:#aaa;margin-top:8px">
+Not logged in
+</p>
 
-  <div class="profileStats">
+<div class="profileStats">
 
-   <div>
-    <b id="profileVideos">0</b><br>
-    <small>Videos</small>
-   </div>
+<div>
+<b id="profileVideos">0</b><br>
+<small>Videos</small>
+</div>
 
-   <div>
-    <b id="profileLikes">0</b><br>
-    <small>Likes</small>
-   </div>
+<div>
+<b id="profileFollowers">0</b><br>
+<small>Followers</small>
+</div>
 
-   <div>
-    <b id="profileViews">0</b><br>
-    <small>Views</small>
-   </div>
+<div>
+<b id="profileFollowing">0</b><br>
+<small>Following</small>
+</div>
 
-  </div>
+</div>
 
- </div>
+<button class="profileBtn" onclick="showPage('search',this)">
+🔎 Find People
+</button>
+
+<br>
+
+<button class="profileBtn logoutBtn"
+onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- AUTH -->
+<section id="auth" class="page">
+
+<div class="authBox">
+
+<div id="loginBox">
+
+<h2>Welcome Back 👋</h2>
+
+<p>Login to your We Media account</p>
+
+<input id="loginEmail"
+type="email"
+placeholder="Email">
+
+<div class="passwordWrap">
+<input id="loginPassword"
+type="password"
+placeholder="Password">
+<button class="showPass"
+onclick="togglePassword('loginPassword',this)">
+👁️
+</button>
+</div>
+
+<button class="mainBtn" onclick="login()">
+LOGIN
+</button>
+
+<br>
+
+<button class="switch"
+onclick="showRegister()">
+Create new account
+</button>
+
+</div>
+
+
+<div id="registerBox" class="hidden">
+
+<h2>Create Account 🚀</h2>
+
+<p>Join We Media today</p>
+
+<input id="registerUsername"
+type="text"
+placeholder="Username">
+
+<input id="registerEmail"
+type="email"
+placeholder="Email">
+
+<div class="passwordWrap">
+<input id="registerPassword"
+type="password"
+placeholder="Password">
+<button class="showPass"
+onclick="togglePassword('registerPassword',this)">
+👁️
+</button>
+</div>
+
+<button class="mainBtn" onclick="register()">
+CREATE ACCOUNT
+</button>
+
+<br>
+
+<button class="switch"
+onclick="showLogin()">
+Already have an account? Login
+</button>
+
+</div>
+
+</div>
 
 </section>
 
@@ -431,29 +361,38 @@ header{
 <!-- NAV -->
 <nav class="nav">
 
- <button class="active" onclick="showPage('home',this)">
-  <span class="navIcon">🏠</span>
-  Home
- </button>
+<button id="navHome" class="active"
+onclick="showPage('home',this)">
+<span class="navIcon">🏠</span>
+Home
+</button>
 
- <button onclick="showPage('upload',this)">
-  <span class="navIcon">➕</span>
-  Upload
- </button>
+<button
+onclick="showPage('search',this)">
+<span class="navIcon">🔎</span>
+Search
+</button>
 
- <button onclick="showPage('profile',this)">
-  <span class="navIcon">👤</span>
-  Profile
- </button>
+<button
+onclick="showPage('upload',this)">
+<span class="navIcon">➕</span>
+Upload
+</button>
+
+<button
+onclick="showPage('profile',this)">
+<span class="navIcon">👤</span>
+Profile
+</button>
 
 </nav>
 
 
 <script>
 
-/* =========================
+/* =====================================================
    SUPABASE
-========================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://jhxbfkpcinetbuwsnxcz.supabase.co";
@@ -463,1081 +402,844 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
-/* =========================
-   USER ID
-========================= */
+/* =====================================================
+   DEVICE ID
+===================================================== */
 
-let deviceId = localStorage.getItem("wemedia_device");
+let deviceId =
+localStorage.getItem("wemedia_device");
 
 if(!deviceId){
 
- deviceId =
- "user_" +
- Date.now() +
- "_" +
- Math.random().toString(36).substring(2);
+deviceId =
+"user_" +
+Date.now() +
+"_" +
+Math.random().toString(36).substring(2);
 
- localStorage.setItem(
-   "wemedia_device",
-   deviceId
- );
+localStorage.setItem(
+"wemedia_device",
+deviceId
+);
 
 }
 
 
-/* =========================
-   EXISTING DEMO VIDEOS
-========================= */
+/* =====================================================
+   DEMO VIDEOS
+===================================================== */
 
-const demoVideos = [
+const demoVideos=[
 
- {
-  path:"demo_flower",
-  url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-  username:"@wemedia",
-  caption:"Welcome to We Media 🎬"
- },
+{
+path:"demo_flower",
+url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+username:"@wemedia",
+caption:"Welcome to We Media 🎬"
+},
 
- {
-  path:"demo_bunny",
-  url:"https://www.w3schools.com/html/mov_bbb.mp4",
-  username:"@wemedia",
-  caption:"Watch and share videos on We Media 🔥"
- }
+{
+path:"demo_bunny",
+url:"https://www.w3schools.com/html/mov_bbb.mp4",
+username:"@wemedia",
+caption:"Watch and share videos on We Media 🔥"
+}
 
 ];
 
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function showPage(page,button){
-
- document.querySelectorAll(".page")
- .forEach(function(p){
-  p.classList.remove("active");
- });
-
- document.getElementById(page)
- .classList.add("active");
-
- document.querySelectorAll(".nav button")
- .forEach(function(b){
-  b.classList.remove("active");
- });
-
- if(button){
-  button.classList.add("active");
- }
-
- if(page==="home"){
-  loadVideos();
- }
-
- if(page==="profile"){
-  loadProfile();
- }
-
-}
-
-
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
 function message(text){
 
- const box =
- document.getElementById("message");
+const box=document.getElementById("message");
 
- box.innerText=text;
- box.style.display="block";
+box.innerText=text;
+box.style.display="block";
 
- setTimeout(function(){
-  box.style.display="none";
- },3000);
+setTimeout(()=>{
+box.style.display="none";
+},3500);
 
 }
 
 
-/* =========================
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+const target=document.getElementById(page);
+
+if(target){
+target.classList.add("active");
+}
+
+document.querySelectorAll(".nav button")
+.forEach(b=>b.classList.remove("active"));
+
+if(button){
+button.classList.add("active");
+}
+
+if(page==="home"){
+loadVideos();
+}
+
+if(page==="profile"){
+loadProfile();
+}
+
+if(page==="search"){
+document.getElementById("searchInput").focus();
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =====================================================
+   AUTH PAGE
+===================================================== */
+
+function openAuth(){
+
+showPage("auth");
+
+if(currentUser){
+message("You are already logged in.");
+}
+}
+
+function showLogin(){
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
+document.getElementById("registerBox")
+.classList.add("hidden");
+
+}
+
+function showRegister(){
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("registerBox")
+.classList.remove("hidden");
+
+}
+
+function togglePassword(id,button){
+
+const input=document.getElementById(id);
+
+if(input.type==="password"){
+input.type="text";
+button.innerText="🙈";
+}else{
+input.type="password";
+button.innerText="👁️";
+}
+
+}
+
+
+/* =====================================================
+   CURRENT USER
+===================================================== */
+
+let currentUser=null;
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+async function register(){
+
+const username=
+document.getElementById("registerUsername")
+.value.trim();
+
+const email=
+document.getElementById("registerEmail")
+.value.trim();
+
+const password=
+document.getElementById("registerPassword")
+.value;
+
+if(username.length<3){
+alert("Username must have at least 3 characters.");
+return;
+}
+
+if(!email){
+alert("Enter your email.");
+return;
+}
+
+if(password.length<6){
+alert("Password must have at least 6 characters.");
+return;
+}
+
+const button=
+document.querySelector("#registerBox .mainBtn");
+
+button.disabled=true;
+button.innerText="Creating account...";
+
+try{
+
+const result=
+await supabaseClient.auth.signUp({
+
+email:email,
+password:password,
+
+options:{
+data:{
+username:username
+}
+}
+
+});
+
+if(result.error){
+
+alert(result.error.message);
+button.disabled=false;
+button.innerText="CREATE ACCOUNT";
+return;
+
+}
+
+currentUser=result.data.user;
+
+if(result.data.user){
+
+/*
+Try creating profile.
+If profiles table is not ready, account still works.
+*/
+
+try{
+
+await supabaseClient
+.from("profiles")
+.insert({
+
+id:result.data.user.id,
+username:username,
+email:email
+
+});
+
+}catch(e){
+console.log("Profile table unavailable:",e);
+}
+
+message("✅ Account created successfully!");
+
+showPage("home");
+
+updateHeader();
+
+}else{
+
+message(
+"Account created. Check your email to confirm your account."
+);
+
+showLogin();
+
+}
+
+}catch(error){
+
+console.log(error);
+alert("Account creation failed. Please try again.");
+
+}
+
+button.disabled=false;
+button.innerText="CREATE ACCOUNT";
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+async function login(){
+
+const email=
+document.getElementById("loginEmail")
+.value.trim();
+
+const password=
+document.getElementById("loginPassword")
+.value;
+
+if(!email||!password){
+
+alert("Enter email and password.");
+return;
+
+}
+
+const button=
+document.querySelector("#loginBox .mainBtn");
+
+button.disabled=true;
+button.innerText="Logging in...";
+
+try{
+
+const result=
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+password:password
+
+});
+
+if(result.error){
+
+alert(result.error.message);
+
+button.disabled=false;
+button.innerText="LOGIN";
+
+return;
+
+}
+
+currentUser=result.data.user;
+
+message("✅ Welcome back!");
+
+updateHeader();
+
+showPage("home");
+
+}catch(error){
+
+console.log(error);
+
+alert("Login failed.");
+
+}
+
+button.disabled=false;
+button.innerText="LOGIN";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+currentUser=null;
+
+updateHeader();
+
+message("You have logged out.");
+
+showPage("home");
+
+}
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+(event,session)=>{
+
+currentUser=session?.user||null;
+
+updateHeader();
+
+}
+);
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+function updateHeader(){
+
+const btn=
+document.getElementById("headerAuthBtn");
+
+if(currentUser){
+
+btn.innerText="Profile";
+
+btn.onclick=function(){
+
+showPage("profile");
+
+loadProfile();
+
+};
+
+}else{
+
+btn.innerText="Login";
+
+btn.onclick=function(){
+
+showPage("auth");
+
+};
+
+}
+
+}
+
+
+/* =====================================================
    LOAD VIDEOS
-========================= */
+===================================================== */
 
 async function loadVideos(){
 
- const feed =
- document.getElementById("feed");
+const feed=
+document.getElementById("feed");
 
- feed.innerHTML =
- '<div class="loading">Loading videos 🎬...</div>';
+feed.innerHTML=
+'<div class="loading">Loading videos 🎬...</div>';
 
- let videos=[];
+let videos=[];
 
- try{
+try{
 
-  const result =
-  await supabaseClient
-  .storage
-  .from("Videos")
-  .list("",{
-   limit:100,
-   sort:{
-    column:"created_at",
-    order:"desc"
-   }
-  });
+const result=
+await supabaseClient
+.storage
+.from("Videos")
+.list("",{
+limit:100,
+sort:{
+column:"created_at",
+order:"desc"
+}
+});
 
-  if(result.error){
-   console.log(result.error);
-  }else{
+if(!result.error){
 
-   const files =
-   result.data || [];
+const files=result.data||[];
 
-   files.forEach(function(file){
+files.forEach(file=>{
 
-    if(
-     file.name &&
-     /\.(mp4|webm|mov|m4v|avi)$/i
-     .test(file.name)
-    ){
+if(
+file.name &&
+/\.(mp4|webm|mov|m4v|avi)$/i
+.test(file.name)
+){
 
-     const publicData =
-     supabaseClient
-     .storage
-     .from("Videos")
-     .getPublicUrl(file.name);
+const publicData=
+supabaseClient
+.storage
+.from("Videos")
+.getPublicUrl(file.name);
 
-     videos.push({
+videos.push({
 
-      path:file.name,
+path:file.name,
+url:publicData.data.publicUrl,
+username:"@wemedia",
+caption:"New video on We Media 🎬"
 
-      url:publicData.data.publicUrl,
+});
 
-      username:"@wemedia",
+}
 
-      caption:"New video on We Media 🎬"
+});
 
-     });
+}
 
-    }
+}catch(error){
 
-   });
-
-  }
-
- }catch(error){
-
-  console.log(error);
-
- }
-
-
- /* Put demo videos first if storage is empty */
-
- if(videos.length===0){
-
-  videos=demoVideos;
-
- }else{
-
-  videos=[
-   ...videos,
-   ...demoVideos
-  ];
-
- }
-
-
- if(videos.length===0){
-
-  feed.innerHTML=
-  '<div class="empty">No videos yet 🎬<br><br>Upload the first video.</div>';
-
-  return;
-
- }
-
-
- feed.innerHTML="";
-
- videos.forEach(function(video,index){
-
-  createVideoCard(video,index);
-
- });
+console.log(error);
 
 }
 
 
-/* =========================
+/* Demo videos keep the app alive */
+
+if(videos.length===0){
+
+videos=[...demoVideos];
+
+}else{
+
+videos=[
+...videos,
+...demoVideos
+];
+
+}
+
+
+feed.innerHTML="";
+
+videos.forEach((video,index)=>{
+
+createVideoCard(video,index);
+
+});
+
+}
+
+
+/* =====================================================
    VIDEO CARD
-========================= */
+===================================================== */
 
 function createVideoCard(video,index){
 
- const feed =
- document.getElementById("feed");
+const feed=
+document.getElementById("feed");
 
- const card =
- document.createElement("div");
+const card=
+document.createElement("div");
 
- card.className="videoCard";
+card.className="videoCard";
 
- const videoEl =
- document.createElement("video");
 
- videoEl.className="video";
+const videoEl=
+document.createElement("video");
 
- videoEl.controls=true;
- videoEl.loop=true;
- videoEl.playsInline=true;
- videoEl.src=video.url;
+videoEl.className="video";
 
- videoEl.addEventListener(
-  "play",
-  function(){
+videoEl.controls=true;
+videoEl.loop=true;
+videoEl.playsInline=true;
+videoEl.src=video.url;
 
-   if(!video.path.startsWith("demo_")){
 
-    addView(video.path);
+videoEl.addEventListener(
+"play",
+function(){
 
-   }
+if(!video.path.startsWith("demo_")){
+addView(video.path);
+}
 
-  },
-  {once:true}
- );
+},
+{once:true}
+);
 
 
- const info =
- document.createElement("div");
+const info=
+document.createElement("div");
 
- info.className="videoInfo";
+info.className="videoInfo";
 
- info.innerHTML=`
+info.innerHTML=`
 
-  <div class="username">
-   ${escapeHTML(video.username)}
-  </div>
+<div class="username">
+${escapeHTML(video.username)}
+</div>
 
-  <div class="caption">
-   ${escapeHTML(video.caption)}
-  </div>
+<div class="caption">
+${escapeHTML(video.caption)}
+</div>
 
-  <div class="stats">
+<div class="stats">
 
-   <span id="views-${index}">
-    👁️ 0 views
-   </span>
+<span id="views-${index}">
+👁️ 0 views
+</span>
 
-   &nbsp; • &nbsp;
+&nbsp; • &nbsp;
 
-   <span id="likes-${index}">
-    ❤️ 0 likes
-   </span>
+<span id="likes-${index}">
+❤️ 0 likes
+</span>
 
-   &nbsp; • &nbsp;
+&nbsp; • &nbsp;
 
-   <span id="comments-${index}">
-    💬 0 comments
-   </span>
+<span id="comments-${index}">
+💬 0 comments
+</span>
 
-  </div>
+</div>
+`;
 
- `;
 
+const actions=
+document.createElement("div");
 
- const actions =
- document.createElement("div");
+actions.className="actions";
 
- actions.className="actions";
+actions.innerHTML=`
 
- actions.innerHTML=`
+<button
+class="action"
+id="likeBtn-${index}">
+❤️ Like
+</button>
 
-  <button
-   class="action"
-   id="likeBtn-${index}"
-  >
-   ❤️ Like
-  </button>
+<button
+class="action"
+id="commentBtn-${index}">
+💬 Comment
+</button>
 
-  <button
-   class="action"
-   id="commentBtn-${index}"
-  >
-   💬 Comment
-  </button>
+<button
+class="action"
+id="shareBtn-${index}">
+↗ Share
+</button>
 
-  <button
-   class="action"
-   id="shareBtn-${index}"
-  >
-   ↗ Share
-  </button>
+`;
 
- `;
 
+const commentBox=
+document.createElement("div");
 
- const commentBox =
- document.createElement("div");
+commentBox.className="commentBox";
 
- commentBox.className="commentBox";
+commentBox.id="commentBox-"+index;
 
- commentBox.id=
- "commentBox-"+index;
+commentBox.innerHTML=`
 
- commentBox.innerHTML=`
+<input
+id="commentInput-${index}"
+placeholder="Write a comment...">
 
-  <input
-   id="commentInput-${index}"
-   placeholder="Write a comment..."
-  >
+<button>Send</button>
 
-  <button>
-   Send
-  </button>
+`;
 
- `;
 
+const comments=
+document.createElement("div");
 
- const comments =
- document.createElement("div");
+comments.className="comments";
+comments.id="comments-"+index;
 
- comments.className="comments";
 
- comments.id=
- "comments-"+index;
+card.appendChild(videoEl);
+card.appendChild(info);
+card.appendChild(actions);
+card.appendChild(commentBox);
+card.appendChild(comments);
 
+feed.appendChild(card);
 
- card.appendChild(videoEl);
- card.appendChild(info);
- card.appendChild(actions);
- card.appendChild(commentBox);
- card.appendChild(comments);
 
- feed.appendChild(card);
+document.getElementById(
+"likeBtn-"+index
+).onclick=function(){
 
+toggleLike(video.path,index,this);
 
- document.getElementById(
-  "likeBtn-"+index
- ).onclick=function(){
+};
 
-  toggleLike(
-   video.path,
-   index,
-   this
-  );
 
- };
+document.getElementById(
+"commentBtn-"+index
+).onclick=function(){
 
+toggleComments(index,video.path);
 
- document.getElementById(
-  "commentBtn-"+index
- ).onclick=function(){
+};
 
-  toggleComments(
-   index,
-   video.path
-  );
 
- };
+document.getElementById(
+"shareBtn-"+index
+).onclick=function(){
 
+shareVideo(video.url);
 
- document.getElementById(
-  "shareBtn-"+index
- ).onclick=function(){
+};
 
-  shareVideo(video.url);
 
- };
+commentBox.querySelector("button")
+.onclick=function(){
 
+addComment(video.path,index);
 
- commentBox.querySelector("button")
- .onclick=function(){
+};
 
-  addComment(
-   video.path,
-   index
-  );
 
- };
-
-
- loadStats(
-  video.path,
-  index
- );
+loadStats(video.path,index);
 
 }
 
 
-/* =========================
+/* =====================================================
    LIKE
-========================= */
+===================================================== */
 
-async function toggleLike(
- videoPath,
- index,
- button
-){
+async function toggleLike(path,index,button){
 
- if(videoPath.startsWith("demo_")){
+if(!currentUser){
 
-  button.classList.toggle("liked");
+message("Login first to like videos.");
 
-  button.innerText =
-   button.classList.contains("liked")
-   ? "❤️ Liked"
-   : "❤️ Like";
+showPage("auth");
 
-  return;
+return;
 
- }
+}
 
+if(path.startsWith("demo_")){
 
- const {data,error} =
- await supabaseClient
- .from("video_likes")
- .select("id")
- .eq("video_path",videoPath)
- .eq("user_id",deviceId)
- .maybeSingle();
+button.classList.toggle("liked");
 
+button.innerText=
+button.classList.contains("liked")
+?"❤️ Liked"
+:"❤️ Like";
 
- if(error){
-
-  console.log(error);
-  return;
-
- }
-
-
- if(data){
-
-  await supabaseClient
-  .from("video_likes")
-  .delete()
-  .eq("id",data.id);
-
-  button.classList.remove("liked");
-  button.innerText="❤️ Like";
-
- }else{
-
-  await supabaseClient
-  .from("video_likes")
-  .insert({
-
-   video_path:videoPath,
-   user_id:deviceId
-
-  });
-
-  button.classList.add("liked");
-  button.innerText="❤️ Liked";
-
- }
-
-
- loadStats(
-  videoPath,
-  index
- );
+return;
 
 }
 
 
-/* =========================
+try{
+
+const result=
+await supabaseClient
+.from("video_likes")
+.select("id")
+.eq("video_path",path)
+.eq("user_id",currentUser.id)
+.maybeSingle();
+
+if(result.data){
+
+await supabaseClient
+.from("video_likes")
+.delete()
+.eq("id",result.data.id);
+
+button.classList.remove("liked");
+button.innerText="❤️ Like";
+
+}else{
+
+await supabaseClient
+.from("video_likes")
+.insert({
+
+video_path:path,
+user_id:currentUser.id
+
+});
+
+button.classList.add("liked");
+button.innerText="❤️ Liked";
+
+}
+
+loadStats(path,index);
+
+}catch(error){
+
+console.log(error);
+message("Like service is not ready yet.");
+
+}
+
+}
+
+
+/* =====================================================
    COMMENTS
-========================= */
+===================================================== */
 
 function toggleComments(index,path){
 
- const box =
- document.getElementById(
-  "commentBox-"+index
- );
+const box=
+document.getElementById("commentBox-"+index);
 
- if(box.style.display==="block"){
+if(box.style.display==="block"){
 
-  box.style.display="none";
+box.style.display="none";
 
- }else{
+}else{
 
-  box.style.display="block";
+box.style.display="block";
 
-  loadComments(
-   path,
-   index
-  );
+loadComments(path,index);
 
- }
+}
 
 }
 
 
 async function addComment(path,index){
 
- if(path.startsWith("demo_")){
+if(!currentUser){
 
-  alert("Comments are available for uploaded videos.");
-  return;
+message("Login first to comment.");
 
- }
+showPage("auth");
 
- const input =
- document.getElementById(
-  "commentInput-"+index
- );
-
- const text =
- input.value.trim();
-
- if(!text){
-
-  alert("Write a comment first.");
-  return;
-
- }
-
-
- const {error} =
- await supabaseClient
- .from("video_comments")
- .insert({
-
-  video_path:path,
-
-  username:"We Media User",
-
-  comment:text
-
- });
-
-
- if(error){
-
-  alert("Comment failed.");
-  console.log(error);
-  return;
-
- }
-
-
- input.value="";
-
- loadComments(
-  path,
-  index
- );
-
- loadStats(
-  path,
-  index
- );
+return;
 
 }
 
+if(path.startsWith("demo_")){
 
-async function loadComments(path,index){
+alert("Comments are available for uploaded videos.");
 
- const box =
- document.getElementById(
-  "comments-"+index
- );
-
- if(path.startsWith("demo_")){
-
-  box.innerHTML="";
-
-  return;
-
- }
-
-
- const {data,error} =
- await supabaseClient
- .from("video_comments")
- .select("*")
- .eq("video_path",path)
- .order("created_at",{ascending:false})
- .limit(20);
-
-
- if(error){
-
-  console.log(error);
-  return;
-
- }
-
-
- box.innerHTML="";
-
- (data||[]).forEach(function(c){
-
-  const div =
-  document.createElement("div");
-
-  div.className="comment";
-
-  div.innerHTML=
-   "<b>"+escapeHTML(c.username)+"</b>"+
-   escapeHTML(c.comment);
-
-  box.appendChild(div);
-
- });
+return;
 
 }
 
+const input=
+document.getElementById(
+"commentInput-"+index
+);
 
-/* =========================
-   VIEWS
-========================= */
+const text=input.value.trim();
 
-async function addView(path){
-
- if(path.startsWith("demo_")){
-  return;
- }
-
-
- const {data} =
- await supabaseClient
- .from("video_views")
- .select("id")
- .eq("video_path",path)
- .eq("viewer_id",deviceId)
- .maybeSingle();
-
-
- if(!data){
-
-  await supabaseClient
-  .from("video_views")
-  .insert({
-
-   video_path:path,
-   viewer_id:deviceId
-
-  });
-
- }
-
+if(!text){
+return;
 }
 
 
-/* =========================
-   STATS
-========================= */
-
-async function loadStats(path,index){
-
- if(path.startsWith("demo_")){
-
-  return;
-
- }
-
-
- const likes =
- await supabaseClient
- .from("video_likes")
- .select("id",{count:"exact",head:true})
- .eq("video_path",path);
-
-
- const comments =
- await supabaseClient
- .from("video_comments")
- .select("id",{count:"exact",head:true})
- .eq("video_path",path);
-
-
- const views =
- await supabaseClient
- .from("video_views")
- .select("id",{count:"exact",head:true})
- .eq("video_path",path);
-
-
- const likeCount =
- likes.count || 0;
-
- const commentCount =
- comments.count || 0;
-
- const viewCount =
- views.count || 0;
-
-
- const likeEl =
- document.getElementById(
-  "likes-"+index
- );
-
- const commentEl =
- document.getElementById(
-  "comments-"+index
- );
-
- const viewEl =
- document.getElementById(
-  "views-"+index
- );
-
-
- if(likeEl)
-  likeEl.innerText=
-   "❤️ "+likeCount+" likes";
-
- if(commentEl)
-  commentEl.innerText=
-   "💬 "+commentCount+" comments";
-
- if(viewEl)
-  viewEl.innerText=
-   "👁️ "+viewCount+" views";
-
-
- const myLike =
- await supabaseClient
- .from("video_likes")
- .select("id")
- .eq("video_path",path)
- .eq("user_id",deviceId)
- .maybeSingle();
-
-
- const likeBtn =
- document.getElementById(
-  "likeBtn-"+index
- );
-
-
- if(likeBtn && myLike.data){
-
-  likeBtn.classList.add("liked");
-  likeBtn.innerText="❤️ Liked";
-
- }
-
-}
-
-
-/* =========================
-   SHARE
-========================= */
-
-async function shareVideo(url){
-
- if(navigator.share){
-
-  try{
-
-   await navigator.share({
-
-    title:"We Media",
-
-    text:"Watch this video on We Media 🎬",
-
-    url:url
-
-   });
-
-  }catch(e){}
-
- }else{
-
-  try{
-
-   await navigator.clipboard.writeText(url);
-
-   alert("Video link copied!");
-
-  }catch(e){
-
-   alert(url);
-
-  }
-
- }
-
-}
-
-
-/* =========================
-   SELECT VIDEO
-========================= */
-
-function selectVideo(){
-
- const file =
- document.getElementById(
-  "videoFile"
- ).files[0];
-
- if(!file){
-  return;
- }
-
-
- document.getElementById(
-  "fileName"
- ).innerText=
- "Selected: "+file.name;
-
-
- const url =
- URL.createObjectURL(file);
-
-
- document.getElementById(
-  "preview"
- ).innerHTML=`
-
-  <video
-   controls
-   autoplay
-   loop
-   playsinline
-   src="${url}">
-  </video>
-
- `;
-
-}
-
-
-/* =========================
-   UPLOAD
-========================= */
-
-async function uploadVideo(){
-
- const file =
- document.getElementById(
-  "videoFile"
- ).files[0];
-
- const status =
- document.getElementById(
-  "uploadStatus"
- );
-
- const btn =
- document.getElementById(
-  "uploadBtn"
- );
-
-
- if(!file){
-
-  alert("Choose a video first.");
-  return;
-
- }
-
-
- if(file.size > 50 * 1024 * 1024){
-
-  alert(
-   "Video is bigger than 50MB. Choose a smaller video."
-  );
-
-  return;
-
- }
-
-
- btn.disabled=true;
-
- status.style.color="#00e5ff";
-
- status.innerText=
- "Uploading video... please wait ⏳";
-
-
- const safeName =
- file.name
- .replace(/[^a-zA-Z0-9._-]/g,"_");
-
-
- const filePath =
- Date.now()+"_"+safeName;
-
-
- try{
-
-  const {error} =
-  await supabaseClient
-  .storage
-  .from("Videos")
-  .upload(
-   filePath,
-   file,
-   {
-    cacheControl:"3600",
-    upsert:false,
-    contentType:file.type
-   }
-  );
-
-
-  if(error){
-
-   console.log(error);
-
-   status.style.color="#ff3158";
-
-   status.innerText=
-    "Upload failed: "+error.message;
-
-   btn.disabled=false;
-
-   return;
-
-  }
-
-
-  status.style.color="#00ff88";
-
-  status.innerText=
-   "✅ Upload successful!";
-
-
-  document.getElementById(
-   "videoFile"
-  ).value="";
-
-  document.getElementById(
-   "fileName"
-  ).innerText="";
-
-
-  document.getElementById(
-   "preview"
-  ).innerHTML="";
-
-
-  setTimeout(function(){
-
-   showPage("home");
-
-   loadVideos();
-
-  },1000);
-
-
- }catch(error){
-
-  console.log(error);
-
-  status.style.color="#ff3158";
-
-  status.innerText=
-   "Upload failed.";
-
- }
-
-
- btn.disabled=false;
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-async function loadProfile(){
-
- const files =
- await supabaseClient
- .storage
- .from("Videos")
- .list("",{
-  limit:100
- });
-
-
- let count=0;
-
- if(files.data){
-
-  count =
-   files.data.filter(function(f){
-
-    return /\.(mp4|webm|mov|m4v|avi)$/i
-    .test(f.name);
-
-   }).length;
-
- }
-
-
- document.getElementById(
-  "profileVideos"
- ).innerText=count;
-
-
- const likes =
- await supabaseClient
- .from("video_likes")
- .select("id",{count:"exact",head:true});
-
-
- const views =
- await supabaseClient
- .from("video_views")
- .select("id",{count:"exact",head:true});
-
-
- document.getElementById(
-  "profileLikes"
- ).innerText=
-  likes.count || 0;
-
-
- document.getElementById(
-  "profileViews"
- ).innerText=
-  views.count || 0;
-
-}
-
-
-/* =========================
-   SECURITY / TEXT
-========================= */
-
-function escapeHTML(text){
-
- return String(text)
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-loadVideos();
-
-</script>
-
-</body>
-</html>
+try{
+
+const result=
+await supabaseClient
+.from("video_comments")
+.insert({
+
+video_path:path,
+user_id:currentUser.id,
+username:
+currentUser.user_metadata?.username||
+"User",
+comment:
