@@ -178,7 +178,60 @@ sb=supabase.createClient(U,K);
 
 let user=null;
 let publicUser=null;
+let chatUser=null;
 
+function startChat(){
+chatUser=publicUser;
+$("chatName").textContent="💬 "+$("publicName").textContent;
+page("chat");
+loadChat();
+}
+
+async function sendMessage(){
+let x=$("chatText").value.trim();
+if(!x||!chatUser)return;
+
+let {error}=await sb.from("messages").insert({
+sender_id:String(user.id),
+receiver_id:String(chatUser),
+message:x
+});
+
+if(error){alert(error.message);return}
+
+$("chatText").value="";
+loadChat();
+}
+
+async function loadChat(){
+let me=String(user.id),to=String(chatUser);
+
+let {data,error}=await sb.from("messages")
+.select("*")
+.or("and(sender_id.eq."+me+",receiver_id.eq."+to+"),and(sender_id.eq."+to+",receiver_id.eq."+me+")")
+.order("created_at");
+
+if(error){
+$("chatbox").textContent="❌ "+error.message;
+return;
+}
+
+let b=$("chatbox");
+b.innerHTML="";
+
+(data||[]).forEach(m=>{
+let d=document.createElement("div");
+d.textContent=m.message;
+d.style.cssText=
+"padding:10px;margin:6px 0;background:"+
+(String(m.sender_id)==me?"#08f":"#222")+
+";border-radius:15px;max-width:80%;"+
+(String(m.sender_id)==me?"margin-left:auto":"");
+b.appendChild(d);
+});
+
+b.scrollTop=b.scrollHeight;
+}
 const $=x=>document.getElementById(x);
 
 function auth(x){
