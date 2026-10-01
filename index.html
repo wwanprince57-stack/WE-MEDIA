@@ -1261,8 +1261,7 @@ loadVideos();
 /* =========================
    LIKE POST
 ========================= */
-
- async function likePost(videoId,button){
+async function likePost(videoId,button){
 
 if(!user){
 
@@ -1325,6 +1324,9 @@ alert("❌ Like failed: "+error.message);
 }
 
 button.disabled=false;
+
+   }
+  
 
  }
 
