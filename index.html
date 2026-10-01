@@ -872,7 +872,7 @@ session?.user||null;
    VIDEO / PHOTO FEED
 ========================= */
 
-async function loadVideos(){
+ async function loadVideos(){
 
 const box=$("feed");
 
@@ -881,21 +881,15 @@ if(!box)return;
 box.innerHTML=
 '<div class="box muted">Loading videos...</div>';
 
+try{
+
 const {data,error}=
 await sb
 .from("videos")
 .select("*")
 .order("created_at",{ascending:false});
 
-if(error){
-
-box.innerHTML=
-'<div class="box">❌ Failed to load posts</div>';
-
-console.log(error);
-return;
-
-}
+if(error)throw error;
 
 if(!data || data.length===0){
 
@@ -910,7 +904,16 @@ box.innerHTML="";
 
 for(const v of data){
 
-await createPostCard(v,box);
+createPostCard(v,box);
+
+}
+
+}catch(error){
+
+console.log("VIDEOS ERROR:",error);
+
+box.innerHTML=
+'<div class="box">❌ Failed to load videos</div>';
 
 }
 
@@ -921,7 +924,7 @@ await createPostCard(v,box);
    CREATE POST CARD
 ========================= */
 
-async function createPostCard(v,box){
+function createPostCard(v,box){
 
 const card=
 document.createElement("div");
@@ -933,8 +936,11 @@ v.video_url||v.url||"";
 
 if(!url)return;
 
+
+/* MEDIA */
+
 const isImage=
-/\.(jpg|jpeg|png|gif|webp|avif)$/i
+/\.(jpg|jpeg|png|gif|webp|avif)(\?|$)/i
 .test(url);
 
 let media;
@@ -944,10 +950,16 @@ if(isImage){
 media=
 document.createElement("img");
 
+media.src=url;
+media.className="media";
+
 }else{
 
 media=
 document.createElement("video");
+
+media.src=url;
+media.className="media";
 
 media.controls=true;
 media.loop=true;
@@ -956,10 +968,121 @@ media.preload="metadata";
 
 }
 
-media.src=url;
-media.className="media";
-
 card.appendChild(media);
+
+
+/* USER */
+
+const username=
+v.username ||
+v.full_name ||
+"User";
+
+
+/* INFO */
+
+const info=
+document.createElement("div");
+
+info.className="video-info";
+
+info.innerHTML=
+
+"<div class='video-user'>@"+
+escapeHTML(username)+
+"</div>"+
+
+"<div class='video-title'>"+
+escapeHTML(v.title||"")+
+"</div>";
+
+card.appendChild(info);
+
+
+/* =========================
+   TIKTOK ACTIONS
+========================= */
+
+const actions=
+document.createElement("div");
+
+actions.className="video-actions";
+
+actions.innerHTML=`
+
+<button
+class="action"
+type="button"
+onclick="openProfile('${v.user_id||""}')">
+
+<span class="action-icon">👤</span>
+
+</button>
+
+
+<button
+class="action"
+type="button"
+onclick="likePost('${v.id}',this)">
+
+<span class="action-icon">🤍</span>
+
+</button>
+
+
+<button
+class="action"
+type="button"
+onclick="commentPost('${v.id}')">
+
+<span class="action-icon">💬</span>
+
+</button>
+
+
+<button
+class="action"
+type="button"
+onclick="sharePost('${v.id}')">
+
+<span class="action-icon">↗️</span>
+
+</button>
+
+
+<button
+class="action"
+type="button"
+onclick="whatsappShare('${encodeURIComponent(url)}')">
+
+<span class="action-icon">🟢</span>
+
+</button>
+
+`;
+
+card.appendChild(actions);
+
+
+/* SOUND */
+
+const sound=
+document.createElement("div");
+
+sound.className="sound-used";
+
+sound.textContent=
+"🎵 Original sound · @"+
+username;
+
+card.appendChild(sound);
+
+
+/* ADD VIDEO */
+
+box.appendChild(card);
+
+}
 
 
 /* USER */
