@@ -3,9 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>We Media</title>
 
@@ -15,65 +13,65 @@ content="width=device-width,initial-scale=1">
 
 *{
 box-sizing:border-box;
-font-family:Arial,sans-serif;
 margin:0;
 padding:0;
+font-family:Arial,sans-serif;
 }
 
 body{
 background:#000;
 color:#fff;
-padding-bottom:70px;
+min-height:100vh;
+padding-top:58px;
+padding-bottom:65px;
 }
 
 button{
 border:0;
 cursor:pointer;
-font-family:Arial,sans-serif;
+color:#fff;
 }
 
 input{
-font-family:Arial,sans-serif;
+outline:none;
 }
 
 .top{
-height:55px;
 position:fixed;
 top:0;
 left:0;
 right:0;
-z-index:100;
+height:58px;
 background:#000;
 border-bottom:1px solid #222;
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 12px;
+z-index:1000;
 }
 
 .logo{
-font-size:21px;
+font-size:22px;
 font-weight:bold;
-cursor:pointer;
 }
 
 .top-actions{
 display:flex;
-align-items:center;
 gap:8px;
 }
 
 .top-btn{
-background:transparent;
-color:#fff;
-font-size:22px;
-padding:5px;
+background:#181818;
+width:38px;
+height:38px;
+border-radius:50%;
+font-size:18px;
 }
 
 .page{
 display:none;
-padding:68px 10px 80px;
-min-height:100vh;
+min-height:calc(100vh - 123px);
 }
 
 .page.active{
@@ -82,22 +80,10 @@ display:block;
 
 .card{
 background:#111;
-border:1px solid #242424;
-border-radius:12px;
-padding:14px;
-margin-bottom:10px;
-}
-
-.box{
-background:#111;
-border-radius:12px;
-padding:18px;
-margin-top:10px;
-}
-
-.muted{
-color:#888;
-font-size:12px;
+border:1px solid #222;
+border-radius:14px;
+margin:12px;
+padding:15px;
 }
 
 .title{
@@ -106,71 +92,59 @@ font-weight:bold;
 margin-bottom:12px;
 }
 
-.field{
-width:100%;
-height:44px;
-background:#181818;
-border:1px solid #333;
-border-radius:9px;
-color:#fff;
-padding:0 12px;
-outline:none;
-margin-bottom:10px;
+.muted{
+color:#999;
+font-size:13px;
 }
 
-.field:focus{
-border-color:#1877f2;
+.field{
+margin-bottom:12px;
+}
+
+.field input{
+width:100%;
+padding:13px;
+border-radius:10px;
+border:1px solid #333;
+background:#181818;
+color:#fff;
 }
 
 .primary{
 width:100%;
-height:42px;
-background:#1877f2;
-color:#fff;
-border-radius:9px;
+padding:13px;
+border-radius:10px;
+background:#fff;
+color:#000;
 font-weight:bold;
 }
 
 .secondary{
 width:100%;
-height:42px;
-background:#222;
+padding:12px;
+border-radius:10px;
+background:#202020;
 color:#fff;
-border-radius:9px;
 }
-
-.auth-box{
-max-width:430px;
-margin:30px auto;
-}
-
-.auth-box h2{
-text-align:center;
-margin-bottom:18px;
-}
-
-/* =========================
-   BOTTOM NAV
-========================= */
 
 .bottom-nav{
 position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:62px;
-background:#050505;
-border-top:1px solid #242424;
-z-index:100;
+height:65px;
+background:#080808;
+border-top:1px solid #222;
 display:flex;
-align-items:center;
 justify-content:space-around;
+align-items:center;
+z-index:1000;
 }
 
 .nav{
-background:transparent;
-color:#777;
+background:none;
 font-size:11px;
+color:#888;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -186,126 +160,87 @@ color:#fff;
 }
 
 .post-button{
-width:52px;
+width:48px;
 height:42px;
 border-radius:12px;
 background:#fff;
 color:#000;
-font-size:24px;
+font-size:25px;
 font-weight:bold;
 }
 
-/* =========================
-   VIDEO CARD
-========================= */
-
 .video-card{
-position:relative;
-width:100%;
-height:calc(100vh - 135px);
-min-height:500px;
-background:#050505;
-border-radius:12px;
-overflow:hidden;
-margin-bottom:12px;
+margin-bottom:15px;
+background:#080808;
 }
 
 .media{
 width:100%;
-height:100%;
-object-fit:cover;
 display:block;
+max-height:75vh;
+object-fit:contain;
 background:#000;
 }
 
 .video-info{
-position:absolute;
-left:12px;
-bottom:18px;
-z-index:10;
-max-width:72%;
-text-shadow:0 2px 6px #000;
+padding:10px 12px;
 }
 
 .video-user{
-font-size:15px;
 font-weight:bold;
-margin-bottom:6px;
+margin-bottom:5px;
 }
 
 .video-title{
-font-size:13px;
-line-height:1.3;
+font-size:14px;
+margin-bottom:9px;
 }
 
-/* =========================
-   RIGHT ACTIONS
-========================= */
-
 .video-actions{
-position:absolute;
-right:7px;
-bottom:72px;
-z-index:20;
 display:flex;
-flex-direction:column;
-gap:12px;
+justify-content:space-around;
 align-items:center;
+padding:8px 5px;
+border-top:1px solid #181818;
 }
 
 .action{
-width:46px;
-height:46px;
-padding:0;
-margin:0;
-border:0;
-outline:0;
-border-radius:0;
-background:transparent;
-box-shadow:none;
-color:#fff;
+background:none;
+font-size:24px;
 display:flex;
+flex-direction:column;
 align-items:center;
-justify-content:center;
-text-shadow:0 2px 7px #000;
+gap:2px;
+min-width:55px;
 }
 
-.action:active{
-transform:scale(.88);
+.action small{
+font-size:10px;
+color:#aaa;
 }
 
 .action-icon{
-display:block;
-font-size:28px;
-line-height:1;
+font-size:24px;
 }
 
 .sound-used{
-position:absolute;
-left:12px;
-bottom:78px;
-z-index:10;
-font-size:11px;
-color:#fff;
-text-shadow:0 2px 6px #000;
-max-width:70%;
+padding:9px 12px;
+font-size:12px;
+color:#aaa;
+border-top:1px solid #181818;
 }
 
-/* =========================
-   PROFILE
-========================= */
-
 .profile-avatar{
-width:78px;
-height:78px;
+width:80px;
+height:80px;
 border-radius:50%;
-background:#1877f2;
+background:#222;
+margin:auto;
+overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:36px;
-margin:0 auto 10px;
-overflow:hidden;
+font-size:30px;
 }
 
 .profile-avatar img{
@@ -316,108 +251,88 @@ object-fit:cover;
 
 .stats{
 display:flex;
-justify-content:space-around;
-margin-top:18px;
-padding-top:15px;
-border-top:1px solid #242424;
+justify-content:center;
+gap:30px;
+margin:15px 0;
 text-align:center;
 }
 
 .stats b{
-font-size:16px;
+display:block;
+font-size:18px;
 }
 
 .stats span{
-font-size:10px;
+font-size:11px;
 color:#888;
 }
 
-/* =========================
-   EFFECTS
-========================= */
-
 .effect-row{
 display:flex;
-gap:6px;
+gap:7px;
 overflow-x:auto;
-padding-bottom:4px;
+padding:5px 0;
 }
 
 .effect-btn{
-min-width:70px;
-height:32px;
-border-radius:8px;
-background:#333;
-color:#fff;
-font-size:10px;
+background:#222;
+padding:9px 12px;
+border-radius:9px;
+white-space:nowrap;
 }
 
 .effect-btn.active{
-background:#1877f2;
+background:#fff;
+color:#000;
 }
 
 #effectPreview{
 margin-top:10px;
-display:none;
-width:100%;
-height:220px;
-overflow:hidden;
-border-radius:12px;
-background:#000;
 }
 
 #effectPreview img,
 #effectPreview video{
 width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* =========================
-   CHAT
-========================= */
-
-.chat-box{
-height:350px;
-overflow-y:auto;
-padding:5px;
-background:#080808;
+max-height:280px;
+object-fit:contain;
 border-radius:10px;
 }
 
+.chat-box{
+display:flex;
+flex-direction:column;
+gap:8px;
+padding:10px;
+}
+
 .message-row{
-margin:7px 0;
+display:flex;
 }
 
 .message-bubble{
-display:inline-block;
-max-width:80%;
-padding:9px 11px;
-border-radius:12px;
-font-size:11px;
-word-break:break-word;
-}
-
-.message-mine{
-background:#1877f2;
-}
-
-.message-other{
+padding:9px 12px;
+border-radius:15px;
+max-width:75%;
 background:#222;
 }
 
-/* =========================
-   COMMENTS MODAL
-========================= */
+.message-mine{
+margin-left:auto;
+background:#fff;
+color:#000;
+}
+
+.message-other{
+margin-right:auto;
+}
 
 .modal{
+display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.78);
-z-index:300;
-display:none;
+background:rgba(0,0,0,.75);
+z-index:2000;
 align-items:flex-end;
-justify-content:center;
 }
 
 .modal.show{
@@ -425,417 +340,387 @@ display:flex;
 }
 
 .modal-box{
-width:100%;
-max-width:600px;
-max-height:75vh;
 background:#111;
+width:100%;
+max-height:80vh;
 border-radius:18px 18px 0 0;
 padding:15px;
-overflow-y:auto;
 }
 
 .modal-head{
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 margin-bottom:12px;
 }
 
 .close-btn{
-background:transparent;
-color:#fff;
-font-size:24px;
+background:#222;
+width:35px;
+height:35px;
+border-radius:50%;
 }
 
 .comment-item{
 padding:10px 0;
-border-bottom:1px solid #242424;
-font-size:12px;
+border-bottom:1px solid #222;
+}
+
+.search-result{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid #222;
+}
+
+.search-avatar{
+width:45px;
+height:45px;
+border-radius:50%;
+background:#222;
+overflow:hidden;
+}
+
+.search-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
-
 <header class="top">
 
-<div
-class="logo"
-onclick="showPage('home')">
-We Media
-</div>
+<div class="logo">We Media</div>
 
 <div class="top-actions">
 
-<button
-class="top-btn"
-onclick="showPage('notifications')">
-🔔
-</button>
+<button class="top-btn" onclick="showPage('notifications')">🔔</button>
 
-<button
-class="top-btn"
-onclick="showPage('messages')">
-💬
-</button>
+<button class="top-btn" onclick="showPage('messages')">💬</button>
 
-<button
-class="top-btn"
-onclick="showPage('search')">
-🔍
-</button>
+<button class="top-btn" onclick="showPage('search')">🔍</button>
 
 </div>
 
 </header>
 
+<!-- HOME -->
 
-<!-- =========================
-     HOME
-========================= -->
+<section id="homePage" class="page active">
 
-<section
-id="homePage"
-class="page active">
-
-<div id="feed">
-
-<div class="box muted">
-Loading videos...
-</div>
-
-</div>
+<div id="feed"></div>
 
 </section>
 
+<!-- NOTIFICATIONS -->
 
-<!-- =========================
-     NOTIFICATIONS
-========================= -->
-
-<section
-id="notificationsPage"
-class="page">
-
-<div class="title">
-🔔 Notifications
-</div>
-
-<div id="notificationsList">
-
-<div class="muted">
-Loading...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MESSAGES
-========================= -->
-
-<section
-id="messagesPage"
-class="page">
-
-<div class="title">
-💬 Messages
-</div>
-
-<div id="messagesList">
-
-<div class="muted">
-Loading...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SEARCH
-========================= -->
-
-<section
-id="searchPage"
-class="page">
-
-<div class="title">
-🔍 Search
-</div>
-
-<input
-id="searchInput"
-class="field"
-placeholder="Search people...">
-
-<div id="searchResults">
-
-<div class="muted">
-Search for people...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section
-id="profilePage"
-class="page">
-
-<div class="title">
-👤 Profile
-</div>
-
-<div id="profileBox">
-
-<div class="muted">
-Loading profile...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SUGGESTIONS
-========================= -->
-
-<section
-id="suggestionsPage"
-class="page">
-
-<div class="title">
-👥 Suggested Followers
-</div>
-
-<div id="suggestions">
-
-<div class="muted">
-Loading suggestions...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     UPLOAD
-========================= -->
-
-<section
-id="uploadPage"
-class="page">
-
-<div class="title">
-➕ Create Post
-</div>
+<section id="notificationsPage" class="page">
 
 <div class="card">
 
+<div class="title">Notifications</div>
+
+<div id="notificationsList">
+
+<div class="muted">No notifications yet.</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MESSAGES -->
+
+<section id="messagesPage" class="page">
+
+<div class="card">
+
+<div class="title">Messages</div>
+
+<div id="messagesList">
+
+<div class="muted">No messages yet.</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section id="searchPage" class="page">
+
+<div class="card">
+
+<div class="title">Search</div>
+
+<div class="field">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Search people..."
+oninput="searchUsers()">
+
+</div>
+
+<div id="searchResults"></div>
+
+</div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section id="profilePage" class="page">
+
+<div id="profileBox"></div>
+
+</section>
+
+<!-- SUGGESTIONS -->
+
+<section id="suggestionsPage" class="page">
+
+<div class="card">
+
+<div class="title">Suggestions</div>
+
+<div id="suggestions">
+
+<div class="muted">Loading suggestions...</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- UPLOAD -->
+
+<section id="uploadPage" class="page">
+
+<div class="card">
+
+<div class="title">Create Post</div>
+
+<div class="field">
+
 <input
 id="postTitle"
-class="field"
-placeholder="Write a caption...">
+type="text"
+placeholder="Write something...">
+
+</div>
+
+<div class="field">
 
 <input
 id="postFile"
 type="file"
-accept="image/*,video/*"
-style="display:none">
+accept="video/*"
+style="display:none"
+onchange="previewPost()">
 
 <button
 class="secondary"
-onclick="openCamera()"
-style="margin-bottom:8px">
+onclick="openGallery()">
+
+📁 Choose Video
+
+</button>
+
+</div>
+
+<div class="field">
+
+<button
+class="secondary"
+onclick="openCamera()">
+
 📷 Camera
+
 </button>
 
-<button
-class="secondary"
-onclick="openGallery()"
-style="margin-bottom:8px">
-🖼️ Gallery
-</button>
+</div>
+
+<div id="effectPreview"></div>
+
+<div id="effectsArea"></div>
 
 <div
 id="uploadMsg"
 class="muted"
-style="margin:8px 0">
-Choose a photo or video
+style="margin:10px 0">
 </div>
-
-<div id="effectsArea"></div>
 
 <button
 class="primary"
-onclick="uploadPost()"
-style="margin-top:12px">
-POST
+onclick="uploadPost()">
+
+POST VIDEO
+
 </button>
 
 </div>
 
 </section>
 
+<!-- LOGIN -->
 
-<!-- =========================
-     LOGIN
-========================= -->
+<section id="loginPage" class="page">
 
-<section
-id="loginPage"
-class="page">
+<div class="card auth-box">
 
-<div class="auth-box">
+<div class="title">Login</div>
 
-<div class="card">
-
-<h2>
-Login
-</h2>
+<div class="field">
 
 <input
 id="loginId"
-class="field"
+type="text"
 placeholder="Email or phone number">
+
+</div>
+
+<div class="field">
 
 <input
 id="loginPass"
-class="field"
 type="password"
 placeholder="Password">
+
+</div>
 
 <button
 class="primary"
 onclick="login()">
+
 LOGIN
+
 </button>
 
-<br><br>
+<div style="height:10px"></div>
 
 <button
 class="secondary"
 onclick="showPage('register')">
-CREATE ACCOUNT
-</button>
 
-</div>
+CREATE ACCOUNT
+
+</button>
 
 </div>
 
 </section>
 
+<!-- REGISTER -->
 
-<!-- =========================
-     REGISTER
-========================= -->
+<section id="registerPage" class="page">
 
-<section
-id="registerPage"
-class="page">
+<div class="card auth-box">
 
-<div class="auth-box">
+<div class="title">Create Account</div>
 
-<div class="card">
-
-<h2>
-Create Account
-</h2>
+<div class="field">
 
 <input
 id="regName"
-class="field"
+type="text"
 placeholder="Full name / Username">
+
+</div>
+
+<div class="field">
 
 <input
 id="regEmail"
-class="field"
 type="email"
 placeholder="Email">
 
+</div>
+
+<div class="field">
+
 <input
 id="regPhone"
-class="field"
+type="tel"
 placeholder="Phone number">
+
+</div>
+
+<div class="field">
 
 <input
 id="regPass"
-class="field"
 type="password"
 placeholder="Password">
+
+</div>
 
 <button
 class="primary"
 onclick="register()">
+
 CREATE ACCOUNT
+
 </button>
 
-<br><br>
+<div style="height:10px"></div>
 
 <button
 class="secondary"
 onclick="showPage('login')">
-BACK TO LOGIN
-</button>
 
-</div>
+LOGIN
+
+</button>
 
 </div>
 
 </section>
 
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
 <button
-id="homeNav"
+id="navHome"
 class="nav active"
 onclick="showPage('home')">
 
-<span class="nav-icon">🏠</span>
+<span class="nav-icon">⌂</span>
 <span>Home</span>
 
 </button>
 
 <button
-id="suggestionsNav"
+id="navSuggestions"
 class="nav"
 onclick="showPage('suggestions')">
 
 <span class="nav-icon">👥</span>
-<span>Suggestions</span>
+<span>People</span>
 
 </button>
 
 <button
 class="post-button"
 onclick="showPage('upload')">
-＋
+
++
+
 </button>
 
 <button
-id="messagesNav"
+id="navMessages"
 class="nav"
 onclick="showPage('messages')">
 
@@ -845,7 +730,7 @@ onclick="showPage('messages')">
 </button>
 
 <button
-id="profileNav"
+id="navProfile"
 class="nav"
 onclick="showPage('profile')">
 
@@ -856,269 +741,377 @@ onclick="showPage('profile')">
 
 </nav>
 
-
-<!-- =========================
-     COMMENTS MODAL
-========================= -->
+<!-- COMMENTS MODAL -->
 
 <div
 id="commentModal"
 class="modal">
 
-<div
-class="modal-box">
+<div class="modal-box">
 
 <div class="modal-head">
 
-<b>
-💬 Comments
-</b>
+<strong>Comments</strong>
 
 <button
 class="close-btn"
 onclick="closeComments()">
-×
+
+✕
+
 </button>
 
 </div>
 
-<div id="commentsList">
+<div
+id="commentsList"
+style="max-height:45vh;overflow-y:auto">
 </div>
 
-<div style="
-display:flex;
-gap:6px;
-margin-top:12px">
+<div
+style="display:flex;gap:7px;margin-top:10px">
 
 <input
 id="commentInput"
-class="field"
-style="margin:0;flex:1"
-placeholder="Write a comment...">
+type="text"
+placeholder="Write a comment..."
+style="
+flex:1;
+padding:12px;
+border-radius:10px;
+border:1px solid #333;
+background:#181818;
+color:#fff">
 
 <button
 class="primary"
-style="width:65px"
+style="width:auto"
 onclick="sendComment()">
+
 ➤
+
 </button>
 
 </div>
 
 </div>
 
-</div>/* ================================
-   VIDEO ACTIONS
+</div>
+
+<script>/* ================================
+   SUPABASE
 ================================ */
 
-function videoAction(type,id){
+const SUPABASE_URL =
+"https://jhxbfkpcinetbuwsnxcz.supabase.co";
 
-if(type==="like"){
-const btn=document.getElementById("like-"+id);
-likePost(id,btn);
-}
+const SUPABASE_KEY =
+"sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
 
-if(type==="comment"){
-commentPost(id);
-}
-
-if(type==="share"){
-sharePost(id);
-}
-
-if(type==="whatsapp"){
-whatsappPost(id);
-}
-
-if(type==="sound"){
-showSound(
-document.getElementById("sound-"+id)?.textContent
+const sb =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
-}
 
+let user=null;
+let selectedVideoId=null;
+let selectedReceiverId=null;
+let postEffect="none";
+
+
+/* ================================
+   HELPERS
+================================ */
+
+function $(id){
+return document.getElementById(id);
 }
 
 
 /* ================================
-   FOLLOW / UNFOLLOW
+   PAGE NAVIGATION
 ================================ */
 
-async function followUser(targetId,button){
+function showPage(page){
 
-if(!user){
-alert("Login first");
-showPage("login");
-return;
-}
+const pages=document.querySelectorAll(".page");
 
-if(user.id===targetId)return;
-
-try{
-
-const {data:existing}=await sb
-.from("followers")
-.select("id")
-.eq("follower_id",user.id)
-.eq("following_id",targetId)
-.maybeSingle();
-
-if(existing){
-
-await sb
-.from("followers")
-.delete()
-.eq("id",existing.id);
-
-if(button)
-button.textContent="Follow";
-
-}else{
-
-await sb
-.from("followers")
-.insert({
-follower_id:user.id,
-following_id:targetId
+pages.forEach(p=>{
+p.classList.remove("active");
 });
 
-if(button)
-button.textContent="Following";
+const target=$(page+"Page");
 
+if(target){
+target.classList.add("active");
 }
 
-}catch(e){
+document.querySelectorAll(".nav")
+.forEach(n=>{
+n.classList.remove("active");
+});
 
-console.log(e);
-alert("Follow failed");
+if(page==="home")
+$("navHome")?.classList.add("active");
 
+if(page==="suggestions")
+$("navSuggestions")?.classList.add("active");
+
+if(page==="messages")
+$("navMessages")?.classList.add("active");
+
+if(page==="profile")
+$("navProfile")?.classList.add("active");
+
+if(page==="home"){
+loadFeed();
+}
+
+if(page==="suggestions"){
+loadSuggestions();
+}
+
+if(page==="profile"){
+loadMyProfile();
+}
+
+if(page==="notifications"){
+loadNotifications();
+}
+
+if(page==="messages"){
+loadMessages();
 }
 
 }
 
 
 /* ================================
-   SHOW PROFILE
+   AUTH CHECK
 ================================ */
 
-async function openProfile(userId){
+function requireLogin(){
 
-showPage("profile");
+if(!user){
 
-const box=
-document.getElementById("profilePage");
+alert("Login first");
 
-if(!box)return;
+showPage("login");
 
-box.innerHTML=
-"Loading profile...";
+return false;
 
-try{
+}
 
-const {data:p}=await sb
+return true;
+
+}
+
+
+/* ================================
+   LOGIN
+================================ */
+
+async function login(){
+
+const id=
+$("loginId").value.trim();
+
+const pass=
+$("loginPass").value;
+
+if(!id || !pass){
+
+alert("Enter email/phone and password");
+
+return;
+
+}
+
+const {data,error}=
+await sb.auth.signInWithPassword({
+
+email:id,
+password:pass
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+user=data.user;
+
+alert("✅ Login successful");
+
+showPage("home");
+
+loadFeed();
+
+}
+
+
+/* ================================
+   REGISTER
+================================ */
+
+async function register(){
+
+const name=
+$("regName").value.trim();
+
+const email=
+$("regEmail").value.trim();
+
+const phone=
+$("regPhone").value.trim();
+
+const pass=
+$("regPass").value;
+
+if(!name || !email || !pass){
+
+alert("Name, email and password are required");
+
+return;
+
+}
+
+if(pass.length<6){
+
+alert("Password must be at least 6 characters");
+
+return;
+
+}
+
+const {data,error}=
+await sb.auth.signUp({
+
+email:email,
+password:pass,
+
+options:{
+data:{
+full_name:name,
+username:name,
+phone:phone
+}
+}
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+if(data.user){
+
+await sb
+.from("profiles")
+.upsert({
+
+id:data.user.id,
+username:name,
+full_name:name,
+phone:phone
+
+},{onConflict:"id"});
+
+}
+
+alert("✅ Account created successfully");
+
+showPage("login");
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+async function logout(){
+
+await sb.auth.signOut();
+
+user=null;
+
+showPage("home");
+
+loadFeed();
+
+}
+
+
+/* ================================
+   GET PROFILE
+================================ */
+
+async function getProfile(userId){
+
+const {data,error}=
+await sb
 .from("profiles")
 .select("*")
 .eq("id",userId)
 .maybeSingle();
 
-if(!p){
+if(error){
 
-box.innerHTML=
-"<div class='card'>User not found</div>";
+console.log(error);
 
-return;
-}
-
-let username=
-p.username ||
-p.full_name ||
-"User";
-
-let avatar=
-p.avatar_url ||
-"";
-
-box.innerHTML=`
-
-<div class="card profile-box">
-
-<div class="profile-top">
-
-${
-avatar
-?
-`<img src="${avatar}" class="profile-avatar">`
-:
-`<div class="profile-avatar">👤</div>`
-}
-
-<div>
-
-<h2>${username}</h2>
-
-<p>
-${p.bio || ""}
-</p>
-
-</div>
-
-</div>
-
-<div class="profile-actions">
-
-<button
-class="primary"
-onclick="followUser('${userId}',this)">
-Follow
-</button>
-
-</div>
-
-</div>
-
-<div id="profileVideos">
-Loading videos...
-</div>
-
-`;
-
-}catch(e){
-
-console.log(e);
-
-box.innerHTML=
-"<div class='card'>Could not load profile</div>";
+return null;
 
 }
+
+return data;
 
 }/* ================================
-   PROFILE VIDEOS
+   LOAD FEED
 ================================ */
 
-async function loadProfileVideos(userId){
+async function loadFeed(){
 
-const box=
-document.getElementById("profileVideos");
+const box=$("feed");
 
 if(!box)return;
 
 box.innerHTML=
-"Loading videos...";
+`<div class="card muted">Loading videos...</div>`;
 
-try{
-
-const {data:videos,error}=await sb
+const {data,error}=
+await sb
 .from("videos")
 .select("*")
-.eq("user_id",userId)
 .order("created_at",{ascending:false});
 
-if(error)throw error;
+if(error){
 
-if(!videos || !videos.length){
+console.log(error);
 
-box.innerHTML=`
-<div class="card">
-No videos yet 🎬
+box.innerHTML=
+`<div class="card muted">
+Could not load videos.
+</div>`;
+
+return;
+
+}
+
+if(!data || !data.length){
+
+box.innerHTML=
+`<div class="card muted">
+No videos yet. Be the first to post!
 </div>`;
 
 return;
@@ -1127,40 +1120,9 @@ return;
 
 box.innerHTML="";
 
-for(const v of videos){
+for(const video of data){
 
-const item=
-document.createElement("div");
-
-item.className="profile-video";
-
-item.innerHTML=`
-
-<video
-src="${v.video_url || v.url || ""}"
-controls
-playsinline
-style="
-width:100%;
-border-radius:14px;
-display:block;
-">
-</video>
-
-`;
-
-box.appendChild(item);
-
-}
-
-}catch(e){
-
-console.log(e);
-
-box.innerHTML=`
-<div class="card">
-Could not load videos
-</div>`;
+await createVideoCard(video,box);
 
 }
 
@@ -1168,23 +1130,281 @@ Could not load videos
 
 
 /* ================================
+   VIDEO CARD
+================================ */
+
+async function createVideoCard(v,box){
+
+const id=v.id;
+
+const videoUrl=
+v.video_url ||
+v.url ||
+"";
+
+const title=
+v.title ||
+v.caption ||
+"";
+
+let profile=null;
+
+if(v.user_id){
+
+profile=
+await getProfile(v.user_id);
+
+}
+
+const username=
+profile?.username ||
+profile?.full_name ||
+"User";
+
+const avatar=
+profile?.avatar_url || "";
+
+const card=
+document.createElement("div");
+
+card.className="video-card";
+
+card.innerHTML=`
+
+<video
+class="media"
+src="${videoUrl}"
+controls
+playsinline
+preload="metadata">
+</video>
+
+<div class="video-info">
+
+<div
+class="video-user"
+onclick="openProfile('${v.user_id}')"
+style="cursor:pointer">
+
+${avatar
+? `<img
+src="${avatar}"
+style="
+width:32px;
+height:32px;
+border-radius:50%;
+object-fit:cover;
+vertical-align:middle;
+margin-right:7px">`
+: "👤"}
+
+@${escapeHtml(username)}
+
+</div>
+
+<div class="video-title">
+${escapeHtml(title)}
+</div>
+
+</div>
+
+<div class="video-actions">
+
+<button
+class="action"
+id="like-${id}"
+onclick="videoAction('like','${id}')">
+
+<span class="action-icon">❤️</span>
+
+</button>
+
+<button
+class="action"
+onclick="videoAction('comment','${id}')">
+
+<span class="action-icon">💬</span>
+
+</button>
+
+<button
+class="action"
+onclick="videoAction('share','${id}')">
+
+<span class="action-icon">↗️</span>
+
+</button>
+
+<button
+class="action"
+onclick="videoAction('whatsapp','${id}')">
+
+<span class="action-icon">🟢</span>
+
+</button>
+
+<button
+class="action"
+onclick="videoAction('sound','${id}')">
+
+<span class="action-icon">🎵</span>
+
+</button>
+
+</div>
+
+<div
+class="sound-used"
+id="sound-${id}">
+
+🎵 Original sound
+
+</div>
+
+`;
+
+box.appendChild(card);
+
+}
+
+
+/* ================================
+   ESCAPE HTML
+================================ */
+
+function escapeHtml(value){
+
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================
+   VIDEO ACTIONS
+================================ */
+
+function videoAction(type,id){
+
+if(type==="like"){
+
+const btn=
+document.getElementById("like-"+id);
+
+likePost(id,btn);
+
+}
+
+if(type==="comment"){
+
+commentPost(id);
+
+}
+
+if(type==="share"){
+
+sharePost(id);
+
+}
+
+if(type==="whatsapp"){
+
+whatsappPost(id);
+
+}
+
+if(type==="sound"){
+
+showSound(
+document.getElementById("sound-"+id)
+?.textContent
+);
+
+}
+
+}
+
+
+/* ================================
+   SHARE VIDEO
+================================ */
+
+async function sharePost(id){
+
+const url=
+window.location.origin+
+window.location.pathname+
+"?video="+encodeURIComponent(id);
+
+try{
+
+await navigator.clipboard.writeText(url);
+
+alert("✅ Video link copied");
+
+}catch(e){
+
+prompt(
+"Copy this video link:",
+url
+);
+
+}
+
+}
+
+
+/* ================================
+   WHATSAPP
+================================ */
+
+function whatsappPost(id){
+
+const url=
+window.location.origin+
+window.location.pathname+
+"?video="+encodeURIComponent(id);
+
+const text=
+"We Media video 🎥\n"+url;
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+
+/* ================================
+   SOUND
+================================ */
+
+function showSound(sound){
+
+alert(
+sound ||
+"🎵 Original sound"
+);
+
+   }/* ================================
    SEARCH USERS
 ================================ */
 
 async function searchUsers(){
 
-const input=
-document.getElementById("searchInput");
+const input=$("searchInput");
 
-if(!input)return;
+const box=$("searchResults");
 
-const q=
-input.value.trim();
+if(!input || !box)return;
 
-const box=
-document.getElementById("searchResults");
-
-if(!box)return;
+const q=input.value.trim();
 
 if(!q){
 
@@ -1194,26 +1414,33 @@ return;
 
 }
 
-box.innerHTML=
-"Searching...";
-
-try{
-
-const {data,error}=await sb
+const {data,error}=
+await sb
 .from("profiles")
 .select("id,username,full_name,avatar_url")
 .or(
 `username.ilike.%${q}%,full_name.ilike.%${q}%`
 )
-.limit(20);
+.limit(30);
 
-if(error)throw error;
+if(error){
+
+console.log(error);
+
+box.innerHTML=
+`<div class="muted">
+Search failed.
+</div>`;
+
+return;
+
+}
 
 if(!data || !data.length){
 
-box.innerHTML=`
-<div class="card">
-No users found
+box.innerHTML=
+`<div class="muted">
+No users found.
 </div>`;
 
 return;
@@ -1232,100 +1459,233 @@ p.full_name ||
 const row=
 document.createElement("div");
 
-row.className="card";
-
-row.style.cursor="pointer";
+row.className="search-result";
 
 row.innerHTML=`
 
-<div style="
-display:flex;
-align-items:center;
-gap:12px;
-">
+<div class="search-avatar">
 
-${
-p.avatar_url
-?
-`<img
-src="${p.avatar_url}"
-style="
-width:48px;
-height:48px;
-border-radius:50%;
-object-fit:cover;
-">`
-:
-`<div style="
-width:48px;
-height:48px;
-border-radius:50%;
-background:#333;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-">
-👤
-</div>`
-}
+${p.avatar_url
+? `<img src="${p.avatar_url}">`
+: "👤"}
 
-<div>
-<b>${name}</b>
+</div>
+
+<div style="flex:1">
+
+<div style="font-weight:bold">
+
+@${escapeHtml(name)}
+
+</div>
+
+<div class="muted">
+
+${escapeHtml(p.full_name || "")}
+
 </div>
 
 </div>
+
+<button
+class="secondary"
+style="width:auto;padding:8px 12px"
+onclick="openProfile('${p.id}')">
+
+View
+
+</button>
 
 `;
-
-row.onclick=()=>{
-openProfile(p.id);
-};
 
 box.appendChild(row);
 
 });
 
-}catch(e){
+}
 
-console.log(e);
 
-box.innerHTML=`
-<div class="card">
-Search failed
-</div>`;
+/* ================================
+   MY PROFILE
+================================ */
+
+async function loadMyProfile(){
+
+if(!requireLogin())return;
+
+await openProfile(user.id);
 
 }
 
-}/* ================================
+
+/* ================================
+   SUGGESTIONS
+================================ */
+
+async function loadSuggestions(){
+
+const box=$("suggestions");
+
+if(!box)return;
+
+if(!user){
+
+box.innerHTML=
+`<div class="muted">
+Login to see people you may know.
+</div>`;
+
+return;
+
+}
+
+const {data,error}=
+await sb
+.from("profiles")
+.select("id,username,full_name,avatar_url")
+.neq("id",user.id)
+.limit(30);
+
+if(error){
+
+console.log(error);
+
+box.innerHTML=
+`<div class="muted">
+Could not load suggestions.
+</div>`;
+
+return;
+
+}
+
+if(!data || !data.length){
+
+box.innerHTML=
+`<div class="muted">
+No suggestions available.
+</div>`;
+
+return;
+
+}
+
+box.innerHTML="";
+
+for(const p of data){
+
+const name=
+p.username ||
+p.full_name ||
+"User";
+
+const {data:follow}=await sb
+.from("followers")
+.select("id")
+.eq("follower_id",user.id)
+.eq("following_id",p.id)
+.maybeSingle();
+
+const row=
+document.createElement("div");
+
+row.className="search-result";
+
+row.innerHTML=`
+
+<div
+class="search-avatar">
+
+${p.avatar_url
+? `<img src="${p.avatar_url}">`
+: "👤"}
+
+</div>
+
+<div style="flex:1">
+
+<div style="font-weight:bold">
+
+@${escapeHtml(name)}
+
+</div>
+
+<div class="muted">
+
+${escapeHtml(p.full_name || "")}
+
+</div>
+
+</div>
+
+<button
+class="secondary"
+style="width:auto;padding:8px 12px"
+onclick="followUser(
+'${p.id}',
+this
+)">
+
+${follow ? "Following" : "Follow"}
+
+</button>
+
+`;
+
+box.appendChild(row);
+
+}
+
+}
+
+
+/* ================================
    NOTIFICATIONS
 ================================ */
 
 async function loadNotifications(){
 
-if(!user)return;
-
-const box=
-document.getElementById("notifications");
+const box=$("notificationsList");
 
 if(!box)return;
 
-try{
+if(!user){
 
-const {data,error}=await sb
+box.innerHTML=
+`<div class="muted">
+Login to see notifications.
+</div>`;
+
+return;
+
+}
+
+const {data,error}=
+await sb
 .from("notifications")
 .select("*")
 .eq("user_id",user.id)
 .order("created_at",{ascending:false})
-.limit(30);
+.limit(50);
 
-if(error)throw error;
+if(error){
+
+console.log(error);
+
+box.innerHTML=
+`<div class="muted">
+No notifications available.
+</div>`;
+
+return;
+
+}
 
 if(!data || !data.length){
 
-box.innerHTML=`
-<div class="card">
-No notifications yet 🔔
+box.innerHTML=
+`<div class="muted">
+No notifications yet.
 </div>`;
 
 return;
@@ -1336,47 +1696,19 @@ box.innerHTML="";
 
 data.forEach(n=>{
 
-const item=
+const row=
 document.createElement("div");
 
-item.className="card";
+row.className="comment-item";
 
-item.innerHTML=`
+row.textContent=
+n.message ||
+n.text ||
+"New notification";
 
-<div style="
-display:flex;
-align-items:center;
-gap:12px;
-">
-
-<div style="font-size:25px">
-${n.type==="like"?"❤️":
-  n.type==="comment"?"💬":
-  n.type==="follow"?"👤":"🔔"}
-</div>
-
-<div>
-${n.message || "New notification"}
-</div>
-
-</div>
-
-`;
-
-box.appendChild(item);
+box.appendChild(row);
 
 });
-
-}catch(e){
-
-console.log(e);
-
-box.innerHTML=`
-<div class="card">
-Could not load notifications
-</div>`;
-
-}
 
 }
 
@@ -1385,50 +1717,266 @@ Could not load notifications
    MESSAGES
 ================================ */
 
-function openMessage(userId){
+async function loadMessages(){
+
+const box=$("messagesList");
+
+if(!box)return;
 
 if(!user){
 
-alert("Login first");
-
-showPage("login");
+box.innerHTML=
+`<div class="muted">
+Login to see messages.
+</div>`;
 
 return;
 
 }
 
+const {data,error}=
+await sb
+.from("messages")
+.select("*")
+.or(
+`sender_id.eq.${user.id},receiver_id.eq.${user.id}`
+)
+.order("created_at",{ascending:true})
+.limit(100);
+
+if(error){
+
+console.log(error);
+
+box.innerHTML=
+`<div class="muted">
+No messages available.
+</div>`;
+
+return;
+
+}
+
+if(!data || !data.length){
+
+box.innerHTML=
+`<div class="muted">
+No messages yet.
+</div>`;
+
+return;
+
+}
+
+box.innerHTML="";
+
+data.forEach(m=>{
+
+const row=
+document.createElement("div");
+
+row.className="message-row";
+
+const mine=
+m.sender_id===user.id;
+
+row.innerHTML=`
+
+<div class="message-bubble
+${mine ? "message-mine" : "message-other"}">
+
+${escapeHtml(
+m.message ||
+m.text ||
+""
+)}
+
+</div>
+
+`;
+
+box.appendChild(row);
+
+});
+
+box.scrollTop=box.scrollHeight;
+
+}
+
+
+/* ================================
+   OPEN MESSAGE
+================================ */
+
+function openMessage(userId){
+
+if(!requireLogin())return;
+
+selectedReceiverId=userId;
+
 showPage("messages");
 
-const box=
-document.getElementById("messages");
+}
 
-if(!box)return;
 
-box.innerHTML=`
+/* ================================
+   SEND MESSAGE
+================================ */
 
-<div class="card">
+async function sendMessage(receiverId,message){
 
-<h3>💬 Message</h3>
+if(!requireLogin())return;
 
-<textarea
-id="messageText"
-placeholder="Write a message..."
+if(!receiverId)return;
+
+const text=
+String(message || "").trim();
+
+if(!text)return;
+
+const {error}=
+await sb
+.from("messages")
+.insert({
+
+sender_id:user.id,
+receiver_id:receiverId,
+message:text
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+await loadMessages();
+
+}
+
+
+/* ================================
+   CAMERA / GALLERY
+================================ */
+
+function openGallery(){
+
+const file=$("postFile");
+
+if(file){
+
+file.removeAttribute("capture");
+
+file.click();
+
+}
+
+}
+
+
+function openCamera(){
+
+const file=$("postFile");
+
+if(file){
+
+file.setAttribute(
+"capture",
+"environment"
+);
+
+file.click();
+
+}
+
+}
+
+
+/* ================================
+   VIDEO PREVIEW
+================================ */
+
+function previewPost(){
+
+const file=$("postFile")?.files?.[0];
+
+const preview=$("effectPreview");
+
+if(!file || !preview)return;
+
+const url=
+URL.createObjectURL(file);
+
+preview.innerHTML=`
+
+<video
+src="${url}"
+controls
+playsinline
+style="width:100%;border-radius:10px">
+</video>
+
+`;
+
+}
+
+
+/* ================================
+   EFFECTS
+================================ */
+
+function addEffects(){
+
+const area=$("effectsArea");
+
+if(!area)return;
+
+area.innerHTML=`
+
+<div
 style="
-width:100%;
-min-height:100px;
-padding:12px;
-border-radius:12px;
-border:1px solid #555;
-background:#111;
-color:white;
-resize:none;
-">
-</textarea>
+font-weight:bold;
+margin:12px 0 7px">
+
+🎨 Effects
+
+</div>
+
+<div class="effect-row">
 
 <button
-class="primary"
-onclick="sendMessage('${userId}')">
-Send
+class="effect-btn active"
+onclick="setEffect('none',this)">
+
+Normal
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('gray',this)">
+
+B&W
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('warm',this)">
+
+Warm
+
+</button>
+
+<button
+class="effect-btn"
+onclick="setEffect('soft',this)">
+
+Soft
+
 </button>
 
 </div>
@@ -1438,85 +1986,236 @@ Send
 }
 
 
-/* SEND MESSAGE */
+function setEffect(effect,button){
 
-async function sendMessage(receiverId){
+postEffect=effect;
 
-if(!user){
+document
+.querySelectorAll(".effect-btn")
+.forEach(b=>{
+b.classList.remove("active");
+});
 
-alert("Login first");
+button?.classList.add("active");
+
+const video=
+$("effectPreview")?.querySelector("video");
+
+if(!video)return;
+
+if(effect==="gray")
+video.style.filter="grayscale(1)";
+
+else if(effect==="warm")
+video.style.filter=
+"sepia(.35) saturate(1.25)";
+
+else if(effect==="soft")
+video.style.filter=
+"brightness(1.08) contrast(.92)";
+
+else
+video.style.filter="none";
+
+}
+
+
+/* ================================
+   INIT EFFECTS
+================================ */
+
+addEffects();/* ================================
+   UPLOAD VIDEO
+================================ */
+
+async function uploadPost(){
+
+if(!requireLogin())return;
+
+const title=
+$("postTitle").value.trim();
+
+const file=
+$("postFile").files[0];
+
+const msg=$("uploadMsg");
+
+if(!file){
+
+msg.textContent=
+"❌ Select a video first";
 
 return;
 
 }
 
-const input=
-document.getElementById("messageText");
+if(!file.type.startsWith("video/")){
 
-if(!input)return;
+msg.textContent=
+"❌ Please select a video file";
 
-const message=
-input.value.trim();
-
-if(!message)return;
-
-try{
-
-const {error}=await sb
-.from("messages")
-.insert({
-
-sender_id:user.id,
-receiver_id:receiverId,
-message:message
-
-});
-
-if(error)throw error;
-
-input.value="";
-
-alert("Message sent ✅");
-
-}catch(e){
-
-console.log(e);
-
-alert("Message failed");
+return;
 
 }
 
-}/* ================================
-   PAGE START / REFRESH
+if(file.size>50*1024*1024){
+
+msg.textContent=
+"❌ Video must be below 50MB";
+
+return;
+
+}
+
+msg.textContent=
+"⏳ Uploading video...";
+
+
+try{
+
+const ext=
+file.name.split(".").pop();
+
+const fileName=
+user.id+
+"/"+
+Date.now()+
+"."+
+ext;
+
+const {error:uploadError}=
+await sb
+.storage
+.from("Videos")
+.upload(
+fileName,
+file,
+{
+contentType:file.type,
+upsert:false
+}
+);
+
+if(uploadError){
+
+console.log(uploadError);
+
+msg.textContent=
+"❌ "+uploadError.message;
+
+return;
+
+}
+
+
+/* ================================
+   GET PUBLIC URL
+================================ */
+
+const {data:urlData}=
+sb
+.storage
+.from("Videos")
+.getPublicUrl(fileName);
+
+const videoUrl=
+urlData.publicUrl;
+
+
+/* ================================
+   SAVE VIDEO
+================================ */
+
+const {error:dbError}=
+await sb
+.from("videos")
+.insert({
+
+user_id:user.id,
+title:title,
+video_url:videoUrl
+
+});
+
+if(dbError){
+
+console.log(dbError);
+
+msg.textContent=
+"❌ "+dbError.message;
+
+return;
+
+}
+
+msg.textContent=
+"✅ Video posted successfully!";
+
+
+/* ================================
+   CLEAR FORM
+================================ */
+
+$("postTitle").value="";
+
+$("postFile").value="";
+
+$("effectPreview").innerHTML="";
+
+
+/* ================================
+   RETURN HOME
+================================ */
+
+setTimeout(()=>{
+
+showPage("home");
+
+loadFeed();
+
+},800);
+
+}catch(error){
+
+console.log(error);
+
+msg.textContent=
+"❌ Upload failed";
+
+}
+
+}
+
+
+/* ================================
+   START APP
 ================================ */
 
 async function startApp(){
 
-try{
+const {data}=
+await sb.auth.getSession();
 
-if(typeof sb==="undefined"){
+user=
+data?.session?.user ||
+null;
 
-console.log("Supabase not ready");
+if(user){
 
-return;
+console.log(
+"Logged in:",
+user.email
+);
 
-}
+}else{
 
-const {
-data:{session}
-}=await sb.auth.getSession();
-
-if(session){
-
-user=session.user;
-
-}
-
-}catch(e){
-
-console.log(e);
+console.log(
+"Not logged in"
+);
 
 }
+
+await loadFeed();
 
 }
 
@@ -1525,24 +2224,33 @@ console.log(e);
    AUTH STATE
 ================================ */
 
-if(typeof sb!=="undefined"){
-
 sb.auth.onAuthStateChange(
 (event,session)=>{
 
-if(session){
+user=
+session?.user ||
+null;
 
-user=session.user;
+if(event==="SIGNED_IN"){
 
-}else{
+showPage("home");
+
+loadFeed();
+
+}
+
+if(event==="SIGNED_OUT"){
 
 user=null;
 
+showPage("home");
+
+loadFeed();
+
 }
 
-});
-
 }
+);
 
 
 /* ================================
@@ -1553,7 +2261,7 @@ async function openSharedVideo(){
 
 const params=
 new URLSearchParams(
-location.search
+window.location.search
 );
 
 const videoId=
@@ -1561,40 +2269,33 @@ params.get("video");
 
 if(!videoId)return;
 
-try{
-
-const {data:v,error}=await sb
+const {data,error}=
+await sb
 .from("videos")
 .select("*")
 .eq("id",videoId)
 .maybeSingle();
 
-if(error)throw error;
-
-if(!v)return;
+if(error || !data)return;
 
 showPage("home");
 
-const box=
-document.getElementById("videoFeed");
+const box=$("feed");
 
 if(!box)return;
 
 box.innerHTML="";
 
-await card(v,box);
-
-}catch(e){
-
-console.log(e);
-
-}
+await createVideoCard(
+data,
+box
+);
 
 }
 
 
 /* ================================
-   START
+   PAGE START
 ================================ */
 
 document.addEventListener(
@@ -1606,7 +2307,8 @@ await startApp();
 await openSharedVideo();
 
 }
-);</script>
+);
+</script>
 
 </body>
 </html>
