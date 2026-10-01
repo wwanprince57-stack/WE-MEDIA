@@ -988,7 +988,7 @@ card.appendChild(info);
 
 /* ACTIONS */
 
-const actions=
+ const actions=
 document.createElement("div");
 
 actions.className="video-actions";
@@ -996,28 +996,32 @@ actions.className="video-actions";
 actions.innerHTML=`
 
 <button class="action"
+type="button"
 onclick="likePost('${v.id}',this)">
 <span class="action-icon">❤️</span>
-<span class="action-text">Like</span>
 </button>
 
 <button class="action"
+type="button"
 onclick="commentPost('${v.id}')">
 <span class="action-icon">💬</span>
-<span class="action-text">Comment</span>
 </button>
 
 <button class="action"
+type="button"
 onclick="sharePost('${v.id}')">
 <span class="action-icon">↗️</span>
-<span class="action-text">Share</span>
 </button>
 
 <button class="action"
+type="button"
 onclick="whatsappShare('${encodeURIComponent(url)}')">
 <span class="action-icon">🟢</span>
-<span class="action-text">WhatsApp</span>
 </button>
+
+`;
+
+card.appendChild(actions);
 
 `;
 
