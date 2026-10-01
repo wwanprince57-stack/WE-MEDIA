@@ -356,6 +356,33 @@ async function sendMessage(){
 
 
 async function loadChat(){
+  let chatChannel;
+
+function startRealtimeChat(){
+  if(!chatUser)return;
+
+  if(chatChannel) sb.removeChannel(chatChannel);
+
+  chatChannel=sb
+    .channel("chat-"+chatUser)
+    .on(
+      "postgres_changes",
+      {event:"INSERT",schema:"public",table:"messages"},
+      payload=>{
+        let m=payload.new;
+        let me=String(user.id);
+        let to=String(chatUser);
+
+        if(
+          (String(m.sender_id)===me && String(m.receiver_id)===to) ||
+          (String(m.sender_id)===to && String(m.receiver_id)===me)
+        ){
+          loadChat();
+        }
+      }
+    )
+    .subscribe();
+}
 
  if(!user||!chatUser)return;
 
