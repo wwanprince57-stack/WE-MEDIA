@@ -3,208 +3,525 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>We Media</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#000;color:#fff;padding-bottom:75px}
-button{cursor:pointer}
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+ font-family:Arial,sans-serif;
+}
+
+body{
+ background:#000;
+ color:#fff;
+ padding-bottom:75px;
+}
+
+button{
+ cursor:pointer;
+}
+
 header{
-height:60px;background:#000;border-bottom:1px solid #222;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 15px;position:sticky;top:0;z-index:50
+ height:60px;
+ background:#000;
+ border-bottom:1px solid #222;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 15px;
+ position:sticky;
+ top:0;
+ z-index:20;
 }
-.logo{font-size:23px;font-weight:bold}
-.logo span{color:#00e5ff}
+
+.logo{
+ font-size:23px;
+ font-weight:bold;
+}
+
+.logo span{
+ color:#00e5ff;
+}
+
 .headerBtn{
-background:#00e5ff;color:#000;border:0;border-radius:22px;
-padding:9px 15px;font-weight:bold
+ background:#00e5ff;
+ color:#000;
+ border:0;
+ border-radius:22px;
+ padding:9px 16px;
+ font-weight:bold;
 }
-.page{display:none}
-.page.active{display:block}
-.topMessage{
-display:none;padding:10px;text-align:center;background:#071b1e;
-color:#00e5ff;font-size:13px
-}
-.loading{text-align:center;padding:50px;color:#00e5ff}
-.empty{text-align:center;padding:70px 20px;color:#888}
 
-.videoCard{
-background:#050505;border-bottom:1px solid #222;padding-bottom:12px
+.page{
+ display:none;
 }
-.video{
-width:100%;height:430px;object-fit:cover;background:#111;display:block
-}
-.videoInfo{padding:12px 15px 5px}
-.username{font-weight:bold;margin-bottom:7px;color:#00e5ff}
-.caption{color:#ddd;font-size:14px;line-height:20px}
-.stats{color:#888;font-size:12px;margin-top:7px}
-.actions{
-display:flex;align-items:center;gap:17px;padding:10px 15px 5px;
-flex-wrap:wrap
-}
-.action{background:none;color:#fff;border:0;font-size:14px}
-.action.liked{color:#ff3158}
 
-.commentBox{display:none;padding:8px 15px 12px}
-.commentBox input{
-width:78%;padding:11px;border-radius:20px;border:1px solid #333;
-background:#111;color:#fff;outline:none
+.page.active{
+ display:block;
 }
-.commentBox button{
-padding:10px 13px;margin-left:4px;border-radius:20px;border:0;
-background:#00e5ff;color:#000;font-weight:bold
+
+.message{
+ display:none;
+ background:#071b1e;
+ color:#00e5ff;
+ padding:12px;
+ text-align:center;
+ font-size:14px;
 }
-.comments{padding:0 15px 10px}
-.comment{padding:7px 0;border-bottom:1px solid #151515;font-size:13px}
-.comment b{color:#00e5ff;margin-right:5px}
+
+.loading{
+ text-align:center;
+ padding:60px 20px;
+ color:#00e5ff;
+}
+
+.empty{
+ text-align:center;
+ padding:60px 20px;
+ color:#888;
+}
+
+/* HOME */
 
 .refresh{
-background:none;color:#fff;border:1px solid #333;padding:7px 12px;
-border-radius:18px;margin:10px 15px
+ margin:12px 15px;
+ padding:8px 13px;
+ border:1px solid #333;
+ background:#000;
+ color:#fff;
+ border-radius:20px;
 }
 
-.uploadBox,.authBox{
-margin:25px 15px;padding:25px 18px;border:1px solid #292929;
-border-radius:15px;text-align:center;background:#080808
-}
-.uploadBox input[type=file]{margin:20px 0;width:100%;color:#fff}
-.uploadBtn,.mainBtn{
-background:#00e5ff;color:#000;padding:12px 25px;border:0;
-border-radius:25px;font-weight:bold
-}
-.uploadBtn:disabled{opacity:.5}
-#fileName{margin-top:10px;color:#aaa;font-size:13px}
-#uploadStatus{margin-top:15px;font-size:14px}
-.preview video{width:100%;margin-top:18px;border-radius:12px}
-
-.authBox h2{margin-bottom:10px}
-.authBox p{color:#888;font-size:13px;margin-bottom:20px}
-.authBox input,.searchInput{
-width:100%;padding:13px;margin:7px 0;border:1px solid #333;
-border-radius:10px;background:#111;color:#fff;outline:none
-}
-.authBox .mainBtn{width:100%;margin-top:12px}
-.switch{
-background:none;border:0;color:#00e5ff;margin-top:18px
-}
-.passwordWrap{position:relative}
-.passwordWrap input{padding-right:55px}
-.showPass{
-position:absolute;right:12px;top:16px;background:none;border:0;color:#aaa
+.videoCard{
+ background:#050505;
+ border-bottom:1px solid #222;
+ padding-bottom:12px;
 }
 
-.profile{padding:30px 20px;text-align:center}
+.video{
+ width:100%;
+ height:430px;
+ object-fit:cover;
+ background:#111;
+ display:block;
+}
+
+.videoInfo{
+ padding:12px 15px 5px;
+}
+
+.username{
+ color:#00e5ff;
+ font-weight:bold;
+ margin-bottom:6px;
+}
+
+.caption{
+ color:#ddd;
+ font-size:14px;
+ line-height:20px;
+}
+
+.stats{
+ color:#888;
+ font-size:12px;
+ margin-top:8px;
+}
+
+.actions{
+ display:flex;
+ gap:18px;
+ padding:10px 15px;
+ flex-wrap:wrap;
+}
+
+.action{
+ background:none;
+ color:#fff;
+ border:0;
+ font-size:14px;
+}
+
+.action.liked{
+ color:#ff3158;
+}
+
+/* COMMENTS */
+
+.commentBox{
+ display:none;
+ padding:5px 15px 12px;
+}
+
+.commentBox input{
+ width:75%;
+ padding:11px;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:20px;
+ outline:none;
+}
+
+.commentBox button{
+ padding:10px 13px;
+ border:0;
+ border-radius:20px;
+ background:#00e5ff;
+ color:#000;
+ font-weight:bold;
+}
+
+.comments{
+ padding:0 15px;
+}
+
+.comment{
+ padding:8px 0;
+ border-bottom:1px solid #181818;
+ font-size:13px;
+}
+
+.comment b{
+ color:#00e5ff;
+ margin-right:5px;
+}
+
+/* AUTH */
+
+.auth{
+ padding:30px 18px;
+}
+
+.authBox{
+ background:#090909;
+ border:1px solid #292929;
+ border-radius:16px;
+ padding:25px 18px;
+}
+
+.authBox h2{
+ text-align:center;
+ margin-bottom:8px;
+}
+
+.authBox p{
+ text-align:center;
+ color:#888;
+ font-size:13px;
+ margin-bottom:20px;
+}
+
+.authBox input{
+ width:100%;
+ padding:13px;
+ margin:7px 0;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:10px;
+ outline:none;
+}
+
+.mainBtn{
+ width:100%;
+ margin-top:12px;
+ padding:13px;
+ border:0;
+ border-radius:25px;
+ background:#00e5ff;
+ color:#000;
+ font-weight:bold;
+}
+
+.switchBtn{
+ width:100%;
+ margin-top:17px;
+ background:none;
+ border:0;
+ color:#00e5ff;
+}
+
+.password{
+ position:relative;
+}
+
+.password input{
+ padding-right:55px;
+}
+
+.eye{
+ position:absolute;
+ right:10px;
+ top:16px;
+ background:none;
+ border:0;
+ color:#aaa;
+}
+
+/* UPLOAD */
+
+.upload{
+ padding:25px 15px;
+}
+
+.uploadBox{
+ border:1px dashed #555;
+ border-radius:15px;
+ padding:25px 18px;
+ text-align:center;
+}
+
+.uploadBox p{
+ color:#888;
+ margin:10px 0;
+}
+
+.fileInput{
+ width:100%;
+ margin:20px 0;
+ color:#fff;
+}
+
+.preview video{
+ width:100%;
+ margin-top:15px;
+ border-radius:12px;
+}
+
+.uploadBtn{
+ margin-top:18px;
+ padding:12px 24px;
+ border:0;
+ border-radius:25px;
+ background:#00e5ff;
+ color:#000;
+ font-weight:bold;
+}
+
+#uploadStatus{
+ margin-top:15px;
+ font-size:14px;
+}
+
+/* SEARCH */
+
+.search{
+ padding:20px 15px;
+}
+
+.search input{
+ width:100%;
+ padding:13px;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:10px;
+ outline:none;
+ margin:15px 0;
+}
+
+.user{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:14px 5px;
+ border-bottom:1px solid #222;
+}
+
+.followBtn{
+ border:0;
+ background:#00e5ff;
+ color:#000;
+ border-radius:20px;
+ padding:8px 15px;
+ font-weight:bold;
+}
+
+.following{
+ background:#333;
+ color:#fff;
+}
+
+/* PROFILE */
+
+.profile{
+ text-align:center;
+ padding:30px 18px;
+}
+
 .avatar{
-width:90px;height:90px;border-radius:50%;background:#00e5ff;color:#000;
-display:flex;align-items:center;justify-content:center;font-size:35px;
-font-weight:bold;margin:10px auto 15px
+ width:90px;
+ height:90px;
+ border-radius:50%;
+ background:#00e5ff;
+ color:#000;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ margin:10px auto 15px;
+ font-size:35px;
+ font-weight:bold;
 }
+
+.profileEmail{
+ color:#888;
+ margin-top:7px;
+ font-size:13px;
+}
+
 .profileStats{
-display:flex;justify-content:space-around;margin-top:30px;
-padding:20px 0;border-top:1px solid #222;border-bottom:1px solid #222
+ display:flex;
+ justify-content:space-around;
+ margin-top:30px;
+ padding:20px 0;
+ border-top:1px solid #222;
+ border-bottom:1px solid #222;
 }
-.profileStats b{font-size:20px}
-.profileStats small{color:#aaa}
+
+.profileStats b{
+ font-size:20px;
+}
+
+.profileStats small{
+ color:#888;
+}
 
 .profileBtn{
-margin-top:20px;padding:11px 25px;border-radius:22px;
-border:1px solid #333;background:#111;color:#fff
+ margin-top:18px;
+ padding:11px 24px;
+ border-radius:22px;
+ border:1px solid #333;
+ background:#111;
+ color:#fff;
 }
-.logoutBtn{background:#ff3158;color:#fff;border:0}
 
-.searchBox{padding:15px}
-.userResult{
-padding:13px;background:#0b0b0b;border-bottom:1px solid #222;
-display:flex;justify-content:space-between;align-items:center
+.logout{
+ background:#ff3158;
+ border:0;
 }
-.followBtn{
-background:#00e5ff;color:#000;border:0;border-radius:20px;
-padding:8px 15px;font-weight:bold
-}
-.followBtn.following{background:#333;color:#fff}
+
+/* NAV */
 
 .nav{
-position:fixed;bottom:0;left:0;right:0;height:70px;background:#080808;
-border-top:1px solid #222;display:flex;justify-content:space-around;
-align-items:center;z-index:100
-}
-.nav button{background:none;border:0;color:#aaa;font-size:12px}
-.nav button.active{color:#00e5ff}
-.navIcon{display:block;font-size:23px;margin-bottom:3px}
-
-.modal{
-display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);
-z-index:200;align-items:flex-end
-}
-.modalBox{
-width:100%;max-height:80vh;background:#111;border-radius:20px 20px 0 0;
-padding:20px;overflow:auto
-}
-.closeBtn{
-float:right;background:none;border:0;color:#fff;font-size:22px
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:70px;
+ background:#080808;
+ border-top:1px solid #222;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ z-index:100;
 }
 
-.hidden{display:none!important}
-.small{font-size:12px;color:#777}
+.nav button{
+ background:none;
+ border:0;
+ color:#888;
+ font-size:12px;
+}
+
+.nav button.active{
+ color:#00e5ff;
+}
+
+.icon{
+ display:block;
+ font-size:23px;
+ margin-bottom:3px;
+}
+
+.hide{
+ display:none!important;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">We <span>Media</span></div>
 
-<button id="headerAuthBtn" class="headerBtn"
-onclick="openAuth()">Login</button>
+<div class="logo">
+We <span>Media</span>
+</div>
+
+<button id="topButton"
+class="headerBtn"
+onclick="openLogin()">
+Login
+</button>
+
 </header>
 
-<div id="message" class="topMessage"></div>
+<div id="message" class="message"></div>
+
 
 <!-- HOME -->
+
 <section id="home" class="page active">
 
-<button class="refresh" onclick="loadVideos()">🔄 Refresh videos</button>
+<button class="refresh"
+onclick="loadVideos()">
+🔄 Refresh videos
+</button>
 
 <div id="feed">
-<div class="loading">Loading We Media 🎬...</div>
+<div class="loading">
+Loading We Media 🎬...
+</div>
 </div>
 
 </section>
 
 
 <!-- SEARCH -->
+
 <section id="search" class="page">
 
-<div class="searchBox">
-<h2 style="margin-bottom:10px">Search People 🔎</h2>
+<div class="search">
 
-<input id="searchInput" class="searchInput"
+<h2>Search People 🔎</h2>
+
+<input
+id="searchInput"
 placeholder="Search username..."
 oninput="searchUsers()">
 
-<div id="searchResults">
-<div class="empty">Search for people on We Media</div>
+<div id="users">
+<div class="empty">
+Search for people on We Media
 </div>
+</div>
+
 </div>
 
 </section>
 
 
 <!-- UPLOAD -->
+
 <section id="upload" class="page">
+
+<div class="upload">
 
 <div class="uploadBox">
 
 <h2>Upload Video 🎬</h2>
 
-<p style="margin:10px 0;color:#aaa">
+<p>
 Share your video on We Media
 </p>
 
 <input
+class="fileInput"
 type="file"
 id="videoFile"
 accept="video/*"
@@ -214,15 +531,18 @@ onchange="selectVideo()">
 
 <div id="preview" class="preview"></div>
 
-<br>
-
-<button id="uploadBtn"
+<button
 class="uploadBtn"
+id="uploadButton"
 onclick="uploadVideo()">
+
 📤 Upload Video
+
 </button>
 
 <div id="uploadStatus"></div>
+
+</div>
 
 </div>
 
@@ -230,44 +550,56 @@ onclick="uploadVideo()">
 
 
 <!-- PROFILE -->
+
 <section id="profile" class="page">
 
 <div class="profile">
 
-<div id="avatar" class="avatar">W</div>
+<div id="avatar" class="avatar">
+W
+</div>
 
-<h2 id="profileName">We Media User</h2>
+<h2 id="profileName">
+We Media User
+</h2>
 
-<p id="profileEmail" style="color:#aaa;margin-top:8px">
+<div id="profileEmail"
+class="profileEmail">
 Not logged in
-</p>
+</div>
 
 <div class="profileStats">
 
 <div>
-<b id="profileVideos">0</b><br>
+<b id="videoCount">0</b>
+<br>
 <small>Videos</small>
 </div>
 
 <div>
-<b id="profileFollowers">0</b><br>
+<b id="followersCount">0</b>
+<br>
 <small>Followers</small>
 </div>
 
 <div>
-<b id="profileFollowing">0</b><br>
+<b id="followingCount">0</b>
+<br>
 <small>Following</small>
 </div>
 
 </div>
 
-<button class="profileBtn" onclick="showPage('search',this)">
+<button
+class="profileBtn"
+onclick="goSearch()">
 🔎 Find People
 </button>
 
 <br>
 
-<button class="profileBtn logoutBtn"
+<button
+class="profileBtn logout"
 onclick="logout()">
 Logout
 </button>
@@ -277,77 +609,103 @@ Logout
 </section>
 
 
-<!-- AUTH -->
-<section id="auth" class="page">
+<!-- LOGIN -->
+
+<section id="login" class="page">
+
+<div class="auth">
 
 <div class="authBox">
-
-<div id="loginBox">
 
 <h2>Welcome Back 👋</h2>
 
 <p>Login to your We Media account</p>
 
-<input id="loginEmail"
+<input
+id="loginEmail"
 type="email"
 placeholder="Email">
 
-<div class="passwordWrap">
-<input id="loginPassword"
+<div class="password">
+
+<input
+id="loginPassword"
 type="password"
 placeholder="Password">
-<button class="showPass"
-onclick="togglePassword('loginPassword',this)">
+
+<button
+class="eye"
+onclick="showPassword('loginPassword',this)">
 👁️
 </button>
+
 </div>
 
-<button class="mainBtn" onclick="login()">
+<button
+class="mainBtn"
+onclick="login()">
 LOGIN
 </button>
 
-<br>
-
-<button class="switch"
-onclick="showRegister()">
-Create new account
+<button
+class="switchBtn"
+onclick="openRegister()">
+Don't have an account? Create Account
 </button>
 
 </div>
 
+</div>
 
-<div id="registerBox" class="hidden">
+</section>
+
+
+<!-- REGISTER -->
+
+<section id="register" class="page">
+
+<div class="auth">
+
+<div class="authBox">
 
 <h2>Create Account 🚀</h2>
 
-<p>Join We Media today</p>
+<p>Join We Media</p>
 
-<input id="registerUsername"
+<input
+id="registerUsername"
 type="text"
 placeholder="Username">
 
-<input id="registerEmail"
+<input
+id="registerEmail"
 type="email"
 placeholder="Email">
 
-<div class="passwordWrap">
-<input id="registerPassword"
+<div class="password">
+
+<input
+id="registerPassword"
 type="password"
 placeholder="Password">
-<button class="showPass"
-onclick="togglePassword('registerPassword',this)">
+
+<button
+class="eye"
+onclick="showPassword('registerPassword',this)">
 👁️
 </button>
+
 </div>
 
-<button class="mainBtn" onclick="register()">
+<button
+class="mainBtn"
+onclick="register()">
 CREATE ACCOUNT
 </button>
 
-<br>
-
-<button class="switch"
-onclick="showLogin()">
+<button
+class="switchBtn"
+onclick="openLogin()">
 Already have an account? Login
 </button>
 
@@ -358,30 +716,33 @@ Already have an account? Login
 </section>
 
 
-<!-- NAV -->
+<!-- NAVIGATION -->
+
 <nav class="nav">
 
-<button id="navHome" class="active"
+<button
+id="homeNav"
+class="active"
 onclick="showPage('home',this)">
-<span class="navIcon">🏠</span>
+<span class="icon">🏠</span>
 Home
 </button>
 
 <button
 onclick="showPage('search',this)">
-<span class="navIcon">🔎</span>
+<span class="icon">🔎</span>
 Search
 </button>
 
 <button
 onclick="showPage('upload',this)">
-<span class="navIcon">➕</span>
+<span class="icon">➕</span>
 Upload
 </button>
 
 <button
 onclick="showPage('profile',this)">
-<span class="navIcon">👤</span>
+<span class="icon">👤</span>
 Profile
 </button>
 
@@ -390,9 +751,9 @@ Profile
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* =========================================
+SUPABASE
+========================================= */
 
 const SUPABASE_URL =
 "https://jhxbfkpcinetbuwsnxcz.supabase.co";
@@ -400,214 +761,167 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
 
-const supabaseClient =
+const db =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
 
-/* =====================================================
-   DEVICE ID
-===================================================== */
+/* =========================================
+USER
+========================================= */
 
-let deviceId =
-localStorage.getItem("wemedia_device");
-
-if(!deviceId){
-
-deviceId =
-"user_" +
-Date.now() +
-"_" +
-Math.random().toString(36).substring(2);
-
-localStorage.setItem(
-"wemedia_device",
-deviceId
-);
-
-}
+let currentUser = null;
 
 
-/* =====================================================
-   DEMO VIDEOS
-===================================================== */
+/* =========================================
+MESSAGE
+========================================= */
 
-const demoVideos=[
+function showMessage(text){
 
-{
-path:"demo_flower",
-url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-username:"@wemedia",
-caption:"Welcome to We Media 🎬"
-},
-
-{
-path:"demo_bunny",
-url:"https://www.w3schools.com/html/mov_bbb.mp4",
-username:"@wemedia",
-caption:"Watch and share videos on We Media 🔥"
-}
-
-];
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function message(text){
-
-const box=document.getElementById("message");
+const box =
+document.getElementById("message");
 
 box.innerText=text;
 box.style.display="block";
 
-setTimeout(()=>{
+setTimeout(function(){
 box.style.display="none";
-},3500);
+},3000);
 
 }
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================
+NAVIGATION
+========================================= */
 
-function showPage(page,button){
+function showPage(name,button){
 
 document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+.forEach(function(page){
 
-const target=document.getElementById(page);
+page.classList.remove("active");
 
-if(target){
-target.classList.add("active");
+});
+
+const page =
+document.getElementById(name);
+
+if(page){
+page.classList.add("active");
 }
 
 document.querySelectorAll(".nav button")
-.forEach(b=>b.classList.remove("active"));
+.forEach(function(btn){
+
+btn.classList.remove("active");
+
+});
 
 if(button){
 button.classList.add("active");
 }
 
-if(page==="home"){
+window.scrollTo(0,0);
+
+if(name==="home"){
 loadVideos();
 }
 
-if(page==="profile"){
+if(name==="profile"){
 loadProfile();
 }
 
-if(page==="search"){
-document.getElementById("searchInput").focus();
-}
-
-window.scrollTo(0,0);
-
 }
 
 
-/* =====================================================
-   AUTH PAGE
-===================================================== */
+/* =========================================
+LOGIN PAGE
+========================================= */
 
-function openAuth(){
+function openLogin(){
 
-showPage("auth");
-
-if(currentUser){
-message("You are already logged in.");
-}
-}
-
-function showLogin(){
-
-document.getElementById("loginBox")
-.classList.remove("hidden");
-
-document.getElementById("registerBox")
-.classList.add("hidden");
+showPage("login");
 
 }
 
-function showRegister(){
+function openRegister(){
 
-document.getElementById("loginBox")
-.classList.add("hidden");
-
-document.getElementById("registerBox")
-.classList.remove("hidden");
+showPage("register");
 
 }
 
-function togglePassword(id,button){
 
-const input=document.getElementById(id);
+/* =========================================
+PASSWORD
+========================================= */
+
+function showPassword(id,button){
+
+const input =
+document.getElementById(id);
 
 if(input.type==="password"){
+
 input.type="text";
 button.innerText="🙈";
+
 }else{
+
 input.type="password";
 button.innerText="👁️";
-}
 
 }
 
-
-/* =====================================================
-   CURRENT USER
-===================================================== */
-
-let currentUser=null;
+}
 
 
-/* =====================================================
-   REGISTER
-===================================================== */
+/* =========================================
+REGISTER
+========================================= */
 
 async function register(){
 
-const username=
+const username =
 document.getElementById("registerUsername")
 .value.trim();
 
-const email=
+const email =
 document.getElementById("registerEmail")
 .value.trim();
 
-const password=
+const password =
 document.getElementById("registerPassword")
 .value;
 
 if(username.length<3){
+
 alert("Username must have at least 3 characters.");
 return;
+
 }
 
 if(!email){
+
 alert("Enter your email.");
 return;
+
 }
 
 if(password.length<6){
+
 alert("Password must have at least 6 characters.");
 return;
+
 }
-
-const button=
-document.querySelector("#registerBox .mainBtn");
-
-button.disabled=true;
-button.innerText="Creating account...";
 
 try{
 
-const result=
-await supabaseClient.auth.signUp({
+const result =
+await db.auth.signUp({
 
 email:email,
 password:password,
@@ -623,97 +937,68 @@ username:username
 if(result.error){
 
 alert(result.error.message);
-button.disabled=false;
-button.innerText="CREATE ACCOUNT";
 return;
 
 }
 
+if(result.data.session){
+
 currentUser=result.data.user;
 
-if(result.data.user){
-
-/*
-Try creating profile.
-If profiles table is not ready, account still works.
-*/
-
-try{
-
-await supabaseClient
-.from("profiles")
-.insert({
-
-id:result.data.user.id,
-username:username,
-email:email
-
-});
-
-}catch(e){
-console.log("Profile table unavailable:",e);
-}
-
-message("✅ Account created successfully!");
-
-showPage("home");
+showMessage(
+"✅ Account created successfully!"
+);
 
 updateHeader();
 
+showPage("home");
+
 }else{
 
-message(
-"Account created. Check your email to confirm your account."
+alert(
+"Account created! Check your email to confirm your account, then login."
 );
 
-showLogin();
+openLogin();
 
 }
 
 }catch(error){
 
 console.log(error);
-alert("Account creation failed. Please try again.");
+
+alert("Something went wrong creating the account.");
 
 }
 
-button.disabled=false;
-button.innerText="CREATE ACCOUNT";
-
 }
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
+/* =========================================
+LOGIN
+========================================= */
 
 async function login(){
 
-const email=
+const email =
 document.getElementById("loginEmail")
 .value.trim();
 
-const password=
+const password =
 document.getElementById("loginPassword")
 .value;
 
-if(!email||!password){
+if(!email || !password){
 
 alert("Enter email and password.");
 return;
 
 }
 
-const button=
-document.querySelector("#loginBox .mainBtn");
-
-button.disabled=true;
-button.innerText="Logging in...";
-
 try{
 
-const result=
-await supabaseClient.auth.signInWithPassword({
+const result =
+await db.auth.signInWithPassword({
 
 email:email,
 password:password
@@ -723,17 +1008,13 @@ password:password
 if(result.error){
 
 alert(result.error.message);
-
-button.disabled=false;
-button.innerText="LOGIN";
-
 return;
 
 }
 
 currentUser=result.data.user;
 
-message("✅ Welcome back!");
+showMessage("✅ Login successful!");
 
 updateHeader();
 
@@ -747,60 +1028,50 @@ alert("Login failed.");
 
 }
 
-button.disabled=false;
-button.innerText="LOGIN";
-
 }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+/* =========================================
+LOGOUT
+========================================= */
 
 async function logout(){
 
-await supabaseClient.auth.signOut();
+try{
+
+await db.auth.signOut();
+
+}catch(e){
+
+console.log(e);
+
+}
 
 currentUser=null;
 
 updateHeader();
 
-message("You have logged out.");
+showMessage("Logged out successfully.");
 
 showPage("home");
 
 }
 
 
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-supabaseClient.auth.onAuthStateChange(
-(event,session)=>{
-
-currentUser=session?.user||null;
-
-updateHeader();
-
-}
-);
-
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* =========================================
+HEADER
+========================================= */
 
 function updateHeader(){
 
-const btn=
-document.getElementById("headerAuthBtn");
+const button =
+document.getElementById("topButton");
 
 if(currentUser){
 
-btn.innerText="Profile";
+button.innerText="Profile";
 
-btn.onclick=function(){
+button.onclick=function(){
 
 showPage("profile");
 
@@ -810,11 +1081,11 @@ loadProfile();
 
 }else{
 
-btn.innerText="Login";
+button.innerText="Login";
 
-btn.onclick=function(){
+button.onclick=function(){
 
-showPage("auth");
+openLogin();
 
 };
 
@@ -823,39 +1094,108 @@ showPage("auth");
 }
 
 
-/* =====================================================
-   LOAD VIDEOS
-===================================================== */
+/* =========================================
+AUTH CHECK
+========================================= */
+
+async function checkLogin(){
+
+try{
+
+const result =
+await db.auth.getSession();
+
+currentUser =
+result.data.session
+? result.data.session.user
+: null;
+
+updateHeader();
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+/* =========================================
+AUTH LISTENER
+========================================= */
+
+db.auth.onAuthStateChange(
+function(event,session){
+
+currentUser =
+session ? session.user : null;
+
+updateHeader();
+
+}
+);
+
+
+/* =========================================
+DEMO VIDEOS
+========================================= */
+
+const demoVideos=[
+
+{
+path:"demo_flower",
+url:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+username:"@wemedia",
+caption:"Welcome to We Media 🎬"
+},
+
+{
+path:"demo_bunny",
+url:"https://www.w3schools.com/html/mov_bbb.mp4",
+username:"@wemedia",
+caption:"Watch videos and share on We Media 🔥"
+}
+
+];
+
+
+/* =========================================
+LOAD VIDEOS
+========================================= */
 
 async function loadVideos(){
 
-const feed=
+const feed =
 document.getElementById("feed");
 
-feed.innerHTML=
+feed.innerHTML =
 '<div class="loading">Loading videos 🎬...</div>';
 
 let videos=[];
 
 try{
 
-const result=
-await supabaseClient
-.storage
+const result =
+await db.storage
 .from("Videos")
 .list("",{
+
 limit:100,
+
 sort:{
 column:"created_at",
 order:"desc"
 }
+
 });
 
 if(!result.error){
 
-const files=result.data||[];
+const files =
+result.data || [];
 
-files.forEach(file=>{
+files.forEach(function(file){
 
 if(
 file.name &&
@@ -863,16 +1203,16 @@ file.name &&
 .test(file.name)
 ){
 
-const publicData=
-supabaseClient
-.storage
+const publicUrl =
+db.storage
 .from("Videos")
-.getPublicUrl(file.name);
+.getPublicUrl(file.name)
+.data.publicUrl;
 
 videos.push({
 
 path:file.name,
-url:publicData.data.publicUrl,
+url:publicUrl,
 username:"@wemedia",
 caption:"New video on We Media 🎬"
 
@@ -886,70 +1226,71 @@ caption:"New video on We Media 🎬"
 
 }catch(error){
 
-console.log(error);
+console.log("Video loading:",error);
 
 }
 
 
-/* Demo videos keep the app alive */
+/* Always keep demo videos */
 
-if(videos.length===0){
-
-videos=[...demoVideos];
-
-}else{
-
-videos=[
-...videos,
-...demoVideos
-];
-
-}
-
+videos =
+videos.concat(demoVideos);
 
 feed.innerHTML="";
 
-videos.forEach((video,index)=>{
+if(videos.length===0){
 
-createVideoCard(video,index);
+feed.innerHTML =
+'<div class="empty">No videos yet 🎬</div>';
+
+return;
+
+}
+
+videos.forEach(function(video,index){
+
+createVideo(video,index);
 
 });
 
 }
 
 
-/* =====================================================
-   VIDEO CARD
-===================================================== */
+/* =========================================
+CREATE VIDEO
+========================================= */
 
-function createVideoCard(video,index){
+function createVideo(video,index){
 
-const feed=
+const feed =
 document.getElementById("feed");
 
-const card=
+const card =
 document.createElement("div");
 
 card.className="videoCard";
 
 
-const videoEl=
+const player =
 document.createElement("video");
 
-videoEl.className="video";
+player.className="video";
 
-videoEl.controls=true;
-videoEl.loop=true;
-videoEl.playsInline=true;
-videoEl.src=video.url;
+player.controls=true;
+player.loop=true;
+player.playsInline=true;
+
+player.src=video.url;
 
 
-videoEl.addEventListener(
+player.addEventListener(
 "play",
 function(){
 
 if(!video.path.startsWith("demo_")){
+
 addView(video.path);
+
 }
 
 },
@@ -957,97 +1298,72 @@ addView(video.path);
 );
 
 
-const info=
+const info =
 document.createElement("div");
 
 info.className="videoInfo";
 
-info.innerHTML=`
+info.innerHTML=
 
-<div class="username">
-${escapeHTML(video.username)}
-</div>
+'<div class="username">'+
+safe(video.username)+
+'</div>'+
 
-<div class="caption">
-${escapeHTML(video.caption)}
-</div>
+'<div class="caption">'+
+safe(video.caption)+
+'</div>'+
 
-<div class="stats">
+'<div class="stats">'+
 
-<span id="views-${index}">
-👁️ 0 views
-</span>
+'<span id="view'+index+'">👁️ 0 views</span>'+
 
-&nbsp; • &nbsp;
+' • '+
 
-<span id="likes-${index}">
-❤️ 0 likes
-</span>
+'<span id="like'+index+'">❤️ 0 likes</span>'+
 
-&nbsp; • &nbsp;
+' • '+
 
-<span id="comments-${index}">
-💬 0 comments
-</span>
+'<span id="comment'+index+'">💬 0 comments</span>'+
 
-</div>
-`;
+'</div>';
 
 
-const actions=
+const actions =
 document.createElement("div");
 
 actions.className="actions";
 
-actions.innerHTML=`
+actions.innerHTML=
 
-<button
-class="action"
-id="likeBtn-${index}">
-❤️ Like
-</button>
+'<button class="action" id="likeBtn'+index+'">❤️ Like</button>'+
 
-<button
-class="action"
-id="commentBtn-${index}">
-💬 Comment
-</button>
+'<button class="action" id="commentBtn'+index+'">💬 Comment</button>'+
 
-<button
-class="action"
-id="shareBtn-${index}">
-↗ Share
-</button>
-
-`;
+'<button class="action" id="shareBtn'+index+'">↗ Share</button>';
 
 
-const commentBox=
+const commentBox =
 document.createElement("div");
 
 commentBox.className="commentBox";
 
-commentBox.id="commentBox-"+index;
+commentBox.id="commentBox"+index;
 
-commentBox.innerHTML=`
+commentBox.innerHTML=
 
-<input
-id="commentInput-${index}"
-placeholder="Write a comment...">
-
-<button>Send</button>
-
-`;
+'<input id="commentInput'+index+'" placeholder="Write a comment...">'+
+'<button>Send</button>';
 
 
-const comments=
+const comments =
 document.createElement("div");
 
 comments.className="comments";
-comments.id="comments-"+index;
+
+comments.id="comments"+index;
 
 
-card.appendChild(videoEl);
+card.appendChild(player);
 card.appendChild(info);
 card.appendChild(actions);
 card.appendChild(commentBox);
@@ -1056,26 +1372,32 @@ card.appendChild(comments);
 feed.appendChild(card);
 
 
+/* LIKE */
+
 document.getElementById(
-"likeBtn-"+index
+"likeBtn"+index
 ).onclick=function(){
 
-toggleLike(video.path,index,this);
+likeVideo(video.path,index,this);
 
 };
 
 
+/* COMMENT */
+
 document.getElementById(
-"commentBtn-"+index
+"commentBtn"+index
 ).onclick=function(){
 
-toggleComments(index,video.path);
+toggleComment(index);
 
 };
 
 
+/* SHARE */
+
 document.getElementById(
-"shareBtn-"+index
+"shareBtn"+index
 ).onclick=function(){
 
 shareVideo(video.url);
@@ -1083,10 +1405,12 @@ shareVideo(video.url);
 };
 
 
+/* SEND COMMENT */
+
 commentBox.querySelector("button")
 .onclick=function(){
 
-addComment(video.path,index);
+sendComment(video.path,index);
 
 };
 
@@ -1096,17 +1420,17 @@ loadStats(video.path,index);
 }
 
 
-/* =====================================================
-   LIKE
-===================================================== */
+/* =========================================
+LIKE
+========================================= */
 
-async function toggleLike(path,index,button){
+async function likeVideo(path,index,button){
 
 if(!currentUser){
 
-message("Login first to like videos.");
+showMessage("Login first to like videos.");
 
-showPage("auth");
+openLogin();
 
 return;
 
@@ -1116,39 +1440,38 @@ if(path.startsWith("demo_")){
 
 button.classList.toggle("liked");
 
-button.innerText=
+button.innerText =
 button.classList.contains("liked")
-?"❤️ Liked"
-:"❤️ Like";
+? "❤️ Liked"
+: "❤️ Like";
 
 return;
 
 }
 
-
 try{
 
-const result=
-await supabaseClient
+const found =
+await db
 .from("video_likes")
 .select("id")
 .eq("video_path",path)
 .eq("user_id",currentUser.id)
 .maybeSingle();
 
-if(result.data){
+if(found.data){
 
-await supabaseClient
+await db
 .from("video_likes")
 .delete()
-.eq("id",result.data.id);
+.eq("id",found.data.id);
 
 button.classList.remove("liked");
 button.innerText="❤️ Like";
 
 }else{
 
-await supabaseClient
+await db
 .from("video_likes")
 .insert({
 
@@ -1167,21 +1490,24 @@ loadStats(path,index);
 }catch(error){
 
 console.log(error);
-message("Like service is not ready yet.");
+
+showMessage("Like system needs setup.");
 
 }
 
 }
 
 
-/* =====================================================
-   COMMENTS
-===================================================== */
+/* =========================================
+COMMENTS
+========================================= */
 
-function toggleComments(index,path){
+function toggleComment(index){
 
-const box=
-document.getElementById("commentBox-"+index);
+const box =
+document.getElementById(
+"commentBox"+index
+);
 
 if(box.style.display==="block"){
 
@@ -1191,20 +1517,18 @@ box.style.display="none";
 
 box.style.display="block";
 
-loadComments(path,index);
-
 }
 
 }
 
 
-async function addComment(path,index){
+async function sendComment(path,index){
 
 if(!currentUser){
 
-message("Login first to comment.");
+showMessage("Login first to comment.");
 
-showPage("auth");
+openLogin();
 
 return;
 
@@ -1212,34 +1536,113 @@ return;
 
 if(path.startsWith("demo_")){
 
-alert("Comments are available for uploaded videos.");
+alert("Upload a video to enable comments.");
 
 return;
 
 }
 
-const input=
+const input =
 document.getElementById(
-"commentInput-"+index
+"commentInput"+index
 );
 
-const text=input.value.trim();
+const text =
+input.value.trim();
 
 if(!text){
-return;
-}
 
+return;
+
+}
 
 try{
 
-const result=
-await supabaseClient
+const result =
+await db
 .from("video_comments")
 .insert({
 
 video_path:path,
+
 user_id:currentUser.id,
+
 username:
-currentUser.user_metadata?.username||
-"User",
-comment:
+currentUser.user_metadata?.username
+||"User",
+
+comment:text
+
+});
+
+if(result.error){
+
+alert(result.error.message);
+return;
+
+}
+
+input.value="";
+
+showMessage("Comment added!");
+
+loadStats(path,index);
+
+}catch(error){
+
+console.log(error);
+
+alert("Comment failed.");
+
+}
+
+}
+
+
+/* =========================================
+VIEWS
+========================================= */
+
+async function addView(path){
+
+if(!currentUser){
+return;
+}
+
+try{
+
+const found =
+await db
+.from("video_views")
+.select("id")
+.eq("video_path",path)
+.eq("viewer_id",currentUser.id)
+.maybeSingle();
+
+if(!found.data){
+
+await db
+.from("video_views")
+.insert({
+
+video_path:path,
+viewer_id:currentUser.id
+
+});
+
+}
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+/* =========================================
+STATS
+========================================= */
+
+a
