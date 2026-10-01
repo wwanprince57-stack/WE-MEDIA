@@ -1262,7 +1262,7 @@ loadVideos();
    LIKE POST
 ========================= */
 
-async function likePost(videoId,button){
+ async function likePost(videoId,button){
 
 if(!user){
 
@@ -1276,7 +1276,7 @@ button.disabled=true;
 
 try{
 
-const {data:existing}=
+const {data:existing,error:checkError}=
 await sb
 .from("likes")
 .select("video_id")
@@ -1284,41 +1284,49 @@ await sb
 .eq("user_id",user.id)
 .maybeSingle();
 
+if(checkError)throw checkError;
+
 if(existing){
 
+const {error}=
 await sb
 .from("likes")
 .delete()
 .eq("video_id",videoId)
 .eq("user_id",user.id);
 
-button.querySelector(".action-text")
-.textContent="Like";
+if(error)throw error;
+
+button.querySelector(".action-icon")
+.textContent="🤍";
 
 }else{
 
+const {error}=
 await sb
 .from("likes")
 .insert({
-
 video_id:videoId,
 user_id:user.id
-
 });
 
-button.querySelector(".action-text")
-.textContent="Liked";
+if(error)throw error;
+
+button.querySelector(".action-icon")
+.textContent="❤️";
 
 }
 
 }catch(error){
 
 console.log(error);
-alert("❌ Like failed");
+alert("❌ Like failed: "+error.message);
 
 }
 
 button.disabled=false;
+
+ }
 
 }
 
