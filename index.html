@@ -58,7 +58,64 @@ nav button{background:none;border:0;color:#aaa;font-size:13px}
 </div>
 </header>
 
-<main>
+<!-- INBOX -->
+<section id="inbox" class="page">
+
+<div class="notice">
+
+<h2>💬 Messages</h2>
+
+<div id="inboxList" class="msg">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHAT -->
+<section id="chat" class="page">
+
+<div class="notice">
+
+<button class="back" onclick="openInbox()">← Back</button>
+
+<h2 id="chatName">💬 Chat</h2>
+
+<div id="chatbox"
+style="
+height:55vh;
+overflow-y:auto;
+background:#050505;
+border:1px solid #222;
+border-radius:12px;
+padding:10px;
+margin-top:15px;
+">
+</div>
+
+<div style="display:flex;gap:7px;margin-top:10px">
+
+<input
+id="chatText"
+class="input"
+placeholder="Write a message..."
+style="margin:0"
+onkeydown="if(event.key==='Enter')sendMessage()">
+
+<button
+class="profile-btn"
+onclick="sendMessage()">
+SEND
+</button>
+
+</div>
+
+</div>
+
+</section>
+  <main>
 
 <section id="login" class="page active">
 <div class="auth"><div class="box">
