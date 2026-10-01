@@ -1,64 +1,355 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>We Media</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;font-family:Arial;margin:0}
-body{background:#000;color:#fff;padding-bottom:70px}
-header{height:55px;position:fixed;top:0;left:0;right:0;background:#000;border-bottom:1px solid #222;padding:15px;z-index:5;display:flex;justify-content:space-between}
-.logo{font-size:21px;font-weight:bold}.logo span{color:#09f}
-header button{background:#111;color:#fff;border:1px solid #333;border-radius:20px;padding:6px 12px}
-main{padding-top:55px}.page{display:none}.active{display:block}
-.auth{min-height:90vh;display:grid;place-items:center;padding:20px}
-.box{width:100%;max-width:400px;text-align:center}
-p{color:#888;margin:10px 0 20px}
-.input,textarea{width:100%;background:#111;color:#fff;border:1px solid #333;border-radius:10px;padding:13px;margin:6px 0}
-.primary{width:100%;background:#08f;color:#fff;border:0;border-radius:25px;padding:13px;margin:8px 0;font-weight:bold}
-.switch{color:#888;margin-top:15px}.switch button{background:none;border:0;color:#09f}
-.msg{text-align:center;padding:10px;color:#09f}
-.search{padding:12px 15px;position:sticky;top:55px;background:#000;z-index:2}
-.search input{width:100%;background:#111;color:#fff;border:1px solid #333;border-radius:25px;padding:13px}
-.results{padding:0 15px}
-.result{padding:14px;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
-.result button{background:#08f;color:#fff;border:0;border-radius:20px;padding:8px 13px}
-.video-card{border-bottom:1px solid #222;padding-bottom:15px;margin-bottom:20px}
-video{width:100%;max-height:650px;background:#000}
-.info{padding:10px}.user,.date{color:#888;font-size:12px;margin:5px 0}
-.user.clickable{color:#09f;cursor:pointer}
-.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.actions button{background:#151515;color:#fff;border:1px solid #333;border-radius:20px;padding:8px 12px}
-.liked{color:#ff3970!important}.follow{color:#09f!important}
-.comments{display:none;margin-top:10px}.comment{padding:8px 0;border-bottom:1px solid #222}
-.upload,.profile,.notice,.public-profile{padding:25px 20px;max-width:550px;margin:auto}
-.avatar{text-align:center;font-size:55px;margin:20px}
-.stats{text-align:center;margin:25px;display:flex;justify-content:space-around}
-.stats b{display:block;font-size:21px}.stats small{color:#888}
-.profile-btn{background:#08f;color:#fff;border:0;border-radius:25px;padding:11px 25px;font-weight:bold}
-.back{background:#151515;color:#fff;border:1px solid #333;border-radius:20px;padding:8px 15px;margin-bottom:15px}
-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:65px;background:#080808;border-top:1px solid #222;justify-content:space-around;align-items:center;z-index:5}
-nav button{background:none;border:0;color:#aaa;font-size:13px}
-.add{background:#08f!important;color:#fff!important;border-radius:50%;font-size:28px!important;width:48px;height:48px}
-.n{padding:14px 0;border-bottom:1px solid #222}
-.unread{background:#111}.badge{color:#f33;font-weight:bold}
-.hidden{display:none!important}
+*{
+ box-sizing:border-box;
+ font-family:Arial,sans-serif;
+ margin:0;
+ padding:0;
+}
+
+body{
+ background:#000;
+ color:#fff;
+ padding-bottom:70px;
+}
+
+header{
+ height:55px;
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ background:#000;
+ border-bottom:1px solid #222;
+ padding:15px;
+ z-index:10;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ font-size:21px;
+ font-weight:bold;
+}
+
+.logo span{
+ color:#09f;
+}
+
+header button{
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:20px;
+ padding:6px 12px;
+ margin-left:5px;
+}
+
+main{
+ padding-top:55px;
+}
+
+.page{
+ display:none;
+}
+
+.page.active{
+ display:block;
+}
+
+.auth{
+ min-height:90vh;
+ display:grid;
+ place-items:center;
+ padding:20px;
+}
+
+.box{
+ width:100%;
+ max-width:400px;
+ text-align:center;
+}
+
+p{
+ color:#888;
+ margin:10px 0 20px;
+}
+
+.input,
+textarea{
+ width:100%;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:10px;
+ padding:13px;
+ margin:6px 0;
+}
+
+.primary{
+ width:100%;
+ background:#08f;
+ color:#fff;
+ border:0;
+ border-radius:25px;
+ padding:13px;
+ margin:8px 0;
+ font-weight:bold;
+}
+
+.switch{
+ color:#888;
+ margin-top:15px;
+}
+
+.switch button{
+ background:none;
+ border:0;
+ color:#09f;
+}
+
+.msg{
+ text-align:center;
+ padding:10px;
+ color:#09f;
+}
+
+.search{
+ padding:12px 15px;
+ position:sticky;
+ top:55px;
+ background:#000;
+ z-index:2;
+}
+
+.search input{
+ width:100%;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:25px;
+ padding:13px;
+}
+
+.results{
+ padding:0 15px;
+}
+
+.result{
+ padding:14px;
+ border-bottom:1px solid #222;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.result button{
+ background:#08f;
+ color:#fff;
+ border:0;
+ border-radius:20px;
+ padding:8px 13px;
+}
+
+.video-card{
+ border-bottom:1px solid #222;
+ padding-bottom:15px;
+ margin-bottom:20px;
+}
+
+video{
+ width:100%;
+ max-height:650px;
+ background:#000;
+}
+
+.info{
+ padding:10px;
+}
+
+.user,
+.date{
+ color:#888;
+ font-size:12px;
+ margin:5px 0;
+}
+
+.user.clickable{
+ color:#09f;
+ cursor:pointer;
+}
+
+.actions{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ margin-top:10px;
+}
+
+.actions button{
+ background:#151515;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:20px;
+ padding:8px 12px;
+}
+
+.liked{
+ color:#ff3970!important;
+}
+
+.follow{
+ color:#09f!important;
+}
+
+.comments{
+ display:none;
+ margin-top:10px;
+}
+
+.comment{
+ padding:8px 0;
+ border-bottom:1px solid #222;
+}
+
+.upload,
+.profile,
+.notice,
+.public-profile{
+ padding:25px 20px;
+ max-width:550px;
+ margin:auto;
+}
+
+.avatar{
+ text-align:center;
+ font-size:55px;
+ margin:20px;
+}
+
+.stats{
+ text-align:center;
+ margin:25px;
+ display:flex;
+ justify-content:space-around;
+}
+
+.stats b{
+ display:block;
+ font-size:21px;
+}
+
+.stats small{
+ color:#888;
+}
+
+.profile-btn{
+ background:#08f;
+ color:#fff;
+ border:0;
+ border-radius:25px;
+ padding:11px 25px;
+ font-weight:bold;
+}
+
+.back{
+ background:#151515;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:20px;
+ padding:8px 15px;
+ margin-bottom:15px;
+}
+
+nav{
+ display:none;
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:65px;
+ background:#080808;
+ border-top:1px solid #222;
+ justify-content:space-around;
+ align-items:center;
+ z-index:10;
+}
+
+nav button{
+ background:none;
+ border:0;
+ color:#aaa;
+ font-size:13px;
+}
+
+.add{
+ background:#08f!important;
+ color:#fff!important;
+ border-radius:50%;
+ font-size:28px!important;
+ width:48px;
+ height:48px;
+}
+
+.n{
+ padding:14px 0;
+ border-bottom:1px solid #222;
+}
+
+.unread{
+ background:#111;
+}
+
+.badge{
+ color:#f33;
+ font-weight:bold;
+}
+
+.hidden{
+ display:none!important;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">We <span>Media</span></div>
-<div>
-<button id="bell" class="hidden" onclick="page('notifications')">🔔 <span id="nc">0</span></button>
-<button id="logout" class="hidden" onclick="logout()">Logout</button>
+
+<div class="logo">
+We <span>Media</span>
 </div>
+
+<div>
+
+<button
+id="bell"
+class="hidden"
+onclick="page('notifications')">
+🔔 <span id="nc">0</span>
+</button>
+
+<button
+id="logout"
+class="hidden"
+onclick="logout()">
+Logout
+</button>
+
+</div>
+
 </header>
 
 <!-- INBOX -->
+
 <section id="inbox" class="page">
 
 <div class="notice">
@@ -75,15 +366,23 @@ Loading...
 
 
 <!-- CHAT -->
+
 <section id="chat" class="page">
 
 <div class="notice">
 
-<button class="back" onclick="openInbox()">← Back</button>
+<button
+class="back"
+onclick="openInbox()">
+← Back
+</button>
 
-<h2 id="chatName">💬 Chat</h2>
+<h2 id="chatName">
+💬 Chat
+</h2>
 
-<div id="chatbox"
+<div
+id="chatbox"
 style="
 height:55vh;
 overflow-y:auto;
@@ -95,7 +394,12 @@ margin-top:15px;
 ">
 </div>
 
-<div style="display:flex;gap:7px;margin-top:10px">
+<div
+style="
+display:flex;
+gap:7px;
+margin-top:10px;
+">
 
 <input
 id="chatText"
@@ -115,500 +419,562 @@ SEND
 </div>
 
 </section>
-  <main>
+
+
+<main>
+
+<!-- LOGIN -->
 
 <section id="login" class="page active">
-<div class="auth"><div class="box">
-<h1>We <span style="color:#09f">Media</span></h1>
+
+<div class="auth">
+
+<div class="box">
+
+<h1>
+We <span style="color:#09f">Media</span>
+</h1>
+
 <p>Welcome back</p>
-<input id="le" class="input" placeholder="Email">
-<input id="lp" class="input" type="password" placeholder="Password">
+
+<input
+id="le"
+class="input"
+placeholder="Email">
+
+<input
+id="lp"
+class="input"
+type="password"
+placeholder="Password">
+
 <div id="lm" class="msg"></div>
-<button class="primary" onclick="login()">LOGIN</button>
-<div class="switch">No account? <button onclick="auth('register')">Create Account</button></div>
-</div></div>
+
+<button
+class="primary"
+onclick="login()">
+LOGIN
+</button>
+
+<div class="switch">
+No account?
+<button onclick="auth('register')">
+Create Account
+</button>
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- REGISTER -->
 
 <section id="register" class="page">
-<div class="auth"><div class="box">
-<h1>We <span style="color:#09f">Media</span></h1>
+
+<div class="auth">
+
+<div class="box">
+
+<h1>
+We <span style="color:#09f">Media</span>
+</h1>
+
 <p>Create account</p>
-<input id="rn" class="input" placeholder="Username">
-<input id="re" class="input" placeholder="Email">
-<input id="rp" class="input" type="password" placeholder="Password">
-<input id="rc" class="input" type="password" placeholder="Confirm password">
+
+<input
+id="rn"
+class="input"
+placeholder="Username">
+
+<input
+id="re"
+class="input"
+placeholder="Email">
+
+<input
+id="rp"
+class="input"
+type="password"
+placeholder="Password">
+
+<input
+id="rc"
+class="input"
+type="password"
+placeholder="Confirm password">
+
 <div id="rm" class="msg"></div>
-<button class="primary" onclick="register()">CREATE ACCOUNT</button>
-<div class="switch">Have account? <button onclick="auth('login')">Login</button></div>
-</div></div>
+
+<button
+class="primary"
+onclick="register()">
+CREATE ACCOUNT
+</button>
+
+<div class="switch">
+Have account?
+<button onclick="auth('login')">
+Login
+</button>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
 <!-- HOME -->
+
 <section id="home" class="page">
 
 <div class="search">
-<input id="searchBox" placeholder="🔍 Search users..." oninput="searchUsers()">
+
+<input
+id="searchBox"
+placeholder="🔍 Search users..."
+oninput="searchUsers()">
+
 </div>
 
 <div id="results" class="results"></div>
-<div id="videos"><div class="msg">Loading...</div></div>
+
+<div id="videos">
+<div class="msg">Loading...</div>
+</div>
 
 </section>
+
 
 <!-- UPLOAD -->
+
 <section id="upload" class="page">
+
 <div class="upload">
+
 <h2>Upload Video</h2>
+
 <p>Share your video</p>
-<input id="title" class="input" placeholder="Video title">
-<input id="file" type="file" accept="video/*">
+
+<input
+id="title"
+class="input"
+placeholder="Video title">
+
+<input
+id="file"
+type="file"
+accept="video/*">
+
 <div id="um" class="msg"></div>
-<button class="primary" onclick="upload()">📤 UPLOAD VIDEO</button>
+
+<button
+class="primary"
+onclick="upload()">
+📤 UPLOAD VIDEO
+</button>
+
 </div>
+
 </section>
+
 
 <!-- MY PROFILE -->
+
 <section id="profile" class="page">
+
 <div class="profile">
-<div class="avatar">👤</div>
-<h2 id="name">User</h2>
-<p id="email">-</p>
+
+<div class="avatar">
+👤
+</div>
+
+<h2 id="name">
+User
+</h2>
+
+<p id="email">
+-
+</p>
 
 <div class="stats">
-<div><b id="vc">0</b><small>Videos</small></div>
-<div><b id="followers">0</b><small>Followers</small></div>
-<div><b id="following">0</b><small>Following</small></div>
+
+<div>
+<b id="vc">0</b>
+<small>Videos</small>
 </div>
 
-<button class="primary" onclick="openInbox()">💬 Messages</button>
-<button class="primary" onclick="logout()">LOGOUT</button>
+<div>
+<b id="followers">0</b>
+<small>Followers</small>
 </div>
+
+<div>
+<b id="following">0</b>
+<small>Following</small>
+</div>
+
+</div>
+
+<button
+class="primary"
+onclick="openInbox()">
+💬 Messages
+</button>
+
+<button
+class="primary"
+onclick="logout()">
+LOGOUT
+</button>
+
+</div>
+
 </section>
 
+
 <!-- OTHER USER PROFILE -->
+
 <section id="publicProfile" class="page">
+
 <div class="public-profile">
 
-<button class="back" onclick="page('home')">← Back</button>
+<button
+class="back"
+onclick="page('home')">
+← Back
+</button>
 
-<div class="avatar">👤</div>
+<div class="avatar">
+👤
+</div>
 
-<h2 id="publicName">User</h2>
+<h2 id="publicName">
+User
+</h2>
+
 <p id="publicEmail"></p>
 
 <div class="stats">
-<div><b id="publicVideos">0</b><small>Videos</small></div>
-<div><b id="publicFollowers">0</b><small>Followers</small></div>
-<div><b id="publicFollowing">0</b><small>Following</small></div>
+
+<div>
+<b id="publicVideos">0</b>
+<small>Videos</small>
+</div>
+
+<div>
+<b id="publicFollowers">0</b>
+<small>Followers</small>
+</div>
+
+<div>
+<b id="publicFollowing">0</b>
+<small>Following</small>
+</div>
+
 </div>
 
 <div style="text-align:center">
-<button id="publicFollow" class="profile-btn" onclick="togglePublicFollow()">Follow</button>
 
-<button class="profile-btn" onclick="startChat()">💬 Message</button>
+<button
+id="publicFollow"
+class="profile-btn"
+onclick="togglePublicFollow()">
+Follow
+</button>
+
+<button
+class="profile-btn"
+onclick="startChat()">
+💬 Message
+</button>
+
 </div>
 
-<div id="publicVideosBox" style="margin-top:25px"></div>
+<div
+id="publicVideosBox"
+style="margin-top:25px">
+</div>
 
 </div>
+
 </section>
 
+
 <!-- NOTIFICATIONS -->
+
 <section id="notifications" class="page">
+
 <div class="notice">
+
 <h2>🔔 Notifications</h2>
-<div id="notices" class="msg">Loading...</div>
+
+<div id="notices" class="msg">
+Loading...
 </div>
+
+</div>
+
 </section>
 
 </main>
 
+
+<!-- BOTTOM NAV -->
+
 <nav id="nav">
-<button onclick="page('home')">🏠<br>Home</button>
-<button class="add" onclick="page('upload')">+</button>
-<button onclick="page('profile')">👤<br>Profile</button>
+
+<button onclick="page('home')">
+🏠<br>Home
+</button>
+
+<button
+class="add"
+onclick="page('upload')">
++
+</button>
+
+<button onclick="page('profile')">
+👤<br>Profile
+</button>
+
 </nav>
+
 
 <script>
 
-const U="https://jhxbfkpcinetbuwsnxcz.supabase.co",
-K="sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij",
-sb=supabase.createClient(U,K);
+const U =
+"https://jhxbfkpcinetbuwsnxcz.supabase.co";
 
-let user=null;
-let publicUser=null;
-let chatUser=null;
-  function openInbox(){
-  page("inbox");
-  loadInbox();
-  }
-  async function loadInbox(){
+const K =
+"sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
 
- if(!user)return;
+const sb =
+supabase.createClient(U,K);
 
- let box=$("inboxList");
- box.innerHTML="Loading...";
+let user = null;
+let publicUser = null;
+let chatUser = null;
+let chatChannel = null;
 
- let {data,error}=await sb
- .from("messages")
- .select("*")
- .or(
-  "sender_id.eq."+String(user.id)+
-  ",receiver_id.eq."+String(user.id)
- )
- .order("created_at",{ascending:false});
+const $ = x => document.getElementById(x);
 
- if(error){
-  box.innerHTML="❌ "+error.message;
-  return;
- }
 
- if(!data||data.length===0){
-  box.innerHTML="💬 No messages yet";
-  return;
- }
-
- let users={};
-
- data.forEach(m=>{
-
-  let other=
-   String(m.sender_id)===String(user.id)
-   ?String(m.receiver_id)
-   :String(m.sender_id);
-
-  if(!users[other]){
-   users[other]=m;
-  }
-
- });
-
- box.innerHTML="";
-
- for(let id in users){
-
-  let m=users[id];
-
-  let {data:p}=await sb
-   .from("profiles")
-   .select("username")
-   .eq("id",id)
-   .maybeSingle();
-
-  let name=p?.username||"User";
-
-  let d=document.createElement("div");
-
-  d.className="result";
-
-  d.innerHTML=`
-   <div>
-    👤 <b>${esc(name)}</b>
-    <br>
-    <span class="small">${esc(m.message||"")}</span>
-   </div>
-
-   <button onclick="openChat('${id}','${esc(name)}')">
-    Message
-   </button>
-  `;
-
-  box.appendChild(d);
- }
-}
-
-
-async function openChat(id,name){
-
- chatUser=String(id);
-
- $("chatName").textContent="💬 "+name;
-
- page("chat");
-
- await loadChat();
-  startRealtimeChat();
-}
-
-
-async function sendMessage(){
-
- let x=$("chatText").value.trim();
-
- if(!x||!chatUser)return;
-
- let {error}=await sb
-  .from("messages")
-  .insert({
-   sender_id:String(user.id),
-   receiver_id:String(chatUser),
-   message:x
-  });
-
- if(error){
-  alert("❌ "+error.message);
-  return;
- }
-
- $("chatText").value="";
-
- await loadChat();
-}
-
-
-async function loadChat(){
-  let chatChannel;
-
-function startRealtimeChat(){
-  if(!chatUser)return;
-
-  if(chatChannel) sb.removeChannel(chatChannel);
-
-  chatChannel=sb
-    .channel("chat-"+chatUser)
-    .on(
-      "postgres_changes",
-      {event:"INSERT",schema:"public",table:"messages"},
-      payload=>{
-        let m=payload.new;
-        let me=String(user.id);
-        let to=String(chatUser);
-
-        if(
-          (String(m.sender_id)===me && String(m.receiver_id)===to) ||
-          (String(m.sender_id)===to && String(m.receiver_id)===me)
-        ){
-          loadChat();
-        }
-      }
-    )
-    .subscribe();
-}
-
- if(!user||!chatUser)return;
-
- let me=String(user.id);
- let to=String(chatUser);
-
- let {data,error}=await sb
-  .from("messages")
-  .select("*")
-  .or(
-   "and(sender_id.eq."+me+",receiver_id.eq."+to+"),"+
-   "and(sender_id.eq."+to+",receiver_id.eq."+me+")"
-  )
-  .order("created_at",{ascending:true});
-
- if(error){
-  $("chatbox").textContent="❌ "+error.message;
-  return;
- }
-
- let box=$("chatbox");
-
- box.innerHTML="";
-
- (data||[]).forEach(m=>{
-
-  let d=document.createElement("div");
-
-  d.textContent=m.message;
-
-  d.style.cssText=
-   "padding:10px;margin:7px 0;"+
-   "border-radius:15px;max-width:80%;"+
-   "word-break:break-word;"+
-   "background:"+
-   (String(m.sender_id)===me?"#08f":"#222")+";"+
-   (String(m.sender_id)===me?
-   "margin-left:auto;":"margin-right:auto;");
-
-  box.appendChild(d);
-
- });
-
- box.scrollTop=box.scrollHeight;
-}
-
-function startChat(){
-chatUser=publicUser;
-$("chatName").textContent="💬 "+$("publicName").textContent;
-page("chat");
-loadChat();
-}
-
-async function sendMessage(){
-let x=$("chatText").value.trim();
-if(!x||!chatUser)return;
-
-let {error}=await sb.from("messages").insert({
-sender_id:String(user.id),
-receiver_id:String(chatUser),
-message:x
-});
-
-if(error){alert(error.message);return}
-
-$("chatText").value="";
-loadChat();
-}
-
-async function loadChat(){
-let me=String(user.id),to=String(chatUser);
-
-let {data,error}=await sb.from("messages")
-.select("*")
-.or("and(sender_id.eq."+me+",receiver_id.eq."+to+"),and(sender_id.eq."+to+",receiver_id.eq."+me+")")
-.order("created_at");
-
-if(error){
-$("chatbox").textContent="❌ "+error.message;
-return;
-}
-
-let b=$("chatbox");
-b.innerHTML="";
-
-(data||[]).forEach(m=>{
-let d=document.createElement("div");
-d.textContent=m.message;
-d.style.cssText=
-"padding:10px;margin:6px 0;background:"+
-(String(m.sender_id)==me?"#08f":"#222")+
-";border-radius:15px;max-width:80%;"+
-(String(m.sender_id)==me?"margin-left:auto":"");
-b.appendChild(d);
-});
-
-b.scrollTop=b.scrollHeight;
-}
-const $=x=>document.getElementById(x);
+/* AUTH SCREEN */
 
 function auth(x){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+
+document
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
 $(x).classList.add("active");
+
 $("nav").style.display="none";
+
 $("bell").classList.add("hidden");
+
 $("logout").classList.add("hidden");
+
 }
+
+
+/* REGISTER */
 
 async function register(){
 
-let n=$("rn").value.trim(),
-e=$("re").value.trim(),
-p=$("rp").value,
-c=$("rc").value;
+let n=$("rn").value.trim();
+let e=$("re").value.trim();
+let p=$("rp").value;
+let c=$("rc").value;
 
-if(!n||!e||p.length<6||p!=c){
-$("rm").textContent="❌ Check your details";
+if(!n || !e || p.length<6 || p!==c){
+
+$("rm").textContent=
+"❌ Check your details";
+
 return;
 }
 
-$("rm").textContent="Creating...";
+$("rm").textContent=
+"Creating...";
 
 let {data,error}=await sb.auth.signUp({
+
 email:e,
+
 password:p,
-options:{data:{username:n}}
+
+options:{
+data:{
+username:n
+}
+}
+
 });
 
 if(error){
-$("rm").textContent="❌ "+error.message;
+
+$("rm").textContent=
+"❌ "+error.message;
+
 return;
 }
 
 if(data.session){
+
 user=data.user;
 
 await sb.from("profiles").upsert({
+
 id:user.id,
+
 username:n,
+
 email:e
+
 });
 
 open();
 
 }else{
-$("rm").textContent="✅ Account created. Check email then login.";
+
+$("rm").textContent=
+"✅ Account created. Check email then login.";
+
 }
 
 }
+
+
+/* LOGIN */
 
 async function login(){
 
-let e=$("le").value.trim(),
-p=$("lp").value;
+let e=$("le").value.trim();
+let p=$("lp").value;
 
-if(!e||!p){
-$("lm").textContent="❌ Enter email and password";
+if(!e || !p){
+
+$("lm").textContent=
+"❌ Enter email and password";
+
 return;
 }
 
-$("lm").textContent="Logging in...";
+$("lm").textContent=
+"Logging in...";
 
-let {data,error}=await sb.auth.signInWithPassword({
+let {data,error}=
+await sb.auth.signInWithPassword({
+
 email:e,
+
 password:p
+
 });
 
 if(error){
-$("lm").textContent="❌ "+error.message;
+
+$("lm").textContent=
+"❌ "+error.message;
+
 return;
 }
 
 user=data.user;
-$("lm").textContent="✅ Login successful";
+
+$("lm").textContent=
+"✅ Login successful";
+
 open();
 
 }
 
+
+/* OPEN APP */
+
 function open(){
 
 $("nav").style.display="flex";
+
 $("bell").classList.remove("hidden");
+
 $("logout").classList.remove("hidden");
 
 page("home");
+
 load();
+
 loadProfile();
+
 notifyCount();
 
 }
 
+
+/* PAGE */
+
 function page(x){
 
 if(!user){
+
 auth("login");
+
 return;
 }
 
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
 $(x).classList.add("active");
 
 scrollTo(0,0);
 
-if(x=="home")load();
-if(x=="profile")loadProfile();
-if(x=="notifications")notifications();
+if(x==="home") load();
+
+if(x==="profile") loadProfile();
+
+if(x==="notifications") notifications();
 
 }
 
+
+/* LOGOUT */
+
 async function logout(){
+
+if(chatChannel){
+
+await sb.removeChannel(chatChannel);
+
+chatChannel=null;
+
+}
 
 await sb.auth.signOut();
 
 user=null;
 
+chatUser=null;
+
 $("nav").style.display="none";
+
 $("bell").classList.add("hidden");
+
 $("logout").classList.add("hidden");
 
 auth("login");
 
 }
 
-/* SEARCH */
+
+/* SEARCH USERS */
 
 async function searchUsers(){
 
@@ -617,22 +983,33 @@ let q=$("searchBox").value.trim();
 let box=$("results");
 
 if(!q){
+
 box.innerHTML="";
+
 return;
 }
 
-let {data,error}=await sb.from("profiles")
+let {data,error}=await sb
+.from("profiles")
 .select("id,username,email")
 .ilike("username","%"+q+"%")
 .limit(20);
 
 if(error){
-box.innerHTML='<div class="msg">❌ '+error.message+'</div>';
+
+box.innerHTML=
+'<div class="msg">❌ '+
+esc(error.message)+
+'</div>';
+
 return;
 }
 
 if(!data?.length){
-box.innerHTML='<div class="msg">No users found</div>';
+
+box.innerHTML=
+'<div class="msg">No users found</div>';
+
 return;
 }
 
@@ -641,15 +1018,20 @@ box.innerHTML="";
 data.forEach(x=>{
 
 let d=document.createElement("div");
+
 d.className="result";
 
 d.innerHTML=`
+
 <div>
 👤 <b>${esc(x.username||"User")}</b>
 </div>
-<button onclick="openPublicProfile('${x.id}')">
+
+<button
+onclick="openPublicProfile('${x.id}')">
 View
 </button>
+
 `;
 
 box.appendChild(d);
@@ -658,85 +1040,120 @@ box.appendChild(d);
 
 }
 
+
 /* PUBLIC PROFILE */
 
 async function openPublicProfile(id){
 
-if(String(id)==String(user.id)){
+if(String(id)===String(user.id)){
+
 page("profile");
+
 return;
 }
 
-publicUser=id;
+publicUser=String(id);
 
 page("publicProfile");
 
 $("publicName").textContent="Loading...";
-$("publicEmail").textContent="";
-$("publicVideosBox").innerHTML='<div class="msg">Loading...</div>';
 
-let {data:p}=await sb.from("profiles")
+$("publicEmail").textContent="";
+
+$("publicVideosBox").innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data:p,error}=await sb
+.from("profiles")
 .select("*")
 .eq("id",id)
-.single();
+.maybeSingle();
 
-if(!p){
-$("publicName").textContent="User not found";
+if(error || !p){
+
+$("publicName").textContent=
+"User not found";
+
 return;
 }
 
-$("publicName").textContent=p.username||"User";
+$("publicName").textContent=
+p.username||"User";
 
-let {count:vc}=await sb.from("videos")
+$("publicEmail").textContent=
+p.email||"";
+
+let {count:vc}=await sb
+.from("videos")
 .select("*",{count:"exact",head:true})
 .eq("user_id",id);
 
-let {count:followers}=await sb.from("follows")
+let {count:followers}=await sb
+.from("follows")
 .select("*",{count:"exact",head:true})
 .eq("following_id",String(id));
 
-let {count:following}=await sb.from("follows")
+let {count:following}=await sb
+.from("follows")
 .select("*",{count:"exact",head:true})
 .eq("follower_id",String(id));
 
 $("publicVideos").textContent=vc||0;
-$("publicFollowers").textContent=followers||0;
-$("publicFollowing").textContent=following||0;
+
+$("publicFollowers").textContent=
+followers||0;
+
+$("publicFollowing").textContent=
+following||0;
 
 await publicFollowState(id);
+
 await loadPublicVideos(id);
 
 }
 
-/* PUBLIC FOLLOW */
+
+/* PUBLIC FOLLOW STATE */
 
 async function publicFollowState(id){
 
 let b=$("publicFollow");
 
-let {data}=await sb.from("follows")
+let {data}=await sb
+.from("follows")
 .select("id")
 .eq("follower_id",String(user.id))
 .eq("following_id",String(id));
 
 if(data?.length){
+
 b.textContent="Following";
+
 b.classList.add("follow");
+
 }else{
+
 b.textContent="Follow";
+
 b.classList.remove("follow");
+
 }
 
 }
+
+
+/* PUBLIC FOLLOW */
 
 async function togglePublicFollow(){
 
 if(!publicUser)return;
 
 let me=String(user.id);
+
 let to=String(publicUser);
 
-let {data}=await sb.from("follows")
+let {data}=await sb
+.from("follows")
 .select("id")
 .eq("follower_id",me)
 .eq("following_id",to);
@@ -750,268 +1167,31 @@ await sb.from("follows")
 .eq("id",data[0].id);
 
 b.textContent="Follow";
+
 b.classList.remove("follow");
 
 }else{
 
-await sb.from("follows")
+let {error}=await sb
+.from("follows")
 .insert({
+
 follower_id:me,
+
 following_id:to
+
 });
-
-b.textContent="Following";
-b.classList.add("follow");
-
-await notice(to,"👤 started following you");
-}
-
-notifyCount();
-
-openPublicProfile(publicUser);
-
-}
-
-/* PUBLIC VIDEOS */
-
-async function loadPublicVideos(id){
-
-let box=$("publicVideosBox");
-
-let {data,error}=await sb.from("videos")
-.select("*")
-.eq("user_id",id)
-.order("created_at",{ascending:false});
 
 if(error){
-box.innerHTML="❌ "+error.message;
+
+alert("❌ "+error.message);
+
 return;
 }
 
-if(!data?.length){
-box.innerHTML='<div class="msg">🎬 No videos yet</div>';
-return;
-}
-
-box.innerHTML="";
-
-data.forEach(v=>card(v,box));
-
-}
-
-/* VIDEOS */
-
-async function load(){
-
-let box=$("videos");
-
-box.innerHTML='<div class="msg">Loading...</div>';
-
-let {data,error}=await sb.from("videos")
-.select("*")
-.order("created_at",{ascending:false});
-
-if(error){
-box.innerHTML="❌ "+error.message;
-return;
-}
-
-if(!data.length){
-box.innerHTML='<div class="msg">🎬 No videos yet</div>';
-return;
-}
-
-box.innerHTML="";
-
-data.forEach(v=>card(v,box));
-
-}
-
-async function card(v,box){
-
-let url=v.url||v.video_url||v.public_url;
-
-if(!url&&v.file_name)
-url=sb.storage.from("Videos").getPublicUrl(v.file_name).data.publicUrl;
-
-if(!url)return;
-
-let c=document.createElement("div");
-
-c.className="video-card";
-c.dataset.id=v.id;
-c.dataset.owner=v.user_id;
-c.dataset.url=url;
-
-let own=String(v.user_id)==String(user.id);
-
-c.innerHTML=`
-
-<video src="${url}" controls playsinline preload="metadata"></video>
-
-<div class="info">
-
-<b>${esc(v.title||"We Media Video")}</b>
-
-<div class="user clickable"
-onclick="openPublicProfile('${v.user_id}')">
-👤 ${esc(v.username||"User")}
-</div>
-
-${!own?'<button class="follow" onclick="follow(this)">Follow</button>':''}
-
-<div class="date">
-${v.created_at?new Date(v.created_at).toLocaleString():""}
-</div>
-
-<div class="actions">
-
-<button onclick="like(this)">
-❤️ <span>0</span>
-</button>
-
-<button onclick="comments(this)">
-💬 Comment
-</button>
-
-<button onclick="share(this)">
-📤 Share
-</button>
-
-</div>
-
-<div class="comments">
-
-<textarea placeholder="Write a comment..."></textarea>
-
-<button class="primary" onclick="comment(this)">
-Post Comment
-</button>
-
-<div class="list"></div>
-
-</div>
-
-</div>
-`;
-
-box.appendChild(c);
-
-await likes(c);
-await getComments(c);
-await followState(c);
-
-}
-
-/* LIKE */
-
-async function likes(c){
-
-let id=c.dataset.id,
-uid=String(user.id);
-
-let {count}=await sb.from("video_likes")
-.select("*",{count:"exact",head:true})
-.eq("video_id",id);
-
-c.querySelector(".actions span").textContent=count||0;
-
-let {data}=await sb.from("video_likes")
-.select("id")
-.eq("video_id",id)
-.eq("user_id",uid);
-
-if(data?.length)
-c.querySelector(".actions button").classList.add("liked");
-
-}
-
-async function like(b){
-
-let c=b.closest(".video-card"),
-id=c.dataset.id,
-uid=String(user.id);
-
-let {data}=await sb.from("video_likes")
-.select("id")
-.eq("video_id",id)
-.eq("user_id",uid);
-
-if(data?.length){
-
-await sb.from("video_likes")
-.delete()
-.eq("id",data[0].id);
-
-}else{
-
-await sb.from("video_likes")
-.insert({
-video_id:id,
-user_id:uid
-});
-
-await notice(
-c.dataset.owner,
-"❤️ liked your video",
-id
-);
-
-}
-
-await likes(c);
-notifyCount();
-
-}
-
-/* FOLLOW VIDEO */
-
-async function followState(c){
-
-let b=c.querySelector(".follow");
-
-if(!b)return;
-
-let {data}=await sb.from("follows")
-.select("id")
-.eq("follower_id",String(user.id))
-.eq("following_id",String(c.dataset.owner));
-
-if(data?.length){
 b.textContent="Following";
+
 b.classList.add("follow");
-}
-
-}
-
-async function follow(b){
-
-let c=b.closest(".video-card"),
-to=String(c.dataset.owner),
-me=String(user.id);
-
-let {data}=await sb.from("follows")
-.select("id")
-.eq("follower_id",me)
-.eq("following_id",to);
-
-if(data?.length){
-
-await sb.from("follows")
-.delete()
-.eq("id",data[0].id);
-
-b.textContent="Follow";
-
-}else{
-
-await sb.from("follows")
-.insert({
-follower_id:me,
-following_id:to
-});
-
-b.textContent="Following";
 
 await notice(
 to,
@@ -1020,153 +1200,715 @@ to,
 
 }
 
-loadProfile();
 notifyCount();
 
-}
-
-/* COMMENTS */
-
-function comments(b){
-
-let x=b.closest(".info").querySelector(".comments");
-
-x.style.display=x.style.display=="block"?"none":"block";
+loadProfile();
 
 }
 
-async function getComments(c){
 
-let {data}=await sb.from("video_comments")
+/* PUBLIC VIDEOS */
+
+async function loadPublicVideos(id){
+
+let box=$("publicVideosBox");
+
+let {data,error}=await sb
+.from("videos")
 .select("*")
-.eq("video_id",c.dataset.id)
-.order("created_at");
+.eq("user_id",id)
+.order("created_at",{ascending:false});
 
-let l=c.querySelector(".list");
+if(error){
 
-l.innerHTML="";
+box.innerHTML=
+"❌ "+error.message;
 
-(data||[]).forEach(x=>{
+return;
+}
+
+if(!data?.length){
+
+box.innerHTML=
+'<div class="msg">🎬 No videos yet</div>';
+
+return;
+}
+
+box.innerHTML="";
+
+for(const v of data){
+
+await card(v,box);
+
+}
+
+}
+
+
+/* HOME VIDEOS */
+
+async function load(){
+
+let box=$("videos");
+
+if(!box)return;
+
+box.innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data,error}=await sb
+.from("videos")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+box.innerHTML=
+"❌ "+error.message;
+
+return;
+}
+
+if(!data?.length){
+
+box.innerHTML=
+'<div class="msg">🎬 No videos yet</div>';
+
+return;
+}
+
+box.innerHTML="";
+
+for(const v of data){
+
+await card(v,box);
+
+}
+
+}
+  /* VIDEO CARD */
+
+async function card(v,box){
 
 let d=document.createElement("div");
 
-d.className="comment";
+d.className="video-card";
 
-d.textContent=
-"👤 "+(x.username||"User")+": "+x.comment;
+let videoUrl=v.video_url||v.url||v.path||"";
 
-l.appendChild(d);
+let username=v.username||"User";
 
-});
+let {data:p}=await sb
+.from("profiles")
+.select("username")
+.eq("id",v.user_id)
+.maybeSingle();
+
+if(p?.username) username=p.username;
+
+let {count:likes}=await sb
+.from("likes")
+.select("*",{count:"exact",head:true})
+.eq("video_id",v.id);
+
+let {count:comments}=await sb
+.from("comments")
+.select("*",{count:"exact",head:true})
+.eq("video_id",v.id);
+
+let {data:liked}=await sb
+.from("likes")
+.select("id")
+.eq("video_id",v.id)
+.eq("user_id",user.id);
+
+let {data:followed}=await sb
+.from("follows")
+.select("id")
+.eq("follower_id",user.id)
+.eq("following_id",v.user_id);
+
+let isMine=String(v.user_id)===String(user.id);
+
+d.innerHTML=`
+
+<video
+src="${esc(videoUrl)}"
+controls
+playsinline
+preload="metadata">
+</video>
+
+<div class="info">
+
+<div
+class="user clickable"
+onclick="openPublicProfile('${v.user_id}')">
+👤 ${esc(username)}
+</div>
+
+<h3>${esc(v.title||"Untitled video")}</h3>
+
+<div class="date">
+${v.created_at ? new Date(v.created_at).toLocaleString() : ""}
+</div>
+
+<div class="actions">
+
+<button
+class="${liked?.length ? "liked":""}"
+onclick="toggleLike('${v.id}',this)">
+❤️ <span>${likes||0}</span>
+</button>
+
+<button
+onclick="toggleComments('${v.id}')">
+💬 <span>${comments||0}</span>
+</button>
+
+${!isMine ? `
+
+<button
+class="${followed?.length ? "follow":""}"
+onclick="toggleFollow('${v.user_id}',this)">
+${followed?.length ? "Following":"Follow"}
+</button>
+
+` : ""}
+
+<button
+onclick="shareVideo('${v.id}')">
+↗ Share
+</button>
+
+</div>
+
+<div
+id="comments-${v.id}"
+class="comments">
+
+<div
+id="commentList-${v.id}">
+Loading...
+</div>
+
+<div style="
+display:flex;
+gap:6px;
+margin-top:8px;
+">
+
+<input
+id="commentInput-${v.id}"
+class="input"
+placeholder="Write a comment..."
+style="margin:0">
+
+<button
+class="profile-btn"
+onclick="addComment('${v.id}')">
+Send
+</button>
+
+</div>
+
+</div>
+
+</div>
+`;
+
+box.appendChild(d);
 
 }
 
-async function comment(b){
 
-let c=b.closest(".video-card"),
-t=c.querySelector("textarea"),
-x=t.value.trim();
+/* LIKE */
 
-if(!x)return;
+async function toggleLike(videoId,btn){
 
-let n=user.user_metadata?.username||
-user.email.split("@")[0];
+let {data}=await sb
+.from("likes")
+.select("id")
+.eq("video_id",videoId)
+.eq("user_id",user.id);
 
-await sb.from("video_comments").insert({
+if(data?.length){
 
-video_id:c.dataset.id,
-user_id:String(user.id),
-username:n,
-comment:x
+await sb
+.from("likes")
+.delete()
+.eq("id",data[0].id);
+
+btn.classList.remove("liked");
+
+}else{
+
+let {error}=await sb
+.from("likes")
+.insert({
+video_id:videoId,
+user_id:user.id
+});
+
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+}
+
+btn.classList.add("liked");
+
+}
+
+let {count}=await sb
+.from("likes")
+.select("*",{count:"exact",head:true})
+.eq("video_id",videoId);
+
+let span=btn.querySelector("span");
+
+if(span) span.textContent=count||0;
+
+}
+
+
+/* COMMENTS */
+
+async function toggleComments(videoId){
+
+let box=$("comments-"+videoId);
+
+if(!box)return;
+
+if(box.style.display==="block"){
+
+box.style.display="none";
+
+return;
+}
+
+box.style.display="block";
+
+await loadComments(videoId);
+
+}
+
+
+/* LOAD COMMENTS */
+
+async function loadComments(videoId){
+
+let box=$("commentList-"+videoId);
+
+if(!box)return;
+
+box.innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data,error}=await sb
+.from("comments")
+.select("*")
+.eq("video_id",videoId)
+.order("created_at",{ascending:true});
+
+if(error){
+
+box.innerHTML=
+"❌ "+esc(error.message);
+
+return;
+}
+
+if(!data?.length){
+
+box.innerHTML=
+'<div class="msg">No comments yet</div>';
+
+return;
+}
+
+box.innerHTML="";
+
+for(const c of data){
+
+let username="User";
+
+let {data:p}=await sb
+.from("profiles")
+.select("username")
+.eq("id",c.user_id)
+.maybeSingle();
+
+if(p?.username) username=p.username;
+
+let x=document.createElement("div");
+
+x.className="comment";
+
+x.innerHTML=`
+<b>${esc(username)}</b>
+<br>
+${esc(c.text||"")}
+`;
+
+box.appendChild(x);
+
+}
+
+}
+
+
+/* ADD COMMENT */
+
+async function addComment(videoId){
+
+let input=$("commentInput-"+videoId);
+
+if(!input)return;
+
+let text=input.value.trim();
+
+if(!text)return;
+
+let {error}=await sb
+.from("comments")
+.insert({
+
+video_id:videoId,
+user_id:user.id,
+text:text
 
 });
 
-if(String(c.dataset.owner)!=String(user.id))
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+}
+
+input.value="";
+
+await loadComments(videoId);
+
+}
+
+
+/* FOLLOW FROM VIDEO */
+
+async function toggleFollow(id,btn){
+
+let target=String(id);
+
+if(target===String(user.id))return;
+
+let {data}=await sb
+.from("follows")
+.select("id")
+.eq("follower_id",String(user.id))
+.eq("following_id",target);
+
+if(data?.length){
+
+await sb
+.from("follows")
+.delete()
+.eq("id",data[0].id);
+
+btn.textContent="Follow";
+
+btn.classList.remove("follow");
+
+}else{
+
+let {error}=await sb
+.from("follows")
+.insert({
+
+follower_id:String(user.id),
+following_id:target
+
+});
+
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+}
+
+btn.textContent="Following";
+
+btn.classList.add("follow");
 
 await notice(
-c.dataset.owner,
-"💬 commented on your video",
-c.dataset.id
+target,
+"👤 started following you"
 );
 
-t.value="";
-
-await getComments(c);
+}
 
 notifyCount();
 
+loadProfile();
+
 }
+
 
 /* SHARE */
 
-async function share(b){
+async function shareVideo(id){
 
-let url=b.closest(".video-card").dataset.url;
+let url=
+location.origin+
+location.pathname+
+"?video="+encodeURIComponent(id);
 
-if(navigator.share)
+if(navigator.share){
+
+try{
 
 await navigator.share({
+
 title:"We Media",
-url
+text:"Watch this video on We Media",
+url:url
+
 });
 
-else{
+}catch(e){}
+
+}else{
+
+try{
 
 await navigator.clipboard.writeText(url);
 
-alert("Link copied!");
+alert("✅ Video link copied");
+
+}catch(e){
+
+prompt(
+"Copy this video link:",
+url
+);
 
 }
 
 }
 
-/* NOTIFICATION */
+}
 
-async function notice(to,msg,vid=null){
 
-if(!to||String(to)==String(user.id))return;
+/* UPLOAD VIDEO */
 
-await sb.from("notifications").insert({
+async function upload(){
+
+let title=$("title").value.trim();
+
+let file=$("file").files[0];
+
+if(!file){
+
+$("um").textContent=
+"❌ Select a video first";
+
+return;
+}
+
+if(!title){
+
+$("um").textContent=
+"❌ Enter video title";
+
+return;
+}
+
+$("um").textContent=
+"Uploading...";
+
+let ext=
+file.name.split(".").pop();
+
+let path=
+user.id+
+"/"+
+Date.now()+
+"."+
+ext;
+
+let {error:upError}=await sb
+.storage
+.from("Videos")
+.upload(path,file,{
+contentType:file.type,
+upsert:false
+});
+
+if(upError){
+
+$("um").textContent=
+"❌ "+upError.message;
+
+return;
+}
+
+let {data:publicData}=sb
+.storage
+.from("Videos")
+.getPublicUrl(path);
+
+let videoUrl=
+publicData.publicUrl;
+
+let {error:dbError}=await sb
+.from("videos")
+.insert({
+
+user_id:user.id,
+title:title,
+video_url:videoUrl
+
+});
+
+if(dbError){
+
+$("um").textContent=
+"❌ "+dbError.message;
+
+return;
+}
+
+$("um").textContent=
+"✅ Video uploaded successfully";
+
+$("title").value="";
+
+$("file").value="";
+
+setTimeout(()=>{
+
+page("home");
+
+},1000);
+
+}
+
+
+/* PROFILE */
+
+async function loadProfile(){
+
+if(!user)return;
+
+let {data:p}=await sb
+.from("profiles")
+.select("*")
+.eq("id",user.id)
+.maybeSingle();
+
+$("name").textContent=
+p?.username||
+user.user_metadata?.username||
+"User";
+
+$("email").textContent=
+p?.email||
+user.email||
+"-";
+
+let {count:vc}=await sb
+.from("videos")
+.select("*",{count:"exact",head:true})
+.eq("user_id",user.id);
+
+let {count:followers}=await sb
+.from("follows")
+.select("*",{count:"exact",head:true})
+.eq("following_id",user.id);
+
+let {count:following}=await sb
+.from("follows")
+.select("*",{count:"exact",head:true})
+.eq("follower_id",user.id);
+
+$("vc").textContent=vc||0;
+
+$("followers").textContent=
+followers||0;
+
+$("following").textContent=
+following||0;
+
+}
+
+
+/* NOTIFICATIONS */
+
+async function notice(to,text){
+
+await sb
+.from("notifications")
+.insert({
 
 user_id:String(to),
-sender_id:String(user.id),
-type:"social",
-video_id:vid,
-message:msg
+actor_id:String(user.id),
+text:text,
+read:false
 
 });
 
 }
+
+
+/* NOTIFICATION COUNT */
 
 async function notifyCount(){
 
 if(!user)return;
 
-let {count}=await sb.from("notifications")
+let {count}=await sb
+.from("notifications")
 .select("*",{count:"exact",head:true})
 .eq("user_id",String(user.id))
-.eq("is_read",false);
+.eq("read",false);
 
 $("nc").textContent=count||0;
 
 }
 
+
+/* NOTIFICATIONS PAGE */
+
 async function notifications(){
 
 let box=$("notices");
 
-let {data,error}=await sb.from("notifications")
+box.innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data,error}=await sb
+.from("notifications")
 .select("*")
 .eq("user_id",String(user.id))
-.order("created_at",{ascending:false});
+.order("created_at",{ascending:false})
+.limit(50);
 
 if(error){
-box.textContent="❌ "+error.message;
+
+box.innerHTML=
+"❌ "+esc(error.message);
+
 return;
 }
 
-if(!data.length){
-box.innerHTML="🔔 No notifications yet";
+if(!data?.length){
+
+box.innerHTML=
+'<div class="msg">No notifications</div>';
+
 return;
 }
 
@@ -1176,163 +1918,353 @@ data.forEach(n=>{
 
 let d=document.createElement("div");
 
-d.className="n "+(!n.is_read?"unread":"");
+d.className=
+"n "+(!n.read ? "unread":"");
 
-d.textContent=
-n.message+" • "+
-new Date(n.created_at).toLocaleString();
+d.innerHTML=`
+
+<div>
+${esc(n.text||"Notification")}
+</div>
+
+<div class="user">
+${n.created_at ?
+new Date(n.created_at).toLocaleString():
+""}
+</div>
+
+`;
 
 box.appendChild(d);
 
 });
 
-await sb.from("notifications")
-.update({is_read:true})
+await sb
+.from("notifications")
+.update({read:true})
 .eq("user_id",String(user.id))
-.eq("is_read",false);
+.eq("read",false);
 
-$("nc").textContent="0";
-  let notificationChannel;
-  
+notifyCount();
 
-/* UPLOAD */
-
-async function upload(){
-
-let f=$("file").files[0],
-t=$("title").value.trim();
-
-if(!f||!t){
-
-$("um").textContent=
-"❌ Enter title and select video";
-
-return;
 }
 
-$("um").textContent="Uploading...";
 
-let path=
-user.id+"/"+Date.now()+"_"+
-f.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+/* INBOX */
 
-let {error}=await sb.storage
-.from("Videos")
-.upload(path,f);
+async function openInbox(){
+
+page("inbox");
+
+await loadInbox();
+
+}
+
+
+/* LOAD INBOX */
+
+async function loadInbox(){
+
+let box=$("inboxList");
+
+box.innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data,error}=await sb
+.from("messages")
+.select("*")
+.or(
+"sender_id.eq."+String(user.id)+
+",receiver_id.eq."+String(user.id)
+)
+.order("created_at",{ascending:false});
 
 if(error){
 
-$("um").textContent=
-"❌ "+error.message;
+box.innerHTML=
+"❌ "+esc(error.message);
 
 return;
 }
 
-let url=
-sb.storage.from("Videos")
-.getPublicUrl(path).data.publicUrl;
+if(!data?.length){
 
-let n=
-user.user_metadata?.username||
-user.email.split("@")[0];
+box.innerHTML=
+'<div class="msg">No messages yet</div>';
 
-let r=
-await sb.from("videos").insert({
+return;
+}
 
-title:t,
-url,
-file_name:path,
-username:n,
-user_id:user.id
+let people={};
+
+for(const m of data){
+
+let other=
+String(m.sender_id)===String(user.id)
+?m.receiver_id
+:m.sender_id;
+
+if(!people[other]){
+
+people[other]=m;
+
+}
+
+}
+
+box.innerHTML="";
+
+for(const id in people){
+
+let m=people[id];
+
+let {data:p}=await sb
+.from("profiles")
+.select("username")
+.eq("id",id)
+.maybeSingle();
+
+let name=
+p?.username||
+"User";
+
+let d=document.createElement("div");
+
+d.className="result";
+
+d.innerHTML=`
+
+<div>
+💬 <b>${esc(name)}</b>
+</div>
+
+<button
+onclick="openChat('${id}','${esc(name)}')">
+Chat
+</button>
+
+`;
+
+box.appendChild(d);
+
+}
+
+}
+
+
+/* OPEN CHAT */
+
+async function openChat(id,name){
+
+chatUser=String(id);
+
+$("chatName").textContent=
+"💬 "+name;
+
+page("chat");
+
+await loadChat();
+
+if(chatChannel){
+
+await sb.removeChannel(chatChannel);
+
+}
+
+chatChannel=
+sb.channel("chat-"+user.id+"-"+chatUser)
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"messages"
+},
+payload=>{
+
+let m=payload.new;
+
+if(
+String(m.sender_id)===String(chatUser) &&
+String(m.receiver_id)===String(user.id)
+){
+
+loadChat();
+
+}
+
+}
+)
+.subscribe();
+
+}
+
+
+/* LOAD CHAT */
+
+async function loadChat(){
+
+let box=$("chatbox");
+
+box.innerHTML=
+'<div class="msg">Loading...</div>';
+
+let {data,error}=await sb
+.from("messages")
+.select("*")
+.or(
+"and(sender_id.eq."+String(user.id)+
+",receiver_id.eq."+String(chatUser)+
+"),and(sender_id.eq."+String(chatUser)+
+",receiver_id.eq."+String(user.id)+")"
+)
+.order("created_at",{ascending:true});
+
+if(error){
+
+box.innerHTML=
+"❌ "+esc(error.message);
+
+return;
+}
+
+box.innerHTML="";
+
+if(!data?.length){
+
+box.innerHTML=
+'<div class="msg">Start the conversation</div>';
+
+return;
+}
+
+for(const m of data){
+
+let mine=
+String(m.sender_id)===String(user.id);
+
+let d=document.createElement("div");
+
+d.style.textAlign=
+mine ? "right":"left";
+
+d.style.margin=
+"8px 0";
+
+d.innerHTML=`
+
+<div style="
+display:inline-block;
+padding:9px 12px;
+border-radius:15px;
+background:${mine ? "#08f":"#222"};
+max-width:80%;
+">
+
+${esc(m.text||"")}
+
+</div>
+
+`;
+
+box.appendChild(d);
+
+}
+
+box.scrollTop=box.scrollHeight;
+
+}
+
+
+/* SEND MESSAGE */
+
+async function sendMessage(){
+
+if(!chatUser)return;
+
+let input=$("chatText");
+
+let text=input.value.trim();
+
+if(!text)return;
+
+let {error}=await sb
+.from("messages")
+.insert({
+
+sender_id:String(user.id),
+receiver_id:String(chatUser),
+text:text
 
 });
 
-if(r.error){
+if(error){
 
-$("um").textContent=
-"❌ "+r.error.message;
+alert("❌ "+error.message);
 
 return;
 }
 
-$("um").textContent="✅ Uploaded!";
+input.value="";
 
-$("title").value="";
-$("file").value="";
-
-setTimeout(()=>page("home"),700);
+await loadChat();
 
 }
 
-/* MY PROFILE */
 
-async function loadProfile(){
+/* START CHAT */
 
-if(!user)return;
+async function startChat(){
 
-let n=
-user.user_metadata?.username||
-user.email.split("@")[0];
+if(!publicUser)return;
 
-let {data}=await sb.from("profiles")
+let {data:p}=await sb
+.from("profiles")
 .select("username")
-.eq("id",user.id)
-.single();
+.eq("id",publicUser)
+.maybeSingle();
 
-$("name").textContent=
-data?.username||n;
-
-$("email").textContent=user.email;
-
-let a=await sb.from("videos")
-.select("*",{count:"exact",head:true})
-.eq("user_id",user.id);
-
-let f1=await sb.from("follows")
-.select("*",{count:"exact",head:true})
-.eq("following_id",String(user.id));
-
-let f2=await sb.from("follows")
-.select("*",{count:"exact",head:true})
-.eq("follower_id",String(user.id));
-
-$("vc").textContent=a.count||0;
-$("followers").textContent=f1.count||0;
-$("following").textContent=f2.count||0;
-
-}
-
-/* ESCAPE */
-
-function esc(x){
-
-return String(x).replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
-}[m])
+openChat(
+publicUser,
+p?.username||"User"
 );
 
 }
 
-/* SESSION */
 
-sb.auth.getSession().then(({data})=>{
+/* ESCAPE HTML */
 
-if(data.session){
+function esc(x){
 
-user=data.session.user;
-open();
-
-  }
+return String(x??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
-});
+
+/* AUTO LOGIN */
+
+(async()=>{
+
+let {data}=await sb.auth.getSession();
+
+if(data?.session){
+
+user=data.session.user;
+
+open();
+
+}else{
+
+auth("login");
+
+}
+
+})();
 
 </script>
 
