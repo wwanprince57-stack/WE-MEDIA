@@ -3,7 +3,8 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>We Media</title>
 
@@ -18,12 +19,21 @@ padding:0;
 font-family:Arial,sans-serif;
 }
 
+:root{
+--blue:#1687ff;
+--blue2:#0066ff;
+--dark:#050b14;
+--card:#0b1420;
+--border:#17283c;
+--muted:#8292a5;
+}
+
 body{
-background:#000;
+background:var(--dark);
 color:#fff;
 min-height:100vh;
-padding-top:58px;
-padding-bottom:65px;
+padding-top:60px;
+padding-bottom:70px;
 }
 
 button{
@@ -36,52 +46,62 @@ input{
 outline:none;
 }
 
+button:active{
+transform:scale(.96);
+}
+
+/* TOP */
+
 .top{
 position:fixed;
 top:0;
 left:0;
 right:0;
-height:58px;
-background:#000;
-border-bottom:1px solid #222;
+height:60px;
+background:#07111d;
+border-bottom:1px solid var(--border);
 display:flex;
 align-items:center;
-justify-content:space-between;
-padding:0 12px;
 z-index:1000;
+padding:0 10px;
 }
 
 .logo{
-font-size:22px;
+font-size:21px;
 font-weight:bold;
 }
 
 .top-actions{
+margin-left:auto;
 display:flex;
-gap:8px;
+gap:5px;
 }
 
 .top-btn{
-background:#181818;
+background:#102238;
 width:38px;
 height:38px;
 border-radius:50%;
 font-size:18px;
 }
 
+/* PAGES */
+
 .page{
 display:none;
-min-height:calc(100vh - 123px);
+min-height:calc(100vh - 130px);
 }
 
 .page.active{
 display:block;
 }
 
+/* CARD */
+
 .card{
-background:#111;
-border:1px solid #222;
-border-radius:14px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
 margin:12px;
 padding:15px;
 }
@@ -89,11 +109,11 @@ padding:15px;
 .title{
 font-size:20px;
 font-weight:bold;
-margin-bottom:12px;
+margin-bottom:13px;
 }
 
 .muted{
-color:#999;
+color:var(--muted);
 font-size:13px;
 }
 
@@ -103,38 +123,48 @@ margin-bottom:12px;
 
 .field input{
 width:100%;
-padding:13px;
+padding:14px;
 border-radius:10px;
-border:1px solid #333;
-background:#181818;
+border:1px solid #20354d;
+background:#081321;
 color:#fff;
 }
 
+.field input:focus{
+border-color:var(--blue);
+}
+
+/* BUTTONS */
+
 .primary{
 width:100%;
-padding:13px;
-border-radius:10px;
-background:#fff;
-color:#000;
+padding:14px;
+border-radius:11px;
+background:linear-gradient(
+135deg,#1687ff,#005ce6
+);
+color:#fff;
 font-weight:bold;
 }
 
 .secondary{
 width:100%;
-padding:12px;
-border-radius:10px;
-background:#202020;
+padding:13px;
+border-radius:11px;
+background:#102238;
 color:#fff;
 }
+
+/* BOTTOM NAV */
 
 .bottom-nav{
 position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:65px;
-background:#080808;
-border-top:1px solid #222;
+height:68px;
+background:#07111d;
+border-top:1px solid var(--border);
 display:flex;
 justify-content:space-around;
 align-items:center;
@@ -143,12 +173,13 @@ z-index:1000;
 
 .nav{
 background:none;
-font-size:11px;
-color:#888;
+font-size:10px;
+color:#77889b;
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:3px;
+min-width:55px;
 }
 
 .nav-icon{
@@ -156,91 +187,155 @@ font-size:22px;
 }
 
 .nav.active{
-color:#fff;
+color:var(--blue);
 }
 
 .post-button{
 width:48px;
-height:42px;
-border-radius:12px;
-background:#fff;
-color:#000;
-font-size:25px;
+height:44px;
+border-radius:14px;
+background:linear-gradient(
+135deg,#1687ff,#005ce6
+);
+font-size:28px;
 font-weight:bold;
+box-shadow:
+0 5px 18px rgba(0,120,255,.35);
 }
 
+/* VIDEO */
+
 .video-card{
-margin-bottom:15px;
-background:#080808;
+margin-bottom:18px;
+background:#07111d;
+border-bottom:1px solid var(--border);
+}
+
+.video-wrap{
+position:relative;
+background:#000;
 }
 
 .media{
 width:100%;
 display:block;
-max-height:75vh;
+max-height:72vh;
 object-fit:contain;
 background:#000;
 }
 
 .video-info{
-padding:10px 12px;
+padding:10px 13px;
 }
 
 .video-user{
 font-weight:bold;
-margin-bottom:5px;
+display:flex;
+align-items:center;
+gap:7px;
+margin-bottom:8px;
+}
+
+.poster-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+background:#17314d;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+.poster-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .video-title{
 font-size:14px;
-margin-bottom:9px;
+line-height:1.4;
+color:#e9f2ff;
 }
+
+/* TIKTOK ACTIONS */
 
 .video-actions{
 display:flex;
-justify-content:space-around;
-align-items:center;
-padding:8px 5px;
-border-top:1px solid #181818;
-}
-
-.action{
-background:none;
-font-size:24px;
-display:flex;
 flex-direction:column;
 align-items:center;
-gap:2px;
-min-width:55px;
+gap:13px;
+position:absolute;
+right:9px;
+bottom:78px;
+z-index:20;
 }
 
-.action small{
-font-size:10px;
-color:#aaa;
-}
-
-.action-icon{
+.side-action{
+background:rgba(5,15,27,.72);
+width:48px;
+height:48px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
 font-size:24px;
+border:1px solid rgba(
+255,255,255,.08
+);
+}
+
+.side-action.like-active{
+background:#073b72;
+}
+
+.side-profile{
+width:48px;
+height:48px;
+border-radius:50%;
+border:2px solid var(--blue);
+overflow:hidden;
+background:#102238;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+}
+
+.side-profile img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .sound-used{
-padding:9px 12px;
+padding:10px 13px;
 font-size:12px;
-color:#aaa;
-border-top:1px solid #181818;
+color:#8ea1b7;
+border-top:1px solid #101e2d;
+}
+
+/* PROFILE */
+
+.profile-head{
+text-align:center;
+padding:20px 10px;
 }
 
 .profile-avatar{
-width:80px;
-height:80px;
+width:95px;
+height:95px;
 border-radius:50%;
-background:#222;
+background:#102238;
+border:3px solid var(--blue);
 margin:auto;
 overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:30px;
+font-size:35px;
 }
 
 .profile-avatar img{
@@ -249,82 +344,112 @@ height:100%;
 object-fit:cover;
 }
 
+.profile-name{
+font-size:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.profile-username{
+color:var(--muted);
+font-size:13px;
+margin-top:3px;
+}
+
 .stats{
 display:flex;
 justify-content:center;
-gap:30px;
-margin:15px 0;
+gap:28px;
+margin:18px 0;
 text-align:center;
 }
 
-.stats b{
+.stat{
+min-width:65px;
+}
+
+.stat b{
 display:block;
 font-size:18px;
 }
 
-.stats span{
+.stat span{
 font-size:11px;
-color:#888;
+color:var(--muted);
 }
 
-.effect-row{
+.profile-buttons{
 display:flex;
-gap:7px;
-overflow-x:auto;
-padding:5px 0;
-}
-
-.effect-btn{
-background:#222;
-padding:9px 12px;
-border-radius:9px;
-white-space:nowrap;
-}
-
-.effect-btn.active{
-background:#fff;
-color:#000;
-}
-
-#effectPreview{
-margin-top:10px;
-}
-
-#effectPreview img,
-#effectPreview video{
-width:100%;
-max-height:280px;
-object-fit:contain;
-border-radius:10px;
-}
-
-.chat-box{
-display:flex;
-flex-direction:column;
 gap:8px;
-padding:10px;
+margin:10px 12px;
 }
 
-.message-row{
+.profile-buttons button{
+flex:1;
+}
+
+.profile-tabs{
 display:flex;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+margin-top:15px;
 }
 
-.message-bubble{
-padding:9px 12px;
-border-radius:15px;
-max-width:75%;
-background:#222;
+.profile-tab{
+flex:1;
+padding:13px;
+background:none;
+color:var(--muted);
 }
 
-.message-mine{
-margin-left:auto;
-background:#fff;
-color:#000;
+.profile-tab.active{
+color:var(--blue);
+border-bottom:2px solid var(--blue);
 }
 
-.message-other{
-margin-right:auto;
+.profile-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:2px;
+margin-top:2px;
 }
+
+.grid-video{
+height:160px;
+width:100%;
+object-fit:cover;
+background:#000;
+}
+
+/* SEARCH */
+
+.search-result{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid var(--border);
+}
+
+.search-avatar{
+width:48px;
+height:48px;
+border-radius:50%;
+background:#102238;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+}
+
+.search-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* COMMENTS */
 
 .modal{
 display:none;
@@ -340,11 +465,12 @@ display:flex;
 }
 
 .modal-box{
-background:#111;
+background:#081321;
 width:100%;
-max-height:80vh;
-border-radius:18px 18px 0 0;
+max-height:82vh;
+border-radius:20px 20px 0 0;
 padding:15px;
+border-top:1px solid #17314d;
 }
 
 .modal-head{
@@ -355,37 +481,115 @@ margin-bottom:12px;
 }
 
 .close-btn{
-background:#222;
-width:35px;
-height:35px;
+background:#14263b;
+width:36px;
+height:36px;
 border-radius:50%;
 }
 
 .comment-item{
-padding:10px 0;
-border-bottom:1px solid #222;
+display:flex;
+gap:9px;
+padding:11px 0;
+border-bottom:1px solid #17283c;
 }
 
-.search-result{
+.comment-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+background:#17314d;
+overflow:hidden;
+flex-shrink:0;
+}
+
+.comment-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* UPLOAD */
+
+.preview-video{
+width:100%;
+max-height:300px;
+object-fit:contain;
+border-radius:12px;
+background:#000;
+}
+
+.effect-row{
+display:flex;
+gap:7px;
+overflow-x:auto;
+padding:5px 0;
+}
+
+.effect-btn{
+background:#102238;
+padding:9px 13px;
+border-radius:9px;
+white-space:nowrap;
+}
+
+.effect-btn.active{
+background:var(--blue);
+}
+
+/* AUTH */
+
+.auth-box{
+margin-top:30px;
+}
+
+.password-wrap{
+position:relative;
+}
+
+.password-wrap input{
+padding-right:50px;
+}
+
+.show-pass{
+position:absolute;
+right:7px;
+top:7px;
+width:38px;
+height:38px;
+background:#102238;
+border-radius:8px;
+}
+
+/* PEOPLE */
+
+.person-row{
 display:flex;
 align-items:center;
 gap:10px;
 padding:12px 0;
-border-bottom:1px solid #222;
+border-bottom:1px solid var(--border);
 }
 
-.search-avatar{
-width:45px;
-height:45px;
-border-radius:50%;
-background:#222;
-overflow:hidden;
+.empty{
+padding:45px 20px;
+text-align:center;
+color:var(--muted);
 }
 
-.search-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
+@media(min-width:700px){
+
+.video-card{
+max-width:700px;
+margin:0 auto 20px;
+}
+
+.card{
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
 }
 
 </style>
@@ -395,39 +599,69 @@ object-fit:cover;
 
 <header class="top">
 
-<div class="logo">We Media</div>
+<div class="logo">
+We Media
+</div>
 
 <div class="top-actions">
 
-<button class="top-btn" onclick="showPage('notifications')">🔔</button>
+<button
+class="top-btn"
+onclick="showPage('profile')">
+👤
+</button>
 
-<button class="top-btn" onclick="showPage('messages')">💬</button>
+<button
+class="top-btn"
+onclick="showPage('notifications')">
+🔔
+</button>
 
-<button class="top-btn" onclick="showPage('search')">🔍</button>
+<button
+class="top-btn"
+onclick="showPage('messages')">
+💬
+</button>
+
+<button
+class="top-btn"
+onclick="showPage('suggestions')">
+👥
+</button>
+
+<button
+class="top-btn"
+onclick="showPage('search')">
+🔍
+</button>
 
 </div>
 
 </header>
 
-<!-- HOME -->
-
-<section id="homePage" class="page active">
+<section
+id="homePage"
+class="page active">
 
 <div id="feed"></div>
 
 </section>
 
-<!-- NOTIFICATIONS -->
-
-<section id="notificationsPage" class="page">
+<section
+id="notificationsPage"
+class="page">
 
 <div class="card">
 
-<div class="title">Notifications</div>
+<div class="title">
+🔔 Notifications
+</div>
 
 <div id="notificationsList">
 
-<div class="muted">No notifications yet.</div>
+<div class="muted">
+No notifications yet.
+</div>
 
 </div>
 
@@ -435,17 +669,21 @@ object-fit:cover;
 
 </section>
 
-<!-- MESSAGES -->
-
-<section id="messagesPage" class="page">
+<section
+id="messagesPage"
+class="page">
 
 <div class="card">
 
-<div class="title">Messages</div>
+<div class="title">
+💬 Messages
+</div>
 
 <div id="messagesList">
 
-<div class="muted">No messages yet.</div>
+<div class="muted">
+No messages yet.
+</div>
 
 </div>
 
@@ -453,13 +691,15 @@ object-fit:cover;
 
 </section>
 
-<!-- SEARCH -->
-
-<section id="searchPage" class="page">
+<section
+id="searchPage"
+class="page">
 
 <div class="card">
 
-<div class="title">Search</div>
+<div class="title">
+🔍 Search
+</div>
 
 <div class="field">
 
@@ -477,39 +717,39 @@ oninput="searchUsers()">
 
 </section>
 
-<!-- PROFILE -->
+<section
+id="suggestionsPage"
+class="page">
 
-<section id="profilePage" class="page">
+<div class="card">
+
+<div class="title">
+👥 People you may know
+</div>
+
+<div id="suggestions"></div>
+
+</div>
+
+</section>
+
+<section
+id="profilePage"
+class="page">
 
 <div id="profileBox"></div>
 
 </section>
 
-<!-- SUGGESTIONS -->
-
-<section id="suggestionsPage" class="page">
-
-<div class="card">
-
-<div class="title">Suggestions</div>
-
-<div id="suggestions">
-
-<div class="muted">Loading suggestions...</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- UPLOAD -->
-
-<section id="uploadPage" class="page">
+<section
+id="uploadPage"
+class="page">
 
 <div class="card">
 
-<div class="title">Create Post</div>
+<div class="title">
+➕ Create Post
+</div>
 
 <div class="field">
 
@@ -520,14 +760,14 @@ placeholder="Write something...">
 
 </div>
 
-<div class="field">
-
 <input
 id="postFile"
 type="file"
 accept="video/*"
 style="display:none"
 onchange="previewPost()">
+
+<div class="field">
 
 <button
 class="secondary"
@@ -573,29 +813,37 @@ POST VIDEO
 
 </section>
 
-<!-- LOGIN -->
-
-<section id="loginPage" class="page">
+<section
+id="loginPage"
+class="page">
 
 <div class="card auth-box">
 
-<div class="title">Login</div>
-
-<div class="field">
-
-<input
-id="loginId"
-type="text"
-placeholder="Email or phone number">
-
+<div class="title">
+🔐 Login
 </div>
 
 <div class="field">
 
 <input
+id="loginPhone"
+type="tel"
+placeholder="Phone number">
+
+</div>
+
+<div class="field password-wrap">
+
+<input
 id="loginPass"
 type="password"
 placeholder="Password">
+
+<button
+class="show-pass"
+onclick="togglePassword('loginPass',this)">
+👁
+</button>
 
 </div>
 
@@ -621,29 +869,22 @@ CREATE ACCOUNT
 
 </section>
 
-<!-- REGISTER -->
-
-<section id="registerPage" class="page">
+<section
+id="registerPage"
+class="page">
 
 <div class="card auth-box">
 
-<div class="title">Create Account</div>
+<div class="title">
+Create Account
+</div>
 
 <div class="field">
 
 <input
 id="regName"
 type="text"
-placeholder="Full name / Username">
-
-</div>
-
-<div class="field">
-
-<input
-id="regEmail"
-type="email"
-placeholder="Email">
+placeholder="Your name / username">
 
 </div>
 
@@ -659,9 +900,24 @@ placeholder="Phone number">
 <div class="field">
 
 <input
+id="regEmail"
+type="email"
+placeholder="Email (optional)">
+
+</div>
+
+<div class="field password-wrap">
+
+<input
 id="regPass"
 type="password"
 placeholder="Password">
+
+<button
+class="show-pass"
+onclick="togglePassword('regPass',this)">
+👁
+</button>
 
 </div>
 
@@ -687,8 +943,6 @@ LOGIN
 
 </section>
 
-<!-- BOTTOM NAV -->
-
 <nav class="bottom-nav">
 
 <button
@@ -702,7 +956,7 @@ onclick="showPage('home')">
 </button>
 
 <button
-id="navSuggestions"
+id="navPeople"
 class="nav"
 onclick="showPage('suggestions')">
 
@@ -741,8 +995,6 @@ onclick="showPage('profile')">
 
 </nav>
 
-<!-- COMMENTS MODAL -->
-
 <div
 id="commentModal"
 class="modal">
@@ -751,7 +1003,9 @@ class="modal">
 
 <div class="modal-head">
 
-<strong>Comments</strong>
+<strong>
+Comments
+</strong>
 
 <button
 class="close-btn"
@@ -779,13 +1033,15 @@ style="
 flex:1;
 padding:12px;
 border-radius:10px;
-border:1px solid #333;
-background:#181818;
+border:1px solid #20354d;
+background:#101d2c;
 color:#fff">
 
 <button
-class="primary"
-style="width:auto"
+style="
+width:50px;
+border-radius:10px;
+background:#1687ff"
 onclick="sendComment()">
 
 ➤
@@ -798,9 +1054,7 @@ onclick="sendComment()">
 
 </div>
 
-<script>/* ================================
-   SUPABASE
-================================ */
+<script>
 
 const SUPABASE_URL =
 "https://jhxbfkpcinetbuwsnxcz.supabase.co";
@@ -816,28 +1070,29 @@ SUPABASE_KEY
 
 let user=null;
 let selectedVideoId=null;
-let selectedReceiverId=null;
+let selectedProfileId=null;
 let postEffect="none";
-
-
-/* ================================
-   HELPERS
-================================ */
 
 function $(id){
 return document.getElementById(id);
 }
 
+function escapeHtml(value){
 
-/* ================================
-   PAGE NAVIGATION
-================================ */
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
 
 function showPage(page){
 
-const pages=document.querySelectorAll(".page");
-
-pages.forEach(p=>{
+document
+.querySelectorAll(".page")
+.forEach(p=>{
 p.classList.remove("active");
 });
 
@@ -847,7 +1102,8 @@ if(target){
 target.classList.add("active");
 }
 
-document.querySelectorAll(".nav")
+document
+.querySelectorAll(".nav")
 .forEach(n=>{
 n.classList.remove("active");
 });
@@ -856,7 +1112,7 @@ if(page==="home")
 $("navHome")?.classList.add("active");
 
 if(page==="suggestions")
-$("navSuggestions")?.classList.add("active");
+$("navPeople")?.classList.add("active");
 
 if(page==="messages")
 $("navMessages")?.classList.add("active");
@@ -864,38 +1120,30 @@ $("navMessages")?.classList.add("active");
 if(page==="profile")
 $("navProfile")?.classList.add("active");
 
-if(page==="home"){
+if(page==="home")
 loadFeed();
-}
 
-if(page==="suggestions"){
-loadSuggestions();
-}
-
-if(page==="profile"){
+if(page==="profile")
 loadMyProfile();
-}
 
-if(page==="notifications"){
+if(page==="suggestions")
+loadSuggestions();
+
+if(page==="notifications")
 loadNotifications();
-}
 
-if(page==="messages"){
+if(page==="messages")
 loadMessages();
-}
+
+window.scrollTo(0,0);
 
 }
-
-
-/* ================================
-   AUTH CHECK
-================================ */
 
 function requireLogin(){
 
 if(!user){
 
-alert("Login first");
+alert("Please login first.");
 
 showPage("login");
 
@@ -907,6 +1155,125 @@ return true;
 
 }
 
+function togglePassword(id,button){
+
+const input=$(id);
+
+if(!input)return;
+
+if(input.type==="password"){
+
+input.type="text";
+
+button.textContent="🙈";
+
+}else{
+
+input.type="password";
+
+button.textContent="👁";
+
+}
+
+}
+/* ================================
+   REGISTER
+================================ */
+
+async function register(){
+
+const phone =
+$("regPhone").value.trim();
+
+const email =
+$("regEmail").value.trim();
+
+const name =
+$("regName").value.trim();
+
+const password =
+$("regPassword").value;
+
+if(!phone || !name || !password){
+
+alert("Fill phone, name and password");
+
+return;
+
+}
+
+if(password.length < 6){
+
+alert("Password must be at least 6 characters");
+
+return;
+
+}
+
+const {data,error} =
+await sb.auth.signUp({
+
+phone:phone,
+password:password,
+
+options:{
+data:{
+full_name:name,
+email:email
+}
+}
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+if(!data.user){
+
+alert("Account creation failed");
+
+return;
+
+}
+
+const profileData = {
+
+id:data.user.id,
+full_name:name,
+phone:phone
+
+};
+
+if(email){
+
+profileData.email=email;
+
+}
+
+const {error:profileError} =
+await sb
+.from("profiles")
+.upsert(profileData);
+
+if(profileError){
+
+alert(profileError.message);
+
+return;
+
+}
+
+alert("✅ Account created successfully");
+
+showPage("login");
+
+}
+
 
 /* ================================
    LOGIN
@@ -914,25 +1281,25 @@ return true;
 
 async function login(){
 
-const id=
-$("loginId").value.trim();
+const phone =
+$("loginPhone").value.trim();
 
-const pass=
-$("loginPass").value;
+const password =
+$("loginPassword").value;
 
-if(!id || !pass){
+if(!phone || !password){
 
-alert("Enter email/phone and password");
+alert("Enter phone and password");
 
 return;
 
 }
 
-const {data,error}=
+const {data,error} =
 await sb.auth.signInWithPassword({
 
-email:id,
-password:pass
+phone:phone,
+password:password
 
 });
 
@@ -946,91 +1313,13 @@ return;
 
 user=data.user;
 
-alert("✅ Login successful");
+alert("✅ Welcome back");
 
 showPage("home");
 
-loadFeed();
-
-}
-
-
-/* ================================
-   REGISTER
-================================ */
-
-async function register(){
-
-const name=
-$("regName").value.trim();
-
-const email=
-$("regEmail").value.trim();
-
-const phone=
-$("regPhone").value.trim();
-
-const pass=
-$("regPass").value;
-
-if(!name || !email || !pass){
-
-alert("Name, email and password are required");
-
-return;
-
-}
-
-if(pass.length<6){
-
-alert("Password must be at least 6 characters");
-
-return;
-
-}
-
-const {data,error}=
-await sb.auth.signUp({
-
-email:email,
-password:pass,
-
-options:{
-data:{
-full_name:name,
-username:name,
-phone:phone
-}
-}
-
-});
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-if(data.user){
-
-await sb
-.from("profiles")
-.upsert({
-
-id:data.user.id,
-username:name,
-full_name:name,
-phone:phone
-
-},{onConflict:"id"});
-
-}
-
-alert("✅ Account created successfully");
-
-showPage("login");
+await loadFeed();
+await loadMyProfile();
+await loadSuggestions();
 
 }
 
@@ -1045,9 +1334,7 @@ await sb.auth.signOut();
 
 user=null;
 
-showPage("home");
-
-loadFeed();
+showPage("login");
 
 }
 
@@ -1056,13 +1343,13 @@ loadFeed();
    GET PROFILE
 ================================ */
 
-async function getProfile(userId){
+async function getProfile(id){
 
-const {data,error}=
+const {data,error} =
 await sb
 .from("profiles")
 .select("*")
-.eq("id",userId)
+.eq("id",id)
 .maybeSingle();
 
 if(error){
@@ -1075,7 +1362,457 @@ return null;
 
 return data;
 
-}/* ================================
+}
+
+
+/* ================================
+   CHECK FOLLOW
+================================ */
+
+async function isFollowing(id){
+
+if(!user || !id){
+
+return false;
+
+}
+
+const {data} =
+await sb
+.from("followers")
+.select("id")
+.eq("follower_id",user.id)
+.eq("following_id",id)
+.maybeSingle();
+
+return !!data;
+
+}
+
+
+/* ================================
+   FOLLOW / UNFOLLOW
+================================ */
+
+async function followUser(id,button){
+
+if(!requireLogin()){
+
+return;
+
+}
+
+if(id===user.id){
+
+return;
+
+}
+
+const following =
+await isFollowing(id);
+
+if(following){
+
+const {error} =
+await sb
+.from("followers")
+.delete()
+.eq("follower_id",user.id)
+.eq("following_id",id);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+if(button){
+
+button.textContent="Follow";
+
+button.classList.remove("following");
+
+}
+
+}else{
+
+const {error} =
+await sb
+.from("followers")
+.insert({
+
+follower_id:user.id,
+following_id:id
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+if(button){
+
+button.textContent="Following";
+
+button.classList.add("following");
+
+}
+
+}
+
+}
+
+
+/* ================================
+   SUGGESTIONS
+================================ */
+
+async function loadSuggestions(){
+
+const box=$("suggestionsList");
+
+if(!box)return;
+
+const {data,error} =
+await sb
+.from("profiles")
+.select("*")
+.limit(20);
+
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
+box.innerHTML="";
+
+for(const p of data || []){
+
+if(user && p.id===user.id){
+
+continue;
+
+}
+
+const following =
+await isFollowing(p.id);
+
+const div =
+document.createElement("div");
+
+div.className="suggestion";
+
+div.innerHTML=`
+
+<div class="suggestionInfo"
+onclick="openProfile('${p.id}')">
+
+<img
+src="${escapeHtml(
+p.avatar_url ||
+'https://via.placeholder.com/50'
+)}">
+
+<div>
+
+<strong>
+${escapeHtml(
+p.full_name || "User"
+)}
+</strong>
+
+<small>
+@${escapeHtml(
+p.username || ""
+)}
+</small>
+
+</div>
+
+</div>
+
+<button
+class="followBtn"
+onclick="followUser(
+'${p.id}',this
+)">
+
+${following ? "Following" : "Follow"}
+
+</button>
+
+`;
+
+box.appendChild(div);
+
+}
+
+}
+
+
+/* ================================
+   OPEN PROFILE
+================================ */
+
+async function openProfile(id){
+
+const profile =
+await getProfile(id);
+
+if(!profile){
+
+alert("Profile not found");
+
+return;
+
+}
+
+selectedProfileId=id;
+
+const {count:followers} =
+await sb
+.from("followers")
+.select("*",{count:"exact",head:true})
+.eq("following_id",id);
+
+const {count:following} =
+await sb
+.from("followers")
+.select("*",{count:"exact",head:true})
+.eq("follower_id",id);
+
+const {data:videos} =
+await sb
+.from("videos")
+.select("id")
+.eq("user_id",id);
+
+let likes=0;
+
+for(const video of videos || []){
+
+const {count} =
+await sb
+.from("likes")
+.select("*",{count:"exact",head:true})
+.eq("video_id",video.id);
+
+likes += count || 0;
+
+}
+
+const avatar =
+profile.avatar_url ||
+"https://via.placeholder.com/100";
+
+$("profilePage").innerHTML=`
+
+<div class="profileTop">
+
+<img
+class="profileAvatar"
+src="${escapeHtml(avatar)}">
+
+<h2>
+${escapeHtml(
+profile.full_name || "User"
+)}
+</h2>
+
+<p>
+@${escapeHtml(
+profile.username || ""
+)}
+</p>
+
+<div class="stats">
+
+<div>
+<b>${following || 0}</b>
+<span>Following</span>
+</div>
+
+<div>
+<b>${followers || 0}</b>
+<span>Followers</span>
+</div>
+
+<div>
+<b>${likes}</b>
+<span>Likes</span>
+</div>
+
+</div>
+
+${
+user && user.id!==id
+?
+`
+<button
+class="primary"
+id="profileFollowBtn"
+onclick="followUser(
+'${id}',this
+)">
+
+${await isFollowing(id)
+? "Following"
+: "Follow"}
+
+</button>
+`
+:
+`
+<button
+class="primary"
+onclick="uploadAvatar()">
+
+📷 Change Profile Picture
+
+</button>
+`
+}
+
+</div>
+
+<div
+id="profileVideos"
+class="videoGrid">
+
+</div>
+
+`;
+
+showPage("profile");
+
+const grid=$("profileVideos");
+
+for(const video of videos || []){
+
+const {data:v} =
+await sb
+.from("videos")
+.select("*")
+.eq("id",video.id)
+.maybeSingle();
+
+if(v){
+
+createVideoCard(v,grid);
+
+}
+
+}
+
+}
+
+
+/* ================================
+   MY PROFILE
+================================ */
+
+async function loadMyProfile(){
+
+if(!user)return;
+
+await openProfile(user.id);
+
+}
+
+
+/* ================================
+   PROFILE PICTURE
+================================ */
+
+async function uploadAvatar(){
+
+if(!requireLogin()){
+
+return;
+
+}
+
+const input =
+document.createElement("input");
+
+input.type="file";
+
+input.accept="image/*";
+
+input.onchange=async()=>{
+
+const file=input.files[0];
+
+if(!file)return;
+
+const ext =
+file.name.split(".").pop();
+
+const path =
+`avatars/${user.id}/avatar_${Date.now()}.${ext}`;
+
+const {error:uploadError} =
+await sb
+.storage
+.from("Videos")
+.upload(path,file,{
+upsert:true
+});
+
+if(uploadError){
+
+alert(uploadError.message);
+
+return;
+
+}
+
+const {data:urlData} =
+sb
+.storage
+.from("Videos")
+.getPublicUrl(path);
+
+const avatarUrl =
+urlData.publicUrl;
+
+const {error} =
+await sb
+.from("profiles")
+.update({
+avatar_url:avatarUrl
+})
+.eq("id",user.id);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+alert("✅ Profile picture updated");
+
+await loadMyProfile();
+
+};
+
+input.click();
+
+}
+
+
+/* ================================
    LOAD FEED
 ================================ */
 
@@ -1086,33 +1823,24 @@ const box=$("feed");
 if(!box)return;
 
 box.innerHTML=
-`<div class="card muted">Loading videos...</div>`;
+`<div class="loading">
+Loading videos...
+</div>`;
 
-const {data,error}=
+const {data,error} =
 await sb
 .from("videos")
 .select("*")
-.order("created_at",{ascending:false});
+.order("created_at",{
+ascending:false
+});
 
 if(error){
 
-console.log(error);
-
 box.innerHTML=
-`<div class="card muted">
-Could not load videos.
-</div>`;
-
-return;
-
-}
-
-if(!data || !data.length){
-
-box.innerHTML=
-`<div class="card muted">
-No videos yet. Be the first to post!
-</div>`;
+`<p class="error">
+${escapeHtml(error.message)}
+</p>`;
 
 return;
 
@@ -1120,144 +1848,107 @@ return;
 
 box.innerHTML="";
 
+if(!data || !data.length){
+
+box.innerHTML=
+`<div class="empty">
+No videos yet.
+</div>`;
+
+return;
+
+}
+
 for(const video of data){
 
-await createVideoCard(video,box);
+createVideoCard(video,box);
 
 }
 
-}
-
-
-/* ================================
+   }
+/*/* ================================
    VIDEO CARD
 ================================ */
 
 async function createVideoCard(v,box){
 
-const id=v.id;
-
-const videoUrl=
-v.video_url ||
-v.url ||
-"";
-
-const title=
-v.title ||
-v.caption ||
-"";
-
-let profile=null;
-
-if(v.user_id){
-
-profile=
+const profile =
 await getProfile(v.user_id);
 
-}
+const avatar =
+profile?.avatar_url ||
+"https://via.placeholder.com/60";
 
-const username=
-profile?.username ||
+const name =
 profile?.full_name ||
 "User";
 
-const avatar=
-profile?.avatar_url || "";
-
-const card=
+const card =
 document.createElement("div");
 
-card.className="video-card";
+card.className="videoCard";
 
 card.innerHTML=`
 
+<div class="videoUser"
+onclick="openProfile('${v.user_id}')">
+
+<img
+src="${escapeHtml(avatar)}">
+
+<strong>
+${escapeHtml(name)}
+</strong>
+
+</div>
+
 <video
-class="media"
-src="${videoUrl}"
+class="feedVideo"
+src="${escapeHtml(v.video_url || v.url || "")}"
 controls
 playsinline
+loop
 preload="metadata">
 </video>
 
-<div class="video-info">
+<div class="videoCaption">
 
-<div
-class="video-user"
-onclick="openProfile('${v.user_id}')"
-style="cursor:pointer">
-
-${avatar
-? `<img
-src="${avatar}"
-style="
-width:32px;
-height:32px;
-border-radius:50%;
-object-fit:cover;
-vertical-align:middle;
-margin-right:7px">`
-: "👤"}
-
-@${escapeHtml(username)}
+${escapeHtml(
+v.title ||
+v.caption ||
+""
+)}
 
 </div>
 
-<div class="video-title">
-${escapeHtml(title)}
-</div>
-
-</div>
-
-<div class="video-actions">
+<div class="videoActions">
 
 <button
-class="action"
-id="like-${id}"
-onclick="videoAction('like','${id}')">
-
-<span class="action-icon">❤️</span>
-
+onclick="likePost('${v.id}',this)">
+🤍
 </button>
 
 <button
-class="action"
-onclick="videoAction('comment','${id}')">
-
-<span class="action-icon">💬</span>
-
+onclick="commentPost('${v.id}')">
+💬
 </button>
 
 <button
-class="action"
-onclick="videoAction('share','${id}')">
-
-<span class="action-icon">↗️</span>
-
+onclick="sharePost('${v.id}')">
+↗️
 </button>
 
 <button
-class="action"
-onclick="videoAction('whatsapp','${id}')">
-
-<span class="action-icon">🟢</span>
-
+onclick="whatsappPost('${v.id}')">
+🟢
 </button>
 
 <button
-class="action"
-onclick="videoAction('sound','${id}')">
-
-<span class="action-icon">🎵</span>
-
+onclick="showSound('${escapeHtml(
+v.sound || 'Original sound'
+)}')">
+🎵
 </button>
-
-</div>
-
-<div
-class="sound-used"
-id="sound-${id}">
-
-🎵 Original sound
 
 </div>
 
@@ -1269,87 +1960,262 @@ box.appendChild(card);
 
 
 /* ================================
-   ESCAPE HTML
+   LIKE
 ================================ */
 
-function escapeHtml(value){
+async function likePost(videoId,button){
 
-return String(value || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+if(!requireLogin()){
+
+return;
+
+}
+
+const {data} =
+await sb
+.from("likes")
+.select("id")
+.eq("video_id",videoId)
+.eq("user_id",user.id)
+.maybeSingle();
+
+if(data){
+
+const {error} =
+await sb
+.from("likes")
+.delete()
+.eq("id",data.id);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+button.textContent="🤍";
+
+}else{
+
+const {error} =
+await sb
+.from("likes")
+.insert({
+
+video_id:videoId,
+user_id:user.id
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+button.textContent="💙";
+
+}
 
 }
 
 
 /* ================================
-   VIDEO ACTIONS
+   COMMENTS
 ================================ */
 
-function videoAction(type,id){
+async function commentPost(videoId){
 
-if(type==="like"){
+if(!requireLogin()){
 
-const btn=
-document.getElementById("like-"+id);
-
-likePost(id,btn);
+return;
 
 }
 
-if(type==="comment"){
+selectedVideoId=videoId;
 
-commentPost(id);
+$("commentsModal").classList.add("show");
 
-}
-
-if(type==="share"){
-
-sharePost(id);
+await loadComments();
 
 }
 
-if(type==="whatsapp"){
 
-whatsappPost(id);
+async function loadComments(){
+
+const box=$("commentsList");
+
+if(!box || !selectedVideoId)return;
+
+box.innerHTML=
+"<p>Loading comments...</p>";
+
+const {data,error} =
+await sb
+.from("comments")
+.select("*")
+.eq("video_id",selectedVideoId)
+.order("created_at",{
+ascending:true
+});
+
+if(error){
+
+box.innerHTML=
+`<p>${escapeHtml(
+error.message
+)}</p>`;
+
+return;
 
 }
 
-if(type==="sound"){
+box.innerHTML="";
 
-showSound(
-document.getElementById("sound-"+id)
-?.textContent
-);
+if(!data || !data.length){
+
+box.innerHTML=
+"<p>No comments yet.</p>";
+
+return;
 
 }
+
+for(const c of data){
+
+const profile =
+await getProfile(c.user_id);
+
+const div =
+document.createElement("div");
+
+div.className="commentItem";
+
+div.innerHTML=`
+
+<img
+src="${escapeHtml(
+profile?.avatar_url ||
+"https://via.placeholder.com/40"
+)}">
+
+<div>
+
+<strong>
+${escapeHtml(
+profile?.full_name ||
+"User"
+)}
+</strong>
+
+<p>
+${escapeHtml(
+c.comment || c.text || ""
+)}
+</p>
+
+</div>
+
+`;
+
+box.appendChild(div);
+
+}
+
+}
+
+
+async function sendComment(){
+
+if(!requireLogin()){
+
+return;
+
+}
+
+const input=$("commentInput");
+
+const text=
+input.value.trim();
+
+if(!text)return;
+
+const {error} =
+await sb
+.from("comments")
+.insert({
+
+video_id:selectedVideoId,
+user_id:user.id,
+comment:text
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+input.value="";
+
+await loadComments();
+
+}
+
+
+function closeComments(){
+
+$("commentsModal").classList.remove("show");
+
+selectedVideoId=null;
 
 }
 
 
 /* ================================
-   SHARE VIDEO
+   SHARE
 ================================ */
 
 async function sharePost(id){
 
 const url=
-window.location.origin+
-window.location.pathname+
-"?video="+encodeURIComponent(id);
+window.location.origin +
+window.location.pathname +
+"?video="+id;
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:"We Media",
+text:"Check this video on We Media",
+url:url
+
+});
+
+}catch(e){}
+
+}else{
 
 try{
 
 await navigator.clipboard.writeText(url);
 
-alert("✅ Video link copied");
+alert("✅ Link copied");
 
 }catch(e){
 
 prompt(
-"Copy this video link:",
+"Copy this link:",
 url
 );
 
@@ -1365,12 +2231,12 @@ url
 function whatsappPost(id){
 
 const url=
-window.location.origin+
-window.location.pathname+
-"?video="+encodeURIComponent(id);
+window.location.origin +
+window.location.pathname +
+"?video="+id;
 
 const text=
-"We Media video 🎥\n"+url;
+"Check this video on We Media 👇\n"+url;
 
 window.open(
 "https://wa.me/?text="+
@@ -1388,23 +2254,25 @@ encodeURIComponent(text),
 function showSound(sound){
 
 alert(
-sound ||
-"🎵 Original sound"
+"🎵 Sound used:\n"+sound
 );
 
-   }/* ================================
+}
+
+
+/* ================================
    SEARCH USERS
 ================================ */
 
 async function searchUsers(){
 
-const input=$("searchInput");
+const q=
+$("searchInput").value.trim();
 
-const box=$("searchResults");
+const box=
+$("searchResults");
 
-if(!input || !box)return;
-
-const q=input.value.trim();
+if(!box)return;
 
 if(!q){
 
@@ -1414,34 +2282,19 @@ return;
 
 }
 
-const {data,error}=
+const {data,error} =
 await sb
 .from("profiles")
-.select("id,username,full_name,avatar_url")
-.or(
-`username.ilike.%${q}%,full_name.ilike.%${q}%`
-)
-.limit(30);
+.select("*")
+.ilike("full_name","%"+q+"%")
+.limit(20);
 
 if(error){
 
-console.log(error);
-
 box.innerHTML=
-`<div class="muted">
-Search failed.
-</div>`;
-
-return;
-
-}
-
-if(!data || !data.length){
-
-box.innerHTML=
-`<div class="muted">
-No users found.
-</div>`;
+`<p>${escapeHtml(
+error.message
+)}</p>`;
 
 return;
 
@@ -1449,190 +2302,171 @@ return;
 
 box.innerHTML="";
 
-data.forEach(p=>{
+for(const p of data || []){
 
-const name=
-p.username ||
-p.full_name ||
-"User";
-
-const row=
+const div=
 document.createElement("div");
 
-row.className="search-result";
+div.className="searchUser";
 
-row.innerHTML=`
+div.innerHTML=`
 
-<div class="search-avatar">
+<img
+src="${escapeHtml(
+p.avatar_url ||
+"https://via.placeholder.com/45"
+)}">
 
-${p.avatar_url
-? `<img src="${p.avatar_url}">`
-: "👤"}
-
-</div>
-
-<div style="flex:1">
-
-<div style="font-weight:bold">
-
-@${escapeHtml(name)}
-
-</div>
-
-<div class="muted">
-
-${escapeHtml(p.full_name || "")}
-
-</div>
-
-</div>
-
-<button
-class="secondary"
-style="width:auto;padding:8px 12px"
+<div
 onclick="openProfile('${p.id}')">
 
-View
+<strong>
+${escapeHtml(
+p.full_name || "User"
+)}
+</strong>
 
-</button>
+<small>
+${escapeHtml(
+p.phone || ""
+)}
+</small>
+
+</div>
 
 `;
 
-box.appendChild(row);
+box.appendChild(div);
 
-});
+}
 
 }
 
 
 /* ================================
-   MY PROFILE
+   UPLOAD FILE
 ================================ */
 
-async function loadMyProfile(){
+function openGallery(){
 
 if(!requireLogin())return;
 
-await openProfile(user.id);
+const input=
+$("videoFile");
+
+input.accept="video/*";
+
+input.click();
+
+}
+
+
+function openCamera(){
+
+if(!requireLogin())return;
+
+const input=
+$("videoFile");
+
+input.accept="video/*";
+
+input.setAttribute(
+"capture",
+"environment"
+);
+
+input.click();
 
 }
 
 
 /* ================================
-   SUGGESTIONS
+   PREVIEW
 ================================ */
 
-async function loadSuggestions(){
+function previewPost(){
 
-const box=$("suggestions");
+const input=
+$("videoFile");
+
+const preview=
+$("videoPreview");
+
+if(!input.files[0]){
+
+preview.src="";
+
+return;
+
+}
+
+preview.src=
+URL.createObjectURL(
+input.files[0]
+);
+
+preview.style.display="block";
+
+}
+
+
+/* ================================
+   EFFECTS
+================================ */
+
+function addEffects(){
+
+const box=
+$("effectsBox");
 
 if(!box)return;
 
-if(!user){
+box.innerHTML=`
 
-box.innerHTML=
-`<div class="muted">
-Login to see people you may know.
-</div>`;
-
-return;
-
-}
-
-const {data,error}=
-await sb
-.from("profiles")
-.select("id,username,full_name,avatar_url")
-.neq("id",user.id)
-.limit(30);
-
-if(error){
-
-console.log(error);
-
-box.innerHTML=
-`<div class="muted">
-Could not load suggestions.
-</div>`;
-
-return;
-
-}
-
-if(!data || !data.length){
-
-box.innerHTML=
-`<div class="muted">
-No suggestions available.
-</div>`;
-
-return;
-
-}
-
-box.innerHTML="";
-
-for(const p of data){
-
-const name=
-p.username ||
-p.full_name ||
-"User";
-
-const {data:follow}=await sb
-.from("followers")
-.select("id")
-.eq("follower_id",user.id)
-.eq("following_id",p.id)
-.maybeSingle();
-
-const row=
-document.createElement("div");
-
-row.className="search-result";
-
-row.innerHTML=`
-
-<div
-class="search-avatar">
-
-${p.avatar_url
-? `<img src="${p.avatar_url}">`
-: "👤"}
-
+<div class="effectTitle">
+🎨 Effects
 </div>
 
-<div style="flex:1">
-
-<div style="font-weight:bold">
-
-@${escapeHtml(name)}
-
-</div>
-
-<div class="muted">
-
-${escapeHtml(p.full_name || "")}
-
-</div>
-
-</div>
+<div class="effects">
 
 <button
-class="secondary"
-style="width:auto;padding:8px 12px"
-onclick="followUser(
-'${p.id}',
-this
-)">
-
-${follow ? "Following" : "Follow"}
-
+onclick="setEffect('none')">
+Normal
 </button>
+
+<button
+onclick="setEffect('brightness(1.2)')">
+Bright
+</button>
+
+<button
+onclick="setEffect('contrast(1.3)')">
+Contrast
+</button>
+
+<button
+onclick="setEffect('grayscale(1)')">
+B&W
+</button>
+
+</div>
 
 `;
 
-box.appendChild(row);
+}
+
+
+function setEffect(effect){
+
+postEffect=effect;
+
+const preview=
+$("videoPreview");
+
+if(preview){
+
+preview.style.filter=
+effect;
 
 }
 
@@ -1640,129 +2474,131 @@ box.appendChild(row);
 
 
 /* ================================
-   NOTIFICATIONS
+   UPLOAD VIDEO
 ================================ */
 
-async function loadNotifications(){
+async function uploadPost(){
 
-const box=$("notificationsList");
-
-if(!box)return;
-
-if(!user){
-
-box.innerHTML=
-`<div class="muted">
-Login to see notifications.
-</div>`;
+if(!requireLogin()){
 
 return;
 
 }
 
-const {data,error}=
+const input=
+$("videoFile");
+
+const file=
+input.files[0];
+
+if(!file){
+
+alert("Select a video first");
+
+return;
+
+}
+
+const title=
+$("videoTitle").value.trim();
+
+const ext=
+file.name.split(".").pop();
+
+const path=
+`videos/${user.id}/video_${Date.now()}.${ext}`;
+
+const {error:uploadError} =
 await sb
-.from("notifications")
-.select("*")
-.eq("user_id",user.id)
-.order("created_at",{ascending:false})
-.limit(50);
+.storage
+.from("Videos")
+.upload(
+path,
+file,
+{
+upsert:false,
+contentType:file.type
+}
+);
 
-if(error){
+if(uploadError){
 
-console.log(error);
-
-box.innerHTML=
-`<div class="muted">
-No notifications available.
-</div>`;
+alert(uploadError.message);
 
 return;
 
 }
 
-if(!data || !data.length){
+const {data:urlData} =
+sb
+.storage
+.from("Videos")
+.getPublicUrl(path);
 
-box.innerHTML=
-`<div class="muted">
-No notifications yet.
-</div>`;
+const videoUrl=
+urlData.publicUrl;
 
-return;
+const {error} =
+await sb
+.from("videos")
+.insert({
 
-}
-
-box.innerHTML="";
-
-data.forEach(n=>{
-
-const row=
-document.createElement("div");
-
-row.className="comment-item";
-
-row.textContent=
-n.message ||
-n.text ||
-"New notification";
-
-box.appendChild(row);
+user_id:user.id,
+video_url:videoUrl,
+title:title
 
 });
 
+if(error){
+
+alert(error.message);
+
+return;
+
 }
 
+alert("✅ Video uploaded successfully");
+
+input.value="";
+
+$("videoPreview").src="";
+
+$("videoTitle").value="";
+
+showPage("home");
+
+await loadFeed();
+
+}
 
 /* ================================
    MESSAGES
 ================================ */
 
-async function loadMessages(){
+async function openMessage(id){
 
-const box=$("messagesList");
+if(!requireLogin())return;
+
+showPage("messages");
+
+const box=$("messageList");
 
 if(!box)return;
 
-if(!user){
+box.innerHTML="<p>Loading messages...</p>";
 
-box.innerHTML=
-`<div class="muted">
-Login to see messages.
-</div>`;
-
-return;
-
-}
-
-const {data,error}=
-await sb
+const {data,error}=await sb
 .from("messages")
 .select("*")
 .or(
-`sender_id.eq.${user.id},receiver_id.eq.${user.id}`
+`and(sender_id.eq.${user.id},receiver_id.eq.${id}),and(sender_id.eq.${id},receiver_id.eq.${user.id})`
 )
-.order("created_at",{ascending:true})
-.limit(100);
+.order("created_at",{ascending:true});
 
 if(error){
 
-console.log(error);
-
 box.innerHTML=
-`<div class="muted">
-No messages available.
-</div>`;
-
-return;
-
-}
-
-if(!data || !data.length){
-
-box.innerHTML=
-`<div class="muted">
-No messages yet.
-</div>`;
+`<p>${escapeHtml(error.message)}</p>`;
 
 return;
 
@@ -1770,51 +2606,23 @@ return;
 
 box.innerHTML="";
 
-data.forEach(m=>{
+for(const m of data || []){
 
-const row=
-document.createElement("div");
+const div=document.createElement("div");
 
-row.className="message-row";
+div.className=
+m.sender_id===user.id
+?"message mine"
+:"message";
 
-const mine=
-m.sender_id===user.id;
+div.innerHTML=
+escapeHtml(
+m.message || m.text || ""
+);
 
-row.innerHTML=`
-
-<div class="message-bubble
-${mine ? "message-mine" : "message-other"}">
-
-${escapeHtml(
-m.message ||
-m.text ||
-""
-)}
-
-</div>
-
-`;
-
-box.appendChild(row);
-
-});
-
-box.scrollTop=box.scrollHeight;
+box.appendChild(div);
 
 }
-
-
-/* ================================
-   OPEN MESSAGE
-================================ */
-
-function openMessage(userId){
-
-if(!requireLogin())return;
-
-selectedReceiverId=userId;
-
-showPage("messages");
 
 }
 
@@ -1823,19 +2631,17 @@ showPage("messages");
    SEND MESSAGE
 ================================ */
 
-async function sendMessage(receiverId,message){
+async function sendMessage(receiverId){
 
 if(!requireLogin())return;
 
-if(!receiverId)return;
+const input=$("messageInput");
 
-const text=
-String(message || "").trim();
+const text=input.value.trim();
 
 if(!text)return;
 
-const {error}=
-await sb
+const {error}=await sb
 .from("messages")
 .insert({
 
@@ -1853,334 +2659,71 @@ return;
 
 }
 
-await loadMessages();
+input.value="";
+
+await openMessage(receiverId);
 
 }
 
 
 /* ================================
-   CAMERA / GALLERY
+   NOTIFICATIONS
 ================================ */
 
-function openGallery(){
+async function loadNotifications(){
 
-const file=$("postFile");
+if(!user)return;
 
-if(file){
+const box=$("notificationsList");
 
-file.removeAttribute("capture");
+if(!box)return;
 
-file.click();
+const {data,error}=await sb
+.from("notifications")
+.select("*")
+.eq("user_id",user.id)
+.order("created_at",{ascending:false})
+.limit(30);
 
-}
+if(error){
 
-}
+box.innerHTML=
+`<p>${escapeHtml(error.message)}</p>`;
 
-
-function openCamera(){
-
-const file=$("postFile");
-
-if(file){
-
-file.setAttribute(
-"capture",
-"environment"
-);
-
-file.click();
+return;
 
 }
 
+box.innerHTML="";
+
+if(!data || !data.length){
+
+box.innerHTML=
+"<p>No notifications yet.</p>";
+
+return;
+
 }
 
+for(const n of data){
 
-/* ================================
-   VIDEO PREVIEW
-================================ */
+const div=
+document.createElement("div");
 
-function previewPost(){
+div.className="notification";
 
-const file=$("postFile")?.files?.[0];
+div.innerHTML=`
 
-const preview=$("effectPreview");
-
-if(!file || !preview)return;
-
-const url=
-URL.createObjectURL(file);
-
-preview.innerHTML=`
-
-<video
-src="${url}"
-controls
-playsinline
-style="width:100%;border-radius:10px">
-</video>
+🔔
+<span>
+${escapeHtml(
+n.message || n.text || "New notification"
+)}
+</span>
 
 `;
 
-}
-
-
-/* ================================
-   EFFECTS
-================================ */
-
-function addEffects(){
-
-const area=$("effectsArea");
-
-if(!area)return;
-
-area.innerHTML=`
-
-<div
-style="
-font-weight:bold;
-margin:12px 0 7px">
-
-🎨 Effects
-
-</div>
-
-<div class="effect-row">
-
-<button
-class="effect-btn active"
-onclick="setEffect('none',this)">
-
-Normal
-
-</button>
-
-<button
-class="effect-btn"
-onclick="setEffect('gray',this)">
-
-B&W
-
-</button>
-
-<button
-class="effect-btn"
-onclick="setEffect('warm',this)">
-
-Warm
-
-</button>
-
-<button
-class="effect-btn"
-onclick="setEffect('soft',this)">
-
-Soft
-
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function setEffect(effect,button){
-
-postEffect=effect;
-
-document
-.querySelectorAll(".effect-btn")
-.forEach(b=>{
-b.classList.remove("active");
-});
-
-button?.classList.add("active");
-
-const video=
-$("effectPreview")?.querySelector("video");
-
-if(!video)return;
-
-if(effect==="gray")
-video.style.filter="grayscale(1)";
-
-else if(effect==="warm")
-video.style.filter=
-"sepia(.35) saturate(1.25)";
-
-else if(effect==="soft")
-video.style.filter=
-"brightness(1.08) contrast(.92)";
-
-else
-video.style.filter="none";
-
-}
-
-
-/* ================================
-   INIT EFFECTS
-================================ */
-
-addEffects();/* ================================
-   UPLOAD VIDEO
-================================ */
-
-async function uploadPost(){
-
-if(!requireLogin())return;
-
-const title=
-$("postTitle").value.trim();
-
-const file=
-$("postFile").files[0];
-
-const msg=$("uploadMsg");
-
-if(!file){
-
-msg.textContent=
-"❌ Select a video first";
-
-return;
-
-}
-
-if(!file.type.startsWith("video/")){
-
-msg.textContent=
-"❌ Please select a video file";
-
-return;
-
-}
-
-if(file.size>50*1024*1024){
-
-msg.textContent=
-"❌ Video must be below 50MB";
-
-return;
-
-}
-
-msg.textContent=
-"⏳ Uploading video...";
-
-
-try{
-
-const ext=
-file.name.split(".").pop();
-
-const fileName=
-user.id+
-"/"+
-Date.now()+
-"."+
-ext;
-
-const {error:uploadError}=
-await sb
-.storage
-.from("Videos")
-.upload(
-fileName,
-file,
-{
-contentType:file.type,
-upsert:false
-}
-);
-
-if(uploadError){
-
-console.log(uploadError);
-
-msg.textContent=
-"❌ "+uploadError.message;
-
-return;
-
-}
-
-
-/* ================================
-   GET PUBLIC URL
-================================ */
-
-const {data:urlData}=
-sb
-.storage
-.from("Videos")
-.getPublicUrl(fileName);
-
-const videoUrl=
-urlData.publicUrl;
-
-
-/* ================================
-   SAVE VIDEO
-================================ */
-
-const {error:dbError}=
-await sb
-.from("videos")
-.insert({
-
-user_id:user.id,
-title:title,
-video_url:videoUrl
-
-});
-
-if(dbError){
-
-console.log(dbError);
-
-msg.textContent=
-"❌ "+dbError.message;
-
-return;
-
-}
-
-msg.textContent=
-"✅ Video posted successfully!";
-
-
-/* ================================
-   CLEAR FORM
-================================ */
-
-$("postTitle").value="";
-
-$("postFile").value="";
-
-$("effectPreview").innerHTML="";
-
-
-/* ================================
-   RETURN HOME
-================================ */
-
-setTimeout(()=>{
-
-showPage("home");
-
-loadFeed();
-
-},800);
-
-}catch(error){
-
-console.log(error);
-
-msg.textContent=
-"❌ Upload failed";
+box.appendChild(div);
 
 }
 
@@ -2193,29 +2736,27 @@ msg.textContent=
 
 async function startApp(){
 
-const {data}=
-await sb.auth.getSession();
+const {data}=await sb.auth.getSession();
 
-user=
-data?.session?.user ||
-null;
+if(data && data.session){
 
-if(user){
+user=data.session.user;
 
-console.log(
-"Logged in:",
-user.email
-);
+showPage("home");
+
+await loadFeed();
+
+await loadSuggestions();
+
+await loadNotifications();
 
 }else{
 
-console.log(
-"Not logged in"
-);
+user=null;
+
+showPage("login");
 
 }
-
-await loadFeed();
 
 }
 
@@ -2225,32 +2766,19 @@ await loadFeed();
 ================================ */
 
 sb.auth.onAuthStateChange(
-(event,session)=>{
+async(event,session)=>{
 
-user=
-session?.user ||
-null;
+if(session){
 
-if(event==="SIGNED_IN"){
+user=session.user;
 
-showPage("home");
-
-loadFeed();
-
-}
-
-if(event==="SIGNED_OUT"){
+}else{
 
 user=null;
 
-showPage("home");
-
-loadFeed();
-
 }
 
-}
-);
+});
 
 
 /* ================================
@@ -2282,14 +2810,13 @@ showPage("home");
 
 const box=$("feed");
 
-if(!box)return;
+if(box){
 
 box.innerHTML="";
 
-await createVideoCard(
-data,
-box
-);
+createVideoCard(data,box);
+
+}
 
 }
 
@@ -2302,12 +2829,20 @@ document.addEventListener(
 "DOMContentLoaded",
 async()=>{
 
+addEffects();
+
 await startApp();
 
 await openSharedVideo();
 
 }
 );
+
+
+/* ================================
+   END OF WE MEDIA CODE
+================================ */
+
 </script>
 
 </body>
