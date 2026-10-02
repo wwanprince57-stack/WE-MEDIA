@@ -130,10 +130,6 @@ background:#081321;
 color:#fff;
 }
 
-.field input:focus{
-border-color:var(--blue);
-}
-
 /* BUTTONS */
 
 .primary{
@@ -143,7 +139,6 @@ border-radius:11px;
 background:linear-gradient(
 135deg,#1687ff,#005ce6
 );
-color:#fff;
 font-weight:bold;
 }
 
@@ -152,7 +147,6 @@ width:100%;
 padding:13px;
 border-radius:11px;
 background:#102238;
-color:#fff;
 }
 
 /* BOTTOM NAV */
@@ -199,8 +193,6 @@ background:linear-gradient(
 );
 font-size:28px;
 font-weight:bold;
-box-shadow:
-0 5px 18px rgba(0,120,255,.35);
 }
 
 /* VIDEO */
@@ -209,6 +201,7 @@ box-shadow:
 margin-bottom:18px;
 background:#07111d;
 border-bottom:1px solid var(--border);
+position:relative;
 }
 
 .video-wrap{
@@ -216,42 +209,39 @@ position:relative;
 background:#000;
 }
 
-.media{
+.feed-video{
 width:100%;
+height:auto;
+max-height:76vh;
+min-height:220px;
 display:block;
-max-height:72vh;
 object-fit:contain;
 background:#000;
 }
 
 .video-info{
-padding:10px 13px;
+padding:10px 13px 5px;
 }
 
 .video-user{
-font-weight:bold;
 display:flex;
 align-items:center;
-gap:7px;
+gap:8px;
 margin-bottom:8px;
+cursor:pointer;
 }
 
-.poster-avatar{
-width:35px;
-height:35px;
+.avatar{
+width:38px;
+height:38px;
 border-radius:50%;
 background:#17314d;
-overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
+font-weight:bold;
+font-size:17px;
 flex-shrink:0;
-}
-
-.poster-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
 }
 
 .video-title{
@@ -260,58 +250,36 @@ line-height:1.4;
 color:#e9f2ff;
 }
 
-/* TIKTOK ACTIONS */
-
 .video-actions{
+position:absolute;
+right:8px;
+bottom:75px;
 display:flex;
 flex-direction:column;
-align-items:center;
-gap:13px;
-position:absolute;
-right:9px;
-bottom:78px;
+gap:11px;
 z-index:20;
 }
 
 .side-action{
-background:rgba(5,15,27,.72);
 width:48px;
 height:48px;
 border-radius:50%;
+background:rgba(5,15,27,.78);
+border:1px solid rgba(255,255,255,.1);
+font-size:22px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:24px;
-border:1px solid rgba(
-255,255,255,.08
-);
 }
 
-.side-action.like-active{
-background:#073b72;
-}
-
-.side-profile{
-width:48px;
-height:48px;
-border-radius:50%;
-border:2px solid var(--blue);
-overflow:hidden;
-background:#102238;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:20px;
-}
-
-.side-profile img{
-width:100%;
-height:100%;
-object-fit:cover;
+.side-action span{
+display:block;
+font-size:10px;
+margin-top:2px;
 }
 
 .sound-used{
-padding:10px 13px;
+padding:9px 13px;
 font-size:12px;
 color:#8ea1b7;
 border-top:1px solid #101e2d;
@@ -321,102 +289,44 @@ border-top:1px solid #101e2d;
 
 .profile-head{
 text-align:center;
-padding:20px 10px;
+padding:25px 12px;
 }
 
-.profile-avatar{
-width:95px;
-height:95px;
+.big-avatar{
+width:90px;
+height:90px;
 border-radius:50%;
-background:#102238;
-border:3px solid var(--blue);
-margin:auto;
-overflow:hidden;
+background:#17314d;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:35px;
-}
-
-.profile-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
+font-weight:bold;
+margin:auto;
+border:3px solid var(--blue);
 }
 
 .profile-name{
-font-size:20px;
+font-size:21px;
 font-weight:bold;
 margin-top:10px;
 }
 
 .profile-username{
-color:var(--muted);
 font-size:13px;
-margin-top:3px;
-}
-
-.stats{
-display:flex;
-justify-content:center;
-gap:28px;
-margin:18px 0;
-text-align:center;
-}
-
-.stat{
-min-width:65px;
-}
-
-.stat b{
-display:block;
-font-size:18px;
-}
-
-.stat span{
-font-size:11px;
 color:var(--muted);
-}
-
-.profile-buttons{
-display:flex;
-gap:8px;
-margin:10px 12px;
-}
-
-.profile-buttons button{
-flex:1;
-}
-
-.profile-tabs{
-display:flex;
-border-top:1px solid var(--border);
-border-bottom:1px solid var(--border);
-margin-top:15px;
-}
-
-.profile-tab{
-flex:1;
-padding:13px;
-background:none;
-color:var(--muted);
-}
-
-.profile-tab.active{
-color:var(--blue);
-border-bottom:2px solid var(--blue);
+margin-top:4px;
 }
 
 .profile-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:2px;
-margin-top:2px;
 }
 
 .grid-video{
-height:160px;
 width:100%;
+height:160px;
 object-fit:cover;
 background:#000;
 }
@@ -429,24 +339,7 @@ align-items:center;
 gap:10px;
 padding:12px 0;
 border-bottom:1px solid var(--border);
-}
-
-.search-avatar{
-width:48px;
-height:48px;
-border-radius:50%;
-background:#102238;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:20px;
-}
-
-.search-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
+cursor:pointer;
 }
 
 /* COMMENTS */
@@ -455,8 +348,8 @@ object-fit:cover;
 display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.75);
-z-index:2000;
+background:rgba(0,0,0,.78);
+z-index:3000;
 align-items:flex-end;
 }
 
@@ -465,12 +358,11 @@ display:flex;
 }
 
 .modal-box{
-background:#081321;
 width:100%;
-max-height:82vh;
+background:#081321;
 border-radius:20px 20px 0 0;
 padding:15px;
-border-top:1px solid #17314d;
+max-height:82vh;
 }
 
 .modal-head{
@@ -481,60 +373,21 @@ margin-bottom:12px;
 }
 
 .close-btn{
-background:#14263b;
 width:36px;
 height:36px;
 border-radius:50%;
+background:#14263b;
 }
 
 .comment-item{
-display:flex;
-gap:9px;
 padding:11px 0;
-border-bottom:1px solid #17283c;
+border-bottom:1px solid var(--border);
 }
 
-.comment-avatar{
-width:35px;
-height:35px;
-border-radius:50%;
-background:#17314d;
-overflow:hidden;
-flex-shrink:0;
-}
-
-.comment-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* UPLOAD */
-
-.preview-video{
-width:100%;
-max-height:300px;
-object-fit:contain;
-border-radius:12px;
-background:#000;
-}
-
-.effect-row{
-display:flex;
-gap:7px;
-overflow-x:auto;
-padding:5px 0;
-}
-
-.effect-btn{
-background:#102238;
-padding:9px 13px;
-border-radius:9px;
-white-space:nowrap;
-}
-
-.effect-btn.active{
-background:var(--blue);
+.comment-text{
+font-size:14px;
+margin-top:4px;
+color:#dce8f5;
 }
 
 /* AUTH */
@@ -561,14 +414,15 @@ background:#102238;
 border-radius:8px;
 }
 
-/* PEOPLE */
+/* UPLOAD */
 
-.person-row{
-display:flex;
-align-items:center;
-gap:10px;
-padding:12px 0;
-border-bottom:1px solid var(--border);
+.preview-video{
+width:100%;
+max-height:350px;
+border-radius:12px;
+background:#000;
+display:none;
+object-fit:contain;
 }
 
 .empty{
@@ -576,6 +430,32 @@ padding:45px 20px;
 text-align:center;
 color:var(--muted);
 }
+
+.loading{
+padding:35px;
+text-align:center;
+color:var(--muted);
+}
+
+.error{
+padding:25px;
+color:#ff7070;
+text-align:center;
+}
+
+/* PROFILE */
+
+.profile-actions{
+display:flex;
+gap:8px;
+margin:15px 12px;
+}
+
+.profile-actions button{
+flex:1;
+}
+
+/* DESKTOP */
 
 @media(min-width:700px){
 
@@ -607,8 +487,8 @@ We Media
 
 <button
 class="top-btn"
-onclick="showPage('profile')">
-👤
+onclick="showPage('search')">
+🔍
 </button>
 
 <button
@@ -625,19 +505,16 @@ onclick="showPage('messages')">
 
 <button
 class="top-btn"
-onclick="showPage('suggestions')">
-👥
-</button>
-
-<button
-class="top-btn"
-onclick="showPage('search')">
-🔍
+onclick="showPage('profile')">
+👤
 </button>
 
 </div>
 
 </header>
+
+
+<!-- HOME -->
 
 <section
 id="homePage"
@@ -646,6 +523,38 @@ class="page active">
 <div id="feed"></div>
 
 </section>
+
+
+<!-- SEARCH -->
+
+<section
+id="searchPage"
+class="page">
+
+<div class="card">
+
+<div class="title">
+🔍 Search People
+</div>
+
+<div class="field">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Search username..."
+oninput="searchUsers()">
+
+</div>
+
+<div id="searchResults"></div>
+
+</div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
 
 <section
 id="notificationsPage"
@@ -669,6 +578,9 @@ No notifications yet.
 
 </section>
 
+
+<!-- MESSAGES -->
+
 <section
 id="messagesPage"
 class="page">
@@ -682,7 +594,7 @@ class="page">
 <div id="messagesList">
 
 <div class="muted">
-No messages yet.
+Select a user to message.
 </div>
 
 </div>
@@ -691,47 +603,8 @@ No messages yet.
 
 </section>
 
-<section
-id="searchPage"
-class="page">
 
-<div class="card">
-
-<div class="title">
-🔍 Search
-</div>
-
-<div class="field">
-
-<input
-id="searchInput"
-type="text"
-placeholder="Search people..."
-oninput="searchUsers()">
-
-</div>
-
-<div id="searchResults"></div>
-
-</div>
-
-</section>
-
-<section
-id="suggestionsPage"
-class="page">
-
-<div class="card">
-
-<div class="title">
-👥 People you may know
-</div>
-
-<div id="suggestions"></div>
-
-</div>
-
-</section>
+<!-- PROFILE -->
 
 <section
 id="profilePage"
@@ -741,6 +614,9 @@ class="page">
 
 </section>
 
+
+<!-- UPLOAD -->
+
 <section
 id="uploadPage"
 class="page">
@@ -748,20 +624,20 @@ class="page">
 <div class="card">
 
 <div class="title">
-➕ Create Post
+➕ Create Video
 </div>
 
 <div class="field">
 
 <input
-id="postTitle"
+id="videoTitle"
 type="text"
 placeholder="Write something...">
 
 </div>
 
 <input
-id="postFile"
+id="videoFile"
 type="file"
 accept="video/*"
 style="display:none"
@@ -791,14 +667,17 @@ onclick="openCamera()">
 
 </div>
 
-<div id="effectPreview"></div>
-
-<div id="effectsArea"></div>
+<video
+id="videoPreview"
+class="preview-video"
+controls
+playsinline>
+</video>
 
 <div
 id="uploadMsg"
 class="muted"
-style="margin:10px 0">
+style="margin:12px 0">
 </div>
 
 <button
@@ -812,6 +691,9 @@ POST VIDEO
 </div>
 
 </section>
+
+
+<!-- LOGIN -->
 
 <section
 id="loginPage"
@@ -869,6 +751,9 @@ CREATE ACCOUNT
 
 </section>
 
+
+<!-- REGISTER -->
+
 <section
 id="registerPage"
 class="page">
@@ -884,7 +769,7 @@ Create Account
 <input
 id="regName"
 type="text"
-placeholder="Your name / username">
+placeholder="Username / Your name">
 
 </div>
 
@@ -893,7 +778,7 @@ placeholder="Your name / username">
 <input
 id="regPhone"
 type="tel"
-placeholder="Phone number">
+placeholder="Phone number e.g. +2547...">
 
 </div>
 
@@ -943,6 +828,9 @@ LOGIN
 
 </section>
 
+
+<!-- BOTTOM NAV -->
+
 <nav class="bottom-nav">
 
 <button
@@ -956,12 +844,11 @@ onclick="showPage('home')">
 </button>
 
 <button
-id="navPeople"
 class="nav"
-onclick="showPage('suggestions')">
+onclick="showPage('search')">
 
-<span class="nav-icon">👥</span>
-<span>People</span>
+<span class="nav-icon">🔍</span>
+<span>Search</span>
 
 </button>
 
@@ -995,6 +882,9 @@ onclick="showPage('profile')">
 
 </nav>
 
+
+<!-- COMMENTS -->
+
 <div
 id="commentModal"
 class="modal">
@@ -1019,11 +909,16 @@ onclick="closeComments()">
 
 <div
 id="commentsList"
-style="max-height:45vh;overflow-y:auto">
+style="
+max-height:45vh;
+overflow-y:auto">
 </div>
 
 <div
-style="display:flex;gap:7px;margin-top:10px">
+style="
+display:flex;
+gap:7px;
+margin-top:10px">
 
 <input
 id="commentInput"
@@ -1038,11 +933,11 @@ background:#101d2c;
 color:#fff">
 
 <button
+onclick="sendComment()"
 style="
 width:50px;
 border-radius:10px;
-background:#1687ff"
-onclick="sendComment()">
+background:#1687ff">
 
 ➤
 
@@ -1053,6 +948,7 @@ onclick="sendComment()">
 </div>
 
 </div>
+
 
 <script>
 
@@ -1071,15 +967,16 @@ SUPABASE_KEY
 let user=null;
 let selectedVideoId=null;
 let selectedProfileId=null;
-let postEffect="none";
+
 
 function $(id){
 return document.getElementById(id);
 }
 
+
 function escapeHtml(value){
 
-return String(value || "")
+return String(value ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -1087,6 +984,7 @@ return String(value || "")
 .replace(/'/g,"&#039;");
 
 }
+
 
 function showPage(page){
 
@@ -1096,7 +994,8 @@ document
 p.classList.remove("active");
 });
 
-const target=$(page+"Page");
+const target =
+$(page+"Page");
 
 if(target){
 target.classList.add("active");
@@ -1108,36 +1007,34 @@ document
 n.classList.remove("active");
 });
 
-if(page==="home")
+if(page==="home"){
 $("navHome")?.classList.add("active");
+}
 
-if(page==="suggestions")
-$("navPeople")?.classList.add("active");
-
-if(page==="messages")
+if(page==="messages"){
 $("navMessages")?.classList.add("active");
+}
 
-if(page==="profile")
+if(page==="profile"){
 $("navProfile")?.classList.add("active");
-
-if(page==="home")
-loadFeed();
-
-if(page==="profile")
-loadMyProfile();
-
-if(page==="suggestions")
-loadSuggestions();
-
-if(page==="notifications")
-loadNotifications();
-
-if(page==="messages")
-loadMessages();
+}
 
 window.scrollTo(0,0);
 
+if(page==="home"){
+loadFeed();
 }
+
+if(page==="profile" && user){
+loadMyProfile();
+}
+
+if(page==="notifications"){
+loadNotifications();
+}
+
+}
+
 
 function requireLogin(){
 
@@ -1154,6 +1051,7 @@ return false;
 return true;
 
 }
+
 
 function togglePassword(id,button){
 
@@ -1176,11 +1074,16 @@ button.textContent="👁";
 }
 
 }
-/* ================================
-   REGISTER
-================================ */
+
+
+/* =========================
+REGISTER
+========================= */
 
 async function register(){
+
+const name =
+$("regName").value.trim();
 
 const phone =
 $("regPhone").value.trim();
@@ -1188,23 +1091,24 @@ $("regPhone").value.trim();
 const email =
 $("regEmail").value.trim();
 
-const name =
-$("regName").value.trim();
-
 const password =
-$("regPassword").value;
+$("regPass").value;
 
-if(!phone || !name || !password){
+if(!name || !phone || !password){
 
-alert("Fill phone, name and password");
+alert(
+"Fill username, phone and password."
+);
 
 return;
 
 }
 
-if(password.length < 6){
+if(password.length<6){
 
-alert("Password must be at least 6 characters");
+alert(
+"Password must be at least 6 characters."
+);
 
 return;
 
@@ -1214,11 +1118,12 @@ const {data,error} =
 await sb.auth.signUp({
 
 phone:phone,
+
 password:password,
 
 options:{
 data:{
-full_name:name,
+username:name,
 email:email
 }
 }
@@ -1235,49 +1140,64 @@ return;
 
 if(!data.user){
 
-alert("Account creation failed");
+alert(
+"Account creation failed."
+);
 
 return;
 
 }
 
-const profileData = {
 
+/* PROFILE ONLY USES
+   REAL DATABASE COLUMNS */
+
+const profile={
 id:data.user.id,
-full_name:name,
-phone:phone
-
+username:name
 };
 
 if(email){
-
-profileData.email=email;
-
+profile.email=email;
 }
 
 const {error:profileError} =
 await sb
 .from("profiles")
-.upsert(profileData);
+.upsert(
+profile,
+{
+onConflict:"id"
+}
+);
 
 if(profileError){
 
-alert(profileError.message);
+console.log(profileError);
+
+alert(
+"Account created, but profile could not be saved:\n"+
+profileError.message
+);
 
 return;
 
 }
 
-alert("✅ Account created successfully");
+alert(
+"✅ Account created successfully."
+);
+
+$("regPass").value="";
 
 showPage("login");
 
 }
 
 
-/* ================================
-   LOGIN
-================================ */
+/* =========================
+LOGIN
+========================= */
 
 async function login(){
 
@@ -1285,11 +1205,13 @@ const phone =
 $("loginPhone").value.trim();
 
 const password =
-$("loginPassword").value;
+$("loginPass").value;
 
 if(!phone || !password){
 
-alert("Enter phone and password");
+alert(
+"Enter phone and password."
+);
 
 return;
 
@@ -1313,20 +1235,20 @@ return;
 
 user=data.user;
 
-alert("✅ Welcome back");
+alert(
+"✅ Welcome to We Media"
+);
 
 showPage("home");
 
 await loadFeed();
-await loadMyProfile();
-await loadSuggestions();
 
 }
 
 
-/* ================================
-   LOGOUT
-================================ */
+/* =========================
+LOGOUT
+========================= */
 
 async function logout(){
 
@@ -1339,9 +1261,9 @@ showPage("login");
 }
 
 
-/* ================================
-   GET PROFILE
-================================ */
+/* =========================
+PROFILE
+========================= */
 
 async function getProfile(id){
 
@@ -1365,203 +1287,22 @@ return data;
 }
 
 
-/* ================================
-   CHECK FOLLOW
-================================ */
+async function loadMyProfile(){
 
-async function isFollowing(id){
+if(!user)return;
 
-if(!user || !id){
+const profile =
+await getProfile(user.id);
 
-return false;
+if(!profile)return;
 
-}
-
-const {data} =
-await sb
-.from("followers")
-.select("id")
-.eq("follower_id",user.id)
-.eq("following_id",id)
-.maybeSingle();
-
-return !!data;
+await renderProfile(
+user.id,
+profile
+);
 
 }
 
-
-/* ================================
-   FOLLOW / UNFOLLOW
-================================ */
-
-async function followUser(id,button){
-
-if(!requireLogin()){
-
-return;
-
-}
-
-if(id===user.id){
-
-return;
-
-}
-
-const following =
-await isFollowing(id);
-
-if(following){
-
-const {error} =
-await sb
-.from("followers")
-.delete()
-.eq("follower_id",user.id)
-.eq("following_id",id);
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-if(button){
-
-button.textContent="Follow";
-
-button.classList.remove("following");
-
-}
-
-}else{
-
-const {error} =
-await sb
-.from("followers")
-.insert({
-
-follower_id:user.id,
-following_id:id
-
-});
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-if(button){
-
-button.textContent="Following";
-
-button.classList.add("following");
-
-}
-
-}
-
-}
-
-
-/* ================================
-   SUGGESTIONS
-================================ */
-
-async function loadSuggestions(){
-
-const box=$("suggestionsList");
-
-if(!box)return;
-
-const {data,error} =
-await sb
-.from("profiles")
-.select("*")
-.limit(20);
-
-if(error){
-
-console.log(error);
-
-return;
-
-}
-
-box.innerHTML="";
-
-for(const p of data || []){
-
-if(user && p.id===user.id){
-
-continue;
-
-}
-
-const following =
-await isFollowing(p.id);
-
-const div =
-document.createElement("div");
-
-div.className="suggestion";
-
-div.innerHTML=`
-
-<div class="suggestionInfo"
-onclick="openProfile('${p.id}')">
-
-<img
-src="${escapeHtml(
-p.avatar_url ||
-'https://via.placeholder.com/50'
-)}">
-
-<div>
-
-<strong>
-${escapeHtml(
-p.full_name || "User"
-)}
-</strong>
-
-<small>
-@${escapeHtml(
-p.username || ""
-)}
-</small>
-
-</div>
-
-</div>
-
-<button
-class="followBtn"
-onclick="followUser(
-'${p.id}',this
-)">
-
-${following ? "Following" : "Follow"}
-
-</button>
-
-`;
-
-box.appendChild(div);
-
-}
-
-}
-
-
-/* ================================
-   OPEN PROFILE
-================================ */
 
 async function openProfile(id){
 
@@ -1570,7 +1311,9 @@ await getProfile(id);
 
 if(!profile){
 
-alert("Profile not found");
+alert(
+"Profile not found."
+);
 
 return;
 
@@ -1578,243 +1321,137 @@ return;
 
 selectedProfileId=id;
 
-const {count:followers} =
-await sb
-.from("followers")
-.select("*",{count:"exact",head:true})
-.eq("following_id",id);
+await renderProfile(
+id,
+profile
+);
 
-const {count:following} =
-await sb
-.from("followers")
-.select("*",{count:"exact",head:true})
-.eq("follower_id",id);
+showPage("profile");
+
+}
+
+
+async function renderProfile(
+id,
+profile
+){
+
+const username =
+profile.username ||
+"User";
+
+const initial =
+username
+.charAt(0)
+.toUpperCase();
 
 const {data:videos} =
 await sb
 .from("videos")
-.select("id")
-.eq("user_id",id);
+.select("*")
+.eq("user_id",id)
+.order("created_at",{
+ascending:false
+});
 
-let likes=0;
 
-for(const video of videos || []){
+let totalLikes=0;
 
-const {count} =
-await sb
-.from("likes")
-.select("*",{count:"exact",head:true})
-.eq("video_id",video.id);
+for(const v of videos || []){
 
-likes += count || 0;
+totalLikes +=
+Number(v.likes || 0);
 
 }
 
-const avatar =
-profile.avatar_url ||
-"https://via.placeholder.com/100";
 
-$("profilePage").innerHTML=`
+$("profileBox").innerHTML=`
 
-<div class="profileTop">
+<div class="profile-head">
 
-<img
-class="profileAvatar"
-src="${escapeHtml(avatar)}">
+<div class="big-avatar">
+${escapeHtml(initial)}
+</div>
 
-<h2>
-${escapeHtml(
-profile.full_name || "User"
-)}
-</h2>
+<div class="profile-name">
+${escapeHtml(username)}
+</div>
 
-<p>
-@${escapeHtml(
-profile.username || ""
-)}
-</p>
+<div class="profile-username">
+@${escapeHtml(username)}
+</div>
 
-<div class="stats">
+<div style="
+display:flex;
+justify-content:center;
+gap:35px;
+margin:20px 0">
 
 <div>
-<b>${following || 0}</b>
-<span>Following</span>
+<b>${videos?.length || 0}</b>
+<div class="muted">Videos</div>
 </div>
 
 <div>
-<b>${followers || 0}</b>
-<span>Followers</span>
-</div>
-
-<div>
-<b>${likes}</b>
-<span>Likes</span>
+<b>${totalLikes}</b>
+<div class="muted">Likes</div>
 </div>
 
 </div>
 
 ${
-user && user.id!==id
+user && user.id===id
 ?
 `
 <button
 class="primary"
-id="profileFollowBtn"
-onclick="followUser(
-'${id}',this
-)">
-
-${await isFollowing(id)
-? "Following"
-: "Follow"}
-
+onclick="logout()">
+LOGOUT
 </button>
 `
 :
-`
-<button
-class="primary"
-onclick="uploadAvatar()">
-
-📷 Change Profile Picture
-
-</button>
-`
+""
 }
 
 </div>
 
 <div
-id="profileVideos"
-class="videoGrid">
-
+class="profile-grid"
+id="profileGrid">
 </div>
-
 `;
 
-showPage("profile");
+const grid=
+$("profileGrid");
 
-const grid=$("profileVideos");
+for(const v of videos || []){
 
-for(const video of videos || []){
+const url =
+v.video_url ||
+v.url;
 
-const {data:v} =
-await sb
-.from("videos")
-.select("*")
-.eq("id",video.id)
-.maybeSingle();
+if(!url)continue;
 
-if(v){
+const video =
+document.createElement("video");
 
-createVideoCard(v,grid);
+video.className="grid-video";
 
-}
+video.src=url;
 
-}
+video.controls=true;
 
-}
+video.playsInline=true;
 
+video.preload="metadata";
 
-/* ================================
-   MY PROFILE
-================================ */
-
-async function loadMyProfile(){
-
-if(!user)return;
-
-await openProfile(user.id);
+grid.appendChild(video);
 
 }
 
-
-/* ================================
-   PROFILE PICTURE
-================================ */
-
-async function uploadAvatar(){
-
-if(!requireLogin()){
-
-return;
-
-}
-
-const input =
-document.createElement("input");
-
-input.type="file";
-
-input.accept="image/*";
-
-input.onchange=async()=>{
-
-const file=input.files[0];
-
-if(!file)return;
-
-const ext =
-file.name.split(".").pop();
-
-const path =
-`avatars/${user.id}/avatar_${Date.now()}.${ext}`;
-
-const {error:uploadError} =
-await sb
-.storage
-.from("Videos")
-.upload(path,file,{
-upsert:true
-});
-
-if(uploadError){
-
-alert(uploadError.message);
-
-return;
-
-}
-
-const {data:urlData} =
-sb
-.storage
-.from("Videos")
-.getPublicUrl(path);
-
-const avatarUrl =
-urlData.publicUrl;
-
-const {error} =
-await sb
-.from("profiles")
-.update({
-avatar_url:avatarUrl
-})
-.eq("id",user.id);
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-alert("✅ Profile picture updated");
-
-await loadMyProfile();
-
-};
-
-input.click();
-
-}
-
-
-/* ================================
-   LOAD FEED
-================================ */
+}/* =========================
+   FEED
+========================= */
 
 async function loadFeed(){
 
@@ -1822,10 +1459,11 @@ const box=$("feed");
 
 if(!box)return;
 
-box.innerHTML=
-`<div class="loading">
+box.innerHTML=`
+<div class="loading">
 Loading videos...
-</div>`;
+</div>
+`;
 
 const {data,error} =
 await sb
@@ -1837,10 +1475,11 @@ ascending:false
 
 if(error){
 
-box.innerHTML=
-`<p class="error">
+box.innerHTML=`
+<div class="error">
 ${escapeHtml(error.message)}
-</p>`;
+</div>
+`;
 
 return;
 
@@ -1848,12 +1487,14 @@ return;
 
 box.innerHTML="";
 
-if(!data || !data.length){
+if(!data || data.length===0){
 
-box.innerHTML=
-`<div class="empty">
-No videos yet.
-</div>`;
+box.innerHTML=`
+<div class="empty">
+🎥 No videos yet.<br><br>
+Be the first to post a video.
+</div>
+`;
 
 return;
 
@@ -1861,131 +1502,250 @@ return;
 
 for(const video of data){
 
-createVideoCard(video,box);
+await createVideoCard(
+video,
+box
+);
 
 }
 
-   }
-/*/* ================================
-   VIDEO CARD
-================================ */
+}
 
-async function createVideoCard(v,box){
+
+/* =========================
+   CREATE VIDEO CARD
+========================= */
+
+async function createVideoCard(
+v,
+box
+){
+
+if(!box)return;
 
 const profile =
-await getProfile(v.user_id);
+v.user_id
+?
+await getProfile(v.user_id)
+:null;
 
-const avatar =
-profile?.avatar_url ||
-"https://via.placeholder.com/60";
-
-const name =
-profile?.full_name ||
+const username =
+profile?.username ||
+v.username ||
 "User";
+
+const initial =
+username
+.charAt(0)
+.toUpperCase();
+
+const videoUrl =
+v.video_url ||
+v.url ||
+"";
 
 const card =
 document.createElement("div");
 
-card.className="videoCard";
+card.className="video-card";
 
 card.innerHTML=`
 
-<div class="videoUser"
-onclick="openProfile('${v.user_id}')">
-
-<img
-src="${escapeHtml(avatar)}">
-
-<strong>
-${escapeHtml(name)}
-</strong>
-
-</div>
+<div class="video-wrap">
 
 <video
-class="feedVideo"
-src="${escapeHtml(v.video_url || v.url || "")}"
+class="feed-video"
 controls
 playsinline
+webkit-playsinline
 loop
-preload="metadata">
+preload="metadata"
+src="${escapeHtml(videoUrl)}">
+
+Your browser does not support video playback.
+
 </video>
 
-<div class="videoCaption">
 
-${escapeHtml(
-v.title ||
-v.caption ||
-""
-)}
-
-</div>
-
-<div class="videoActions">
+<div class="video-actions">
 
 <button
-onclick="likePost('${v.id}',this)">
-🤍
+class="side-action"
+onclick="likePost(
+'${escapeHtml(v.id)}',
+this
+)">
+❤️
 </button>
 
 <button
-onclick="commentPost('${v.id}')">
+class="side-action"
+onclick="commentPost(
+'${escapeHtml(v.id)}'
+)">
 💬
 </button>
 
 <button
-onclick="sharePost('${v.id}')">
+class="side-action"
+onclick="sharePost(
+'${escapeHtml(v.id)}'
+)">
 ↗️
 </button>
 
 <button
-onclick="whatsappPost('${v.id}')">
+class="side-action"
+onclick="whatsappPost(
+'${escapeHtml(v.id)}'
+)">
 🟢
 </button>
 
 <button
-onclick="showSound('${escapeHtml(
-v.sound || 'Original sound'
-)}')">
+class="side-action"
+onclick="showSound(
+'Original sound'
+)">
 🎵
 </button>
 
+</div>
+
+</div>
+
+
+<div class="video-info">
+
+<div
+class="video-user"
+onclick="openProfile(
+'${escapeHtml(v.user_id || "")}'
+)">
+
+<div class="avatar">
+${escapeHtml(initial)}
+</div>
+
+<strong>
+@${escapeHtml(username)}
+</strong>
+
+</div>
+
+<div class="video-title">
+
+${escapeHtml(
+v.title || ""
+)}
+
+</div>
+
+</div>
+
+<div class="sound-used">
+🎵 Original sound
 </div>
 
 `;
 
 box.appendChild(card);
 
-}
 
+/*
+IMPORTANT:
+Check whether URL really loads.
+*/
 
-/* ================================
-   LIKE
-================================ */
+const media =
+card.querySelector(".feed-video");
 
-async function likePost(videoId,button){
-
-if(!requireLogin()){
+if(!media){
 
 return;
 
 }
 
-const {data} =
+
+/* VIDEO ERROR */
+
+media.addEventListener(
+"error",
+()=>{
+
+console.log(
+"Video failed to load:",
+videoUrl
+);
+
+const errorBox =
+document.createElement("div");
+
+errorBox.style.padding="15px";
+
+errorBox.style.color="#ff7070";
+
+errorBox.textContent=
+"⚠️ Video could not be loaded.";
+
+media.parentNode
+.insertBefore(
+errorBox,
+media
+);
+
+},
+{
+once:true
+}
+);
+
+
+/* VIDEO LOADED */
+
+media.addEventListener(
+"loadedmetadata",
+()=>{
+
+console.log(
+"Video loaded successfully:",
+videoUrl
+);
+
+},
+{
+once:true
+}
+);
+
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+async function likePost(
+videoId,
+button
+){
+
+if(!requireLogin())return;
+
+
+/*
+Your current database has
+videos.likes.
+We use that instead of
+a missing likes table.
+*/
+
+const {data:video,error} =
 await sb
-.from("likes")
-.select("id")
-.eq("video_id",videoId)
-.eq("user_id",user.id)
+.from("videos")
+.select("likes")
+.eq("id",videoId)
 .maybeSingle();
-
-if(data){
-
-const {error} =
-await sb
-.from("likes")
-.delete()
-.eq("id",data.id);
 
 if(error){
 
@@ -1994,51 +1754,88 @@ alert(error.message);
 return;
 
 }
+
+if(!video)return;
+
+
+/*
+Simple toggle stored locally
+for this browser.
+*/
+
+const key=
+"wemedia_like_"+videoId;
+
+const alreadyLiked =
+localStorage.getItem(key)==="1";
+
+let likes =
+Number(video.likes || 0);
+
+if(alreadyLiked){
+
+likes=Math.max(
+0,
+likes-1
+);
+
+localStorage.removeItem(key);
 
 button.textContent="🤍";
 
 }else{
 
-const {error} =
-await sb
-.from("likes")
-.insert({
+likes++;
 
-video_id:videoId,
-user_id:user.id
-
-});
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
+localStorage.setItem(
+key,
+"1"
+);
 
 button.textContent="💙";
 
 }
 
-}
 
+const {error:updateError} =
+await sb
+.from("videos")
+.update({
+likes:likes
+})
+.eq("id",videoId);
 
-/* ================================
-   COMMENTS
-================================ */
+if(updateError){
 
-async function commentPost(videoId){
-
-if(!requireLogin()){
+alert(updateError.message);
 
 return;
 
 }
 
+}
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+async function commentPost(
+videoId
+){
+
+if(!requireLogin())return;
+
 selectedVideoId=videoId;
 
-$("commentsModal").classList.add("show");
+const modal=
+$("commentModal");
+
+if(modal){
+
+modal.classList.add("show");
+
+}
 
 await loadComments();
 
@@ -2047,28 +1844,40 @@ await loadComments();
 
 async function loadComments(){
 
-const box=$("commentsList");
+const box=
+$("commentsList");
 
-if(!box || !selectedVideoId)return;
+if(!box ||
+!selectedVideoId)return;
 
 box.innerHTML=
-"<p>Loading comments...</p>";
+"<div class='muted'>Loading comments...</div>";
+
 
 const {data,error} =
 await sb
 .from("comments")
 .select("*")
-.eq("video_id",selectedVideoId)
-.order("created_at",{
+.eq(
+"video_id",
+selectedVideoId
+)
+.order(
+"created_at",
+{
 ascending:true
-});
+}
+);
 
 if(error){
 
-box.innerHTML=
-`<p>${escapeHtml(
+box.innerHTML=`
+<div class="error">
+${escapeHtml(
 error.message
-)}</p>`;
+)}
+</div>
+`;
 
 return;
 
@@ -2076,47 +1885,48 @@ return;
 
 box.innerHTML="";
 
-if(!data || !data.length){
+if(!data || data.length===0){
 
-box.innerHTML=
-"<p>No comments yet.</p>";
+box.innerHTML=`
+<div class="empty">
+No comments yet.
+</div>
+`;
 
 return;
 
 }
 
-for(const c of data){
 
-const profile =
-await getProfile(c.user_id);
+for(const c of data){
 
 const div =
 document.createElement("div");
 
-div.className="commentItem";
+div.className=
+"comment-item";
+
+
+/*
+Your comments table does
+NOT have user_id.
+
+Therefore we don't try
+to read c.user_id.
+*/
 
 div.innerHTML=`
 
-<img
-src="${escapeHtml(
-profile?.avatar_url ||
-"https://via.placeholder.com/40"
-)}">
-
 <div>
-
 <strong>
-${escapeHtml(
-profile?.full_name ||
-"User"
-)}
+We Media user
 </strong>
 
-<p>
+<div class="comment-text">
 ${escapeHtml(
-c.comment || c.text || ""
+c.comment || ""
 )}
-</p>
+</div>
 
 </div>
 
@@ -2129,20 +1939,42 @@ box.appendChild(div);
 }
 
 
+/* =========================
+   SEND COMMENT
+========================= */
+
 async function sendComment(){
 
-if(!requireLogin()){
+if(!requireLogin())return;
+
+if(!selectedVideoId){
+
+alert(
+"Select a video first."
+);
 
 return;
 
 }
 
-const input=$("commentInput");
+const input=
+$("commentInput");
+
+if(!input)return;
 
 const text=
 input.value.trim();
 
 if(!text)return;
+
+
+/*
+IMPORTANT:
+comments table currently
+has no user_id.
+So insert ONLY columns
+that actually exist.
+*/
 
 const {error} =
 await sb
@@ -2150,7 +1982,6 @@ await sb
 .insert({
 
 video_id:selectedVideoId,
-user_id:user.id,
 comment:text
 
 });
@@ -2170,25 +2001,53 @@ await loadComments();
 }
 
 
+/* =========================
+   CLOSE COMMENTS
+========================= */
+
 function closeComments(){
 
-$("commentsModal").classList.remove("show");
+const modal=
+$("commentModal");
+
+if(modal){
+
+modal.classList.remove(
+"show"
+);
+
+}
 
 selectedVideoId=null;
 
 }
 
 
-/* ================================
+/* =========================
+   SOUND
+========================= */
+
+function showSound(sound){
+
+alert(
+"🎵 Sound used:\n"+
+(sound || "Original sound")
+);
+
+}
+
+
+/* =========================
    SHARE
-================================ */
+========================= */
 
 async function sharePost(id){
 
 const url=
-window.location.origin +
-window.location.pathname +
-"?video="+id;
+window.location.origin+
+window.location.pathname+
+"?video="+
+encodeURIComponent(id);
 
 if(navigator.share){
 
@@ -2197,20 +2056,32 @@ try{
 await navigator.share({
 
 title:"We Media",
-text:"Check this video on We Media",
+
+text:
+"Check this video on We Media 👇",
+
 url:url
 
 });
 
-}catch(e){}
+}catch(e){
 
-}else{
+console.log(e);
+
+}
+
+return;
+
+}
 
 try{
 
-await navigator.clipboard.writeText(url);
+await navigator.clipboard
+.writeText(url);
 
-alert("✅ Link copied");
+alert(
+"✅ Video link copied"
+);
 
 }catch(e){
 
@@ -2224,55 +2095,47 @@ url
 }
 
 
-/* ================================
+/* =========================
    WHATSAPP
-================================ */
+========================= */
 
 function whatsappPost(id){
 
 const url=
-window.location.origin +
-window.location.pathname +
-"?video="+id;
+window.location.origin+
+window.location.pathname+
+"?video="+
+encodeURIComponent(id);
 
-const text=
-"Check this video on We Media 👇\n"+url;
+const message=
+"Check this video on We Media 👇\n"+
+url;
 
 window.open(
 "https://wa.me/?text="+
-encodeURIComponent(text),
+encodeURIComponent(message),
 "_blank"
 );
 
 }
 
 
-/* ================================
-   SOUND
-================================ */
-
-function showSound(sound){
-
-alert(
-"🎵 Sound used:\n"+sound
-);
-
-}
-
-
-/* ================================
+/* =========================
    SEARCH USERS
-================================ */
+========================= */
 
 async function searchUsers(){
 
-const q=
-$("searchInput").value.trim();
+const input=
+$("searchInput");
 
 const box=
 $("searchResults");
 
-if(!box)return;
+if(!input || !box)return;
+
+const q=
+input.value.trim();
 
 if(!q){
 
@@ -2282,19 +2145,26 @@ return;
 
 }
 
+
 const {data,error} =
 await sb
 .from("profiles")
 .select("*")
-.ilike("full_name","%"+q+"%")
+.ilike(
+"username",
+"%"+q+"%"
+)
 .limit(20);
 
 if(error){
 
-box.innerHTML=
-`<p>${escapeHtml(
+box.innerHTML=`
+<div class="error">
+${escapeHtml(
 error.message
-)}</p>`;
+)}
+</div>
+`;
 
 return;
 
@@ -2302,35 +2172,59 @@ return;
 
 box.innerHTML="";
 
-for(const p of data || []){
+
+if(!data || !data.length){
+
+box.innerHTML=`
+<div class="empty">
+No users found.
+</div>
+`;
+
+return;
+
+}
+
+
+for(const p of data){
+
+const username=
+p.username ||
+"User";
+
+const initial=
+username
+.charAt(0)
+.toUpperCase();
 
 const div=
 document.createElement("div");
 
-div.className="searchUser";
+div.className=
+"search-result";
+
+div.onclick=()=>{
+
+openProfile(p.id);
+
+};
+
 
 div.innerHTML=`
 
-<img
-src="${escapeHtml(
-p.avatar_url ||
-"https://via.placeholder.com/45"
-)}">
+<div class="avatar">
+${escapeHtml(initial)}
+</div>
 
-<div
-onclick="openProfile('${p.id}')">
+<div>
 
 <strong>
-${escapeHtml(
-p.full_name || "User"
-)}
+@${escapeHtml(username)}
 </strong>
 
-<small>
-${escapeHtml(
-p.phone || ""
-)}
-</small>
+<div class="muted">
+We Media user
+</div>
 
 </div>
 
@@ -2343,9 +2237,9 @@ box.appendChild(div);
 }
 
 
-/* ================================
-   UPLOAD FILE
-================================ */
+/* =========================
+   UPLOAD
+========================= */
 
 function openGallery(){
 
@@ -2354,7 +2248,14 @@ if(!requireLogin())return;
 const input=
 $("videoFile");
 
-input.accept="video/*";
+if(!input)return;
+
+input.removeAttribute(
+"capture"
+);
+
+input.accept=
+"video/mp4,video/webm,video/quicktime,video/*";
 
 input.click();
 
@@ -2368,6 +2269,8 @@ if(!requireLogin())return;
 const input=
 $("videoFile");
 
+if(!input)return;
+
 input.accept="video/*";
 
 input.setAttribute(
@@ -2380,9 +2283,9 @@ input.click();
 }
 
 
-/* ================================
+/* =========================
    PREVIEW
-================================ */
+========================= */
 
 function previewPost(){
 
@@ -2392,121 +2295,136 @@ $("videoFile");
 const preview=
 $("videoPreview");
 
-if(!input.files[0]){
+if(!input ||
+!preview)return;
 
-preview.src="";
+const file=
+input.files?.[0];
+
+if(!file){
+
+preview.removeAttribute("src");
+
+preview.style.display="none";
 
 return;
 
 }
 
-preview.src=
-URL.createObjectURL(
-input.files[0]
+
+/*
+Only preview video files.
+*/
+
+if(!file.type.startsWith(
+"video/"
+)){
+
+alert(
+"Please choose a video file."
 );
 
-preview.style.display="block";
+input.value="";
+
+return;
+
+}
+
+const oldUrl=
+preview.dataset.objectUrl;
+
+if(oldUrl){
+
+URL.revokeObjectURL(
+oldUrl
+);
+
+}
+
+const url=
+URL.createObjectURL(file);
+
+preview.dataset.objectUrl=url;
+
+preview.src=url;
+
+preview.style.display=
+"block";
+
+preview.load();
 
 }
 
 
-/* ================================
-   EFFECTS
-================================ */
-
-function addEffects(){
-
-const box=
-$("effectsBox");
-
-if(!box)return;
-
-box.innerHTML=`
-
-<div class="effectTitle">
-🎨 Effects
-</div>
-
-<div class="effects">
-
-<button
-onclick="setEffect('none')">
-Normal
-</button>
-
-<button
-onclick="setEffect('brightness(1.2)')">
-Bright
-</button>
-
-<button
-onclick="setEffect('contrast(1.3)')">
-Contrast
-</button>
-
-<button
-onclick="setEffect('grayscale(1)')">
-B&W
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function setEffect(effect){
-
-postEffect=effect;
-
-const preview=
-$("videoPreview");
-
-if(preview){
-
-preview.style.filter=
-effect;
-
-}
-
-}
-
-
-/* ================================
+/* =========================
    UPLOAD VIDEO
-================================ */
+========================= */
 
 async function uploadPost(){
 
-if(!requireLogin()){
-
-return;
-
-}
+if(!requireLogin())return;
 
 const input=
 $("videoFile");
 
+const msg=
+$("uploadMsg");
+
+if(!input)return;
+
 const file=
-input.files[0];
+input.files?.[0];
 
 if(!file){
 
-alert("Select a video first");
+alert(
+"Select a video first."
+);
 
 return;
 
 }
 
-const title=
-$("videoTitle").value.trim();
+if(!file.type.startsWith(
+"video/"
+)){
 
-const ext=
-file.name.split(".").pop();
+alert(
+"The selected file is not a video."
+);
+
+return;
+
+}
+
+
+if(msg){
+
+msg.textContent=
+"Uploading video...";
+}
+
+
+/*
+Keep original extension.
+*/
+
+let ext=
+file.name
+.split(".")
+.pop()
+.toLowerCase();
+
+if(!ext ||
+ext.length>8){
+
+ext="mp4";
+
+}
 
 const path=
 `videos/${user.id}/video_${Date.now()}.${ext}`;
+
 
 const {error:uploadError} =
 await sb
@@ -2517,209 +2435,229 @@ path,
 file,
 {
 upsert:false,
-contentType:file.type
+contentType:
+file.type ||
+"video/mp4",
+cacheControl:"3600"
 }
 );
 
+
 if(uploadError){
 
-alert(uploadError.message);
+if(msg){
+msg.textContent="";
+}
+
+alert(
+"Upload failed:\n"+
+uploadError.message
+);
 
 return;
 
 }
 
+
 const {data:urlData} =
-sb
-.storage
+sb.storage
 .from("Videos")
 .getPublicUrl(path);
 
 const videoUrl=
 urlData.publicUrl;
 
-const {error} =
+
+if(!videoUrl){
+
+alert(
+"Could not create video URL."
+);
+
+return;
+
+}
+
+
+const title=
+$("videoTitle")
+?.value
+.trim() || "";
+
+
+/*
+Save BOTH url columns.
+This makes the feed work even
+if older code reads url.
+*/
+
+const {error:dbError} =
 await sb
 .from("videos")
 .insert({
 
 user_id:user.id,
+
+username:
+user.user_metadata
+?.username ||
+user.user_metadata
+?.full_name ||
+"user",
+
+title:title,
+
 video_url:videoUrl,
-title:title
+
+url:videoUrl,
+
+file_name:file.name,
+
+likes:0,
+
+views:0
 
 });
 
-if(error){
 
-alert(error.message);
+if(dbError){
+
+alert(
+"Video uploaded, but database save failed:\n"+
+dbError.message
+);
 
 return;
 
 }
 
-alert("✅ Video uploaded successfully");
+
+if(msg){
+
+msg.textContent=
+"✅ Video posted successfully.";
+}
+
 
 input.value="";
 
-$("videoPreview").src="";
+const preview=
+$("videoPreview");
 
-$("videoTitle").value="";
+if(preview){
 
-showPage("home");
+if(preview.dataset.objectUrl){
 
-await loadFeed();
+URL.revokeObjectURL(
+preview.dataset.objectUrl
+);
 
 }
 
-/* ================================
+preview.removeAttribute("src");
+
+preview.dataset.objectUrl="";
+
+preview.style.display="none";
+
+}
+
+
+if($("videoTitle")){
+$("videoTitle").value="";
+}
+
+
+setTimeout(
+()=>{
+
+showPage("home");
+
+loadFeed();
+
+},
+500
+);
+
+   }/* =========================
    MESSAGES
-================================ */
+========================= */
 
-async function openMessage(id){
+async function loadMessages(){
 
-if(!requireLogin())return;
+if(!user)return;
 
-showPage("messages");
-
-const box=$("messageList");
+const box=$("messagesList");
 
 if(!box)return;
 
-box.innerHTML="<p>Loading messages...</p>";
+box.innerHTML=
+"<div class='muted'>Loading messages...</div>";
 
 const {data,error}=await sb
 .from("messages")
 .select("*")
 .or(
-`and(sender_id.eq.${user.id},receiver_id.eq.${id}),and(sender_id.eq.${id},receiver_id.eq.${user.id})`
+`sender_id.eq.${user.id},receiver_id.eq.${user.id}`
 )
 .order("created_at",{ascending:true});
 
 if(error){
 
-box.innerHTML=
-`<p>${escapeHtml(error.message)}</p>`;
+box.innerHTML=`
+<div class="error">
+${escapeHtml(error.message)}
+</div>
+`;
 
 return;
-
 }
 
 box.innerHTML="";
 
-for(const m of data || []){
+if(!data || data.length===0){
 
-const div=document.createElement("div");
-
-div.className=
-m.sender_id===user.id
-?"message mine"
-:"message";
-
-div.innerHTML=
-escapeHtml(
-m.message || m.text || ""
-);
-
-box.appendChild(div);
-
-}
-
-}
-
-
-/* ================================
-   SEND MESSAGE
-================================ */
-
-async function sendMessage(receiverId){
-
-if(!requireLogin())return;
-
-const input=$("messageInput");
-
-const text=input.value.trim();
-
-if(!text)return;
-
-const {error}=await sb
-.from("messages")
-.insert({
-
-sender_id:user.id,
-receiver_id:receiverId,
-message:text
-
-});
-
-if(error){
-
-alert(error.message);
+box.innerHTML=`
+<div class="empty">
+💬 No messages yet.
+</div>
+`;
 
 return;
-
 }
 
-input.value="";
+for(const m of data){
 
-await openMessage(receiverId);
+const mine=
+m.sender_id===user.id;
 
-}
+const otherId=
+mine ? m.receiver_id : m.sender_id;
 
+const profile=
+await getProfile(otherId);
 
-/* ================================
-   NOTIFICATIONS
-================================ */
+const username=
+profile?.username || "User";
 
-async function loadNotifications(){
-
-if(!user)return;
-
-const box=$("notificationsList");
-
-if(!box)return;
-
-const {data,error}=await sb
-.from("notifications")
-.select("*")
-.eq("user_id",user.id)
-.order("created_at",{ascending:false})
-.limit(30);
-
-if(error){
-
-box.innerHTML=
-`<p>${escapeHtml(error.message)}</p>`;
-
-return;
-
-}
-
-box.innerHTML="";
-
-if(!data || !data.length){
-
-box.innerHTML=
-"<p>No notifications yet.</p>";
-
-return;
-
-}
-
-for(const n of data){
+const messageText=
+m.message || m.text || "";
 
 const div=
 document.createElement("div");
 
-div.className="notification";
+div.className=
+mine ? "message mine" : "message";
 
 div.innerHTML=`
 
-🔔
-<span>
-${escapeHtml(
-n.message || n.text || "New notification"
-)}
-</span>
+<div class="message-user">
+@${escapeHtml(username)}
+</div>
+
+<div class="message-text">
+${escapeHtml(messageText)}
+</div>
 
 `;
 
@@ -2730,60 +2668,426 @@ box.appendChild(div);
 }
 
 
-/* ================================
-   START APP
-================================ */
+/* =========================
+   SEND MESSAGE
+========================= */
 
-async function startApp(){
+async function sendMessage(){
 
-const {data}=await sb.auth.getSession();
+if(!requireLogin())return;
 
-if(data && data.session){
+const receiver=$("receiverId");
+const input=$("messageInput");
 
-user=data.session.user;
+if(!receiver || !input)return;
 
-showPage("home");
+const receiverId=
+receiver.value.trim();
 
-await loadFeed();
+const message=
+input.value.trim();
 
-await loadSuggestions();
+if(!receiverId){
 
-await loadNotifications();
+alert("Enter the user's ID.");
 
-}else{
+return;
+}
 
-user=null;
+if(!message)return;
 
-showPage("login");
+const {error}=await sb
+.from("messages")
+.insert({
+
+sender_id:user.id,
+receiver_id:receiverId,
+message:message,
+text:message,
+is_read:false
+
+});
+
+if(error){
+
+alert(
+"Message failed:\n"+
+error.message
+);
+
+return;
+}
+
+input.value="";
+
+await loadMessages();
+
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+async function loadNotifications(){
+
+if(!user)return;
+
+const box=
+$("notificationsList");
+
+if(!box)return;
+
+box.innerHTML=
+"<div class='muted'>Loading notifications...</div>";
+
+const {data,error}=await sb
+.from("notifications")
+.select("*")
+.eq("user_id",user.id)
+.order("created_at",{
+ascending:false
+});
+
+if(error){
+
+box.innerHTML=`
+<div class="error">
+${escapeHtml(error.message)}
+</div>
+`;
+
+return;
+}
+
+box.innerHTML="";
+
+if(!data || data.length===0){
+
+box.innerHTML=`
+<div class="empty">
+🔔 No notifications.
+</div>
+`;
+
+return;
+}
+
+for(const n of data){
+
+const div=
+document.createElement("div");
+
+div.className=
+"notification";
+
+div.innerHTML=`
+
+<div class="notification-icon">
+🔔
+</div>
+
+<div>
+
+<strong>
+${escapeHtml(
+n.type || "Notification"
+)}
+</strong>
+
+<div>
+${escapeHtml(
+n.message || ""
+)}
+</div>
+
+</div>
+
+`;
+
+box.appendChild(div);
 
 }
 
 }
 
 
-/* ================================
+/* =========================
+   PROFILE VIDEOS
+========================= */
+
+async function loadProfileVideos(profileId){
+
+const box=
+$("profileVideos");
+
+if(!box)return;
+
+box.innerHTML=
+"<div class='muted'>Loading videos...</div>";
+
+const {data,error}=await sb
+.from("videos")
+.select("*")
+.eq("user_id",profileId)
+.order("created_at",{
+ascending:false
+});
+
+if(error){
+
+box.innerHTML=`
+<div class="error">
+${escapeHtml(error.message)}
+</div>
+`;
+
+return;
+}
+
+box.innerHTML="";
+
+if(!data || data.length===0){
+
+box.innerHTML=`
+<div class="empty">
+🎥 No videos yet.
+</div>
+`;
+
+return;
+}
+
+for(const v of data){
+
+const url=
+v.video_url ||
+v.url ||
+"";
+
+const item=
+document.createElement("div");
+
+item.className=
+"profile-video";
+
+item.innerHTML=`
+
+<video
+src="${escapeHtml(url)}"
+controls
+playsinline
+webkit-playsinline
+preload="metadata">
+</video>
+
+<div class="profile-video-title">
+${escapeHtml(v.title || "")}
+</div>
+
+`;
+
+box.appendChild(item);
+
+}
+
+}
+
+
+/* =========================
+   SUGGESTIONS
+========================= */
+
+async function loadSuggestions(){
+
+const box=
+$("suggestionsList") ||
+$("suggestions");
+
+if(!box)return;
+
+const {data,error}=await sb
+.from("profiles")
+.select("*")
+.limit(20);
+
+if(error){
+
+box.innerHTML=`
+<div class="error">
+${escapeHtml(error.message)}
+</div>
+`;
+
+return;
+}
+
+box.innerHTML="";
+
+for(const p of data || []){
+
+if(user && p.id===user.id)
+continue;
+
+const username=
+p.username || "User";
+
+const initial=
+username.charAt(0).toUpperCase();
+
+const div=
+document.createElement("div");
+
+div.className=
+"suggestion";
+
+div.innerHTML=`
+
+<div class="avatar">
+${escapeHtml(initial)}
+</div>
+
+<div class="suggestion-name">
+@${escapeHtml(username)}
+</div>
+
+<button
+class="primary small-btn"
+onclick="openProfile('${escapeHtml(p.id)}')">
+View
+</button>
+
+`;
+
+box.appendChild(div);
+
+}
+
+}
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function showPage(page){
+
+document
+.querySelectorAll(".page")
+.forEach(p=>{
+p.classList.remove("active");
+});
+
+const target=$(page);
+
+if(target){
+
+target.classList.add("active");
+
+}
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+if(page==="home"){
+
+loadFeed();
+
+}
+
+if(page==="notifications"){
+
+loadNotifications();
+
+}
+
+if(page==="messages"){
+
+loadMessages();
+
+}
+
+if(page==="suggestions"){
+
+loadSuggestions();
+
+}
+
+if(page==="profile" && user){
+
+loadMyProfile();
+
+}
+
+}
+
+
+/* =========================
    AUTH STATE
-================================ */
+========================= */
 
 sb.auth.onAuthStateChange(
 async(event,session)=>{
 
-if(session){
+user=
+session?.user || null;
 
-user=session.user;
+if(user){
+
+await loadMyProfile();
 
 }else{
 
-user=null;
+const profileBox=
+$("profileBox");
+
+if(profileBox){
+
+profileBox.innerHTML=`
+<div class="empty">
+Please login to view your profile.
+</div>
+`;
 
 }
 
-});
+}
+
+}
+);
 
 
-/* ================================
+/* =========================
+   START APP
+========================= */
+
+async function startApp(){
+
+const {
+data:{
+session
+}
+}=await sb.auth.getSession();
+
+user=
+session?.user || null;
+
+if(user){
+
+await loadMyProfile();
+
+}
+
+await loadFeed();
+
+}
+
+
+/* =========================
    OPEN SHARED VIDEO
-================================ */
+========================= */
 
 async function openSharedVideo(){
 
@@ -2797,39 +3101,119 @@ params.get("video");
 
 if(!videoId)return;
 
-const {data,error}=
-await sb
+const {data,error}=await sb
 .from("videos")
 .select("*")
 .eq("id",videoId)
 .maybeSingle();
 
-if(error || !data)return;
+if(error || !data){
+
+return;
+
+}
 
 showPage("home");
 
-const box=$("feed");
+const feed=$("feed");
 
-if(box){
+if(!feed)return;
 
-box.innerHTML="";
+feed.innerHTML="";
 
-createVideoCard(data,box);
+await createVideoCard(
+data,
+feed
+);
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   LOGIN / REGISTER BUTTONS
+========================= */
+
+function openLogin(){
+
+showPage("login");
+
+}
+
+function openRegister(){
+
+showPage("register");
+
+}
+
+
+/* =========================
+   VIDEO FILE CHANGE
+========================= */
+
+document.addEventListener(
+"change",
+function(e){
+
+if(
+e.target &&
+e.target.id==="videoFile"
+){
+
+previewPost();
 
 }
 
 }
+);
 
 
-/* ================================
-   PAGE START
-================================ */
+/* =========================
+   COMMENT ENTER
+========================= */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.target &&
+e.target.id==="commentInput" &&
+e.key==="Enter"
+){
+
+e.preventDefault();
+
+sendComment();
+
+}
+
+}
+);
+
+
+/* =========================
+   INITIALIZE APP
+========================= */
 
 document.addEventListener(
 "DOMContentLoaded",
 async()=>{
-
-addEffects();
 
 await startApp();
 
@@ -2837,11 +3221,6 @@ await openSharedVideo();
 
 }
 );
-
-
-/* ================================
-   END OF WE MEDIA CODE
-================================ */
 
 </script>
 
