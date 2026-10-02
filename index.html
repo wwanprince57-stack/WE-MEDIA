@@ -3,6 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width,initial-scale=1">
 
@@ -19,559 +20,415 @@ padding:0;
 font-family:Arial,sans-serif;
 }
 
-:root{
---blue:#1687ff;
---blue2:#0066ff;
---dark:#050b14;
---card:#0b1420;
---border:#17283c;
---muted:#8292a5;
-}
-
 body{
-background:var(--dark);
-color:#fff;
-min-height:100vh;
-padding-top:60px;
+background:#f5f5f5;
+color:#111;
 padding-bottom:70px;
 }
 
 button{
 border:0;
 cursor:pointer;
-color:#fff;
 }
 
-input{
-outline:none;
-}
-
-button:active{
-transform:scale(.96);
-}
-
-/* TOP */
-
-.top{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:60px;
-background:#07111d;
-border-bottom:1px solid var(--border);
+.topbar{
+height:58px;
+background:#fff;
 display:flex;
 align-items:center;
-z-index:1000;
-padding:0 10px;
+justify-content:space-between;
+padding:0 15px;
+position:sticky;
+top:0;
+z-index:50;
+box-shadow:0 1px 5px #ccc;
 }
 
 .logo{
-font-size:21px;
+font-size:22px;
 font-weight:bold;
 }
 
-.top-actions{
-margin-left:auto;
-display:flex;
-gap:5px;
-}
-
-.top-btn{
-background:#102238;
-width:38px;
-height:38px;
-border-radius:50%;
-font-size:18px;
-}
-
-/* PAGES */
-
 .page{
 display:none;
-min-height:calc(100vh - 130px);
+padding:12px;
+max-width:650px;
+margin:auto;
 }
 
 .page.active{
 display:block;
 }
 
-/* CARD */
-
 .card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:15px;
-margin:12px;
+background:#fff;
+border-radius:12px;
 padding:15px;
-}
-
-.title{
-font-size:20px;
-font-weight:bold;
-margin-bottom:13px;
-}
-
-.muted{
-color:var(--muted);
-font-size:13px;
-}
-
-.field{
 margin-bottom:12px;
+box-shadow:0 1px 5px #ddd;
 }
 
-.field input{
+input,
+textarea{
 width:100%;
-padding:14px;
-border-radius:10px;
-border:1px solid #20354d;
-background:#081321;
-color:#fff;
+padding:13px;
+border:1px solid #ddd;
+border-radius:9px;
+margin:7px 0;
+outline:none;
+font-size:15px;
 }
 
-/* BUTTONS */
+textarea{
+min-height:90px;
+resize:none;
+}
 
 .primary{
 width:100%;
-padding:14px;
-border-radius:11px;
-background:linear-gradient(
-135deg,#1687ff,#005ce6
-);
+padding:13px;
+border-radius:9px;
+background:#111;
+color:#fff;
 font-weight:bold;
+margin-top:8px;
 }
 
 .secondary{
-width:100%;
-padding:13px;
-border-radius:11px;
-background:#102238;
+padding:10px 14px;
+border-radius:8px;
+background:#eee;
+font-weight:bold;
 }
 
-/* BOTTOM NAV */
+.danger{
+background:#d00;
+color:#fff;
+}
 
-.bottom-nav{
+.row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.row-between{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.avatar{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#111;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.video-card{
+background:#fff;
+border-radius:12px;
+overflow:hidden;
+margin-bottom:14px;
+box-shadow:0 1px 5px #ddd;
+}
+
+.video-card video{
+width:100%;
+display:block;
+background:#000;
+max-height:600px;
+}
+
+.video-info{
+padding:12px;
+}
+
+.video-actions{
+display:flex;
+gap:6px;
+padding:8px 10px 12px;
+overflow-x:auto;
+}
+
+.video-actions button{
+background:#f0f0f0;
+padding:9px 12px;
+border-radius:20px;
+white-space:nowrap;
+}
+
+.username{
+font-weight:bold;
+margin-bottom:7px;
+}
+
+.title{
+margin-bottom:7px;
+word-break:break-word;
+}
+
+.stats{
+font-size:12px;
+color:#777;
+}
+
+.nav{
 position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:68px;
-background:#07111d;
-border-top:1px solid var(--border);
+height:62px;
+background:#fff;
 display:flex;
 justify-content:space-around;
 align-items:center;
-z-index:1000;
+z-index:100;
+box-shadow:0 -1px 6px #ccc;
 }
 
-.nav{
+.nav button{
 background:none;
-font-size:10px;
-color:#77889b;
+font-size:12px;
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:3px;
-min-width:55px;
 }
 
 .nav-icon{
-font-size:22px;
-}
-
-.nav.active{
-color:var(--blue);
-}
-
-.post-button{
-width:48px;
-height:44px;
-border-radius:14px;
-background:linear-gradient(
-135deg,#1687ff,#005ce6
-);
-font-size:28px;
-font-weight:bold;
-}
-
-/* VIDEO */
-
-.video-card{
-margin-bottom:18px;
-background:#07111d;
-border-bottom:1px solid var(--border);
-position:relative;
-}
-
-.video-wrap{
-position:relative;
-background:#000;
-}
-
-.feed-video{
-width:100%;
-height:auto;
-max-height:76vh;
-min-height:220px;
-display:block;
-object-fit:contain;
-background:#000;
-}
-
-.video-info{
-padding:10px 13px 5px;
-}
-
-.video-user{
-display:flex;
-align-items:center;
-gap:8px;
-margin-bottom:8px;
-cursor:pointer;
-}
-
-.avatar{
-width:38px;
-height:38px;
-border-radius:50%;
-background:#17314d;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-font-size:17px;
-flex-shrink:0;
-}
-
-.video-title{
-font-size:14px;
-line-height:1.4;
-color:#e9f2ff;
-}
-
-.video-actions{
-position:absolute;
-right:8px;
-bottom:75px;
-display:flex;
-flex-direction:column;
-gap:11px;
-z-index:20;
-}
-
-.side-action{
-width:48px;
-height:48px;
-border-radius:50%;
-background:rgba(5,15,27,.78);
-border:1px solid rgba(255,255,255,.1);
-font-size:22px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.side-action span{
-display:block;
-font-size:10px;
-margin-top:2px;
-}
-
-.sound-used{
-padding:9px 13px;
-font-size:12px;
-color:#8ea1b7;
-border-top:1px solid #101e2d;
-}
-
-/* PROFILE */
-
-.profile-head{
-text-align:center;
-padding:25px 12px;
-}
-
-.big-avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-background:#17314d;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:35px;
-font-weight:bold;
-margin:auto;
-border:3px solid var(--blue);
-}
-
-.profile-name{
 font-size:21px;
-font-weight:bold;
-margin-top:10px;
-}
-
-.profile-username{
-font-size:13px;
-color:var(--muted);
-margin-top:4px;
-}
-
-.profile-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:2px;
-}
-
-.grid-video{
-width:100%;
-height:160px;
-object-fit:cover;
-background:#000;
-}
-
-/* SEARCH */
-
-.search-result{
-display:flex;
-align-items:center;
-gap:10px;
-padding:12px 0;
-border-bottom:1px solid var(--border);
-cursor:pointer;
-}
-
-/* COMMENTS */
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.78);
-z-index:3000;
-align-items:flex-end;
-}
-
-.modal.show{
-display:flex;
-}
-
-.modal-box{
-width:100%;
-background:#081321;
-border-radius:20px 20px 0 0;
-padding:15px;
-max-height:82vh;
-}
-
-.modal-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
-}
-
-.close-btn{
-width:36px;
-height:36px;
-border-radius:50%;
-background:#14263b;
-}
-
-.comment-item{
-padding:11px 0;
-border-bottom:1px solid var(--border);
-}
-
-.comment-text{
-font-size:14px;
-margin-top:4px;
-color:#dce8f5;
-}
-
-/* AUTH */
-
-.auth-box{
-margin-top:30px;
-}
-
-.password-wrap{
-position:relative;
-}
-
-.password-wrap input{
-padding-right:50px;
-}
-
-.show-pass{
-position:absolute;
-right:7px;
-top:7px;
-width:38px;
-height:38px;
-background:#102238;
-border-radius:8px;
-}
-
-/* UPLOAD */
-
-.preview-video{
-width:100%;
-max-height:350px;
-border-radius:12px;
-background:#000;
-display:none;
-object-fit:contain;
-}
-
-.empty{
-padding:45px 20px;
-text-align:center;
-color:var(--muted);
 }
 
 .loading{
-padding:35px;
 text-align:center;
-color:var(--muted);
+padding:30px;
+color:#777;
 }
 
-.error{
-padding:25px;
-color:#ff7070;
-text-align:center;
+.msg-error{
+background:#ffe5e5;
+color:#b00000;
+padding:12px;
+border-radius:9px;
+margin-bottom:10px;
 }
 
-/* PROFILE */
+.profile-head{
+text-align:center;
+padding:20px;
+}
 
-.profile-actions{
+.profile-avatar{
+width:75px;
+height:75px;
+border-radius:50%;
+background:#111;
+color:#fff;
+margin:auto;
 display:flex;
-gap:8px;
-margin:15px 12px;
+align-items:center;
+justify-content:center;
+font-size:30px;
+font-weight:bold;
 }
 
-.profile-actions button{
-flex:1;
+.search-result,
+.suggestion,
+.message,
+.notification{
+background:#fff;
+padding:12px;
+border-radius:10px;
+margin-bottom:8px;
+box-shadow:0 1px 3px #ddd;
 }
 
-/* DESKTOP */
-
-@media(min-width:700px){
-
-.video-card{
-max-width:700px;
-margin:0 auto 20px;
+#commentModal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+z-index:200;
+align-items:flex-end;
+justify-content:center;
 }
 
-.card{
-max-width:700px;
-margin-left:auto;
-margin-right:auto;
+#commentModal .modal-box{
+background:#fff;
+width:100%;
+max-width:650px;
+max-height:80vh;
+border-radius:18px 18px 0 0;
+padding:15px;
+overflow:auto;
 }
 
+.comment{
+padding:10px 0;
+border-bottom:1px solid #eee;
+}
+
+.hidden{
+display:none!important;
+}
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+padding-right:50px;
+}
+
+.password-box button{
+position:absolute;
+right:8px;
+top:12px;
+background:none;
+font-size:20px;
+}
+
+.file-box{
+border:2px dashed #ccc;
+border-radius:10px;
+padding:20px;
+text-align:center;
+margin-top:10px;
+}
+
+.preview{
+width:100%;
+max-height:350px;
+border-radius:10px;
+margin-top:10px;
+display:none;
+}
+
+.profile-video{
+width:100%;
+border-radius:10px;
+background:#000;
+margin-top:8px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header class="top">
+<header class="topbar">
 
 <div class="logo">
 We Media
 </div>
 
-<div class="top-actions">
-
-<button
-class="top-btn"
-onclick="showPage('search')">
-🔍
-</button>
-
-<button
-class="top-btn"
-onclick="showPage('notifications')">
-🔔
-</button>
-
-<button
-class="top-btn"
-onclick="showPage('messages')">
-💬
-</button>
-
-<button
-class="top-btn"
-onclick="showPage('profile')">
-👤
-</button>
-
+<div id="topUser">
+Guest
 </div>
 
 </header>
 
 
-<!-- HOME -->
+<section id="home" class="page active">
 
-<section
-id="homePage"
-class="page active">
+<div id="feed">
 
-<div id="feed"></div>
+<div class="loading">
+Loading videos...
+</div>
+
+</div>
 
 </section>
 
 
-<!-- SEARCH -->
-
-<section
-id="searchPage"
-class="page">
+<section id="notifications" class="page">
 
 <div class="card">
 
-<div class="title">
-🔍 Search People
+<h2>Notifications</h2>
+
 </div>
 
-<div class="field">
+<div id="notificationsList"></div>
+
+</section>
+
+
+<section id="messages" class="page">
+
+<div class="card">
+
+<h2>Messages</h2>
+
+<input
+id="receiverId"
+placeholder="Receiver user ID">
+
+<textarea
+id="messageInput"
+placeholder="Write a message..."></textarea>
+
+<button
+class="primary"
+onclick="sendMessage()">
+
+Send Message
+
+</button>
+
+</div>
+
+<div id="messagesList"></div>
+
+</section>
+
+
+<section id="search" class="page">
+
+<div class="card">
+
+<h2>Search</h2>
 
 <input
 id="searchInput"
-type="text"
-placeholder="Search username..."
+placeholder="Search people..."
 oninput="searchUsers()">
 
 </div>
 
 <div id="searchResults"></div>
 
-</div>
-
 </section>
 
 
-<!-- NOTIFICATIONS -->
-
-<section
-id="notificationsPage"
-class="page">
+<section id="suggestions" class="page">
 
 <div class="card">
 
-<div class="title">
-🔔 Notifications
+<h2>People</h2>
+
 </div>
 
-<div id="notificationsList">
+<div id="suggestionsList"></div>
 
-<div class="muted">
-No notifications yet.
-</div>
+</section>
 
+
+<section id="profile" class="page">
+
+<div id="profileContent">
+
+<div class="loading">
+Loading profile...
 </div>
 
 </div>
@@ -579,112 +436,40 @@ No notifications yet.
 </section>
 
 
-<!-- MESSAGES -->
-
-<section
-id="messagesPage"
-class="page">
+<section id="upload" class="page">
 
 <div class="card">
 
-<div class="title">
-💬 Messages
-</div>
-
-<div id="messagesList">
-
-<div class="muted">
-Select a user to message.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PROFILE -->
-
-<section
-id="profilePage"
-class="page">
-
-<div id="profileBox"></div>
-
-</section>
-
-
-<!-- UPLOAD -->
-
-<section
-id="uploadPage"
-class="page">
-
-<div class="card">
-
-<div class="title">
-➕ Create Video
-</div>
-
-<div class="field">
+<h2>Create Video</h2>
 
 <input
-id="videoTitle"
-type="text"
-placeholder="Write something...">
+id="postTitle"
+placeholder="Write a caption...">
 
-</div>
+<div class="file-box">
 
 <input
 id="videoFile"
 type="file"
-accept="video/*"
-style="display:none"
-onchange="previewPost()">
+accept="video/*">
 
-<div class="field">
-
-<button
-class="secondary"
-onclick="openGallery()">
-
-📁 Choose Video
-
-</button>
-
-</div>
-
-<div class="field">
-
-<button
-class="secondary"
-onclick="openCamera()">
-
-📷 Camera
-
-</button>
-
+<div>
+Choose a video
 </div>
 
 <video
 id="videoPreview"
-class="preview-video"
-controls
-playsinline>
+class="preview"
+controls>
 </video>
 
-<div
-id="uploadMsg"
-class="muted"
-style="margin:12px 0">
 </div>
 
 <button
 class="primary"
 onclick="uploadPost()">
 
-POST VIDEO
+Upload Video
 
 </button>
 
@@ -693,37 +478,26 @@ POST VIDEO
 </section>
 
 
-<!-- LOGIN -->
+<section id="login" class="page">
 
-<section
-id="loginPage"
-class="page">
+<div class="card">
 
-<div class="card auth-box">
-
-<div class="title">
-🔐 Login
-</div>
-
-<div class="field">
+<h2>Login</h2>
 
 <input
 id="loginPhone"
 type="tel"
 placeholder="Phone number">
 
-</div>
-
-<div class="field password-wrap">
+<div class="password-box">
 
 <input
-id="loginPass"
+id="loginPassword"
 type="password"
 placeholder="Password">
 
 <button
-class="show-pass"
-onclick="togglePassword('loginPass',this)">
+onclick="togglePassword('loginPassword')">
 👁
 </button>
 
@@ -737,10 +511,9 @@ LOGIN
 
 </button>
 
-<div style="height:10px"></div>
-
 <button
 class="secondary"
+style="width:100%;margin-top:8px"
 onclick="showPage('register')">
 
 CREATE ACCOUNT
@@ -752,55 +525,35 @@ CREATE ACCOUNT
 </section>
 
 
-<!-- REGISTER -->
+<section id="register" class="page">
 
-<section
-id="registerPage"
-class="page">
+<div class="card">
 
-<div class="card auth-box">
-
-<div class="title">
-Create Account
-</div>
-
-<div class="field">
+<h2>Create Account</h2>
 
 <input
-id="regName"
-type="text"
-placeholder="Username / Your name">
-
-</div>
-
-<div class="field">
+id="registerUsername"
+placeholder="Username">
 
 <input
-id="regPhone"
+id="registerPhone"
 type="tel"
-placeholder="Phone number e.g. +2547...">
-
-</div>
-
-<div class="field">
+placeholder="Phone number">
 
 <input
-id="regEmail"
+id="registerEmail"
 type="email"
 placeholder="Email (optional)">
 
-</div>
-
-<div class="field password-wrap">
+<div class="password-box">
 
 <input
-id="regPass"
+id="registerPassword"
 type="password"
 placeholder="Password">
 
 <button
-class="show-pass"
-onclick="togglePassword('regPass',this)">
+onclick="togglePassword('registerPassword')">
 👁
 </button>
 
@@ -814,10 +567,9 @@ CREATE ACCOUNT
 
 </button>
 
-<div style="height:10px"></div>
-
 <button
 class="secondary"
+style="width:100%;margin-top:8px"
 onclick="showPage('login')">
 
 LOGIN
@@ -829,117 +581,37 @@ LOGIN
 </section>
 
 
-<!-- BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-<button
-id="navHome"
-class="nav active"
-onclick="showPage('home')">
-
-<span class="nav-icon">⌂</span>
-<span>Home</span>
-
-</button>
-
-<button
-class="nav"
-onclick="showPage('search')">
-
-<span class="nav-icon">🔍</span>
-<span>Search</span>
-
-</button>
-
-<button
-class="post-button"
-onclick="showPage('upload')">
-
-+
-
-</button>
-
-<button
-id="navMessages"
-class="nav"
-onclick="showPage('messages')">
-
-<span class="nav-icon">💬</span>
-<span>Messages</span>
-
-</button>
-
-<button
-id="navProfile"
-class="nav"
-onclick="showPage('profile')">
-
-<span class="nav-icon">👤</span>
-<span>Profile</span>
-
-</button>
-
-</nav>
-
-
-<!-- COMMENTS -->
-
-<div
-id="commentModal"
-class="modal">
+<div id="commentModal">
 
 <div class="modal-box">
 
-<div class="modal-head">
+<div class="row-between">
 
-<strong>
-Comments
-</strong>
+<h3>Comments</h3>
 
 <button
-class="close-btn"
+class="secondary"
 onclick="closeComments()">
-
 ✕
-
 </button>
 
 </div>
 
 <div
 id="commentsList"
-style="
-max-height:45vh;
-overflow-y:auto">
+style="margin-top:12px">
 </div>
 
-<div
-style="
-display:flex;
-gap:7px;
-margin-top:10px">
-
-<input
+<textarea
 id="commentInput"
-type="text"
-placeholder="Write a comment..."
-style="
-flex:1;
-padding:12px;
-border-radius:10px;
-border:1px solid #20354d;
-background:#101d2c;
-color:#fff">
+placeholder="Write a comment...">
+</textarea>
 
 <button
-onclick="sendComment()"
-style="
-width:50px;
-border-radius:10px;
-background:#1687ff">
+class="primary"
+onclick="sendComment()">
 
-➤
+Comment
 
 </button>
 
@@ -947,7 +619,45 @@ background:#1687ff">
 
 </div>
 
-</div>
+
+<nav class="nav">
+
+<button onclick="showPage('home')">
+
+<span class="nav-icon">⌂</span>
+Home
+
+</button>
+
+<button onclick="showPage('suggestions')">
+
+<span class="nav-icon">👥</span>
+People
+
+</button>
+
+<button onclick="requireLogin('upload')">
+
+<span class="nav-icon">＋</span>
+Create
+
+</button>
+
+<button onclick="showPage('messages')">
+
+<span class="nav-icon">💬</span>
+Messages
+
+</button>
+
+<button onclick="showProfilePage()">
+
+<span class="nav-icon">👤</span>
+Profile
+
+</button>
+
+</nav>
 
 
 <script>
@@ -959,20 +669,17 @@ const SUPABASE_KEY =
 "sb_publishable_proQL6FdqoZPDSGI4RKW2Q_EfojBAij";
 
 const sb =
-supabase.createClient(
+window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
 let user=null;
 let selectedVideoId=null;
-let selectedProfileId=null;
-
 
 function $(id){
 return document.getElementById(id);
 }
-
 
 function escapeHtml(value){
 
@@ -985,58 +692,39 @@ return String(value ?? "")
 
 }
 
-
 function showPage(page){
 
 document
 .querySelectorAll(".page")
-.forEach(p=>{
+.forEach(function(p){
 p.classList.remove("active");
 });
 
-const target =
-$(page+"Page");
+const target=$(page);
 
-if(target){
+if(!target)return;
+
 target.classList.add("active");
-}
-
-document
-.querySelectorAll(".nav")
-.forEach(n=>{
-n.classList.remove("active");
-});
-
-if(page==="home"){
-$("navHome")?.classList.add("active");
-}
-
-if(page==="messages"){
-$("navMessages")?.classList.add("active");
-}
-
-if(page==="profile"){
-$("navProfile")?.classList.add("active");
-}
-
-window.scrollTo(0,0);
 
 if(page==="home"){
 loadFeed();
 }
 
-if(page==="profile" && user){
-loadMyProfile();
+if(page==="messages"){
+loadMessages();
 }
 
 if(page==="notifications"){
 loadNotifications();
 }
 
+if(page==="suggestions"){
+loadSuggestions();
 }
 
+}
 
-function requireLogin(){
+function requireLogin(page){
 
 if(!user){
 
@@ -1044,67 +732,110 @@ alert("Please login first.");
 
 showPage("login");
 
-return false;
+return;
 
 }
 
-return true;
+showPage(page);
 
 }
 
+function showProfilePage(){
 
-function togglePassword(id,button){
+if(!user){
 
-const input=$(id);
-
-if(!input)return;
-
-if(input.type==="password"){
-
-input.type="text";
-
-button.textContent="🙈";
-
-}else{
-
-input.type="password";
-
-button.textContent="👁";
-
-}
-
-}
-
-
-/* =========================
-REGISTER
-========================= */
-
-async function register(){
-
-const name =
-$("regName").value.trim();
-
-const phone =
-$("regPhone").value.trim();
-
-const email =
-$("regEmail").value.trim();
-
-const password =
-$("regPass").value;
-
-if(!name || !phone || !password){
-
-alert(
-"Fill username, phone and password."
-);
+showPage("login");
 
 return;
 
 }
 
-if(password.length<6){
+showPage("profile");
+
+loadMyProfile();
+
+}
+
+function togglePassword(id){
+
+const input=$(id);
+
+if(!input)return;
+
+input.type=
+input.type==="password"
+?
+"text"
+:
+"password";
+
+}
+
+async function getProfile(id){
+
+if(!id)return null;
+
+const {data,error}=
+
+await sb
+.from("profiles")
+.select(
+"id,username,email,created_at"
+)
+.eq("id",id)
+.maybeSingle();
+
+if(error){
+
+console.log(
+"Profile error:",
+error
+);
+
+return null;
+
+}
+
+return data;
+
+}
+
+async function register(){
+
+const username=
+$("registerUsername")
+.value.trim();
+
+const phone=
+$("registerPhone")
+.value.trim();
+
+const email=
+$("registerEmail")
+.value.trim();
+
+const password=
+$("registerPassword")
+.value;
+
+if(!username){
+
+alert("Enter username.");
+return;
+
+}
+
+if(!phone){
+
+alert("Enter phone number.");
+return;
+
+}
+
+if(
+!password ||
+password.length<6
+){
 
 alert(
 "Password must be at least 6 characters."
@@ -1114,7 +845,8 @@ return;
 
 }
 
-const {data,error} =
+const {data,error}=
+
 await sb.auth.signUp({
 
 phone:phone,
@@ -1123,7 +855,7 @@ password:password,
 
 options:{
 data:{
-username:name,
+username:username,
 email:email
 }
 }
@@ -1133,91 +865,65 @@ email:email
 if(error){
 
 alert(error.message);
-
 return;
 
 }
 
-if(!data.user){
+if(data.user){
 
-alert(
-"Account creation failed."
-);
+const {error:profileError}=
 
-return;
-
-}
-
-
-/* PROFILE ONLY USES
-   REAL DATABASE COLUMNS */
-
-const profile={
-id:data.user.id,
-username:name
-};
-
-if(email){
-profile.email=email;
-}
-
-const {error:profileError} =
 await sb
 .from("profiles")
-.upsert(
-profile,
-{
-onConflict:"id"
-}
-);
+.upsert({
+id:data.user.id,
+username:username,
+email:email || null
+});
 
 if(profileError){
 
-console.log(profileError);
-
-alert(
-"Account created, but profile could not be saved:\n"+
-profileError.message
+console.log(
+"Profile save error:",
+profileError
 );
 
-return;
+}
 
 }
 
 alert(
-"✅ Account created successfully."
+"Account created successfully."
 );
 
-$("regPass").value="";
+$("registerPassword").value="";
 
 showPage("login");
 
 }
 
-
-/* =========================
-LOGIN
-========================= */
-
 async function login(){
 
-const phone =
-$("loginPhone").value.trim();
+const phone=
+$("loginPhone")
+.value.trim();
 
-const password =
-$("loginPass").value;
+const password=
+$("loginPassword")
+.value;
 
 if(!phone || !password){
 
 alert(
-"Enter phone and password."
+"Enter phone number and password."
 );
 
 return;
 
 }
 
-const {data,error} =
+const {data,error}=
+
 await sb.auth.signInWithPassword({
 
 phone:phone,
@@ -1228,27 +934,45 @@ password:password
 if(error){
 
 alert(error.message);
-
 return;
 
 }
 
 user=data.user;
 
-alert(
-"✅ Welcome to We Media"
-);
+await updateTopUser();
+
+alert("Welcome back!");
 
 showPage("home");
 
-await loadFeed();
+}
+
+async function updateTopUser(){
+
+const box=$("topUser");
+
+if(!box)return;
+
+if(!user){
+
+box.textContent="Guest";
+return;
 
 }
 
+const profile=
+await getProfile(user.id);
 
-/* =========================
-LOGOUT
-========================= */
+box.textContent=
+profile &&
+profile.username
+?
+"@"+profile.username
+:
+"User";
+
+}
 
 async function logout(){
 
@@ -1256,151 +980,117 @@ await sb.auth.signOut();
 
 user=null;
 
-showPage("login");
+await updateTopUser();
+
+showPage("home");
+
+}
+
+async function startSession(){
+
+const {data}=
+
+await sb.auth.getSession();
+
+user=
+data &&
+data.session
+?
+data.session.user
+:
+null;
+
+await updateTopUser();
 
 }
 
 
-/* =========================
-PROFILE
-========================= */
-
-async function getProfile(id){
-
-const {data,error} =
-await sb
-.from("profiles")
-.select("*")
-.eq("id",id)
-.maybeSingle();
-
-if(error){
-
-console.log(error);
-
-return null;
-
-}
-
-return data;
-
-}
-
+/* PROFILE FUNCTIONS */
 
 async function loadMyProfile(){
 
-if(!user)return;
+if(!user){
 
-const profile =
-await getProfile(user.id);
-
-if(!profile)return;
-
-await renderProfile(
-user.id,
-profile
-);
+showPage("login");
+return;
 
 }
 
+await openProfile(user.id);
 
-async function openProfile(id){
+}
 
-const profile =
-await getProfile(id);
+async function openProfile(profileId){
+
+if(!profileId){
+
+alert("Profile not found.");
+return;
+
+}
+
+const box=$("profileContent");
+
+if(!box)return;
+
+showPage("profile");
+
+box.innerHTML=
+'<div class="loading">Loading profile...</div>';
+
+const profile=
+await getProfile(profileId);
 
 if(!profile){
 
-alert(
-"Profile not found."
-);
+box.innerHTML=
+'<div class="msg-error">'+
+"Profile not found."+
+'</div>';
 
 return;
 
 }
 
-selectedProfileId=id;
+const isMe=
+String(profile.id)===
+String(user && user.id);
 
-await renderProfile(
-id,
-profile
-);
-
-showPage("profile");
-
-}
-
-
-async function renderProfile(
-id,
-profile
-){
-
-const username =
-profile.username ||
-"User";
-
-const initial =
-username
+const initial=
+(profile.username || "U")
 .charAt(0)
 .toUpperCase();
 
-const {data:videos} =
-await sb
-.from("videos")
-.select("*")
-.eq("user_id",id)
-.order("created_at",{
-ascending:false
-});
+box.innerHTML=`
 
+<div class="card profile-head">
 
-let totalLikes=0;
+<div class="profile-avatar">
 
-for(const v of videos || []){
-
-totalLikes +=
-Number(v.likes || 0);
-
-}
-
-
-$("profileBox").innerHTML=`
-
-<div class="profile-head">
-
-<div class="big-avatar">
 ${escapeHtml(initial)}
+
 </div>
 
-<div class="profile-name">
-${escapeHtml(username)}
-</div>
+<h2 style="margin-top:10px">
 
-<div class="profile-username">
-@${escapeHtml(username)}
-</div>
+@${escapeHtml(
+profile.username || "User"
+)}
+
+</h2>
 
 <div style="
-display:flex;
-justify-content:center;
-gap:35px;
-margin:20px 0">
+color:#777;
+margin-top:6px">
 
-<div>
-<b>${videos?.length || 0}</b>
-<div class="muted">Videos</div>
-</div>
-
-<div>
-<b>${totalLikes}</b>
-<div class="muted">Likes</div>
-</div>
+${escapeHtml(
+profile.email || ""
+)}
 
 </div>
 
 ${
-user && user.id===id
+isMe
 ?
 `
 <button
@@ -1415,43 +1105,157 @@ LOGOUT
 
 </div>
 
-<div
-class="profile-grid"
-id="profileGrid">
+<div class="card">
+
+<h3>
+Videos
+</h3>
+
+<div id="profileVideos"
+style="margin-top:10px">
+
+<div class="loading">
+Loading videos...
 </div>
+
+</div>
+
+</div>
+
 `;
 
-const grid=
-$("profileGrid");
-
-for(const v of videos || []){
-
-const url =
-v.video_url ||
-v.url;
-
-if(!url)continue;
-
-const video =
-document.createElement("video");
-
-video.className="grid-video";
-
-video.src=url;
-
-video.controls=true;
-
-video.playsInline=true;
-
-video.preload="metadata";
-
-grid.appendChild(video);
+await loadProfileVideos(
+profile.id
+);
 
 }
 
-}/* =========================
-   FEED
-========================= */
+async function loadProfileVideos(profileId){
+
+const box=$("profileVideos");
+
+if(!box)return;
+
+const {data,error}=
+
+await sb
+.from("videos")
+.select("*")
+.eq("user_id",profileId)
+.order("created_at",{
+ascending:false
+});
+
+if(error){
+
+box.innerHTML=
+'<div class="msg-error">'+
+escapeHtml(error.message)+
+'</div>';
+
+return;
+
+}
+
+if(!data || data.length===0){
+
+box.innerHTML=
+'<div class="loading">'+
+"No videos yet."+
+'</div>';
+
+return;
+
+}
+
+box.innerHTML="";
+
+data.forEach(function(video){
+
+const url=
+getVideoUrl(video);
+
+if(!url)return;
+
+const item=
+document.createElement("div");
+
+item.innerHTML=`
+
+<video
+class="profile-video"
+src="${escapeHtml(url)}"
+controls
+playsinline
+preload="metadata">
+</video>
+
+<div style="
+padding:6px 0 12px;
+font-size:13px">
+
+${escapeHtml(
+video.title || ""
+)}
+
+</div>
+
+`;
+
+box.appendChild(item);
+
+});
+
+}<script>
+
+/* ================================
+   VIDEO URL
+================================ */
+
+function getVideoUrl(video){
+
+if(!video)return "";
+
+if(video.video_url){
+
+if(
+video.video_url.startsWith("http")
+){
+
+return video.video_url;
+
+}
+
+return SUPABASE_URL+
+"/storage/v1/object/public/Videos/"+
+video.video_url;
+
+}
+
+if(video.url){
+
+if(
+video.url.startsWith("http")
+){
+
+return video.url;
+
+}
+
+return SUPABASE_URL+
+"/storage/v1/object/public/Videos/"+
+video.url;
+
+}
+
+return "";
+
+}
+
+
+/* ================================
+   LOAD FEED
+================================ */
 
 async function loadFeed(){
 
@@ -1459,13 +1263,11 @@ const box=$("feed");
 
 if(!box)return;
 
-box.innerHTML=`
-<div class="loading">
-Loading videos...
-</div>
-`;
+box.innerHTML=
+'<div class="loading">Loading videos...</div>';
 
-const {data,error} =
+const {data,error}=
+
 await sb
 .from("videos")
 .select("*")
@@ -1475,11 +1277,26 @@ ascending:false
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(error.message)}
-</div>
-`;
+console.log(
+"Feed error:",
+error
+);
+
+box.innerHTML=
+'<div class="msg-error">'+
+escapeHtml(error.message)+
+'</div>';
+
+return;
+
+}
+
+if(!data || data.length===0){
+
+box.innerHTML=
+'<div class="loading">'+
+"No videos yet. Upload the first video."+
+'</div>';
 
 return;
 
@@ -1487,229 +1304,164 @@ return;
 
 box.innerHTML="";
 
-if(!data || data.length===0){
+data.forEach(function(video){
 
-box.innerHTML=`
-<div class="empty">
-🎥 No videos yet.<br><br>
-Be the first to post a video.
-</div>
-`;
-
-return;
-
-}
-
-for(const video of data){
-
-await createVideoCard(
+createVideoCard(
 video,
 box
 );
 
-}
+});
 
 }
 
 
-/* =========================
-   CREATE VIDEO CARD
-========================= */
+/* ================================
+   VIDEO CARD
+================================ */
 
-async function createVideoCard(
-v,
-box
-){
+function createVideoCard(video,box){
 
-if(!box)return;
+const url=
+getVideoUrl(video);
 
-const profile =
-v.user_id
-?
-await getProfile(v.user_id)
-:null;
+if(!url)return;
 
-const username =
-profile?.username ||
-v.username ||
-"User";
+const likes=
+Number(video.likes)||0;
 
-const initial =
-username
-.charAt(0)
-.toUpperCase();
+const views=
+Number(video.views)||0;
 
-const videoUrl =
-v.video_url ||
-v.url ||
-"";
+const liked=
+localStorage.getItem(
+"wemedia_like_"+video.id
+)==="1";
 
-const card =
-document.createElement("div");
+const card=
+document.createElement("article");
 
 card.className="video-card";
 
+card.dataset.videoId=
+video.id;
+
+card.dataset.likes=
+likes;
+
+card.dataset.views=
+views;
+
 card.innerHTML=`
 
-<div class="video-wrap">
-
 <video
-class="feed-video"
+src="${escapeHtml(url)}"
 controls
 playsinline
-webkit-playsinline
-loop
-preload="metadata"
-src="${escapeHtml(videoUrl)}">
-
-Your browser does not support video playback.
-
+preload="metadata">
 </video>
-
-
-<div class="video-actions">
-
-<button
-class="side-action"
-onclick="likePost(
-'${escapeHtml(v.id)}',
-this
-)">
-❤️
-</button>
-
-<button
-class="side-action"
-onclick="commentPost(
-'${escapeHtml(v.id)}'
-)">
-💬
-</button>
-
-<button
-class="side-action"
-onclick="sharePost(
-'${escapeHtml(v.id)}'
-)">
-↗️
-</button>
-
-<button
-class="side-action"
-onclick="whatsappPost(
-'${escapeHtml(v.id)}'
-)">
-🟢
-</button>
-
-<button
-class="side-action"
-onclick="showSound(
-'Original sound'
-)">
-🎵
-</button>
-
-</div>
-
-</div>
-
 
 <div class="video-info">
 
-<div
-class="video-user"
-onclick="openProfile(
-'${escapeHtml(v.user_id || "")}'
-)">
+<div class="row-between">
 
-<div class="avatar">
-${escapeHtml(initial)}
-</div>
+<div class="username">
 
-<strong>
-@${escapeHtml(username)}
-</strong>
-
-</div>
-
-<div class="video-title">
-
-${escapeHtml(
-v.title || ""
+@${escapeHtml(
+video.username || "User"
 )}
 
 </div>
 
+<button
+class="secondary"
+onclick="openProfile('${escapeHtml(video.user_id || "")}')">
+
+Profile
+
+</button>
+
 </div>
 
-<div class="sound-used">
-🎵 Original sound
+<div class="title">
+
+${escapeHtml(
+video.title || ""
+)}
+
+</div>
+
+<div class="stats">
+
+${views} views ·
+
+<span class="like-count">
+
+${likes}
+
+</span>
+
+likes
+
+</div>
+
+</div>
+
+<div class="video-actions">
+
+<button
+onclick="likePost(${video.id},this)">
+
+${liked ? "❤️" : "♡"} Like
+
+</button>
+
+<button
+onclick="commentPost(${video.id})">
+
+💬 Comment
+
+</button>
+
+<button
+onclick="sharePost(${video.id})">
+
+↗️ Share
+
+</button>
+
+<button
+onclick="whatsappPost(${video.id})">
+
+💬 WhatsApp
+
+</button>
+
+<button
+onclick="showSound('${escapeHtml(
+video.title || "Original sound"
+)}')">
+
+🎵 Sound
+
+</button>
+
 </div>
 
 `;
 
 box.appendChild(card);
 
-
-/*
-IMPORTANT:
-Check whether URL really loads.
-*/
-
-const media =
-card.querySelector(".feed-video");
-
-if(!media){
-
-return;
-
-}
-
-
-/* VIDEO ERROR */
+const media=
+card.querySelector("video");
 
 media.addEventListener(
-"error",
-()=>{
+"play",
+function(){
 
-console.log(
-"Video failed to load:",
-videoUrl
-);
-
-const errorBox =
-document.createElement("div");
-
-errorBox.style.padding="15px";
-
-errorBox.style.color="#ff7070";
-
-errorBox.textContent=
-"⚠️ Video could not be loaded.";
-
-media.parentNode
-.insertBefore(
-errorBox,
-media
-);
-
-},
-{
-once:true
-}
-);
-
-
-/* VIDEO LOADED */
-
-media.addEventListener(
-"loadedmetadata",
-()=>{
-
-console.log(
-"Video loaded successfully:",
-videoUrl
+registerView(
+video.id,
+card
 );
 
 },
@@ -1721,58 +1473,89 @@ once:true
 }
 
 
-/* =========================
-   LIKE
-========================= */
+/* ================================
+   VIDEO VIEWS
+================================ */
 
-async function likePost(
-videoId,
-button
-){
+async function registerView(videoId,card){
 
-if(!requireLogin())return;
+const current=
+Number(card.dataset.views)||0;
 
+const next=
+current+1;
 
-/*
-Your current database has
-videos.likes.
-We use that instead of
-a missing likes table.
-*/
+card.dataset.views=
+next;
 
-const {data:video,error} =
+const stats=
+card.querySelector(".stats");
+
+if(stats){
+
+stats.innerHTML=
+next+
+' views · '+
+'<span class="like-count">'+
+(Number(card.dataset.likes)||0)+
+'</span> likes';
+
+}
+
+const {error}=
+
 await sb
 .from("videos")
-.select("likes")
-.eq("id",videoId)
-.maybeSingle();
+.update({
+views:next
+})
+.eq("id",videoId);
 
 if(error){
 
-alert(error.message);
+console.log(
+"View error:",
+error
+);
+
+}
+
+}
+
+
+/* ================================
+   LIKE VIDEO
+================================ */
+
+async function likePost(videoId,button){
+
+if(!user){
+
+alert(
+"Login to like videos."
+);
+
+showPage("login");
 
 return;
 
 }
-
-if(!video)return;
-
-
-/*
-Simple toggle stored locally
-for this browser.
-*/
 
 const key=
 "wemedia_like_"+videoId;
 
-const alreadyLiked =
+const already=
 localStorage.getItem(key)==="1";
 
-let likes =
-Number(video.likes || 0);
+const card=
+button.closest(".video-card");
 
-if(alreadyLiked){
+if(!card)return;
+
+let likes=
+Number(card.dataset.likes)||0;
+
+if(already){
 
 likes=Math.max(
 0,
@@ -1781,7 +1564,8 @@ likes-1
 
 localStorage.removeItem(key);
 
-button.textContent="🤍";
+button.innerHTML=
+"♡ Like";
 
 }else{
 
@@ -1792,12 +1576,26 @@ key,
 "1"
 );
 
-button.textContent="💙";
+button.innerHTML=
+"❤️ Like";
 
 }
 
+card.dataset.likes=
+likes;
 
-const {error:updateError} =
+const count=
+card.querySelector(".like-count");
+
+if(count){
+
+count.textContent=
+likes;
+
+}
+
+const {error}=
+
 await sb
 .from("videos")
 .update({
@@ -1805,79 +1603,89 @@ likes:likes
 })
 .eq("id",videoId);
 
-if(updateError){
+if(error){
 
-alert(updateError.message);
+console.log(
+"Like error:",
+error
+);
+
+alert(error.message);
+
+}
+
+}
+
+
+/* ================================
+   COMMENTS
+================================ */
+
+function commentPost(videoId){
+
+if(!user){
+
+alert(
+"Login to comment."
+);
+
+showPage("login");
 
 return;
 
 }
 
-}
+selectedVideoId=
+videoId;
 
+$("commentInput").value="";
 
-/* =========================
-   COMMENTS
-========================= */
+$("commentModal").style.display=
+"flex";
 
-async function commentPost(
-videoId
-){
-
-if(!requireLogin())return;
-
-selectedVideoId=videoId;
-
-const modal=
-$("commentModal");
-
-if(modal){
-
-modal.classList.add("show");
+loadComments(videoId);
 
 }
 
-await loadComments();
-
-}
-
-
-async function loadComments(){
+async function loadComments(videoId){
 
 const box=
 $("commentsList");
 
-if(!box ||
-!selectedVideoId)return;
+if(!box)return;
 
 box.innerHTML=
-"<div class='muted'>Loading comments...</div>";
+'<div class="loading">'+
+"Loading comments..."+
+'</div>';
 
+const {data,error}=
 
-const {data,error} =
 await sb
 .from("comments")
 .select("*")
-.eq(
-"video_id",
-selectedVideoId
-)
-.order(
-"created_at",
-{
+.eq("video_id",videoId)
+.order("created_at",{
 ascending:true
-}
-);
+});
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(
-error.message
-)}
-</div>
-`;
+box.innerHTML=
+'<div class="msg-error">'+
+escapeHtml(error.message)+
+'</div>';
+
+return;
+
+}
+
+if(!data || data.length===0){
+
+box.innerHTML=
+'<div class="loading">'+
+"No comments yet."+
+'</div>';
 
 return;
 
@@ -1885,104 +1693,90 @@ return;
 
 box.innerHTML="";
 
-if(!data || data.length===0){
+data.forEach(function(comment){
 
-box.innerHTML=`
-<div class="empty">
-No comments yet.
-</div>
-`;
-
-return;
-
-}
-
-
-for(const c of data){
-
-const div =
+const item=
 document.createElement("div");
 
-div.className=
-"comment-item";
+item.className="comment";
 
+item.innerHTML=`
 
-/*
-Your comments table does
-NOT have user_id.
+<div style="
+word-break:break-word">
 
-Therefore we don't try
-to read c.user_id.
-*/
-
-div.innerHTML=`
-
-<div>
-<strong>
-We Media user
-</strong>
-
-<div class="comment-text">
 ${escapeHtml(
-c.comment || ""
+comment.comment
 )}
+
 </div>
+
+<div style="
+font-size:11px;
+color:#888;
+margin-top:5px">
+
+${
+comment.created_at
+?
+new Date(
+comment.created_at
+).toLocaleString()
+:
+""
+}
 
 </div>
 
 `;
 
-box.appendChild(div);
+box.appendChild(item);
+
+});
 
 }
-
-}
-
-
-/* =========================
-   SEND COMMENT
-========================= */
 
 async function sendComment(){
 
-if(!requireLogin())return;
-
-if(!selectedVideoId){
+if(!user){
 
 alert(
-"Select a video first."
+"Login to comment."
 );
 
 return;
 
 }
 
+if(!selectedVideoId)return;
+
 const input=
 $("commentInput");
 
-if(!input)return;
-
-const text=
+const comment=
 input.value.trim();
 
-if(!text)return;
+if(!comment){
 
+alert(
+"Write a comment."
+);
 
-/*
-IMPORTANT:
-comments table currently
-has no user_id.
-So insert ONLY columns
-that actually exist.
-*/
+return;
 
-const {error} =
+}
+
+const {error}=
+
 await sb
 .from("comments")
 .insert({
 
-video_id:selectedVideoId,
-comment:text
+video_id:
+selectedVideoId,
+
+comment:
+comment
 
 });
 
@@ -1996,58 +1790,34 @@ return;
 
 input.value="";
 
-await loadComments();
+await loadComments(
+selectedVideoId
+);
 
 }
-
-
-/* =========================
-   CLOSE COMMENTS
-========================= */
 
 function closeComments(){
 
-const modal=
-$("commentModal");
+$("commentModal").style.display=
+"none";
 
-if(modal){
-
-modal.classList.remove(
-"show"
-);
-
-}
-
-selectedVideoId=null;
+selectedVideoId=
+null;
 
 }
 
 
-/* =========================
-   SOUND
-========================= */
-
-function showSound(sound){
-
-alert(
-"🎵 Sound used:\n"+
-(sound || "Original sound")
-);
-
-}
-
-
-/* =========================
+/* ================================
    SHARE
-========================= */
+================================ */
 
-async function sharePost(id){
+async function sharePost(videoId){
 
-const url=
+const link=
 window.location.origin+
 window.location.pathname+
 "?video="+
-encodeURIComponent(id);
+encodeURIComponent(videoId);
 
 if(navigator.share){
 
@@ -2057,37 +1827,39 @@ await navigator.share({
 
 title:"We Media",
 
-text:
-"Check this video on We Media 👇",
+text:"Check this video on We Media",
 
-url:url
+url:link
 
 });
 
-}catch(e){
+return;
 
-console.log(e);
+}catch(error){
+
+console.log(
+"Share cancelled."
+);
 
 }
-
-return;
 
 }
 
 try{
 
-await navigator.clipboard
-.writeText(url);
-
-alert(
-"✅ Video link copied"
+await navigator.clipboard.writeText(
+link
 );
 
-}catch(e){
+alert(
+"Video link copied."
+);
+
+}catch(error){
 
 prompt(
 "Copy this link:",
-url
+link
 );
 
 }
@@ -2095,61 +1867,75 @@ url
 }
 
 
-/* =========================
+/* ================================
    WHATSAPP
-========================= */
+================================ */
 
-function whatsappPost(id){
+function whatsappPost(videoId){
 
-const url=
+const link=
 window.location.origin+
 window.location.pathname+
 "?video="+
-encodeURIComponent(id);
+encodeURIComponent(videoId);
 
-const message=
-"Check this video on We Media 👇\n"+
-url;
+const text=
+"Check this video on We Media:\n"+
+link;
 
 window.open(
 "https://wa.me/?text="+
-encodeURIComponent(message),
+encodeURIComponent(text),
 "_blank"
 );
 
 }
 
 
-/* =========================
-   SEARCH USERS
-========================= */
+/* ================================
+   SOUND
+================================ */
 
-async function searchUsers(){
+function showSound(sound){
 
-const input=
-$("searchInput");
-
-const box=
-$("searchResults");
-
-if(!input || !box)return;
-
-const q=
-input.value.trim();
-
-if(!q){
-
-box.innerHTML="";
-
-return;
+alert(
+"🎵 Sound used:\n"+
+sound
+);
 
 }
 
 
-const {data,error} =
+/* ================================
+   SEARCH USERS
+================================ */
+
+async function searchUsers(){
+
+const q=
+$("searchInput")
+.value
+.trim();
+
+const box=
+$("searchResults");
+
+if(!box)return;
+
+if(!q){
+
+box.innerHTML="";
+return;
+
+}
+
+const {data,error}=
+
 await sb
 .from("profiles")
-.select("*")
+.select(
+"id,username,email"
+)
 .ilike(
 "username",
 "%"+q+"%"
@@ -2158,13 +1944,21 @@ await sb
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(
-error.message
-)}
-</div>
-`;
+box.innerHTML=
+'<div class="msg-error">'+
+escapeHtml(error.message)+
+'</div>';
+
+return;
+
+}
+
+if(!data || data.length===0){
+
+box.innerHTML=
+'<div class="loading">'+
+"No users found."+
+'</div>';
 
 return;
 
@@ -2172,429 +1966,731 @@ return;
 
 box.innerHTML="";
 
+data.forEach(function(profile){
 
-if(!data || !data.length){
+const item=
+document.createElement("div");
 
-box.innerHTML=`
-<div class="empty">
-No users found.
-</div>
-`;
-
-return;
-
-}
-
-
-for(const p of data){
-
-const username=
-p.username ||
-"User";
+item.className=
+"search-result";
 
 const initial=
-username
+(profile.username || "U")
 .charAt(0)
 .toUpperCase();
 
-const div=
-document.createElement("div");
+item.innerHTML=`
 
-div.className=
-"search-result";
+<div class="row-between">
 
-div.onclick=()=>{
-
-openProfile(p.id);
-
-};
-
-
-div.innerHTML=`
+<div class="row">
 
 <div class="avatar">
+
 ${escapeHtml(initial)}
+
 </div>
 
 <div>
 
-<strong>
-@${escapeHtml(username)}
-</strong>
+<div style="
+font-weight:bold">
 
-<div class="muted">
-We Media user
+@${escapeHtml(
+profile.username || "User"
+)}
+
+</div>
+
+<div style="
+font-size:12px;
+color:#777">
+
+${escapeHtml(
+profile.email || ""
+)}
+
+</div>
+
+</div>
+
+</div>
+
+<button
+class="secondary"
+onclick="openProfile('${escapeHtml(
+profile.id
+)}')">
+
+View
+
+</button>
+
+</div>
+
+`;
+
+box.appendChild(item);
+
+});
+
+}
+</script>
+
+<script>
+
+/* ================================
+   UPLOAD / CREATE POST
+================================ */
+
+let selectedFile = null;
+let cameraStream = null;
+
+
+/* ================================
+   OPEN GALLERY
+================================ */
+
+function openGallery(){
+
+if(!requireLogin()) return;
+
+const input = document.createElement("input");
+
+input.type = "file";
+input.accept = "video/*,image/*";
+
+input.onchange = function(){
+
+if(!this.files || !this.files[0]) return;
+
+selectedFile = this.files[0];
+
+showPreview(selectedFile);
+
+};
+
+input.click();
+
+}
+
+
+/* ================================
+   OPEN CAMERA
+================================ */
+
+async function openCamera(){
+
+if(!requireLogin()) return;
+
+const page = document.getElementById("uploadPage");
+
+if(!page) return;
+
+page.innerHTML = `
+
+<div class="card">
+
+<h2>📷 Camera</h2>
+
+<video
+id="cameraVideo"
+autoplay
+playsinline
+muted
+style="
+width:100%;
+border-radius:15px;
+background:#000;
+max-height:65vh;
+object-fit:cover;
+">
+</video>
+
+<div class="row">
+
+<button
+class="primary"
+onclick="captureCamera()">
+📸 Capture
+</button>
+
+<button
+class="secondary"
+onclick="closeCamera()">
+✕ Close
+</button>
+
+</div>
+
+<div id="cameraMessage"></div>
+
+</div>
+
+`;
+
+try{
+
+cameraStream =
+await navigator.mediaDevices.getUserMedia({
+video:true,
+audio:true
+});
+
+const video =
+document.getElementById("cameraVideo");
+
+if(video){
+
+video.srcObject =
+cameraStream;
+
+}
+
+}catch(error){
+
+const msg =
+document.getElementById("cameraMessage");
+
+if(msg){
+
+msg.innerHTML =
+`<p class="error">
+Camera permission denied or unavailable.
+</p>`;
+
+}
+
+}
+
+}
+
+
+/* ================================
+   CAPTURE CAMERA
+================================ */
+
+function captureCamera(){
+
+const video =
+document.getElementById("cameraVideo");
+
+if(!video || !video.srcObject){
+
+alert("Camera is not ready.");
+
+return;
+
+}
+
+const canvas =
+document.createElement("canvas");
+
+canvas.width =
+video.videoWidth || 720;
+
+canvas.height =
+video.videoHeight || 1280;
+
+const ctx =
+canvas.getContext("2d");
+
+ctx.drawImage(
+video,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+canvas.toBlob(function(blob){
+
+if(!blob){
+
+alert("Could not capture video.");
+
+return;
+
+}
+
+selectedFile =
+new File(
+[blob],
+"camera-photo.jpg",
+{type:"image/jpeg"}
+);
+
+closeCamera();
+
+showPreview(selectedFile);
+
+},"image/jpeg",0.9);
+
+}
+
+
+/* ================================
+   CLOSE CAMERA
+================================ */
+
+function closeCamera(){
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(track => track.stop());
+
+cameraStream = null;
+
+}
+
+showPage("upload");
+
+}
+
+
+/* ================================
+   SHOW PREVIEW
+================================ */
+
+function showPreview(file){
+
+const page =
+document.getElementById("uploadPage");
+
+if(!page) return;
+
+const isVideo =
+file.type.startsWith("video/");
+
+const objectUrl =
+URL.createObjectURL(file);
+
+page.innerHTML = `
+
+<div class="card">
+
+<h2>➕ Create Post</h2>
+
+<div id="previewBox">
+
+${
+isVideo
+
+? `<video
+src="${objectUrl}"
+controls
+playsinline
+style="
+width:100%;
+border-radius:15px;
+max-height:55vh;
+background:#000;
+">
+</video>`
+
+: `<img
+src="${objectUrl}"
+style="
+width:100%;
+border-radius:15px;
+max-height:55vh;
+object-fit:contain;
+background:#111;
+">`
+}
+
+</div>
+
+<input
+id="postTitle"
+class="input"
+type="text"
+maxlength="120"
+placeholder="Write a caption...">
+
+<div class="row">
+
+<button
+class="primary"
+onclick="uploadPost()">
+🚀 Post
+</button>
+
+<button
+class="secondary"
+onclick="cancelUpload()">
+✕ Cancel
+</button>
+
+</div>
+
+<div
+id="uploadStatus"
+class="small">
+${formatFileSize(file.size)}
 </div>
 
 </div>
 
 `;
 
-box.appendChild(div);
-
-}
-
 }
 
 
-/* =========================
-   UPLOAD
-========================= */
+/* ================================
+   FILE SIZE
+================================ */
 
-function openGallery(){
+function formatFileSize(bytes){
 
-if(!requireLogin())return;
+if(!bytes) return "";
 
-const input=
-$("videoFile");
+const mb =
+bytes / (1024 * 1024);
 
-if(!input)return;
+if(mb < 1){
 
-input.removeAttribute(
-"capture"
-);
-
-input.accept=
-"video/mp4,video/webm,video/quicktime,video/*";
-
-input.click();
-
-}
-
-
-function openCamera(){
-
-if(!requireLogin())return;
-
-const input=
-$("videoFile");
-
-if(!input)return;
-
-input.accept="video/*";
-
-input.setAttribute(
-"capture",
-"environment"
-);
-
-input.click();
-
-}
-
-
-/* =========================
-   PREVIEW
-========================= */
-
-function previewPost(){
-
-const input=
-$("videoFile");
-
-const preview=
-$("videoPreview");
-
-if(!input ||
-!preview)return;
-
-const file=
-input.files?.[0];
-
-if(!file){
-
-preview.removeAttribute("src");
-
-preview.style.display="none";
-
-return;
-
-}
-
-
-/*
-Only preview video files.
-*/
-
-if(!file.type.startsWith(
-"video/"
-)){
-
-alert(
-"Please choose a video file."
-);
-
-input.value="";
-
-return;
-
-}
-
-const oldUrl=
-preview.dataset.objectUrl;
-
-if(oldUrl){
-
-URL.revokeObjectURL(
-oldUrl
+return (
+Math.round(bytes / 1024) +
+" KB"
 );
 
 }
 
-const url=
-URL.createObjectURL(file);
-
-preview.dataset.objectUrl=url;
-
-preview.src=url;
-
-preview.style.display=
-"block";
-
-preview.load();
+return (
+mb.toFixed(1) +
+" MB"
+);
 
 }
 
 
-/* =========================
-   UPLOAD VIDEO
-========================= */
+/* ================================
+   CANCEL UPLOAD
+================================ */
+
+function cancelUpload(){
+
+selectedFile = null;
+
+showPage("home");
+
+}
+
+
+/* ================================
+   UPLOAD POST
+================================ */
 
 async function uploadPost(){
 
-if(!requireLogin())return;
+if(!requireLogin()) return;
 
-const input=
-$("videoFile");
+if(!selectedFile){
 
-const msg=
-$("uploadMsg");
-
-if(!input)return;
-
-const file=
-input.files?.[0];
-
-if(!file){
-
-alert(
-"Select a video first."
-);
+alert("Select a photo or video first.");
 
 return;
 
 }
 
-if(!file.type.startsWith(
-"video/"
-)){
+const titleInput =
+document.getElementById("postTitle");
 
-alert(
-"The selected file is not a video."
-);
+const status =
+document.getElementById("uploadStatus");
 
-return;
+const title =
+titleInput
+? titleInput.value.trim()
+: "";
 
-}
+if(status){
 
-
-if(msg){
-
-msg.textContent=
-"Uploading video...";
-}
-
-
-/*
-Keep original extension.
-*/
-
-let ext=
-file.name
-.split(".")
-.pop()
-.toLowerCase();
-
-if(!ext ||
-ext.length>8){
-
-ext="mp4";
+status.innerHTML =
+"⏳ Uploading...";
 
 }
 
-const path=
-`videos/${user.id}/video_${Date.now()}.${ext}`;
+try{
 
+const safeName =
+selectedFile.name
+.replace(/[^a-zA-Z0-9._-]/g,"_");
+
+const filePath =
+`${user.id}/${Date.now()}_${safeName}`;
+
+
+/* ================================
+   STORAGE UPLOAD
+================================ */
 
 const {error:uploadError} =
-await sb
-.storage
+await sb.storage
 .from("Videos")
 .upload(
-path,
-file,
+filePath,
+selectedFile,
 {
 upsert:false,
 contentType:
-file.type ||
-"video/mp4",
-cacheControl:"3600"
+selectedFile.type ||
+"application/octet-stream"
 }
 );
-
 
 if(uploadError){
 
-if(msg){
-msg.textContent="";
-}
-
-alert(
-"Upload failed:\n"+
-uploadError.message
-);
-
-return;
+throw uploadError;
 
 }
 
+
+/* ================================
+   PUBLIC URL
+================================ */
 
 const {data:urlData} =
 sb.storage
 .from("Videos")
-.getPublicUrl(path);
+.getPublicUrl(filePath);
 
-const videoUrl=
+const publicUrl =
 urlData.publicUrl;
 
 
-if(!videoUrl){
-
-alert(
-"Could not create video URL."
-);
-
-return;
-
-}
-
-
-const title=
-$("videoTitle")
-?.value
-.trim() || "";
-
-
-/*
-Save BOTH url columns.
-This makes the feed work even
-if older code reads url.
-*/
+/* ================================
+   SAVE VIDEO ROW
+================================ */
 
 const {error:dbError} =
 await sb
 .from("videos")
 .insert({
 
-user_id:user.id,
+title:
+title || "New post",
 
-username:
-user.user_metadata
-?.username ||
-user.user_metadata
-?.full_name ||
-"user",
+video_url:
+publicUrl,
 
-title:title,
-
-video_url:videoUrl,
-
-url:videoUrl,
-
-file_name:file.name,
+created_at:
+new Date().toISOString(),
 
 likes:0,
 
-views:0
+views:0,
+
+file_name:
+selectedFile.name,
+
+url:
+publicUrl,
+
+user_id:
+user.id,
+
+username:
+user.username || "User"
 
 });
 
-
 if(dbError){
 
+/* Remove uploaded file if database
+   insert fails */
+
+await sb.storage
+.from("Videos")
+.remove([filePath]);
+
+throw dbError;
+
+}
+
+
+/* ================================
+   SUCCESS
+================================ */
+
+selectedFile = null;
+
+alert("✅ Post uploaded successfully!");
+
+showPage("home");
+
+}catch(error){
+
+console.error(error);
+
+if(status){
+
+status.innerHTML =
+`❌ Upload failed: ${
+escapeHtml(error.message || "Unknown error")
+}`;
+
+}else{
+
 alert(
-"Video uploaded, but database save failed:\n"+
-dbError.message
+"Upload failed: " +
+(error.message || "Unknown error")
 );
+
+}
+
+}
+
+}
+
+
+/* ================================
+   UPLOAD PAGE
+================================ */
+
+function openUpload(){
+
+if(!requireLogin()) return;
+
+selectedFile = null;
+
+showPage("upload");
+
+const page =
+document.getElementById("uploadPage");
+
+if(!page) return;
+
+page.innerHTML = `
+
+<div class="card">
+
+<h2>➕ Create Post</h2>
+
+<p class="muted">
+Share a photo or video with We Media.
+</p>
+
+<div class="upload-buttons">
+
+<button
+class="primary"
+onclick="openGallery()">
+🖼️ Gallery
+</button>
+
+<button
+class="primary"
+onclick="openCamera()">
+📷 Camera
+</button>
+
+</div>
+
+<div class="small"
+style="margin-top:12px">
+
+Photos and videos are supported.
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   PREVIEW POST
+================================ */
+
+function previewPost(){
+
+if(selectedFile){
+
+showPreview(selectedFile);
 
 return;
 
 }
 
+openUpload();
 
-if(msg){
-
-msg.textContent=
-"✅ Video posted successfully.";
 }
 
 
-input.value="";
+/* ================================
+   DRAG / FILE INPUT SUPPORT
+================================ */
 
-const preview=
-$("videoPreview");
+function handleSelectedFile(input){
 
-if(preview){
+if(!input ||
+!input.files ||
+!input.files[0]) return;
 
-if(preview.dataset.objectUrl){
+selectedFile =
+input.files[0];
 
-URL.revokeObjectURL(
-preview.dataset.objectUrl
+showPreview(selectedFile);
+
+}
+
+
+/* ================================
+   CLEAN CAMERA WHEN LEAVING PAGE
+================================ */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(track =>
+track.stop()
 );
 
 }
 
-preview.removeAttribute("src");
-
-preview.dataset.objectUrl="";
-
-preview.style.display="none";
-
-}
+});
 
 
-if($("videoTitle")){
-$("videoTitle").value="";
-}
+</script>
 
+<script>
 
-setTimeout(
-()=>{
-
-showPage("home");
-
-loadFeed();
-
-},
-500
-);
-
-   }/* =========================
+/* ================================
    MESSAGES
-========================= */
+================================ */
 
 async function loadMessages(){
 
-if(!user)return;
+const box =
+document.getElementById("messagesList");
 
-const box=$("messagesList");
+if(!box) return;
 
-if(!box)return;
+if(!user){
 
-box.innerHTML=
-"<div class='muted'>Loading messages...</div>";
+box.innerHTML =
+`<p class="muted">Login to use messages.</p>`;
 
-const {data,error}=await sb
+return;
+
+}
+
+box.innerHTML =
+`<p class="muted">Loading messages...</p>`;
+
+const {data,error} =
+await sb
 .from("messages")
 .select("*")
 .or(
@@ -2604,118 +2700,122 @@ const {data,error}=await sb
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(error.message)}
-</div>
-`;
+box.innerHTML =
+`<p class="error">${escapeHtml(error.message)}</p>`;
 
 return;
+
 }
 
-box.innerHTML="";
+if(!data || !data.length){
 
-if(!data || data.length===0){
-
-box.innerHTML=`
-<div class="empty">
-💬 No messages yet.
-</div>
-`;
+box.innerHTML =
+`<p class="muted">No messages yet.</p>`;
 
 return;
+
 }
 
-for(const m of data){
+box.innerHTML =
+data.map(m=>{
 
-const mine=
-m.sender_id===user.id;
+const mine =
+m.sender_id === user.id;
 
-const otherId=
-mine ? m.receiver_id : m.sender_id;
-
-const profile=
-await getProfile(otherId);
-
-const username=
-profile?.username || "User";
-
-const messageText=
+const body =
 m.message || m.text || "";
 
-const div=
-document.createElement("div");
+return `
 
-div.className=
-mine ? "message mine" : "message";
+<div class="message ${
+mine ? "mine" : "theirs"
+}">
 
-div.innerHTML=`
+${escapeHtml(body)}
 
-<div class="message-user">
-@${escapeHtml(username)}
+<div class="message-time">
+${new Date(m.created_at).toLocaleString()}
 </div>
 
-<div class="message-text">
-${escapeHtml(messageText)}
 </div>
 
 `;
 
-box.appendChild(div);
+}).join("");
+
+box.scrollTop =
+box.scrollHeight;
 
 }
 
-}
 
-
-/* =========================
+/* ================================
    SEND MESSAGE
-========================= */
+================================ */
 
 async function sendMessage(){
 
-if(!requireLogin())return;
+if(!requireLogin()) return;
 
-const receiver=$("receiverId");
-const input=$("messageInput");
+const input =
+document.getElementById("messageInput");
 
-if(!receiver || !input)return;
+const receiver =
+document.getElementById("receiverInput");
 
-const receiverId=
-receiver.value.trim();
+if(!input || !receiver) return;
 
-const message=
+const message =
 input.value.trim();
+
+const receiverId =
+receiver.value.trim();
 
 if(!receiverId){
 
-alert("Enter the user's ID.");
+alert("Enter receiver user ID.");
 
 return;
+
 }
 
-if(!message)return;
+if(!message){
 
-const {error}=await sb
+alert("Write a message first.");
+
+return;
+
+}
+
+const {error} =
+await sb
 .from("messages")
 .insert({
 
 sender_id:user.id,
+
 receiver_id:receiverId,
+
 message:message,
+
 text:message,
-is_read:false
+
+is_read:false,
+
+created_at:
+new Date().toISOString()
 
 });
 
 if(error){
 
 alert(
-"Message failed:\n"+
+"Message failed: " +
 error.message
 );
 
 return;
+
 }
 
 input.value="";
@@ -2725,333 +2825,232 @@ await loadMessages();
 }
 
 
-/* =========================
+/* ================================
    NOTIFICATIONS
-========================= */
+================================ */
 
 async function loadNotifications(){
 
-if(!user)return;
+const box =
+document.getElementById("notificationsList");
 
-const box=
-$("notificationsList");
+if(!box) return;
 
-if(!box)return;
+if(!user){
 
-box.innerHTML=
-"<div class='muted'>Loading notifications...</div>";
+box.innerHTML =
+`<p class="muted">Login to see notifications.</p>`;
 
-const {data,error}=await sb
+return;
+
+}
+
+box.innerHTML =
+`<p class="muted">Loading...</p>`;
+
+const {data,error} =
+await sb
 .from("notifications")
 .select("*")
 .eq("user_id",user.id)
-.order("created_at",{
-ascending:false
-});
+.order("created_at",{ascending:false});
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(error.message)}
-</div>
-`;
+box.innerHTML =
+`<p class="error">${escapeHtml(error.message)}</p>`;
 
 return;
+
 }
 
-box.innerHTML="";
+if(!data || !data.length){
 
-if(!data || data.length===0){
-
-box.innerHTML=`
-<div class="empty">
-🔔 No notifications.
-</div>
-`;
+box.innerHTML =
+`<p class="muted">No notifications yet.</p>`;
 
 return;
+
 }
 
-for(const n of data){
+box.innerHTML =
+data.map(n=>`
 
-const div=
-document.createElement("div");
-
-div.className=
-"notification";
-
-div.innerHTML=`
-
-<div class="notification-icon">
-🔔
-</div>
-
-<div>
-
-<strong>
-${escapeHtml(
-n.type || "Notification"
-)}
-</strong>
+<div class="notification ${
+n.is_read ? "" : "unread"
+}"
+onclick="markNotificationRead(${n.id})">
 
 <div>
 ${escapeHtml(
-n.message || ""
+n.message ||
+"New notification"
 )}
 </div>
 
+<div class="small">
+
+${n.type
+? escapeHtml(n.type)
+: ""}
+
+<br>
+
+${new Date(
+n.created_at
+).toLocaleString()}
+
 </div>
 
-`;
-
-box.appendChild(div);
-
-}
-
-}
-
-
-/* =========================
-   PROFILE VIDEOS
-========================= */
-
-async function loadProfileVideos(profileId){
-
-const box=
-$("profileVideos");
-
-if(!box)return;
-
-box.innerHTML=
-"<div class='muted'>Loading videos...</div>";
-
-const {data,error}=await sb
-.from("videos")
-.select("*")
-.eq("user_id",profileId)
-.order("created_at",{
-ascending:false
-});
-
-if(error){
-
-box.innerHTML=`
-<div class="error">
-${escapeHtml(error.message)}
-</div>
-`;
-
-return;
-}
-
-box.innerHTML="";
-
-if(!data || data.length===0){
-
-box.innerHTML=`
-<div class="empty">
-🎥 No videos yet.
-</div>
-`;
-
-return;
-}
-
-for(const v of data){
-
-const url=
-v.video_url ||
-v.url ||
-"";
-
-const item=
-document.createElement("div");
-
-item.className=
-"profile-video";
-
-item.innerHTML=`
-
-<video
-src="${escapeHtml(url)}"
-controls
-playsinline
-webkit-playsinline
-preload="metadata">
-</video>
-
-<div class="profile-video-title">
-${escapeHtml(v.title || "")}
 </div>
 
-`;
-
-box.appendChild(item);
-
-}
+`).join("");
 
 }
 
 
-/* =========================
-   SUGGESTIONS
-========================= */
+/* ================================
+   MARK NOTIFICATION READ
+================================ */
+
+async function markNotificationRead(id){
+
+await sb
+.from("notifications")
+.update({is_read:true})
+.eq("id",id);
+
+await loadNotifications();
+
+}
+
+
+/* ================================
+   PEOPLE / SUGGESTIONS
+================================ */
 
 async function loadSuggestions(){
 
-const box=
-$("suggestionsList") ||
-$("suggestions");
+const box =
+document.getElementById("suggestionsList");
 
-if(!box)return;
+if(!box) return;
 
-const {data,error}=await sb
+box.innerHTML =
+`<p class="muted">Loading people...</p>`;
+
+const {data,error} =
+await sb
 .from("profiles")
-.select("*")
-.limit(20);
+.select("id,username,email")
+.order("created_at",{ascending:false})
+.limit(30);
 
 if(error){
 
-box.innerHTML=`
-<div class="error">
-${escapeHtml(error.message)}
-</div>
-`;
+box.innerHTML =
+`<p class="error">${escapeHtml(error.message)}</p>`;
 
 return;
+
 }
 
-box.innerHTML="";
+const people =
+(data || [])
+.filter(p =>
+!user || p.id !== user.id
+);
 
-for(const p of data || []){
+if(!people.length){
 
-if(user && p.id===user.id)
-continue;
+box.innerHTML =
+`<p class="muted">No other users found.</p>`;
 
-const username=
-p.username || "User";
+return;
 
-const initial=
-username.charAt(0).toUpperCase();
+}
 
-const div=
-document.createElement("div");
+box.innerHTML =
+people.map(p=>`
 
-div.className=
-"suggestion";
+<div class="person-card">
 
-div.innerHTML=`
-
-<div class="avatar">
-${escapeHtml(initial)}
+<div class="person-avatar">
+${escapeHtml(
+(p.username || "U")
+.charAt(0)
+.toUpperCase()
+)}
 </div>
 
-<div class="suggestion-name">
-@${escapeHtml(username)}
+<div class="person-info">
+
+<strong>
+${escapeHtml(
+p.username || "User"
+)}
+</strong>
+
+<div class="small">
+${escapeHtml(
+p.email || ""
+)}
+</div>
+
 </div>
 
 <button
-class="primary small-btn"
+class="secondary"
 onclick="openProfile('${escapeHtml(p.id)}')">
+
 View
+
 </button>
 
-`;
+</div>
 
-box.appendChild(div);
-
-}
+`).join("");
 
 }
 
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function showPage(page){
-
-document
-.querySelectorAll(".page")
-.forEach(p=>{
-p.classList.remove("active");
-});
-
-const target=$(page);
-
-if(target){
-
-target.classList.add("active");
-
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-if(page==="home"){
-
-loadFeed();
-
-}
-
-if(page==="notifications"){
-
-loadNotifications();
-
-}
-
-if(page==="messages"){
-
-loadMessages();
-
-}
-
-if(page==="suggestions"){
-
-loadSuggestions();
-
-}
-
-if(page==="profile" && user){
-
-loadMyProfile();
-
-}
-
-}
-
-
-/* =========================
+/* ================================
    AUTH STATE
-========================= */
+================================ */
 
 sb.auth.onAuthStateChange(
-async(event,session)=>{
+async (event,session)=>{
 
-user=
-session?.user || null;
+if(session && session.user){
 
-if(user){
+const profile =
+await getProfile(
+session.user.id
+);
 
-await loadMyProfile();
+user = {
+
+id:session.user.id,
+
+username:
+profile?.username ||
+session.user.phone ||
+"User",
+
+email:
+profile?.email ||
+session.user.email ||
+""
+
+};
+
+updateTopUser();
 
 }else{
 
-const profileBox=
-$("profileBox");
+user=null;
 
-if(profileBox){
-
-profileBox.innerHTML=`
-<div class="empty">
-Please login to view your profile.
-</div>
-`;
-
-}
+updateTopUser();
 
 }
 
@@ -3059,168 +3058,200 @@ Please login to view your profile.
 );
 
 
-/* =========================
+/* ================================
    START APP
-========================= */
+================================ */
 
 async function startApp(){
 
+try{
+
 const {
-data:{
-session
+data:{session}
+} =
+await sb.auth.getSession();
+
+if(session){
+
+const profile =
+await getProfile(
+session.user.id
+);
+
+user = {
+
+id:session.user.id,
+
+username:
+profile?.username ||
+session.user.phone ||
+"User",
+
+email:
+profile?.email ||
+session.user.email ||
+""
+
+};
+
+}else{
+
+user=null;
+
 }
-}=await sb.auth.getSession();
 
-user=
-session?.user || null;
+updateTopUser();
 
-if(user){
+showPage("home");
 
-await loadMyProfile();
+await checkSharedVideo();
+
+}catch(error){
+
+console.error(error);
+
+showPage("home");
 
 }
 
-await loadFeed();
-
 }
 
 
-/* =========================
-   OPEN SHARED VIDEO
-========================= */
+/* ================================
+   SHARED VIDEO
+================================ */
 
-async function openSharedVideo(){
+async function checkSharedVideo(){
 
-const params=
+const params =
 new URLSearchParams(
 window.location.search
 );
 
-const videoId=
+const videoId =
 params.get("video");
 
-if(!videoId)return;
+if(!videoId) return;
 
-const {data,error}=await sb
+const {data,error} =
+await sb
 .from("videos")
 .select("*")
 .eq("id",videoId)
 .maybeSingle();
 
-if(error || !data){
+if(error || !data) return;
 
-return;
+const box =
+document.getElementById("feed");
 
-}
+if(!box) return;
 
-showPage("home");
+box.innerHTML="";
 
-const feed=$("feed");
-
-if(!feed)return;
-
-feed.innerHTML="";
-
-await createVideoCard(
+createVideoCard(
 data,
-feed
+box
 );
 
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* ================================
+   COMMENTS MODAL CLOSE
+================================ */
 
-function escapeHtml(value){
+const commentsModal =
+document.getElementById(
+"commentsModal"
+);
 
-return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+if(commentsModal){
 
-}
-
-
-/* =========================
-   LOGIN / REGISTER BUTTONS
-========================= */
-
-function openLogin(){
-
-showPage("login");
-
-}
-
-function openRegister(){
-
-showPage("register");
-
-}
-
-
-/* =========================
-   VIDEO FILE CHANGE
-========================= */
-
-document.addEventListener(
-"change",
+commentsModal.addEventListener(
+"click",
 function(e){
 
-if(
-e.target &&
-e.target.id==="videoFile"
-){
+if(e.target === commentsModal){
 
-previewPost();
+closeComments();
 
 }
 
+});
+
 }
-);
 
 
-/* =========================
-   COMMENT ENTER
-========================= */
+/* ================================
+   ESC KEY
+================================ */
 
 document.addEventListener(
 "keydown",
 function(e){
 
-if(
-e.target &&
-e.target.id==="commentInput" &&
-e.key==="Enter"
-){
+if(e.key === "Escape"){
 
-e.preventDefault();
+closeComments();
 
-sendComment();
+if(cameraStream){
 
-}
-
-}
+cameraStream
+.getTracks()
+.forEach(track =>
+track.stop()
 );
 
+cameraStream=null;
 
-/* =========================
-   INITIALIZE APP
-========================= */
+}
+
+}
+
+});
+
+
+/* ================================
+   GLOBAL ERROR MESSAGE
+================================ */
+
+window.addEventListener(
+"error",
+function(e){
+
+console.error(
+"We Media error:",
+e.error || e.message
+);
+
+});
+
+
+/* ================================
+   START
+================================ */
+
+if(
+document.readyState ===
+"loading"
+){
 
 document.addEventListener(
 "DOMContentLoaded",
-async()=>{
+startApp
+);
 
-await startApp();
+}else{
 
-await openSharedVideo();
+startApp();
 
 }
-);
+
+
+/* ================================
+   CLOSE HTML
+================================ */
 
 </script>
 
